@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23 18:13:07",
+  "updated_at": "2026-10-23 18:15:06",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -140,56 +140,48 @@
   },
   "paper": {
     "view": "all",
-    "orders": 34,
-    "filled": 6,
-    "closed": 1,
+    "orders": 30,
+    "filled": 5,
+    "closed": 0,
     "open": 5,
-    "pending": 12,
-    "expired": 15,
+    "pending": 10,
+    "expired": 14,
     "skipped": 1,
-    "fill_rate": 0.17647058823529413,
-    "win_rate": 0.0,
-    "avg_ret": -0.0517,
-    "med_ret": -0.0517,
+    "fill_rate": 0.16666666666666666,
+    "win_rate": null,
+    "avg_ret": null,
+    "med_ret": null,
     "avg_win": null,
-    "avg_loss": -0.0517,
-    "profit_factor": 0.0,
-    "expectancy": -0.0517,
-    "total_pnl": -755.23,
-    "total_notional": 14612.0,
-    "avg_hold": 2.0,
-    "excess_n": 1,
-    "avg_excess": -0.0501,
-    "excess_win": 0.0,
-    "max_dd_yuan": -755.23,
-    "avg_mfe": 0.0,
-    "avg_mae": -0.0504,
-    "tp_touch_rate": 0.0,
-    "stop_rate": 1.0,
-    "timeout_rate": 0.0,
-    "exit_reasons": {
-      "stop": 1
-    },
-    "by_rating": {
-      "可关注": {
-        "n": 1,
-        "win_rate": 0.0,
-        "avg": -0.0517
-      }
-    },
+    "avg_loss": null,
+    "profit_factor": null,
+    "expectancy": null,
+    "total_pnl": 0.0,
+    "total_notional": 0,
+    "avg_hold": null,
+    "excess_n": 0,
+    "avg_excess": null,
+    "excess_win": null,
+    "max_dd_yuan": 0.0,
+    "avg_mfe": null,
+    "avg_mae": null,
+    "tp_touch_rate": null,
+    "stop_rate": null,
+    "timeout_rate": null,
+    "exit_reasons": {},
+    "by_rating": {},
     "account": {
       "capital": 100000.0,
-      "cash": 3608.81,
+      "cash": 4364.04,
       "open_cost": 95635.96,
       "open_value": 94523.0,
-      "realized": -755.23,
+      "realized": 0.0,
       "unrealized": -1112.96,
-      "equity": 98131.81,
-      "total_return": -0.018681899999999918,
-      "exposure": 0.9632248707121573,
+      "equity": 98887.04,
+      "total_return": -0.011129599999999962,
+      "exposure": 0.9558684333154273,
       "positions": [
         {
-          "id": 207,
+          "id": 273,
           "pick_id": 29,
           "trade_date": "2026-10-22",
           "code": "600547",
@@ -224,14 +216,14 @@
           "mfe": 0.0,
           "mae": 0.0,
           "plan_json": "{\"trade_date\": \"2026-10-22\", \"code\": \"600547\", \"name\": \"山东黄金\", \"rating\": \"强推\", \"total_score\": 64.4, \"entry_mode\": \"limit\", \"entry_target\": 25.06, \"valid_days\": 3, \"stop_price\": 24.53, \"tp_prices\": [28.49, 31.13, 34.29], \"holding_days\": 45, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 25.06, \"secondaryEntry\": 23.81, \"stopLoss\": 24.53, \"resistance\": 38.75, \"takeProfits\": [{\"level\": 1, \"pct\": 8, \"price\": 28.49, \"reason\": \"首阻力位 +8%\"}, {\"level\": 2, \"pct\": 18, \"price\": 31.13, \"reason\": \"次阻力位 +18%\"}, {\"level\": 3, \"pct\": 30, \"price\": 34.29, \"reason\": \"52周高位 38.75\"}], \"holdingDays\": 45, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"buy\", \"title\": \"缩量回踩\", \"condition\": \"量比<0.8 且 换手<0.0% 即分档介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +8%（约 28.49）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 24.53 全部清仓\"}]}}",
-          "created_at": "2026-10-23 18:12:48",
-          "updated_at": "2026-10-23 18:12:48",
+          "created_at": "2026-10-23 18:14:24",
+          "updated_at": "2026-10-23 18:14:24",
           "snapshot_id": 37,
           "path_src": null,
           "execs": [
             {
-              "id": 202,
-              "trade_id": 207,
+              "id": 212,
+              "trade_id": 273,
               "exec_date": "2026-10-23",
               "code": "600547",
               "side": "buy",
@@ -240,7 +232,7 @@
               "amount": 19840.0,
               "fee": 5.2,
               "reason": "entry",
-              "created_at": "2026-10-23 18:12:48"
+              "created_at": "2026-10-23 18:14:24"
             }
           ],
           "cost": 19845.2,
@@ -249,7 +241,7 @@
           "pnl_pct": -0.00026202809747444267
         },
         {
-          "id": 203,
+          "id": 269,
           "pick_id": 25,
           "trade_date": "2026-10-22",
           "code": "600938",
@@ -284,14 +276,14 @@
           "mfe": 0.0112,
           "mae": -0.0151,
           "plan_json": "{\"trade_date\": \"2026-10-22\", \"code\": \"600938\", \"name\": \"中国海油\", \"rating\": \"强推\", \"total_score\": 78.4, \"entry_mode\": \"limit\", \"entry_target\": 33.88, \"valid_days\": 3, \"stop_price\": 32.48, \"tp_prices\": [37.03, 39.12, 42.61], \"holding_days\": 20, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 33.88, \"secondaryEntry\": 32.19, \"stopLoss\": 32.48, \"resistance\": 39.23, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 37.03, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 39.12, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 42.61, \"reason\": \"52周高位 39.23\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 33.88）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +6%（约 37.03）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 32.48 全部清仓\"}]}}",
-          "created_at": "2026-10-23 18:12:48",
-          "updated_at": "2026-10-23 18:12:48",
+          "created_at": "2026-10-23 18:14:24",
+          "updated_at": "2026-10-23 18:14:24",
           "snapshot_id": 33,
           "path_src": "daily",
           "execs": [
             {
-              "id": 201,
-              "trade_id": 203,
+              "id": 211,
+              "trade_id": 269,
               "exec_date": "2026-10-22",
               "code": "600938",
               "side": "buy",
@@ -300,7 +292,7 @@
               "amount": 16940.0,
               "fee": 5.17,
               "reason": "entry",
-              "created_at": "2026-10-23 18:12:48"
+              "created_at": "2026-10-23 18:14:24"
             }
           ],
           "cost": 16945.17,
@@ -309,7 +301,7 @@
           "pnl_pct": -0.0050262110088006295
         },
         {
-          "id": 191,
+          "id": 257,
           "pick_id": 13,
           "trade_date": "2026-10-20",
           "code": "601898",
@@ -344,14 +336,14 @@
           "mfe": 0.0095,
           "mae": -0.0272,
           "plan_json": "{\"trade_date\": \"2026-10-20\", \"code\": \"601898\", \"name\": \"XD中煤能\", \"rating\": \"强推\", \"total_score\": 63.1, \"entry_mode\": \"limit\", \"entry_target\": 14.7, \"valid_days\": 3, \"stop_price\": 14.09, \"tp_prices\": [16.06, 16.97, 18.48], \"holding_days\": 20, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 14.7, \"secondaryEntry\": 13.96, \"stopLoss\": 14.09, \"resistance\": 18.62, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 16.06, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 16.97, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 18.48, \"reason\": \"52周高位 18.62\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 14.70）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +6%（约 16.06）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 14.09 全部清仓\"}]}}",
-          "created_at": "2026-10-23 18:12:48",
-          "updated_at": "2026-10-23 18:13:07",
+          "created_at": "2026-10-23 18:14:24",
+          "updated_at": "2026-10-23 18:15:06",
           "snapshot_id": 21,
           "path_src": "daily",
           "execs": [
             {
-              "id": 203,
-              "trade_id": 191,
+              "id": 213,
+              "trade_id": 257,
               "exec_date": "2026-10-21",
               "code": "601898",
               "side": "buy",
@@ -360,7 +352,7 @@
               "amount": 19110.0,
               "fee": 5.19,
               "reason": "entry",
-              "created_at": "2026-10-23 18:13:07"
+              "created_at": "2026-10-23 18:15:06"
             }
           ],
           "cost": 19115.19,
@@ -369,7 +361,7 @@
           "pnl_pct": -0.0097927355155768
         },
         {
-          "id": 192,
+          "id": 258,
           "pick_id": 14,
           "trade_date": "2026-10-20",
           "code": "600011",
@@ -404,14 +396,14 @@
           "mfe": 0.0162,
           "mae": -0.0257,
           "plan_json": "{\"trade_date\": \"2026-10-20\", \"code\": \"600011\", \"name\": \"华能国际\", \"rating\": \"强推\", \"total_score\": 59.1, \"entry_mode\": \"limit\", \"entry_target\": 7.4, \"valid_days\": 3, \"stop_price\": 7.1, \"tp_prices\": [8.24, 9.0, 9.92], \"holding_days\": 90, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 7.4, \"secondaryEntry\": 7.03, \"stopLoss\": 7.1, \"resistance\": 9.36, \"takeProfits\": [{\"level\": 1, \"pct\": 8, \"price\": 8.24, \"reason\": \"首阻力位 +8%\"}, {\"level\": 2, \"pct\": 18, \"price\": 9, \"reason\": \"次阻力位 +18%\"}, {\"level\": 3, \"pct\": 30, \"price\": 9.92, \"reason\": \"52周高位 9.36\"}], \"holdingDays\": 90, \"holdingTag\": \"长线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 7.40）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +8%（约 8.24）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 7.1 全部清仓\"}]}}",
-          "created_at": "2026-10-23 18:12:48",
-          "updated_at": "2026-10-23 18:13:07",
+          "created_at": "2026-10-23 18:14:24",
+          "updated_at": "2026-10-23 18:15:06",
           "snapshot_id": 22,
           "path_src": "daily",
           "execs": [
             {
-              "id": 204,
-              "trade_id": 192,
+              "id": 214,
+              "trade_id": 258,
               "exec_date": "2026-10-21",
               "code": "600011",
               "side": "buy",
@@ -420,7 +412,7 @@
               "amount": 19980.0,
               "fee": 5.2,
               "reason": "entry",
-              "created_at": "2026-10-23 18:13:07"
+              "created_at": "2026-10-23 18:15:06"
             }
           ],
           "cost": 19985.2,
@@ -429,7 +421,7 @@
           "pnl_pct": -0.020525188639593295
         },
         {
-          "id": 194,
+          "id": 260,
           "pick_id": 16,
           "trade_date": "2026-10-20",
           "code": "002508",
@@ -464,14 +456,14 @@
           "mfe": 0.0,
           "mae": -0.0407,
           "plan_json": "{\"trade_date\": \"2026-10-20\", \"code\": \"002508\", \"name\": \"老板电器\", \"rating\": \"强推\", \"total_score\": 51.6, \"entry_mode\": \"limit\", \"entry_target\": 16.45, \"valid_days\": 3, \"stop_price\": 15.77, \"tp_prices\": [17.98, 19.0, 20.69], \"holding_days\": 20, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 16.45, \"secondaryEntry\": 15.63, \"stopLoss\": 15.77, \"resistance\": 18.55, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 17.98, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 19, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 20.69, \"reason\": \"52周高位 18.55\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 16.45）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +6%（约 17.98）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 15.77 全部清仓\"}]}}",
-          "created_at": "2026-10-23 18:12:48",
-          "updated_at": "2026-10-23 18:12:48",
+          "created_at": "2026-10-23 18:14:24",
+          "updated_at": "2026-10-23 18:14:24",
           "snapshot_id": 24,
           "path_src": "daily",
           "execs": [
             {
-              "id": 200,
-              "trade_id": 194,
+              "id": 210,
+              "trade_id": 260,
               "exec_date": "2026-10-21",
               "code": "002508",
               "side": "buy",
@@ -480,7 +472,7 @@
               "amount": 19740.0,
               "fee": 5.2,
               "reason": "entry",
-              "created_at": "2026-10-23 18:12:48"
+              "created_at": "2026-10-23 18:14:24"
             }
           ],
           "cost": 19745.2,
@@ -494,7 +486,7 @@
     },
     "verdict": [
       "样本不足",
-      "仅 1 笔平仓样本（阈值 10），暂不下结论"
+      "仅 0 笔平仓样本（阈值 10），暂不下结论"
     ]
   }
 }
