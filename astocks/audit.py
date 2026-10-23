@@ -265,7 +265,9 @@ def run(conn, start: str = "2026-10-19", end: str | None = None,
             "status": t["status"], "fill_date": t["fill_date"],
             "fill_price": t["fill_price"], "qty": t["qty"], "exit_reason": t["exit_reason"],
         }
-        r["diff"] = _diff(r, r["book"])
+        r["diff"] = _diff(r, r["book"]) if r["book"] else (
+            [] if store.one(conn, "SELECT 1 FROM paper_trade WHERE code=? AND status='open'", (r["code"],))
+            else ["账本未建单"])
     return {"cutoff": cutoff, "rows": rows, "calendar": cal}
 
 
@@ -273,7 +275,9 @@ def _diff(r: dict, b: dict | None) -> list[str]:
     if not b:
         return ["账本未建单"]
     if b["status"] in ("skipped",) or (b["status"] == "expired" and r["status"] == "open"):
-        # 组合层仓位约束：单笔审计不知道「同标的已持仓」，这类差异是预期的，不算规则错
+        # 组合层约束：单笔审计不知道「同标的已持仓」或「旧单已被新建议作废」，属预期差异
+        return []
+    if b.get("exit_reason") == "superseded":
         return []
     out = []
     a_status = "closed" if r["status"] == "closed" else r["status"]
@@ -329,6 +333,7 @@ def markdown(conn, start: str = "2026-10-19", end: str | None = None) -> str:
     sm = __import__("astocks.paper", fromlist=["x"]).summary(conn, "strong")
     acct = sm["account"]
 
+    sup = [r for r in rows if (r["book"] or {}).get("exit_reason") == "superseded"]
     filled = [r for r in rows if r["fill_date"]]
     opened = [r for r in rows if r["status"] == "open"]
     closed = [r for r in rows if r["status"] == "closed"]
@@ -337,6 +342,15 @@ def markdown(conn, start: str = "2026-10-19", end: str | None = None) -> str:
     tp_hits = [r for r in rows if any(e["kind"].startswith("tp") for e in r["events"])]
     stop_hits = [r for r in rows if any(e["kind"] == "stop" for e in r["events"])]
     diffs = [r for r in rows if r["diff"]]
+    revs = []
+    for t in store.rows(conn, "SELECT * FROM paper_trade WHERE plan_json LIKE '%schedule%'"):
+        try:
+            sch = (json.loads(t["plan_json"]) or {}).get("schedule") or []
+        except json.JSONDecodeError:
+            sch = []
+        if len(sch) > 1:
+            revs.append({"code": t["code"], "name": t["name"], "fill_date": t["fill_date"],
+                         "schedule": sch})
 
     L: list[str] = []
     L += [f"# 强推策略逐笔回溯审计 · {start} → {res['cutoff']}", "",
@@ -348,11 +362,13 @@ def markdown(conn, start: str = "2026-10-19", end: str | None = None) -> str:
     L += ["## 一、结论", "",
           f"- 单笔口径可成交 **{len(filled)}** 笔（{len(filled) / len(rows):.0%}）；"
           f"组合口径累计建仓 {sm['filled']} 笔、当前在手 {len(acct['positions'])} 只、已平仓 {sm['closed']} 笔"
-          f"（差集为「同标的已持仓」未重复建仓）",
+          f"（差集＝被新建议作废、或同标的已持仓未重复建仓）",
           f"- 未成交失效：{len(exp)} 笔；仍在挂单：{len(pend)} 笔",
           f"- 触及止盈：{len(tp_hits)} 笔；触及止损：{len(stop_hits)} 笔",
           f"- 当前持仓 {acct['positions'].__len__()} 只，总资产 {acct['equity']:,.0f} 元"
           f"（{acct['total_return']:+.2%}）",
+          f"- 被次日新建议作废的挂单：**{len(sup)}** 笔（未成交前策略修正，旧单 `superseded`）",
+          f"- 持仓期参数被修订：**{len(revs)}** 笔",
           f"- 规则与账本存在实质分歧：**{len(diffs)}** 笔",
           ""]
 
@@ -434,7 +450,18 @@ def markdown(conn, start: str = "2026-10-19", end: str | None = None) -> str:
           "| R12 | **不再「撤旧挂新」**：同标的多张买单并行有效，先触及者成交 | **本次修正** |",
           ""]
 
-    L += ["## 七、本次修正记录", "",
+    L += ["## 七、持仓期策略修订记录", ""]
+    if revs:
+        L += ["| 代码 | 名称 | 建仓日 | 生效日 | 止损 | 三档止盈 |", "|---|---|---|---|---|---|"]
+        for rv in revs:
+            for x in rv["schedule"]:
+                L.append(f"| {rv['code']} | {rv['name']} | {rv['fill_date']} | {x['effective']} | "
+                         f"{x.get('stop')} | {x.get('tps')} |")
+    else:
+        L.append("- 本期无（持仓标的未再收到新的强推）")
+    L.append("")
+
+    L += ["## 八、本次修正记录", "",
           "### 1. 撤旧挂新 → 改为不撤单（影响最大）", "",
           "旧规则：同一标的来了新推荐，就撤掉未成交的旧挂单、按新买点重挂。",
           "问题：站点每天把买点下调（本例普遍比记录价低 6%），每来一次就撤单重挂，",

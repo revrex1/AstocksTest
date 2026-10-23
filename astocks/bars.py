@@ -171,6 +171,29 @@ def save_minutes(conn, code: str, nodes: Iterable[dict], src: str = "westock") -
     return len(rows)
 
 
+def backfill_minutes(conn, codes: Iterable[str], log: Logger = _noop,
+                     force: bool = False) -> dict:
+    """从腾讯财经抓 5 分钟线落库（约 320 根 ≈ 6.5 个交易日，覆盖最近一周）。"""
+    from . import tencent
+    codes = list(dict.fromkeys(codes))
+    total, hit = 0, 0
+    for code in codes:
+        if not force:
+            lo, hi, n = minutes_span(conn, code)
+            if n and hi == _today():
+                continue
+        try:
+            nodes = tencent.fetch_minutes(code)
+        except Exception as exc:  # noqa: BLE001
+            log(f"⚠  {code} 分钟线拉取失败：{exc}")
+            continue
+        n = save_minutes(conn, code, nodes, src="tencent")
+        total += n
+        hit += 1 if n else 0
+    log(f"⏱  分钟线补齐：{hit}/{len(codes)} 只更新，共 {total} 根")
+    return {"updated_codes": hit, "bars": total}
+
+
 def minutes_of(conn, code: str, start: str | None = None,
                end: str | None = None) -> dict[str, list[dict]]:
     """返回 {trade_date: [按时间升序的分钟 bar]}。"""

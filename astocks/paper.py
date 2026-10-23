@@ -83,6 +83,8 @@ def build_plan(pick: dict) -> dict:
         "trade_date": pick["trade_date"],
         "code": pick["code"],
         "name": pick["name"],
+        "schedule": [{"effective": pick["trade_date"], "stop": round(float(stop), 3) if stop else None,
+                      "tps": tps, "hold": hold}],
         "rating": pick.get("rating"),
         "total_score": pick.get("total_score"),
         "entry_mode": mode,
@@ -94,6 +96,16 @@ def build_plan(pick: dict) -> dict:
         "notes": notes,
         "suggestion": sug,
     }
+
+
+def _ensure_schedule(plan: dict) -> dict:
+    """老快照里没有 schedule，补一条基线版本，保证修订链完整可回溯。"""
+    if not plan.get("schedule"):
+        plan["schedule"] = [{
+            "effective": plan["trade_date"], "stop": plan.get("stop_price"),
+            "tps": list(plan.get("tp_prices") or []), "hold": plan.get("holding_days") or 20,
+        }]
+    return plan
 
 
 def _fee(amount: float, side: str) -> float:
@@ -117,7 +129,8 @@ def _qty(price: float, budget: float, cash: float) -> int:
 
 
 def _budget() -> float:
-    return config.PAPER_CAPITAL / max(config.PAPER_MAX_POSITIONS, 1)
+    """单笔预算 = 总资金 × 仓位比例（放宽持仓数后不再用 资金/上限）。"""
+    return config.PAPER_CAPITAL * getattr(config, "PAPER_POSITION_PCT", 0.12)
 
 
 def _tranches(qty: int, n: int) -> list[int]:
@@ -271,6 +284,45 @@ class _Sim:
         return any(s["code"] == code and s["rating"] == rating
                    for s in self.open_positions())
 
+    def revise(self, code: str, rating: str | None, plan: dict, day: str) -> int | None:
+        """持仓期间来了同标的的新强推：把止损/止盈/持有期改成新版本，从当日生效。
+
+        买点不参与修订——已经建仓的票不因新买点而加仓，避免同一标的堆仓。
+        """
+        for s in self.open_positions():
+            if s["code"] != code or s["rating"] != rating:
+                continue
+            sch = [x for x in (s["plan"].get("schedule") or []) if x["effective"] != day]
+            sch.append({"effective": day, "stop": plan.get("stop_price"),
+                        "tps": list(plan.get("tp_prices") or []),
+                        "hold": plan.get("holding_days")})
+            sch.sort(key=lambda x: x["effective"])
+            s["plan"]["schedule"] = sch
+            return s["id"]
+        return None
+
+    def plan_of(self, tid: int) -> dict | None:
+        st = self.orders.get(tid)
+        return st["plan"] if st else None
+
+    def _apply_schedule(self, s: dict, day: str) -> None:
+        """按 schedule 取当日应生效的那一版参数（重放与增量都走这里，保证可复现）。"""
+        sch = s["plan"].get("schedule") or []
+        cur = None
+        for x in sch:
+            if x["effective"] <= day:
+                cur = x
+        if cur is None:
+            return
+        p = s["plan"]
+        p["stop_price"] = cur.get("stop")
+        if cur.get("hold"):
+            p["holding_days"] = cur["hold"]
+        new_tps = list(cur.get("tps") or [])
+        if new_tps != list(p.get("tp_prices") or []):
+            p["tp_prices"] = new_tps
+            s["tp_done"] = [False] * len(new_tps)
+
     def cancel_pending(self, code: str, rating: str | None, before: str) -> int:
         n = 0
         for s in self.orders.values():
@@ -342,6 +394,7 @@ class _Sim:
             if s["status"] != "open" or s["shares_left"] <= 0:
                 continue
             code, plan = s["code"], s["plan"]
+            self._apply_schedule(s, day)
             bar = self._kline(code, plan["trade_date"]).get(day)
             if not bar:
                 continue
@@ -371,7 +424,7 @@ class _Sim:
             prev_close = self._kline(code, plan["trade_date"]).get(self.cal[i - 1], {}).get("close") if i else None
             _up, dn = _limits(code, s["name"], prev_close)
             tps = plan["tp_prices"]
-            tranches = _tranches(s["qty"], len(tps))
+            tranches = _tranches(s["shares_left"], len(tps))
             events, left = _sell_events(path, plan, tps, s["tp_done"], tranches,
                                         s["shares_left"], dn)
             for reason, raw_px, q in events:
@@ -624,8 +677,36 @@ def _cancel_pending(conn, code: str, day: str, rating: str | None) -> int:
     return cur.rowcount or 0
 
 
+def _revise_row(conn, tid: int, plan: dict) -> None:
+    """把持仓的参数修订写回账本（止损/止盈/持有期 + schedule 版本链）。"""
+    row = store.one(conn, "SELECT plan_json FROM paper_trade WHERE id=?", (tid,))
+    if not row:
+        return
+    base = json.loads(row["plan_json"] or "{}")
+    sch = plan.get("schedule") or base.get("schedule") or []
+    base["schedule"] = sch
+    latest = sch[-1] if sch else {}
+    stop = latest.get("stop", plan.get("stop_price"))
+    tps = list(latest.get("tps") or [])
+    hold = latest.get("hold") or plan.get("holding_days")
+    base["stop_price"], base["tp_prices"], base["holding_days"] = stop, tps, hold
+    conn.execute(
+        """UPDATE paper_trade SET stop_price=?, tp_prices=?, holding_days=?, plan_json=?, updated_at=?
+           WHERE id=?""",
+        (stop, store.dump(tps), hold, store.dump(base), store.now_iso(), tid),
+    )
+
+
 def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = config.PAPER_SCOPE,
                   log: Logger = _noop, sim: "_Sim | None" = None) -> int:
+    """当日建单。
+
+    三种情形（2026-10-23 规则）：
+      1. 同标的**已持仓** → 不新建仓，把止损/止盈/持有期替换成今天这版建议（次日生效）；
+      2. 同标的**有未成交挂单** → 旧单作废（`superseded`），按今天的建议重挂；
+      3. 都没有 → 新挂单。
+    原则：策略在「未达成实际成交」前可修正；成交后买点冻结，但止盈止损仍可随新建议调整。
+    """
     picks = store.get_picks(conn, trade_date)
     made = 0
     for p in picks:
@@ -640,13 +721,26 @@ def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = config.PAPER
         plan.setdefault("valid_days", config.PAPER_ENTRY_VALID_DAYS)
         if not plan.get("entry_target"):
             continue
+        _ensure_schedule(plan)
         rating = p.get("rating")
-        dup = sim.has_open(p["code"], rating) if sim else _has_open_position(conn, p["code"], trade_date, rating)
-        # 不撤旧挂单（2026-10-23 修正）：撤旧挂新等于「越跌越不买」——站点每天把买点下调，
-        # 每来一次就撤单，委托永远等不到成交（10-20 的 601898 14.70、600011 7.40 本已在
-        # 10-21 触发却被撤）。每张建议单独立有效 PAPER_ENTRY_VALID_DAYS 天，同标的多单并存，
-        # 靠成交时的持仓去重保证不会重复建仓。
-        status = "skipped" if dup else "pending"
+
+        # 情形 1：持仓中 → 只修订参数
+        tid = sim.revise(p["code"], rating, plan, trade_date) if sim else None
+        if tid:
+            merged = sim.plan_of(tid) or plan
+            _revise_row(conn, tid, merged)
+            log(f"🔄 {plan['code']} {plan['name']} 持仓中，按新建议更新止损/止盈"
+                f"（止损 {plan.get('stop_price')}，止盈 {plan.get('tp_prices')}）")
+            continue
+
+        # 情形 2：未成交挂单作废，按新建议重挂
+        if sim:
+            n = sim.cancel_pending(p["code"], rating, trade_date)
+            n += _cancel_pending(conn, p["code"], trade_date, rating)
+            if n:
+                log(f"♻️  {plan['code']} {plan['name']} 作废 {n} 张未成交挂单，按新建议重挂")
+
+        status = "pending"
         cur = conn.execute(
             """INSERT INTO paper_trade
                (pick_id, snapshot_id, trade_date, code, name, rating, total_score, entry_mode, entry_target,
@@ -658,14 +752,12 @@ def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = config.PAPER
              plan.get("total_score") if plan.get("total_score") is not None else p.get("total_score"),
              plan["entry_mode"], plan["entry_target"], plan["valid_days"],
              plan["stop_price"], store.dump(plan["tp_prices"]), plan["holding_days"],
-             status, store.dump(plan), "duplicate" if dup else None, store.now_iso()),
+             status, store.dump(plan), None, store.now_iso()),
         )
-        if sim and not dup:
+        if sim:
             sim.add(int(cur.lastrowid), p, plan)
-        made += 1 if not dup else 0
-        if dup:
-            log(f"⏭  {plan['code']} {plan['name']} 已有持仓，本次不重复建仓")
-        elif plan["notes"]:
+        made += 1
+        if plan["notes"]:
             log(f"📝 {plan['code']} {plan['name']}：{'；'.join(plan['notes'])}")
     return made
 
@@ -741,7 +833,7 @@ def _load_sim(conn, cal: list[str], cutoff: str, bench: dict, offline: bool, log
         plan.setdefault("code", t["code"])
         plan.setdefault("name", t["name"])
         plan.setdefault("valid_days", config.PAPER_ENTRY_VALID_DAYS)
-        sim.add(t["id"], t, plan)
+        sim.add(t["id"], t, _ensure_schedule(plan))
     return sim
 
 

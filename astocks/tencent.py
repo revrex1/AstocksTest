@@ -7,6 +7,7 @@
 """
 from __future__ import annotations
 
+import json
 import urllib.request
 
 URL = "https://qt.gtimg.cn/q="
@@ -75,5 +76,37 @@ def fetch_quotes(codes: list[str]) -> list[dict]:
             "volumeRatio": _f(f, 49),
             "time": f[30],
             "source": "tencent",
+        })
+    return out
+
+
+MKLINE = "https://ifzq.gtimg.cn/appstock/app/kline/mkline?param="
+
+
+def fetch_minutes(code: str, period: str = "m5", n: int = 320) -> list[dict]:
+    """5 分钟线。返回节点结构与 westock 的 data_kline 对齐，便于共用落库。
+
+    腾讯返回 [时间, 开, 收, 高, 低, 量, {}, 额]，时间形如 202610231455。
+    """
+    sym = normalize(code)
+    url = f"{MKLINE}{sym},{period},,{n}"
+    req = urllib.request.Request(
+        url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://gu.qq.com/"})
+    with urllib.request.urlopen(req, timeout=25) as resp:
+        payload = json.loads(resp.read().decode("utf-8", "replace"))
+    node = (payload.get("data") or {}).get(sym) or {}
+    raw = node.get(period) or node.get("m5") or []
+    out: list[dict] = []
+    for row in raw:
+        if not isinstance(row, list) or len(row) < 6:
+            continue
+        ts = str(row[0])
+        if len(ts) != 12:
+            continue
+        out.append({
+            "ts": f"{ts[:4]}-{ts[4:6]}-{ts[6:8]} {ts[8:10]}:{ts[10:12]}:00",
+            "open": float(row[1]), "close": float(row[2]),
+            "high": float(row[3]), "low": float(row[4]),
+            "volume": float(row[5] or 0),
         })
     return out

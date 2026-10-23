@@ -315,6 +315,11 @@ def cmd_context(args) -> int:
 def cmd_minutes(args) -> int:
     """把连接器拉到的分钟线写入库，供虚拟交易判定止盈止损先后。"""
     conn = store.init_db()
+    if getattr(args, "fetch", False):
+        codes = ([c.strip() for c in args.codes.split(",") if c.strip()]
+                 if args.codes else bars.all_codes(conn))
+        bars.backfill_minutes(conn, codes, log=_log, force=args.force)
+        return 0
     if args.file:
         with open(args.file, encoding="utf-8") as f:
             payload = json.load(f)
@@ -457,6 +462,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--file", help="JSON 文件路径；缺省从 stdin 读")
     p.add_argument("--code", help="单只代码（payload 里没有 code 字段时用）")
     p.add_argument("--source", default="westock", help="数据来源备注")
+    p.add_argument("--fetch", action="store_true",
+                   help="不读文件，直接从腾讯财经抓最近一周的 5 分钟线")
+    p.add_argument("--codes", help="配合 --fetch：逗号分隔代码，默认全部推荐过的股票")
+    p.add_argument("--force", action="store_true", help="配合 --fetch：当日已抓过也重抓")
     p.set_defaults(func=cmd_minutes)
 
     p = sub.add_parser("site", help="生成可分享的多日回溯单页站（site/index.html）")

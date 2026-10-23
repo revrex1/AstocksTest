@@ -38,7 +38,8 @@ REVERSE_EXCESS = -0.01
 # 规则全部来自推荐附带的 suggestion（买点/止损/三档止盈/持有天数），
 # 这里只是执行口径，不参与选股，也不改任何选股参数。
 PAPER_CAPITAL = 100_000         # 虚拟盘总资金（元）；建仓受现金约束，不是无限加仓
-PAPER_MAX_POSITIONS = 5         # 同时持仓上限，单笔预算 = 总资金 / 上限
+PAPER_MAX_POSITIONS = 8         # 同时持仓上限（放宽：不再死守 5 只）
+PAPER_POSITION_PCT = 0.12       # 单笔预算占总资金比例，10 万 × 12% = 1.2 万/笔
 PAPER_SCOPE = ("强推",)         # 虚拟盘只做当日强推，可关注仅记录不交易
 PAPER_ENTRY_VALID_DAYS = 3      # 挂单有效交易日，逾期未触及买点则撤单
 PAPER_FEE_BPS = 2.5             # 佣金 万2.5
