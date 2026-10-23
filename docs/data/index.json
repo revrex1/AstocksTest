@@ -1,17 +1,18 @@
 {
-  "updated_at": "2026-10-23 09:33:59",
+  "updated_at": "2026-10-23 10:53:54",
   "source": "live",
   "bench": {
     "code": "sh000300",
     "name": "沪深300"
   },
-  "latest": "2026-10-22",
-  "count": 4,
+  "latest": "2026-10-23",
+  "count": 5,
   "dates": [
     "2026-10-19",
     "2026-10-20",
     "2026-10-21",
-    "2026-10-22"
+    "2026-10-22",
+    "2026-10-23"
   ],
   "summary": {
     "nav": 0.9826,
@@ -38,7 +39,8 @@
       "avg_excess": 0.0101,
       "bench_pct": 0.0009,
       "nav": 1.0111,
-      "bench_nav": 1.0009
+      "bench_nav": 1.0009,
+      "provisional": false
     },
     {
       "date": "2026-10-20",
@@ -50,7 +52,8 @@
       "avg_excess": -0.0006,
       "bench_pct": -0.0054,
       "nav": 1.005,
-      "bench_nav": 0.9956
+      "bench_nav": 0.9956,
+      "provisional": false
     },
     {
       "date": "2026-10-21",
@@ -62,7 +65,8 @@
       "avg_excess": -0.0004,
       "bench_pct": -0.0097,
       "nav": 0.9948,
-      "bench_nav": 0.9859
+      "bench_nav": 0.9859,
+      "provisional": false
     },
     {
       "date": "2026-10-22",
@@ -74,7 +78,21 @@
       "avg_excess": -0.0059,
       "bench_pct": -0.0064,
       "nav": 0.9826,
-      "bench_nav": 0.9796
+      "bench_nav": 0.9796,
+      "provisional": false
+    },
+    {
+      "date": "2026-10-23",
+      "picks": 8,
+      "strong": 6,
+      "watch": 2,
+      "win_rate": null,
+      "avg_ret": null,
+      "avg_excess": null,
+      "bench_pct": -0.014,
+      "nav": null,
+      "bench_nav": null,
+      "provisional": true
     }
   ],
   "layers": {
@@ -155,5 +173,8 @@
       "样本不足",
       "仅 0 笔平仓样本（阈值 10），暂不下结论"
     ]
-  }
+  },
+  "pending": [
+    "2026-10-23"
+  ]
 }
