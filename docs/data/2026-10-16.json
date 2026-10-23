@@ -1,0 +1,385 @@
+{
+  "date": "2026-10-16",
+  "source": "simulated",
+  "bench_name": "沪深300",
+  "bench_pct": 0.0011,
+  "stats": {
+    "picks": 2,
+    "win_rate": 0.0,
+    "avg_ret": -0.0288,
+    "med_ret": -0.0288,
+    "avg_excess": -0.0299,
+    "nav": 0.952,
+    "bench_nav": 0.9754
+  },
+  "picks": [
+    {
+      "rank": 1,
+      "code": "300274",
+      "name": "阳光电源",
+      "rating": "可关注",
+      "total_score": 66.7,
+      "investability": 75.75,
+      "ref_price": 78.1,
+      "open": 78.1,
+      "high": 79.46,
+      "low": 76.42,
+      "close": 76.86,
+      "ret_d0": -0.0159,
+      "excess_d0": -0.017,
+      "mfe_d0": 0.0174,
+      "mae_d0": -0.0215,
+      "ret_t1": -0.0054,
+      "ret_t3": -0.0743,
+      "ret_t5": -0.0755,
+      "hit_tp1": 0,
+      "hit_stop": 1,
+      "stop_loss": 76.62,
+      "primary_entry": 76.86,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-10-19 10:40:54",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "基本面过关但未达强推：均线空头排列，趋势未修复",
+        "total_weight": 40,
+        "entry": {
+          "primary": 76.86,
+          "secondary": 73.02
+        },
+        "stop_loss": 76.62,
+        "resistance": 191.08,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 8,
+            "price": 83.01,
+            "reason": "首阻力位 +8%"
+          },
+          {
+            "level": 2,
+            "pct": 18,
+            "price": 90.69,
+            "reason": "次阻力位 +18%"
+          },
+          {
+            "level": 3,
+            "pct": 30,
+            "price": 99.92,
+            "reason": "52周高位 191.08"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "buy",
+            "title": "缩量回踩",
+            "condition": "量比<0.8 且 换手<1.6% 即分档介入"
+          },
+          {
+            "type": "reduce",
+            "title": "首档止盈",
+            "condition": "涨幅达 +8%（约 83.01）减仓 1/3"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "放量跌破 76.62 全部清仓"
+          }
+        ],
+        "reasons": [
+          "营收同比 40.3% 高增长",
+          "归母净利润同比 56% 显著爆发",
+          "ROE 19.18% 资本回报优秀",
+          "扣非同比 +28.7% 业绩含金量高",
+          "PEG 0.26 极低估"
+        ],
+        "risks": [],
+        "tags": [
+          {
+            "text": "高增长",
+            "positive": true
+          },
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 76.86,
+        "valid_days": 3,
+        "stop_price": 76.62,
+        "tp_prices": [
+          83.01,
+          90.69,
+          99.92
+        ],
+        "holding_days": 45,
+        "notes": []
+      }
+    },
+    {
+      "rank": 2,
+      "code": "002460",
+      "name": "赣锋锂业",
+      "rating": "可关注",
+      "total_score": 65.7,
+      "investability": 75.75,
+      "ref_price": 41.0,
+      "open": 41.0,
+      "high": 41.5,
+      "low": 38.7,
+      "close": 39.29,
+      "ret_d0": -0.0417,
+      "excess_d0": -0.0428,
+      "mfe_d0": 0.0122,
+      "mae_d0": -0.0561,
+      "ret_t1": -0.0676,
+      "ret_t3": -0.1059,
+      "ret_t5": -0.1051,
+      "hit_tp1": 0,
+      "hit_stop": 1,
+      "stop_loss": 39.47,
+      "primary_entry": 37.33,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-10-19 10:40:54",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "基本面过关但未达强推：均线空头排列，趋势未修复",
+        "total_weight": 40,
+        "entry": {
+          "primary": 37.33,
+          "secondary": 35.46
+        },
+        "stop_loss": 39.47,
+        "resistance": 91.52,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 8,
+            "price": 42.43,
+            "reason": "首阻力位 +8%"
+          },
+          {
+            "level": 2,
+            "pct": 18,
+            "price": 46.36,
+            "reason": "次阻力位 +18%"
+          },
+          {
+            "level": 3,
+            "pct": 30,
+            "price": 51.08,
+            "reason": "52周高位 91.52"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "buy",
+            "title": "缩量回踩",
+            "condition": "量比<0.8 且 换手<3.6% 即分档介入"
+          },
+          {
+            "type": "reduce",
+            "title": "首档止盈",
+            "condition": "涨幅达 +8%（约 42.43）减仓 1/3"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "放量跌破 39.47 全部清仓"
+          },
+          {
+            "type": "sell",
+            "title": "业绩注水嫌疑",
+            "condition": "若季报扣非仍未转正，逐步减仓"
+          }
+        ],
+        "reasons": [
+          "营收同比 147.2% 高增长",
+          "归母净利润同比 19541% 显著爆发",
+          "ROE 10.68% 资本回报优秀",
+          "PEG 0.12 极低估"
+        ],
+        "risks": [
+          "归母高增但扣非为负，存在一次性收益嫌疑"
+        ],
+        "tags": [
+          {
+            "text": "高增长",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 37.33,
+        "valid_days": 3,
+        "stop_price": 35.46,
+        "tp_prices": [
+          42.43,
+          46.36,
+          51.08
+        ],
+        "holding_days": 45,
+        "notes": [
+          "止损位 39.47 无效（≥买点），改用次买点 35.46 作为破位线"
+        ]
+      }
+    }
+  ],
+  "sectors": [
+    {
+      "name": "地面兵装Ⅱ",
+      "changePct": 5.96,
+      "mainNetInflowYi": 7.6,
+      "leader": "北方长龙"
+    },
+    {
+      "name": "水泥",
+      "changePct": 4.17,
+      "mainNetInflowYi": 2.96,
+      "leader": "福建水泥"
+    },
+    {
+      "name": "航空装备Ⅱ",
+      "changePct": 3.71,
+      "mainNetInflowYi": 15.33,
+      "leader": "晨曦航空"
+    },
+    {
+      "name": "航天装备Ⅱ",
+      "changePct": 3.47,
+      "mainNetInflowYi": 0.73,
+      "leader": "新余国科"
+    },
+    {
+      "name": "商用车",
+      "changePct": 3.47,
+      "mainNetInflowYi": 7.04,
+      "leader": "江淮汽车"
+    },
+    {
+      "name": "工程咨询服务Ⅱ",
+      "changePct": 2.93,
+      "mainNetInflowYi": 2.32,
+      "leader": "华阳国际"
+    },
+    {
+      "name": "养殖业",
+      "changePct": 2.88,
+      "mainNetInflowYi": -0.95,
+      "leader": "东瑞股份"
+    },
+    {
+      "name": "光伏设备",
+      "changePct": 0.53,
+      "mainNetInflowYi": -0.24,
+      "leader": "爱旭股份"
+    }
+  ],
+  "fundflow": {
+    "300274": {
+      "code": "300274",
+      "name": "阳光电源",
+      "mainNetInflowYi": 0.29,
+      "mainNetInflow5dYi": -8.03
+    },
+    "002460": {
+      "code": "002460",
+      "name": "赣锋锂业",
+      "mainNetInflowYi": -1.26,
+      "mainNetInflow5dYi": -2.88
+    }
+  },
+  "paper_holdings": [
+    {
+      "code": "600547",
+      "name": "山东黄金",
+      "rating": "强推",
+      "fill_date": "2026-10-23",
+      "fill_price": 24.8,
+      "qty": 4000,
+      "last_price": 26.0,
+      "ret_pct": 0.0481,
+      "stop_price": 24.53,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "600938",
+      "name": "中国海油",
+      "rating": "强推",
+      "fill_date": "2026-10-22",
+      "fill_price": 33.88,
+      "qty": 2900,
+      "last_price": 33.72,
+      "ret_pct": -0.005,
+      "stop_price": 32.48,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "002508",
+      "name": "老板电器",
+      "rating": "强推",
+      "fill_date": "2026-10-21",
+      "fill_price": 16.45,
+      "qty": 6000,
+      "last_price": 16.1,
+      "ret_pct": -0.0215,
+      "stop_price": 15.77,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "600011",
+      "name": "华能国际",
+      "rating": "强推",
+      "fill_date": "2026-10-21",
+      "fill_price": 7.4,
+      "qty": 13500,
+      "last_price": 7.25,
+      "ret_pct": -0.0205,
+      "stop_price": 7.1,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "601898",
+      "name": "XD中煤能",
+      "rating": "强推",
+      "fill_date": "2026-10-21",
+      "fill_price": 14.7,
+      "qty": 6800,
+      "last_price": 14.56,
+      "ret_pct": -0.0098,
+      "stop_price": 14.09,
+      "exit_date": null,
+      "exit_reason": null
+    }
+  ],
+  "provisional": false
+}
