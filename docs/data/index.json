@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23 15:05:03",
+  "updated_at": "2026-10-23 15:21:21",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -16,17 +16,17 @@
   ],
   "summary": {
     "nav": 0.9919,
-    "bench_nav": 0.9541,
-    "excess_nav": 0.0397,
+    "bench_nav": 0.9843,
+    "excess_nav": 0.0077,
     "win_rate": 0.3824,
     "avg": -0.0038,
-    "avg_excess": 0.0074,
+    "avg_excess": -0.0,
     "profit_factor": 0.5888,
     "samples": 34,
     "days": 5,
     "max_dd": -0.0282,
     "verdict": "偏弱",
-    "verdict_reason": "胜率 38% 低于 45%，超额 +0.74%"
+    "verdict_reason": "胜率 38% 低于 45%，超额 -0.00%"
   },
   "daily": [
     {
@@ -88,10 +88,10 @@
       "watch": 2,
       "win_rate": 0.625,
       "avg_ret": 0.0095,
-      "avg_excess": 0.0237,
-      "bench_pct": -0.0142,
+      "avg_excess": -0.0076,
+      "bench_pct": 0.0171,
       "nav": 0.9919,
-      "bench_nav": 0.9541,
+      "bench_nav": 0.9843,
       "provisional": false
     }
   ],
@@ -159,7 +159,7 @@
     "total_notional": 94978.0,
     "avg_hold": 2.0,
     "excess_n": 1,
-    "avg_excess": -0.0192,
+    "avg_excess": -0.0499,
     "excess_win": 0.0,
     "max_dd_yuan": -4890.23,
     "avg_mfe": 0.0408,
