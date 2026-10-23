@@ -926,9 +926,9 @@
       "rating": "强推",
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
-      "qty": 700,
+      "qty": 600,
       "last_price": 16.1,
-      "ret_pct": -0.0217,
+      "ret_pct": -0.0218,
       "stop_price": 15.77,
       "exit_date": null,
       "exit_reason": null
