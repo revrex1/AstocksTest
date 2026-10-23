@@ -116,21 +116,50 @@ def _fee(amount: float, side: str) -> float:
     return round(fee, 2)
 
 
-def _qty(price: float, budget: float, cash: float) -> int:
-    """按「单笔预算」与「可用现金」取小，整手取整。
+def _lots_for(price: float, capital: float) -> int:
+    """手数 = 目标金额 / 每手金额，四舍五入到整手（至少 1 手）。
 
-    预算 = 总资金 / 持仓上限；现金不足时能买多少买多少，连一手都不够就放弃建仓。
+    以手为下单单位（A 股只能整手买），但手数按金额反推，
+    使每个强推标的的投入金额大致相同 —— 单价 7 元买 14 手、34 元买 3 手，
+    两者金额都在 1 万元附近，涨跌 1% 对账户的贡献一致。
     """
+    if price <= 0:
+        return 0
+    target = capital * getattr(config, "PAPER_TARGET_PCT", 0.10)
+    return max(int(round(target / (price * 100))), 1)
+
+
+def _qty(price: float, cash: float, capital: float | None = None) -> int:
+    """单笔建仓股数。
+
+    `PAPER_SIZING=lots`（默认）：先按固定手数下单，股数统一、看盈亏直观；
+    超过单笔金额上限（`PAPER_MAX_POSITION_PCT`）或现金不够就逐手递减，
+    连 1 手都买不起则返回 0（放弃建仓）。
+    `PAPER_SIZING=amount`：按金额等权（单笔预算 = 总资金 × `PAPER_POSITION_PCT`）。
+    """
+    cap_total = float(capital if capital is not None else config.PAPER_CAPITAL)
     unit = price * (1 + (config.PAPER_FEE_BPS + config.PAPER_TRANSFER_BPS) / 1e4)
     if unit <= 0:
         return 0
-    budget = min(budget, cash * 0.999)   # 留出最低佣金的余量
-    return max(int(budget // unit // 100) * 100, 0)
+    cash = cash * 0.999                      # 预留最低佣金
+    if getattr(config, "PAPER_SIZING", "lots") == "amount":
+        budget = min(cap_total * config.PAPER_POSITION_PCT, cash)
+        return max(int(budget // unit // 100) * 100, 0)
+    limit = cap_total * getattr(config, "PAPER_MAX_POSITION_PCT", 0.15)
+    lots = _lots_for(price, cap_total)
+    while lots >= 1:
+        qty = lots * 100
+        if qty * unit <= min(limit, cash):
+            return qty
+        lots -= 1
+    return 0
 
 
 def _budget() -> float:
-    """单笔预算 = 总资金 × 仓位比例（放宽持仓数后不再用 资金/上限）。"""
-    return config.PAPER_CAPITAL * getattr(config, "PAPER_POSITION_PCT", 0.12)
+    """展示用：单笔名义预算。"""
+    if getattr(config, "PAPER_SIZING", "lots") == "amount":
+        return config.PAPER_CAPITAL * config.PAPER_POSITION_PCT
+    return config.PAPER_CAPITAL * getattr(config, "PAPER_TARGET_PCT", 0.10)
 
 
 def _tranches(qty: int, n: int) -> list[int]:
@@ -504,7 +533,7 @@ class _Sim:
         if len(self.open_positions()) >= self.max_pos:
             s["status"], s["exit_reason"] = "expired", "no_slot"
             return
-        qty = _qty(price, self.budget, self.cash)
+        qty = _qty(price, self.cash, self.capital)
         if qty < 100:
             s["status"], s["exit_reason"] = "expired", "cash_short"
             return

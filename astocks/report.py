@@ -327,8 +327,9 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
         f"持满 `holdingDays` 剩余仓位按收盘平仓",
         f"- 费用：佣金 {config.PAPER_FEE_BPS / 100:.3f}%（最低 {config.PAPER_MIN_FEE:.0f} 元）"
         f"＋卖出印花税 {config.PAPER_STAMP_BPS / 100:.2f}%＋过户费 {config.PAPER_TRANSFER_BPS / 100:.4f}%",
-        f"- 资金：总资金 {config.PAPER_CAPITAL:,.0f} 元，最多同时持 {config.PAPER_MAX_POSITIONS} 只，"
-        f"单笔预算 {config.PAPER_CAPITAL / config.PAPER_MAX_POSITIONS:,.0f} 元（现金不足则少买或不买）",
+        f"- 资金：总资金 {config.PAPER_CAPITAL:,.0f} 元，最多同时持 {config.PAPER_MAX_POSITIONS} 只；"
+        f"以「手」下单，手数由目标金额反推（每只约 {config.PAPER_CAPITAL * config.PAPER_TARGET_PCT:,.0f} 元），"
+        f"单笔不超过总资金 {config.PAPER_MAX_POSITION_PCT:.0%}",
         *phase_lines,
         "",
         "## 策略结论",
@@ -557,7 +558,7 @@ def paper_page(conn, view: str = "strong") -> str:
 <body><div class="wrap">
 <h1>虚拟交易台账 · {scope}</h1>
 <div class="sub">严格按推荐附带的买点/止损/止盈/持有期执行 · 总资金 {config.PAPER_CAPITAL:,.0f} 元
- · 最多持 {config.PAPER_MAX_POSITIONS} 只 · 单笔预算 {config.PAPER_CAPITAL / config.PAPER_MAX_POSITIONS:,.0f} 元
+ · 最多持 {config.PAPER_MAX_POSITIONS} 只 · 以手下单、每只约 {config.PAPER_CAPITAL * config.PAPER_TARGET_PCT:,.0f} 元（等权）
  · 含佣金与印花税 · 生成 {datetime.now().strftime('%Y-%m-%d %H:%M')}{phase_txt}</div>
 
 <div class="cards">{cards}</div>

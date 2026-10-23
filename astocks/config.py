@@ -39,7 +39,15 @@ REVERSE_EXCESS = -0.01
 # 这里只是执行口径，不参与选股，也不改任何选股参数。
 PAPER_CAPITAL = 100_000         # 虚拟盘总资金（元）；建仓受现金约束，不是无限加仓
 PAPER_MAX_POSITIONS = 8         # 同时持仓上限（放宽：不再死守 5 只）
-PAPER_POSITION_PCT = 0.12       # 单笔预算占总资金比例，10 万 × 12% = 1.2 万/笔
+# 仓位口径：lots=按固定手数下单（默认，股数统一便于看盈亏）；amount=按金额等权
+PAPER_SIZING = "lots"
+# lots 口径：以「手」为下单单位，但手数由目标金额反推（round(目标/每手金额)），
+# 这样股数都是整手、看着整齐，同时每只票的投入金额接近等权 —— 涨跌 1% 对账户的
+# 贡献基本一致。目标金额 = 总资金 × PAPER_TARGET_PCT。
+PAPER_TARGET_PCT = 0.10
+PAPER_LOTS = 3                  # 兜底手数（极端高价股连 1 手都超上限时不再使用）
+PAPER_MAX_POSITION_PCT = 0.15   # 单笔金额上限占总资金比例，防高价股吃满本金
+PAPER_POSITION_PCT = 0.12       # amount 口径：单笔预算 = 总资金 × 12%
 PAPER_SCOPE = ("强推",)         # 虚拟盘只做当日强推，可关注仅记录不交易
 PAPER_ENTRY_VALID_DAYS = 3      # 挂单有效交易日，逾期未触及买点则撤单
 PAPER_FEE_BPS = 2.5             # 佣金 万2.5

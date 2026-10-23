@@ -164,7 +164,8 @@ def audit_one(conn, pick: dict, cal: list[str], kb: dict[str, dict[str, dict]],
         row.update(status="expired", exit_reason="gap_below_stop", fill_date=fill_date)
         return row
 
-    qty = int(config.PAPER_CAPITAL / config.PAPER_MAX_POSITIONS / price // 100) * 100
+    from .paper import _lots_for
+    qty = _lots_for(price, config.PAPER_CAPITAL) * 100
     row.update(fill_date=fill_date, fill_price=round(price, 2), qty=qty, status="open")
     shares = qty
     tps = rule["tps"]
