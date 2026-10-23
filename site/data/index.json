@@ -1,0 +1,159 @@
+{
+  "updated_at": "2026-10-22 18:40:29",
+  "source": "live",
+  "bench": {
+    "code": "sh000300",
+    "name": "沪深300"
+  },
+  "latest": "2026-10-22",
+  "count": 4,
+  "dates": [
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22"
+  ],
+  "summary": {
+    "nav": 0.9826,
+    "bench_nav": 0.9796,
+    "excess_nav": 0.003,
+    "win_rate": 0.3077,
+    "avg": -0.0079,
+    "avg_excess": -0.0014,
+    "profit_factor": 0.2599,
+    "samples": 26,
+    "days": 4,
+    "max_dd": -0.0282,
+    "verdict": "偏弱",
+    "verdict_reason": "胜率 31% 低于 45%，超额 -0.14%"
+  },
+  "daily": [
+    {
+      "date": "2026-10-19",
+      "picks": 2,
+      "strong": 2,
+      "watch": 0,
+      "win_rate": 1.0,
+      "avg_ret": 0.0111,
+      "avg_excess": 0.0101,
+      "bench_pct": 0.0009,
+      "nav": 1.0111,
+      "bench_nav": 1.0009
+    },
+    {
+      "date": "2026-10-20",
+      "picks": 8,
+      "strong": 6,
+      "watch": 2,
+      "win_rate": 0.375,
+      "avg_ret": -0.006,
+      "avg_excess": -0.0006,
+      "bench_pct": -0.0054,
+      "nav": 1.005,
+      "bench_nav": 0.9956
+    },
+    {
+      "date": "2026-10-21",
+      "picks": 8,
+      "strong": 8,
+      "watch": 0,
+      "win_rate": 0.25,
+      "avg_ret": -0.0101,
+      "avg_excess": -0.0004,
+      "bench_pct": -0.0097,
+      "nav": 0.9948,
+      "bench_nav": 0.9859
+    },
+    {
+      "date": "2026-10-22",
+      "picks": 8,
+      "strong": 8,
+      "watch": 0,
+      "win_rate": 0.125,
+      "avg_ret": -0.0123,
+      "avg_excess": -0.0059,
+      "bench_pct": -0.0064,
+      "nav": 0.9826,
+      "bench_nav": 0.9796
+    }
+  ],
+  "layers": {
+    "强推": {
+      "n": 24,
+      "win_rate": 0.2917,
+      "avg": -0.0081,
+      "profit_factor": 0.2631
+    },
+    "可关注": {
+      "n": 2,
+      "win_rate": 0.5,
+      "avg": -0.005,
+      "profit_factor": 0.1904
+    },
+    "Top3": {
+      "n": 11,
+      "win_rate": 0.5455,
+      "avg": -0.0046,
+      "profit_factor": 0.5007
+    },
+    "4名以后": {
+      "n": 15,
+      "win_rate": 0.1333,
+      "avg": -0.0103,
+      "profit_factor": 0.1195
+    }
+  },
+  "horizons": {
+    "T+1": {
+      "n": 18,
+      "win_rate": 0.1667,
+      "avg": -0.016
+    },
+    "T+3": {
+      "n": 2,
+      "win_rate": 0.5,
+      "avg": -0.0024
+    },
+    "T+5": {
+      "n": 0,
+      "win_rate": null,
+      "avg": null
+    }
+  },
+  "paper": {
+    "view": "all",
+    "orders": 26,
+    "filled": 5,
+    "closed": 0,
+    "open": 5,
+    "pending": 11,
+    "expired": 6,
+    "skipped": 4,
+    "fill_rate": 0.19230769230769232,
+    "win_rate": null,
+    "avg_ret": null,
+    "med_ret": null,
+    "avg_win": null,
+    "avg_loss": null,
+    "profit_factor": null,
+    "expectancy": null,
+    "total_pnl": 0.0,
+    "total_notional": 0,
+    "avg_hold": null,
+    "excess_n": 0,
+    "avg_excess": null,
+    "excess_win": null,
+    "max_dd_yuan": 0.0,
+    "avg_mfe": null,
+    "avg_mae": null,
+    "tp_touch_rate": null,
+    "stop_rate": null,
+    "timeout_rate": null,
+    "exit_reasons": {},
+    "by_rating": {},
+    "verdict": [
+      "样本不足",
+      "仅 0 笔平仓样本（阈值 10），暂不下结论"
+    ]
+  }
+}
