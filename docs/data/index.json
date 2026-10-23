@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23 08:39:48",
+  "updated_at": "2026-10-23 09:33:59",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -122,14 +122,14 @@
   },
   "paper": {
     "view": "all",
-    "orders": 26,
+    "orders": 34,
     "filled": 5,
     "closed": 0,
     "open": 5,
-    "pending": 11,
+    "pending": 16,
     "expired": 6,
-    "skipped": 4,
-    "fill_rate": 0.19230769230769232,
+    "skipped": 7,
+    "fill_rate": 0.14705882352941177,
     "win_rate": null,
     "avg_ret": null,
     "med_ret": null,
