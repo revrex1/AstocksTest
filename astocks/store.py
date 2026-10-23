@@ -232,6 +232,21 @@ CREATE TABLE IF NOT EXISTS paper_phase (
     created_at   TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS paper_day (
+    trade_date   TEXT PRIMARY KEY,
+    cash         REAL NOT NULL,
+    open_cost    REAL NOT NULL,
+    open_value   REAL NOT NULL,
+    equity       REAL NOT NULL,
+    unrealized   REAL NOT NULL,
+    realized     REAL NOT NULL,      -- 累计已实现
+    positions    INTEGER NOT NULL,
+    pnl_d0       REAL NOT NULL,      -- 当日损益（元）
+    ret_d0       REAL NOT NULL,      -- 当日收益率
+    cum_ret      REAL NOT NULL,      -- 累计收益率（相对总资金）
+    created_at   TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_pick_date ON pick(trade_date);
 CREATE INDEX IF NOT EXISTS idx_outcome_date ON outcome(trade_date);
 CREATE INDEX IF NOT EXISTS idx_paper_date ON paper_trade(trade_date);

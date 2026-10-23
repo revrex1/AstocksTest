@@ -168,8 +168,13 @@ def _recompute_nav(conn) -> None:
 def review_close(trade_date: str | None = None,
                  include_simulated: bool = False,
                  log: Logger = _noop,
-                 offline: bool = False) -> dict:
-    """复盘指定日期，并顺带补齐历史未满 5 个交易日的跟踪。"""
+                 offline: bool = False,
+                 recheck: bool = False) -> dict:
+    """复盘指定日期，并顺带补齐历史未满 5 个交易日的跟踪。
+
+    recheck=True 时无视 outcome.status，把全部推荐重新算一遍。日线被上游回溯改写
+    （前复权基准变化、盘中快照覆盖）后，已 done 的记录不会自愈，必须强制重算。
+    """
     conn = store.init_db()
     calendar = bars.calendar(conn, log, offline=offline)
     if not calendar:
@@ -195,16 +200,26 @@ def review_close(trade_date: str | None = None,
             log(f"⚠  {target} 无行情快照，回退到最近交易日 {calendar[-1]}")
             target = calendar[-1]
 
-    # 待评估：目标日 + 所有跟踪未完成的记录
-    pending = store.rows(
-        conn,
-        """SELECT p.* FROM pick p LEFT JOIN outcome o ON o.pick_id=p.id
-            WHERE (o.pick_id IS NULL OR o.status != 'done')
-              AND p.trade_date <= ?
-              AND (? = 1 OR p.simulated = 0)
-            ORDER BY p.trade_date, p.rank""",
-        (target, 1 if include_simulated else 0),
-    )
+    # 待评估：目标日 + 所有跟踪未完成的记录；recheck 则全部重算
+    if recheck:
+        pending = store.rows(
+            conn,
+            """SELECT * FROM pick
+                WHERE trade_date <= ? AND (? = 1 OR simulated = 0)
+                ORDER BY trade_date, rank""",
+            (target, 1 if include_simulated else 0),
+        )
+        log(f"♻️  强制重算 {len(pending)} 条历史记录")
+    else:
+        pending = store.rows(
+            conn,
+            """SELECT p.* FROM pick p LEFT JOIN outcome o ON o.pick_id=p.id
+                WHERE (o.pick_id IS NULL OR o.status != 'done')
+                  AND p.trade_date <= ?
+                  AND (? = 1 OR p.simulated = 0)
+                ORDER BY p.trade_date, p.rank""",
+            (target, 1 if include_simulated else 0),
+        )
     if not pending:
         log(f"📭 无待评估标的（{target}）")
 

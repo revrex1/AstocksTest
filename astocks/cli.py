@@ -64,11 +64,18 @@ def cmd_open(args) -> int:
 def cmd_close(args) -> int:
     # 收盘前强制重拉当日日线：bars 的「每票每自然日一次」TTL 会让 15:00 后的复盘
     # 复用 09:32 的盘中快照价（2026-10-22 实测错 5/8 只），必须在这里堵住。
+    recheck = bool(getattr(args, "recheck", False))
     try:
         conn0 = store.init_db()
         latest = store.latest_days(conn0, limit=1)
         day0 = args.date or (latest[0]["trade_date"] if latest else None)
-        codes = [p["code"] for p in store.get_picks(conn0, day0)] if day0 else []
+        if recheck:
+            # 全量重算：上游会回溯改写历史日线（前复权基准变化），整库重拉一遍
+            _log("♻️  强制重算模式：全量重拉历史日线")
+            bars.backfill(conn0, bars.all_codes(conn0), log=_log, force=True)
+            codes = []
+        else:
+            codes = [p["code"] for p in store.get_picks(conn0, day0)] if day0 else []
         # 基准指数同样受 TTL 影响：不刷会用 09:32 快照当收盘价，当日超额方向可能直接反转
         # （2026-10-23 实测：沪深300 快照 -1.42% vs 实际 +1.71%，超额 +2.37% → -0.76%）。
         if config.BENCH_CODE not in codes:
@@ -79,7 +86,7 @@ def cmd_close(args) -> int:
     except Exception as exc:  # noqa: BLE001  刷新失败不阻断复盘，按本地已有数据继续
         _log(f"⚠  当日日线强制刷新失败：{exc}")
 
-    res = review.review_close(args.date, include_simulated=args.sim, log=_log)
+    res = review.review_close(args.date, include_simulated=args.sim, log=_log, recheck=recheck)
     conn = store.init_db()
     _after_work(conn, res["trade_date"], "close", "all" if args.sim else "live")
     return 0
@@ -388,6 +395,8 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("close", help="收盘复盘并更新策略统计")
     p.add_argument("--date", help="YYYY-MM-DD，默认最近交易日")
     p.add_argument("--sim", action="store_true", help="连带模拟记录一起统计")
+    p.add_argument("--recheck", action="store_true",
+                   help="全量重算：重拉所有历史日线并重评全部记录（修历史数据污染）")
     p.set_defaults(func=cmd_close)
 
     p = sub.add_parser("simulate", help="回放某日全链路（验证用）")

@@ -104,9 +104,20 @@ def _fee(amount: float, side: str) -> float:
     return round(fee, 2)
 
 
-def _qty(price: float) -> int:
-    gross = config.PAPER_NOTIONAL / (price * (1 + (config.PAPER_FEE_BPS + config.PAPER_TRANSFER_BPS) / 1e4))
-    return int(gross // 100) * 100
+def _qty(price: float, budget: float, cash: float) -> int:
+    """按「单笔预算」与「可用现金」取小，整手取整。
+
+    预算 = 总资金 / 持仓上限；现金不足时能买多少买多少，连一手都不够就放弃建仓。
+    """
+    unit = price * (1 + (config.PAPER_FEE_BPS + config.PAPER_TRANSFER_BPS) / 1e4)
+    if unit <= 0:
+        return 0
+    budget = min(budget, cash * 0.999)   # 留出最低佣金的余量
+    return max(int(budget // unit // 100) * 100, 0)
+
+
+def _budget() -> float:
+    return config.PAPER_CAPITAL / max(config.PAPER_MAX_POSITIONS, 1)
 
 
 def _tranches(qty: int, n: int) -> list[int]:
@@ -193,172 +204,286 @@ def _sell_events(path: list[tuple], plan: dict, tps: list[float], tp_done: list[
 
 
 
-# --------------------------------------------------------------------------- 成交回放
+# --------------------------------------------------------------------------- 组合模拟
 
-def _replay(plan: dict, bars: dict[str, dict], cal: list[str], bench: dict[str, dict],
-            cutoff: str, mins: dict[str, list[dict]] | None = None) -> dict | None:
-    """把一个计划从建仓日起重放到 cutoff，返回完整台账状态（幂等）。"""
-    idx = {d: i for i, d in enumerate(cal)}
-    i0 = idx.get(plan["trade_date"])
-    if i0 is None:
-        return None
-    code, name = plan.get("code") or "", plan.get("name")
-    mins = mins or {}
+class _Sim:
+    """按交易日推进的资金账户模拟：先处理当日卖出回款，再按现金与持仓槽位建仓。
 
-    res: dict = {
-        "status": "pending", "fill_date": None, "fill_price": None, "qty": 0,
-        "shares_left": 0, "realized": 0.0, "last_price": None, "last_date": None,
-        "ret_pct": None, "hold_days": None, "mfe": None, "mae": None,
-        "exit_reason": None, "exit_date": None, "bench_ret": None, "excess": None,
-        "path_src": None, "execs": [],
-    }
+    与原「逐笔独立回放」相比，唯一的差别是仓位受总资金约束——每笔预算 = 总资金/持仓上限，
+    现金不够时能买多少买多少，连一手都不够就放弃（cash_short）。卖点判定逻辑完全沿用。
+    """
 
-    last_valid_i = min(i0 + plan["valid_days"] - 1, len(cal) - 1)
-    fill: tuple[str, float, int] | None = None
-    for i in range(i0, last_valid_i + 1):
-        d = cal[i]
-        if d > cutoff:
-            break
-        bar = bars.get(d)
-        if not bar or not (bar.get("volume") or 0):
-            continue  # 停牌/无成交，挂单继续有效
-        op = float(bar["open"])
-        hi, lo = float(bar["high"]), float(bar["low"])
-        up, _dn = _limits(code, name, bars.get(cal[i - 1], {}).get("close") if i else None)
-        if up and op >= up and lo >= up:
-            continue  # 一字涨停买不到
-        if plan["entry_mode"] == "open":
-            fill = (d, _buy_px(op, op), i)
-            break
-        target = float(plan["entry_target"])
-        if op <= target:
-            fill = (d, _buy_px(op, target), i)
-            break
-        if lo <= target:
-            # 分钟级：找出第一次触及买点的那根 bar，跳空则按该 bar 开盘价成交
-            px = None
-            mseq = mins.get(d) or []
-            if not _minutes_ok(mseq):
-                mseq = []
-            for m in mseq:
-                if float(m["low"]) <= target:
-                    px = min(target, float(m["open"]))
-                    break
-            fill = (d, _buy_px(px if px is not None else target, target), i)
-            break
+    def __init__(self, conn, cal, cutoff, bench, *, capital, max_pos, budget,
+                 offline=False, log=_noop):
+        self.conn = conn
+        self.cal = cal
+        self.idx = {d: i for i, d in enumerate(cal)}
+        self.cutoff = cutoff
+        self.bench = bench or {}
+        self.capital = float(capital)
+        self.cash = float(capital)
+        self.max_pos = int(max_pos)
+        self.budget = float(budget)
+        self.offline = offline
+        self.log = log
+        self._bars: dict[str, dict[str, dict]] = {}
+        self._mins: dict[str, dict[str, list[dict]]] = {}
+        self.orders: dict[int, dict] = {}
+        self.days: list[dict] = []
 
-    if not fill:
-        window_end = i0 + plan["valid_days"] - 1
-        if window_end <= len(cal) - 1 and cal[window_end] <= cutoff:
-            res["status"] = "expired"
-            res["exit_reason"] = "expired"
-        return res
+    # ---------------------------------------------------------------- 数据
+    def _kline(self, code: str, start: str) -> dict[str, dict]:
+        if code not in self._bars:
+            self._bars[code] = bars.ensure(self.conn, code, start=start, end=self.cutoff,
+                                           log=self.log, offline=self.offline)
+        return self._bars[code]
 
-    fill_date, fill_price, fi = fill
-    if plan["stop_price"] and fill_price <= plan["stop_price"]:
-        # 跳空低开直接穿透破位线：买点前提已失效，不接飞刀
-        res.update(status="expired", exit_reason="gap_below_stop", fill_date=fill_date)
-        return res
-    qty = _qty(fill_price)
-    if qty < 100:
-        res.update(status="expired", exit_reason="expired")
-        return res
+    def _minute(self, code: str, start: str) -> dict[str, list[dict]]:
+        if code not in self._mins:
+            self._mins[code] = bars.minutes_of(self.conn, code, start=start, end=self.cutoff)
+        return self._mins[code]
 
-    buy_amt = round(fill_price * qty, 2)
-    buy_fee = _fee(buy_amt, "buy")
-    cost = buy_amt + buy_fee
-    res["execs"].append({"exec_date": fill_date, "side": "buy", "price": fill_price,
-                         "qty": qty, "amount": buy_amt, "fee": buy_fee, "reason": "entry"})
+    # ---------------------------------------------------------------- 账户
+    def open_positions(self) -> list[dict]:
+        return [s for s in self.orders.values() if s["status"] == "open" and s["shares_left"] > 0]
 
-    tps = plan["tp_prices"]
-    tranches = _tranches(qty, len(tps))
-    tp_done = [False] * len(tps)
-    shares = qty
-    sells = 0.0
-    mfe, mae = 0.0, 0.0
-    last_price, last_date = fill_price, fill_date
-    exit_reason, exit_date = None, None
-    hold = 0
-    path_src = None
+    def open_value(self) -> float:
+        return sum((s["shares_left"] * (s["last_price"] or s["fill_price"] or 0))
+                   for s in self.open_positions())
 
-    for i in range(fi, len(cal)):
-        d = cal[i]
-        if d > cutoff:
-            break
-        bar = bars.get(d)
-        if not bar:
-            continue
-        hi, lo, cl, op = float(bar["high"]), float(bar["low"]), float(bar["close"]), float(bar["open"])
-        mfe = max(mfe, hi / fill_price - 1)
-        mae = min(mae, lo / fill_price - 1)
-        last_price, last_date, hold = cl, d, i - fi
-        if not (bar.get("volume") or 0):
-            continue  # 停牌日不撮合，持仓顺延
+    def open_cost(self) -> float:
+        out = 0.0
+        for s in self.open_positions():
+            out += s["cost"] * s["shares_left"] / s["qty"] if s["qty"] else 0.0
+        return out
 
-        # T+1：建仓当日不能卖出
-        if config.PAPER_ENFORCE_T1 and d == fill_date:
-            continue
-        if hold >= plan["holding_days"] and shares > 0:
-            px = _sell_px(cl)
-            amt = round(px * shares, 2)
-            fee = _fee(amt, "sell")
-            res["execs"].append({"exec_date": d, "side": "sell", "price": px, "qty": shares,
-                                 "amount": amt, "fee": fee, "reason": "timeout"})
-            sells += amt - fee
-            shares = 0
-            exit_reason, exit_date = "timeout", d
-            break
+    def equity(self) -> float:
+        return self.cash + self.open_value()
 
-        seq = mins.get(d) if config.PAPER_MINUTE_PATH else None
-        if seq and not _minutes_ok(seq):
-            seq = None  # 半截分钟数据不可信，退回日线口径
-        if seq:
-            path = [(float(m["open"]), float(m["high"]), float(m["low"]), float(m["close"]))
-                    for m in seq]
-            path_src = "minute"
-        else:
-            path = [(op, hi, lo, cl)]
-            path_src = path_src or "daily"
-        prev_close = bars.get(cal[i - 1], {}).get("close") if i else None
-        _up, dn = _limits(code, name, prev_close)
-        events, shares = _sell_events(path, plan, tps, tp_done, tranches, shares, dn)
-        for reason, raw_px, q in events:
-            px = _sell_px(raw_px)
-            amt = round(px * q, 2)
-            fee = _fee(amt, "sell")
-            res["execs"].append({"exec_date": d, "side": "sell", "price": px, "qty": q,
-                                 "amount": amt, "fee": fee, "reason": reason})
-            sells += amt - fee
-            exit_date = d
-            if reason == "stop":
-                exit_reason = "stop"
-        if shares <= 0:
-            exit_reason = exit_reason or "take_profit"
-            break
+    def has_open(self, code: str, rating: str | None) -> bool:
+        return any(s["code"] == code and s["rating"] == rating
+                   for s in self.open_positions())
 
-    sold = qty - shares
-    cost_sold = cost * sold / qty if qty else 0.0
-    realized = round(sells - cost_sold, 2)
-    res.update(
-        status="closed" if shares == 0 else "open",
-        fill_date=fill_date, fill_price=fill_price, qty=qty, shares_left=shares,
-        realized=realized, last_price=last_price, last_date=last_date,
-        mfe=round(mfe, 4), mae=round(mae, 4),
-        hold_days=hold, exit_reason=exit_reason, exit_date=exit_date,
-        path_src=path_src,
-    )
-    if shares == 0:
-        res["ret_pct"] = round(realized / cost, 4) if cost else None
-    else:
-        res["ret_pct"] = round((sells + shares * last_price - cost) / cost, 4) if cost else None
+    def cancel_pending(self, code: str, rating: str | None, before: str) -> int:
+        n = 0
+        for s in self.orders.values():
+            if (s["status"] == "pending" and s["code"] == code
+                    and s["rating"] == rating and s["plan"]["trade_date"] < before):
+                s["status"], s["exit_reason"] = "expired", "superseded"
+                n += 1
+        return n
 
-    end = exit_date or last_date
-    b0, b1 = bench.get(fill_date), bench.get(end) if end else None
-    if b0 and b1 and b0.get("close"):
-        res["bench_ret"] = round(float(b1["close"]) / float(b0["close"]) - 1, 4)
-        if res["ret_pct"] is not None:
-            res["excess"] = round(res["ret_pct"] - res["bench_ret"], 4)
-    return res
+    # ---------------------------------------------------------------- 挂单
+    def add(self, tid: int, row: dict, plan: dict) -> None:
+        self.orders[tid] = {
+            "id": tid, "code": plan.get("code") or row["code"],
+            "name": plan.get("name") or row.get("name"), "rating": row.get("rating"),
+            "plan": plan, "status": "pending", "fill_date": None, "fill_price": None,
+            "qty": 0, "shares_left": 0, "cost": 0.0, "proceeds": 0.0, "realized": 0.0,
+            "last_price": None, "last_date": None, "mfe": 0.0, "mae": 0.0, "hold": 0,
+            "exit_reason": None, "exit_date": None, "path_src": None, "execs": [],
+            "tp_done": [False] * len(plan.get("tp_prices") or []),
+        }
+
+    # ---------------------------------------------------------------- 推进
+    def step(self, day: str) -> None:
+        if day > self.cutoff:
+            return
+        self._exits(day)
+        self._entries(day)
+        self._expire(day)
+        self._record(day)
+
+    def _record(self, day: str) -> None:
+        """逐日账户快照：收盘后「10 万本金还剩多少」。"""
+        eq = self.equity()
+        prev = self.days[-1]["equity"] if self.days else self.capital
+        self.days.append({
+            "trade_date": day,
+            "cash": round(self.cash, 2),
+            "open_cost": round(self.open_cost(), 2),
+            "open_value": round(self.open_value(), 2),
+            "equity": round(eq, 2),
+            "unrealized": round(self.open_value() - self.open_cost(), 2),
+            "realized": round(self.cash - self.capital + self.open_cost(), 2),
+            "positions": len(self.open_positions()),
+            "pnl_d0": round(eq - prev, 2),
+            "ret_d0": ((eq / prev - 1) if prev else 0.0),
+            "cum_ret": ((eq / self.capital - 1) if self.capital else 0.0),
+        })
+
+    def _exits(self, day: str) -> None:
+        for s in list(self.orders.values()):
+            if s["status"] != "open" or s["shares_left"] <= 0:
+                continue
+            code, plan = s["code"], s["plan"]
+            bar = self._kline(code, plan["trade_date"]).get(day)
+            if not bar:
+                continue
+            op, hi, lo, cl = float(bar["open"]), float(bar["high"]), float(bar["low"]), float(bar["close"])
+            s["mfe"] = max(s["mfe"], hi / s["fill_price"] - 1)
+            s["mae"] = min(s["mae"], lo / s["fill_price"] - 1)
+            s["last_price"], s["last_date"] = cl, day
+            s["hold"] = self.idx[day] - self.idx[s["fill_date"]]
+            if not (bar.get("volume") or 0):
+                continue                      # 停牌不撮合，持仓顺延
+            if config.PAPER_ENFORCE_T1 and day == s["fill_date"]:
+                continue                      # T+1：建仓当日不卖
+            if s["hold"] >= plan["holding_days"]:
+                self._sell(s, day, "timeout", cl, s["shares_left"])
+                continue
+            seq = self._minute(code, plan["trade_date"]).get(day) if config.PAPER_MINUTE_PATH else None
+            if seq and not _minutes_ok(seq):
+                seq = None
+            if seq:
+                path = [(float(m["open"]), float(m["high"]), float(m["low"]), float(m["close"]))
+                        for m in seq]
+                s["path_src"] = "minute"
+            else:
+                path = [(op, hi, lo, cl)]
+                s["path_src"] = s["path_src"] or "daily"
+            i = self.idx[day]
+            prev_close = self._kline(code, plan["trade_date"]).get(self.cal[i - 1], {}).get("close") if i else None
+            _up, dn = _limits(code, s["name"], prev_close)
+            tps = plan["tp_prices"]
+            tranches = _tranches(s["qty"], len(tps))
+            events, left = _sell_events(path, plan, tps, s["tp_done"], tranches,
+                                        s["shares_left"], dn)
+            for reason, raw_px, q in events:
+                self._sell(s, day, reason, raw_px, q)
+            s["shares_left"] = left
+            if left <= 0:
+                s["exit_reason"] = s["exit_reason"] or "take_profit"
+
+    def _sell(self, s: dict, day: str, reason: str, raw_px: float, q: int) -> None:
+        if q <= 0:
+            return
+        px = _sell_px(raw_px)
+        amt = round(px * q, 2)
+        fee = _fee(amt, "sell")
+        s["execs"].append({"exec_date": day, "side": "sell", "price": px, "qty": q,
+                           "amount": amt, "fee": fee, "reason": reason})
+        s["proceeds"] += amt - fee
+        s["cash_out"] = s.get("cash_out", 0.0) + amt - fee
+        self.cash += amt - fee
+        s["shares_left"] -= q
+        s["exit_date"] = day
+        if reason == "stop":
+            s["exit_reason"] = "stop"
+        if s["shares_left"] <= 0:
+            s["status"] = "closed"
+            s["exit_reason"] = s["exit_reason"] or reason
+
+    def _entries(self, day: str) -> None:
+        for s in sorted(self.orders.values(), key=lambda x: x["id"]):
+            if s["status"] != "pending":
+                continue
+            plan = s["plan"]
+            i0 = self.idx.get(plan["trade_date"])
+            if i0 is None or day not in self.idx:
+                continue
+            i = self.idx[day]
+            if i < i0 or i > i0 + plan["valid_days"] - 1:
+                continue
+            kbars = self._kline(s["code"], plan["trade_date"])
+            bar = kbars.get(day)
+            if not bar or not (bar.get("volume") or 0):
+                continue                      # 停牌/无成交，挂单继续有效
+            op = float(bar["open"])
+            lo = float(bar["low"])
+            prev_close = kbars.get(self.cal[i - 1], {}).get("close") if i else None
+            up, _dn = _limits(s["code"], s["name"], prev_close)
+            if up and op >= up and lo >= up:
+                continue                      # 一字涨停买不到
+            target = float(plan["entry_target"])
+            if plan["entry_mode"] == "open":
+                price = _buy_px(op, op)
+            elif op <= target:
+                price = _buy_px(op, target)
+            elif lo <= target:
+                px = None
+                mseq = self._minute(s["code"], plan["trade_date"]).get(day) or []
+                if _minutes_ok(mseq):
+                    for m in mseq:
+                        if float(m["low"]) <= target:
+                            px = min(target, float(m["open"]))
+                            break
+                price = _buy_px(px if px is not None else target, target)
+            else:
+                continue
+            self._open(s, day, price)
+
+    def _open(self, s: dict, day: str, price: float) -> None:
+        plan = s["plan"]
+        # 同标的同评级已持仓则不再建仓：建单时查过一遍，但旧挂单可能和新挂单同一天才成交
+        if any(o["code"] == s["code"] and o["rating"] == s["rating"]
+               for o in self.open_positions()):
+            s["status"], s["exit_reason"] = "expired", "duplicate"
+            return
+        if plan.get("stop_price") and price <= plan["stop_price"]:
+            s["status"], s["exit_reason"], s["fill_date"] = "expired", "gap_below_stop", day
+            return
+        if len(self.open_positions()) >= self.max_pos:
+            s["status"], s["exit_reason"] = "expired", "no_slot"
+            return
+        qty = _qty(price, self.budget, self.cash)
+        if qty < 100:
+            s["status"], s["exit_reason"] = "expired", "cash_short"
+            return
+        amt = round(price * qty, 2)
+        fee = _fee(amt, "buy")
+        cost = amt + fee
+        self.cash -= cost
+        s.update(status="open", fill_date=day, fill_price=price, qty=qty,
+                 shares_left=qty, cost=cost, last_price=price, last_date=day)
+        s["execs"].append({"exec_date": day, "side": "buy", "price": price, "qty": qty,
+                           "amount": amt, "fee": fee, "reason": "entry"})
+
+    def _expire(self, day: str) -> None:
+        for s in self.orders.values():
+            if s["status"] != "pending":
+                continue
+            plan = s["plan"]
+            i0 = self.idx.get(plan["trade_date"])
+            if i0 is None:
+                continue
+            end_i = i0 + plan["valid_days"] - 1
+            if end_i >= len(self.cal):
+                continue                      # 窗口还没走完
+            if day >= self.cal[end_i]:
+                s["status"], s["exit_reason"] = "expired", "expired"
+
+    # ---------------------------------------------------------------- 结果
+    def result(self, s: dict) -> dict:
+        qty, left = s["qty"], s["shares_left"]
+        cost = s["cost"]
+        sold = qty - left
+        cost_sold = cost * sold / qty if qty else 0.0
+        realized = round(s["proceeds"] - cost_sold, 2)
+        out = {
+            "status": s["status"], "fill_date": s["fill_date"], "fill_price": s["fill_price"],
+            "qty": qty, "shares_left": left, "realized": realized,
+            "last_price": s["last_price"], "last_date": s["last_date"],
+            "hold_days": s["hold"], "mfe": round(s["mfe"], 4), "mae": round(s["mae"], 4),
+            "exit_reason": s["exit_reason"], "exit_date": s["exit_date"],
+            "path_src": s["path_src"], "execs": s["execs"], "ret_pct": None,
+            "bench_ret": None, "excess": None, "notional": None,
+        }
+        if not qty:
+            return out
+        out["notional"] = round(s["fill_price"] * qty, 2)
+        if left == 0:
+            out["ret_pct"] = round(realized / cost, 4) if cost else None
+        elif s["last_price"]:
+            out["ret_pct"] = round((s["proceeds"] + left * s["last_price"] - cost) / cost, 4) if cost else None
+        end = s["exit_date"] or s["last_date"]
+        b0 = self.bench.get(s["fill_date"]) if s["fill_date"] else None
+        b1 = self.bench.get(end) if end else None
+        if b0 and b1 and b0.get("close"):
+            out["bench_ret"] = round(float(b1["close"]) / float(b0["close"]) - 1, 4)
+            if out["ret_pct"] is not None:
+                out["excess"] = round(out["ret_pct"] - out["bench_ret"], 4)
+        return out
 
 
 # --------------------------------------------------------------------------- 跟踪期
@@ -397,7 +522,7 @@ def start_phase(conn, start: str | None = None, end: str | None = None,
     log(f"🚩 开启{name or '新一期'}模拟跟踪：{start} → {end}（期初基准 "
         f"{config.BENCH_NAME} {base_close:.2f} @{base_date}）" if base_close else
         f"🚩 开启模拟跟踪：{start} → {end}（基准数据缺失）")
-    rebuild(conn, None, ("强推", "可关注"), log)
+    rebuild(conn, None, config.PAPER_SCOPE, log)
     return active_phase(conn)
 
 
@@ -474,8 +599,8 @@ def _cancel_pending(conn, code: str, day: str, rating: str | None) -> int:
     return cur.rowcount or 0
 
 
-def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = ("强推", "可关注"),
-                  log: Logger = _noop) -> int:
+def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = config.PAPER_SCOPE,
+                  log: Logger = _noop, sim: "_Sim | None" = None) -> int:
     picks = store.get_picks(conn, trade_date)
     made = 0
     for p in picks:
@@ -490,31 +615,82 @@ def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = ("强推", "
         plan.setdefault("valid_days", config.PAPER_ENTRY_VALID_DAYS)
         if not plan.get("entry_target"):
             continue
-        dup = _has_open_position(conn, p["code"], trade_date, p.get("rating"))
+        rating = p.get("rating")
+        dup = sim.has_open(p["code"], rating) if sim else _has_open_position(conn, p["code"], trade_date, rating)
         if not dup:
-            n = _cancel_pending(conn, p["code"], trade_date, p.get("rating"))
+            n = sim.cancel_pending(p["code"], rating, trade_date) if sim else 0
+            n += _cancel_pending(conn, p["code"], trade_date, rating)
             if n:
                 log(f"♻️  {plan['code']} {plan['name']} 撤销 {n} 张旧挂单，按新建议重新挂单")
         status = "skipped" if dup else "pending"
-        conn.execute(
+        cur = conn.execute(
             """INSERT INTO paper_trade
                (pick_id, snapshot_id, trade_date, code, name, rating, total_score, entry_mode, entry_target,
                 valid_days, stop_price, tp_prices, holding_days, status, shares_left, plan_json,
                 exit_reason, created_at)
                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?, ?, 0, ?, ?, ?)""",
             (p["id"], snap["id"] if snap else None, plan["trade_date"], plan["code"],
-             plan.get("name") or p["name"], plan.get("rating") or p.get("rating"),
+             plan.get("name") or p["name"], plan.get("rating") or rating,
              plan.get("total_score") if plan.get("total_score") is not None else p.get("total_score"),
              plan["entry_mode"], plan["entry_target"], plan["valid_days"],
              plan["stop_price"], store.dump(plan["tp_prices"]), plan["holding_days"],
              status, store.dump(plan), "duplicate" if dup else None, store.now_iso()),
         )
+        if sim and not dup:
+            sim.add(int(cur.lastrowid), p, plan)
         made += 1 if not dup else 0
         if dup:
             log(f"⏭  {plan['code']} {plan['name']} 已有持仓，本次不重复建仓")
         elif plan["notes"]:
             log(f"📝 {plan['code']} {plan['name']}：{'；'.join(plan['notes'])}")
     return made
+
+
+def _cost_of(row: dict) -> float:
+    """该笔建仓的总成本（成交额 + 买入费用）。"""
+    if not row.get("qty") or not row.get("fill_price"):
+        return 0.0
+    amt = round(float(row["fill_price"]) * int(row["qty"]), 2)
+    return amt + _fee(amt, "buy")
+
+
+def account(conn) -> dict:
+    """虚拟盘资金账户（跨评级共用一笔钱，与 view 无关）。"""
+    rows = ledger(conn, "all")
+    cash = float(config.PAPER_CAPITAL)
+    open_cost = open_value = realized = 0.0
+    held = []
+    for r in rows:
+        cost = _cost_of(r)
+        if not cost:
+            continue
+        realized += float(r["realized"] or 0.0)
+        if r["status"] == "open" and r.get("shares_left"):
+            left = int(r["shares_left"])
+            rem = cost * left / int(r["qty"])
+            open_cost += rem
+            val = left * float(r["last_price"] or r["fill_price"])
+            open_value += val
+            held.append({**r, "cost": round(rem, 2), "value": round(val, 2),
+                         "pnl": round(val - rem, 2),
+                         "pnl_pct": (val / rem - 1) if rem else None})
+    cash = config.PAPER_CAPITAL + realized - open_cost
+    equity = cash + open_value
+    held.sort(key=lambda x: -(x["pnl"] or 0))
+    return {
+        "capital": float(config.PAPER_CAPITAL),
+        "cash": round(cash, 2),
+        "open_cost": round(open_cost, 2),
+        "open_value": round(open_value, 2),
+        "realized": round(realized, 2),
+        "unrealized": round(open_value - open_cost, 2),
+        "equity": round(equity, 2),
+        "total_return": (equity / config.PAPER_CAPITAL - 1) if config.PAPER_CAPITAL else None,
+        "exposure": (open_value / equity) if equity else None,
+        "positions": held,
+        "max_positions": config.PAPER_MAX_POSITIONS,
+        "budget": round(_budget(), 2),
+    }
 
 
 def _sig(row_status, execs) -> tuple:
@@ -527,68 +703,105 @@ def _sig(row_status, execs) -> tuple:
     )
 
 
+def _load_sim(conn, cal: list[str], cutoff: str, bench: dict, offline: bool, log: Logger) -> _Sim:
+    """把已入库的挂单装进组合模拟器（rebuild 后为空，由 create_orders 陆续补进）。"""
+    sim = _Sim(conn, cal, cutoff, bench, capital=config.PAPER_CAPITAL,
+               max_pos=config.PAPER_MAX_POSITIONS, budget=_budget(),
+               offline=offline, log=log)
+    # superseded = 已被同日更晚的推荐撤掉的历史挂单，重放时不能再复活，否则增量 sync
+    # 与 --rebuild 的结果会分叉（2026-10-23 实测：同一份日线，一个 3 仓一个 5 仓）。
+    for t in store.rows(conn, "SELECT * FROM paper_trade WHERE trade_date<=? AND status!='skipped'"
+                              " AND NOT (status='expired' AND exit_reason='superseded')"
+                              " ORDER BY trade_date, id", (cutoff,)):
+        plan = json.loads(t["plan_json"])
+        plan.setdefault("code", t["code"])
+        plan.setdefault("name", t["name"])
+        plan.setdefault("valid_days", config.PAPER_ENTRY_VALID_DAYS)
+        sim.add(t["id"], t, plan)
+    return sim
+
+
+def _write_days(conn, sim: _Sim) -> int:
+    """写入逐日账户快照（含无持仓的平淡日，便于画连续净值）。"""
+    if not sim.days:
+        return 0
+    row = store.one(conn, "SELECT MIN(trade_date) AS d FROM paper_trade")
+    first = row["d"] if row and row["d"] else None
+    rows = [d for d in sim.days if not first or d["trade_date"] >= first]
+    conn.execute("DELETE FROM paper_day")
+    now = store.now_iso()
+    conn.executemany(
+        """INSERT INTO paper_day (trade_date, cash, open_cost, open_value, equity, unrealized,
+               realized, positions, pnl_d0, ret_d0, cum_ret, created_at)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+        [(d["trade_date"], d["cash"], d["open_cost"], d["open_value"], d["equity"],
+          d["unrealized"], d["realized"], d["positions"], d["pnl_d0"], d["ret_d0"],
+          d["cum_ret"], now) for d in rows],
+    )
+    conn.commit()
+    return len(rows)
+
+
+def equity_curve(conn) -> list[dict]:
+    return store.rows(conn, "SELECT * FROM paper_day ORDER BY trade_date")
+
+
+def _write_results(conn, sim: _Sim, cutoff: str) -> int:
+    """把模拟结果落库；与旧值一致则跳过，保证幂等。"""
+    _write_days(conn, sim)
+    updated = 0
+    for tid, st in sim.orders.items():
+        res = sim.result(st)
+        t = store.one(conn, "SELECT * FROM paper_trade WHERE id=?", (tid,))
+        if not t:
+            continue
+        old_execs = store.rows(conn, "SELECT * FROM paper_exec WHERE trade_id=? ORDER BY exec_date, id", (tid,))
+        if _sig(t, old_execs) == _sig(res, res["execs"]):
+            continue
+        conn.execute("DELETE FROM paper_exec WHERE trade_id=?", (tid,))
+        for e in res["execs"]:
+            conn.execute(
+                """INSERT INTO paper_exec (trade_id, exec_date, code, side, price, qty, amount, fee, reason, created_at)
+                   VALUES (?,?,?,?,?,?,?,?,?,?)""",
+                (tid, e["exec_date"], st["code"], e["side"], e["price"], e["qty"],
+                 e["amount"], e["fee"], e["reason"], store.now_iso()),
+            )
+        conn.execute(
+            """UPDATE paper_trade SET status=?, fill_date=?, fill_price=?, qty=?, notional=?,
+                   shares_left=?, realized=?, last_price=?, last_date=?, ret_pct=?, hold_days=?,
+                   mfe=?, mae=?, exit_reason=?, exit_date=?, bench_ret=?, excess=?, path_src=?, updated_at=?
+               WHERE id=?""",
+            (res["status"], res["fill_date"], res["fill_price"], res["qty"], res["notional"],
+             res["shares_left"], res["realized"], res["last_price"], res["last_date"],
+             res["ret_pct"], res["hold_days"], res["mfe"], res["mae"], res["exit_reason"],
+             res["exit_date"], res["bench_ret"], res["excess"], res["path_src"],
+             store.now_iso(), tid),
+        )
+        updated += 1
+    conn.commit()
+    return updated
+
+
 def settle(conn, asof: str | None = None, log: Logger = _noop,
-           cache: dict[tuple, dict[str, dict]] | None = None,
-           bench: dict[str, dict] | None = None,
+           cache: dict | None = None, bench: dict[str, dict] | None = None,
            offline: bool = False) -> dict:
+    """按资金账户重放到截止日（幂等：每次从头重放并重写成交）。"""
     cal = bars.calendar(conn, log, offline=offline)
     if not cal:
         raise RuntimeError("交易日历为空（本地日线库为空，先跑 `astocks bars --force`）")
     cutoff = asof or _closed_cutoff(cal)
     if not cutoff:
         return {"cutoff": None, "updated": 0}
-
     bench = bench if bench is not None else bars.ensure(
         conn, config.BENCH_CODE, log=log, offline=offline)
-    cache = cache if cache is not None else {}
-    trades = store.rows(conn, "SELECT * FROM paper_trade WHERE trade_date<=? ORDER BY trade_date, id", (cutoff,))
-    updated = 0
-    for t in trades:
-        if t["status"] == "skipped":
-            continue
-        code = t["code"]
-        # 缓存必须按 (代码, 建仓日, cutoff) 分开：sync 逐日推进时若只按代码缓存，
-        # 首日存下的日线会截断在首日，后续交易日的开高低永远看不到，买点永不触发。
-        ckey = (code, t["trade_date"], cutoff)
-        if ckey not in cache:
-            cache[ckey] = bars.ensure(conn, code, start=t["trade_date"], end=cutoff,
-                                      log=log, offline=offline)
-        plan = json.loads(t["plan_json"])
-        if "code" not in plan:
-            plan["code"] = code
-        if "name" not in plan:
-            plan["name"] = t["name"]
-        mkey = (code, "min")
-        if mkey not in cache:
-            cache[mkey] = bars.minutes_of(conn, code, start=t["trade_date"], end=cutoff)
-        res = _replay(plan, cache[ckey], cal, bench, cutoff, mins=cache[mkey])
-        if not res:
-            continue
-        old_execs = store.rows(conn, "SELECT * FROM paper_exec WHERE trade_id=? ORDER BY exec_date, id", (t["id"],))
-        if _sig(t, old_execs) == _sig(res, res["execs"]):
-            continue
-
-        conn.execute("DELETE FROM paper_exec WHERE trade_id=?", (t["id"],))
-        for e in res["execs"]:
-            conn.execute(
-                """INSERT INTO paper_exec (trade_id, exec_date, code, side, price, qty, amount, fee, reason, created_at)
-                   VALUES (?,?,?,?,?,?,?,?,?,?)""",
-                (t["id"], e["exec_date"], code, e["side"], e["price"], e["qty"],
-                 e["amount"], e["fee"], e["reason"], store.now_iso()),
-            )
-        conn.execute(
-            """UPDATE paper_trade SET status=?, fill_date=?, fill_price=?, qty=?, shares_left=?,
-                   realized=?, last_price=?, last_date=?, ret_pct=?, hold_days=?, mfe=?, mae=?,
-                   exit_reason=?, exit_date=?, bench_ret=?, excess=?, path_src=?, updated_at=?
-               WHERE id=?""",
-            (res["status"], res["fill_date"], res["fill_price"], res["qty"], res["shares_left"],
-             res["realized"], res["last_price"], res["last_date"], res["ret_pct"], res["hold_days"],
-             res["mfe"], res["mae"], res["exit_reason"], res["exit_date"], res["bench_ret"],
-             res["excess"], res.get("path_src"), store.now_iso(), t["id"]),
-        )
-        updated += 1
-    conn.commit()
-    return {"cutoff": cutoff, "updated": updated}
+    sim = _load_sim(conn, cal, cutoff, bench, offline, log)
+    for d in cal:
+        if d > cutoff:
+            break
+        sim.step(d)
+    updated = _write_results(conn, sim, cutoff)
+    return {"cutoff": cutoff, "updated": updated,
+            "cash": round(sim.cash, 2), "equity": round(sim.equity(), 2)}
 
 
 def _closed_cutoff(cal: list[str]) -> str | None:
@@ -601,36 +814,41 @@ def _closed_cutoff(cal: list[str]) -> str | None:
 
 
 def sync(conn, asof: str | None = None,
-         ratings: tuple[str, ...] = ("强推", "可关注"), log: Logger = _noop,
+         ratings: tuple[str, ...] = config.PAPER_SCOPE, log: Logger = _noop,
          offline: bool = False) -> dict:
-    """按交易日顺序推进：先结算已建仓头寸，再为当日推荐建仓（避免用未来信息去重）。"""
+    """按交易日顺序推进：当日先建单、再撮合，保证去重用的是「昨日收盘前」的持仓。"""
     cal = bars.calendar(conn, log, offline=offline)
     cutoff = asof or _closed_cutoff(cal) or cal[-1]
     phase = active_phase(conn)
     since = phase["start_date"] if phase else None
-    days = [d["trade_date"] for d in store.rows(
+    days = {d["trade_date"] for d in store.rows(
         conn, "SELECT trade_date FROM trading_day ORDER BY trade_date")
-        if not since or d["trade_date"] >= since]
-    cache: dict[tuple, dict[str, dict]] = {}
+        if not since or d["trade_date"] >= since}
     bench = bars.ensure(conn, config.BENCH_CODE, log=log, offline=offline)
+    sim = _load_sim(conn, cal, cutoff, bench, offline, log)
     made = 0
-    for d in days:
-        settle(conn, asof=d if d <= cutoff else cutoff, log=log, cache=cache, bench=bench,
-               offline=offline)
-        made += create_orders(conn, d, ratings, log)
+    for d in cal:
+        if d > cutoff:
+            break
+        if d in days:
+            made += create_orders(conn, d, ratings, log, sim)
+        sim.step(d)
     conn.commit()
-    res = settle(conn, cutoff, log, cache=cache, bench=bench, offline=offline)
+    updated = _write_results(conn, sim, cutoff)
     if made:
         log(f"🧾 新建虚拟头寸 {made} 笔")
-    log(f"🔁 虚拟交易结算至 {res['cutoff']}：更新 {res['updated']} 笔")
-    return {**res, "created": made}
+    log(f"🔁 虚拟交易结算至 {cutoff}：更新 {updated} 笔｜现金 {sim.cash:,.0f}"
+        f"｜市值 {sim.open_value():,.0f}｜总资产 {sim.equity():,.0f}")
+    return {"cutoff": cutoff, "updated": updated, "created": made,
+            "cash": round(sim.cash, 2), "equity": round(sim.equity(), 2)}
 
 
 def rebuild(conn, asof: str | None = None,
-            ratings: tuple[str, ...] = ("强推", "可关注"), log: Logger = _noop,
+            ratings: tuple[str, ...] = config.PAPER_SCOPE, log: Logger = _noop,
             offline: bool = False) -> dict:
     conn.execute("DELETE FROM paper_exec")
     conn.execute("DELETE FROM paper_trade")
+    conn.execute("DELETE FROM paper_day")
     conn.commit()
     log("🧹 虚拟交易表已清空，按历史推荐重放")
     return sync(conn, asof, ratings, log, offline)
@@ -718,6 +936,7 @@ def summary(conn, view: str = "strong") -> dict:
         "timeout_rate": (reasons.get("timeout", 0) / len(closed)) if closed else None,
         "exit_reasons": reasons,
         "by_rating": by_rating,
+        "account": account(conn),
         "verdict": _verdict(len(closed), len(wins) / len(rets) if rets else None,
                             statistics.fmean(rets) if rets else None),
     }

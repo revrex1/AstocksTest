@@ -301,6 +301,8 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
     expired = [r for r in rows if r["status"] == "expired"]
     scope = "强推" if view != "all" else "全部评级"
     verdict, reason = paper._verdict(sm["closed"], sm["win_rate"], sm["avg_ret"])
+    acct = sm["account"]
+    curve = paper.equity_curve(conn)
     dd_txt = f"{sm['max_dd_yuan']:,.0f} 元" if closed else "—"
     bar_sm = bars.summary(conn)
     ph = paper.phase_status(conn, asof) if view == "strong" else None
@@ -325,12 +327,33 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
         f"持满 `holdingDays` 剩余仓位按收盘平仓",
         f"- 费用：佣金 {config.PAPER_FEE_BPS / 100:.3f}%（最低 {config.PAPER_MIN_FEE:.0f} 元）"
         f"＋卖出印花税 {config.PAPER_STAMP_BPS / 100:.2f}%＋过户费 {config.PAPER_TRANSFER_BPS / 100:.4f}%",
-        f"- 每笔名义本金：{config.PAPER_NOTIONAL:,.0f} 元（不做资金容量约束）",
+        f"- 资金：总资金 {config.PAPER_CAPITAL:,.0f} 元，最多同时持 {config.PAPER_MAX_POSITIONS} 只，"
+        f"单笔预算 {config.PAPER_CAPITAL / config.PAPER_MAX_POSITIONS:,.0f} 元（现金不足则少买或不买）",
         *phase_lines,
         "",
         "## 策略结论",
         "",
         f"- **{verdict}** —— {reason}",
+        "",
+        "## 资金账户",
+        "",
+        "| 项目 | 金额（元） | 占总资金 |",
+        "|---|---|---|",
+        f"| 总资金 | {acct['capital']:,.0f} | 100% |",
+        f"| 现金 | {acct['cash']:,.0f} | {_pct(acct['cash'] / acct['capital'] if acct['capital'] else None)} |",
+        f"| 持仓成本 | {acct['open_cost']:,.0f} | {_pct(acct['open_cost'] / acct['capital'] if acct['capital'] else None)} |",
+        f"| 持仓市值 | {acct['open_value']:,.0f} | {_pct(acct['open_value'] / acct['capital'] if acct['capital'] else None)} |",
+        f"| 浮动盈亏 | {acct['unrealized']:+,.0f} | {_pct(acct['unrealized'] / acct['open_cost'] if acct['open_cost'] else None)} |",
+        f"| 已实现盈亏 | {acct['realized']:+,.0f} | |",
+        f"| **总资产** | **{acct['equity']:,.0f}** | {_pct(acct['total_return'])} |",
+        f"| 仓位（市值/总资产） | {_pct(acct['exposure'])} | 剩余 {acct['max_positions'] - len(acct['positions'])} 个持仓槽位 |",
+        "",
+        f"## 每日账户（{acct['capital']:,.0f} 元本金逐日结算）",
+        "",
+        "| 日期 | 现金 | 持仓市值 | 总资产 | 当日盈亏 | 当日收益 | 累计收益 | 持仓数 |",
+        "|---|---|---|---|---|---|---|---|",
+        *[f"| {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]} | {r[6]} | {r[7]} |"
+          for r in _account_rows(curve, acct["capital"])],
         "",
         "## 汇总",
         "",
@@ -371,14 +394,15 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
             lines.append(f"| {k} | {v['n']} | {_pct(v['win_rate'])} | {_p(v['avg'])} |")
         lines.append("")
 
-    if opened:
-        lines += ["## 当前持仓", "",
-                  "| 代码 | 名称 | 评级 | 建仓日 | 成交价 | 数量 | 现价 | 浮动 | 止损 | 止盈进度 | 持有 |",
-                  "|---|---|---|---|---|---|---|---|---|---|---|"]
-        for r in opened:
+    if acct["positions"]:
+        lines += ["## 当前持仓（按最新收盘价估值）", "",
+                  "| 代码 | 名称 | 评级 | 建仓日 | 成交价 | 数量 | 现价 | 成本 | 市值 | 浮盈 | 浮动 | 含费浮动 | 止损 | 止盈进度 | 持有 |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+        for r in acct["positions"]:
             lines.append(
                 f"| {r['code']} | {r['name']} | {r['rating']} | {r['fill_date']} | {_num(r['fill_price'], 2)} | "
-                f"{r['qty']} | {_num(r['last_price'], 2)} | {_p(r['ret_pct'])} | {_num(r['stop_price'], 2)} | "
+                f"{r['qty']} | {_num(r['last_price'], 2)} | {r['cost']:,.0f} | {r['value']:,.0f} | "
+                f"{r['pnl']:+,.0f} | {_p(r['pnl_pct'])} | {_p(r['ret_pct'])} | {_num(r['stop_price'], 2)} | "
                 f"{_tp_progress(r)} | {r['hold_days']}/{r['holding_days']} |")
         lines.append("")
 
@@ -479,13 +503,22 @@ def paper_page(conn, view: str = "strong") -> str:
     def card(k, v, cls=""):
         return f'<div class="card"><div class="k">{k}</div><div class="v {cls}">{v}</div></div>'
 
+    acct = sm["account"]
+    curve = paper.equity_curve(conn)
+    day_rows = "".join(
+        f"<tr><td class='l'>{d['trade_date']}</td><td>{d['cash']:,.0f}</td>"
+        f"<td>{d['open_value']:,.0f}</td><td><b>{d['equity']:,.0f}</b></td>"
+        f"<td class=\"{'up' if d['pnl_d0'] >= 0 else 'down'}\">{d['pnl_d0']:+,.0f}</td>"
+        f"{_cell_pct(d['ret_d0'])}{_cell_pct(d['cum_ret'])}<td>{d['positions']}</td></tr>"
+        for d in reversed(curve)) or "<tr><td colspan='8' class='muted'>暂无</td></tr>"
     cards = "".join([
+        card("总资产", f'{acct["equity"]:,.0f} 元', "up" if (acct["total_return"] or 0) >= 0 else "down"),
+        card("账户收益", _p(acct["total_return"]), "up" if (acct["total_return"] or 0) >= 0 else "down"),
+        card("浮动盈亏", f'{acct["unrealized"]:+,.0f} 元', "up" if acct["unrealized"] >= 0 else "down"),
+        card("已实现", f'{acct["realized"]:+,.0f} 元', "up" if acct["realized"] >= 0 else "down"),
+        card("仓位", _pct(acct["exposure"])),
         card("平仓胜率", _pct(sm["win_rate"])),
-        card("平均每笔", _p(sm["avg_ret"]), "up" if (sm["avg_ret"] or 0) >= 0 else "down"),
         card("盈亏比", _num(sm["profit_factor"], 2)),
-        card("累计已实现", f'{sm["total_pnl"]:,.0f} 元', "up" if sm["total_pnl"] >= 0 else "down"),
-        card("成交率", _pct(sm["fill_rate"])),
-        card("平均持有", f'{_num(sm["avg_hold"], 0)} 日'),
         card("样本", f'{sm["closed"]} 平仓 / {sm["open"]} 持仓'),
     ])
 
@@ -493,9 +526,11 @@ def paper_page(conn, view: str = "strong") -> str:
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
         f"<td class='l'>{html.escape(r['rating'] or '')}</td><td class='l'>{r['fill_date']}</td>"
         f"<td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td><td>{_num(r['last_price'], 2)}</td>"
-        f"{_cell_pct(r['ret_pct'])}<td>{_num(r['stop_price'], 2)}</td><td>{_tp_progress(r)}</td>"
-        f"<td>{r['hold_days']}/{r['holding_days']}</td></tr>"
-        for r in opened) or "<tr><td colspan='11' class='muted'>当前无持仓</td></tr>"
+        f"<td>{r['cost']:,.0f}</td><td>{r['value']:,.0f}</td>"
+        f"<td class=\"{'up' if r['pnl'] >= 0 else 'down'}\">{r['pnl']:+,.0f}</td>"
+        f"{_cell_pct(r['pnl_pct'])}{_cell_pct(r['ret_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
+        f"<td>{_tp_progress(r)}</td><td>{r['hold_days']}/{r['holding_days']}</td></tr>"
+        for r in acct["positions"]) or "<tr><td colspan='15' class='muted'>当前无持仓</td></tr>"
 
     closed_html = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
@@ -521,16 +556,35 @@ def paper_page(conn, view: str = "strong") -> str:
 <title>虚拟交易台账 · {scope}</title><style>{CSS}</style></head>
 <body><div class="wrap">
 <h1>虚拟交易台账 · {scope}</h1>
-<div class="sub">严格按推荐附带的买点/止损/止盈/持有期执行 · 每笔名义 {config.PAPER_NOTIONAL:,.0f} 元
+<div class="sub">严格按推荐附带的买点/止损/止盈/持有期执行 · 总资金 {config.PAPER_CAPITAL:,.0f} 元
+ · 最多持 {config.PAPER_MAX_POSITIONS} 只 · 单笔预算 {config.PAPER_CAPITAL / config.PAPER_MAX_POSITIONS:,.0f} 元
  · 含佣金与印花税 · 生成 {datetime.now().strftime('%Y-%m-%d %H:%M')}{phase_txt}</div>
 
 <div class="cards">{cards}</div>
 <div class="banner"><b class="{vcls}">策略结论：{verdict}</b> —— {html.escape(reason)}</div>
 
-<h2>当前持仓</h2>
+<h2>资金账户</h2>
+<div class="panel"><table><thead><tr><th class="l">项目</th><th>金额（元）</th><th>说明</th></tr></thead><tbody>
+<tr><td class="l">总资金</td><td>{acct["capital"]:,.0f}</td><td class="l">初始本金</td></tr>
+<tr><td class="l">现金</td><td>{acct["cash"]:,.0f}</td><td class="l">可动用于下一笔建仓</td></tr>
+<tr><td class="l">持仓成本</td><td>{acct["open_cost"]:,.0f}</td><td class="l">{len(acct["positions"])} / {acct["max_positions"]} 个槽位占用</td></tr>
+<tr><td class="l">持仓市值</td><td>{acct["open_value"]:,.0f}</td><td class="l">按 {acct["positions"][0]["last_date"] if acct["positions"] else "—"} 收盘价</td></tr>
+<tr><td class="l"><b>总资产</b></td><td><b>{acct["equity"]:,.0f}</b></td><td class="l">现金 + 持仓市值</td></tr>
+<tr><td class="l">账户累计收益</td><td class="{'up' if (acct["total_return"] or 0) >= 0 else 'down'}">{_p(acct["total_return"])}</td><td class="l">含浮动的口径</td></tr>
+</tbody></table></div>
+
+<h2>每日账户曲线（{acct["capital"]:,.0f} 元本金 · 强推策略）</h2>
+<div class="panel">{_svg_account(curve, acct["capital"])}</div>
+
+<h2>逐日结算</h2>
+<div class="panel"><table><thead><tr><th class="l">日期</th><th>现金</th><th>持仓市值</th>
+<th>总资产</th><th>当日盈亏</th><th>当日收益</th><th>累计收益</th><th>持仓数</th></tr></thead>
+<tbody>{day_rows}</tbody></table></div>
+
+<h2>当前持仓（浮动盈亏）</h2>
 <div class="panel"><table><thead><tr><th class="l">代码</th><th class="l">名称</th><th class="l">评级</th>
-<th class="l">建仓日</th><th>成交价</th><th>数量</th><th>现价</th><th>浮动</th><th>止损</th>
-<th>止盈进度</th><th>持有</th></tr></thead><tbody>{pos_html}</tbody></table></div>
+<th class="l">建仓日</th><th>成交价</th><th>数量</th><th>现价</th><th>成本</th><th>市值</th><th>浮盈</th>
+<th>浮动</th><th>含费浮动</th><th>止损</th><th>止盈进度</th><th>持有</th></tr></thead><tbody>{pos_html}</tbody></table></div>
 
 <h2>逐笔平仓收益</h2>
 <div class="panel">{_svg_trade_bars(closed)}</div>
@@ -631,6 +685,66 @@ def _svg_equity(days: list[dict], w: int = 1100, h: int = 230) -> str:
 <path d="{path(1)}" fill="none" stroke="#d9363e" stroke-width="2.2"/>
 {labels}
 </svg>"""
+
+
+def _svg_account(curve: list[dict], capital: float, w: int = 1100, h: int = 220) -> str:
+    """10 万本金逐日账户曲线：红线=总资产，灰虚线=本金基准。"""
+    pts = [(d["trade_date"], d["equity"]) for d in curve]
+    if not pts:
+        return '<div class="empty">暂无账户数据</div>'
+    pad_l, pad_r, pad_t, pad_b = 62, 14, 16, 26
+    vals = [v for _, v in pts] + [capital]
+    lo, hi = min(vals), max(vals)
+    if hi - lo < 1e-6:
+        lo, hi = lo - 100, hi + 100
+    pad = (hi - lo) * 0.12
+    lo, hi = lo - pad, hi + pad
+    span = hi - lo
+    iw, ih = w - pad_l - pad_r, h - pad_t - pad_b
+    n = len(pts)
+
+    def x(i): return pad_l + (iw * (i / (n - 1)) if n > 1 else iw / 2)
+    def y(v): return pad_t + ih * (1 - (v - lo) / span)
+
+    line = " ".join(("M" if i == 0 else "L") + f"{x(i):.1f},{y(v):.1f}" for i, (_, v) in enumerate(pts))
+    area = f"{line} L{x(n - 1):.1f},{y(lo):.1f} L{x(0):.1f},{y(lo):.1f} Z"
+    grid = "".join(
+        f'<line x1="{pad_l}" y1="{y(lo + span * k / 4):.1f}" x2="{w - pad_r}" y2="{y(lo + span * k / 4):.1f}" '
+        f'stroke="#eef0f3"/><text x="{pad_l - 8}" y="{y(lo + span * k / 4) + 4:.1f}" text-anchor="end" '
+        f'font-size="10" fill="#9aa1ac">{lo + span * k / 4:,.0f}</text>'
+        for k in range(5))
+    base = (f'<line x1="{pad_l}" y1="{y(capital):.1f}" x2="{w - pad_r}" y2="{y(capital):.1f}" '
+            f'stroke="#b9c0cc" stroke-width="1.4" stroke-dasharray="5 4"/>'
+            f'<text x="{w - pad_r}" y="{y(capital) - 6:.1f}" text-anchor="end" font-size="10" '
+            f'fill="#9aa1ac">本金 {capital:,.0f}</text>')
+    dots = "".join(
+        f'<circle cx="{x(i):.1f}" cy="{y(v):.1f}" r="3" fill="#d9363e">'
+        f'<title>{pts[i][0]} 总资产 {v:,.0f} 元</title></circle>'
+        for i, (_, v) in enumerate(pts))
+    labels = "".join(
+        f'<text x="{x(i):.1f}" y="{h - 8}" text-anchor="middle" font-size="10" fill="#9aa1ac">{pts[i][0][5:]}</text>'
+        for i in sorted({0, n // 2, n - 1}))
+    up = pts[-1][1] >= capital
+    stroke = "#d9363e" if up else "#0f9960"
+    return f"""<svg viewBox="0 0 {w} {h}" width="100%" style="height:auto;display:block">
+<defs><linearGradient id="accg" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="{stroke}" stop-opacity=".14"/>
+<stop offset="100%" stop-color="{stroke}" stop-opacity="0"/></linearGradient></defs>
+{grid}{base}
+<path d="{area}" fill="url(#accg)" stroke="none"/>
+<path d="{line}" fill="none" stroke="{stroke}" stroke-width="2.2"/>
+{dots}{labels}
+</svg>"""
+
+
+def _account_rows(curve: list[dict], capital: float) -> list[list[str]]:
+    out = []
+    for d in reversed(curve):
+        chg = f"{d['pnl_d0']:+,.0f}"
+        out.append([d["trade_date"], f"{d['cash']:,.0f}", f"{d['open_value']:,.0f}",
+                    f"**{d['equity']:,.0f}**", chg, _p(d["ret_d0"]), _p(d["cum_ret"]),
+                    str(d["positions"])])
+    return out
 
 
 def _svg_bars(days: list[dict], w: int = 1100, h: int = 180) -> str:
@@ -748,23 +862,43 @@ def dashboard(conn, source: str = "live") -> str:
                   f"进度 {pph['elapsed']}/{pph['total_days']} 个交易日 · "
                   f"期初基准 {config.BENCH_NAME} {_num(pph['bench_base'], 2)}　·　") if pph else ""
     p_cards = "".join([
+        card("总资产", f'{ps["account"]["equity"]:,.0f} 元',
+             "up" if (ps["account"]["total_return"] or 0) >= 0 else "down"),
+        card("账户收益", _p(ps["account"]["total_return"]),
+             "up" if (ps["account"]["total_return"] or 0) >= 0 else "down"),
+        card("浮动盈亏", f'{ps["account"]["unrealized"]:+,.0f} 元',
+             "up" if ps["account"]["unrealized"] >= 0 else "down"),
+        card("已实现", f'{ps["account"]["realized"]:+,.0f} 元',
+             "up" if ps["account"]["realized"] >= 0 else "down"),
+        card("仓位", _pct(ps["account"]["exposure"])),
         card("跟踪进度", f"{pph['elapsed']}/{pph['total_days']}" if pph else "-"),
-        card("平仓胜率", _pct(ps["win_rate"])),
-        card("平均每笔", _p(ps["avg_ret"]), "up" if (ps["avg_ret"] or 0) >= 0 else "down"),
-        card("累计已实现", f'{ps["total_pnl"]:,.0f} 元', "up" if ps["total_pnl"] >= 0 else "down"),
         card("持仓 / 平仓", f'{ps["open"]} / {ps["closed"]}'),
     ])
+    acct = ps["account"]
     p_rows = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
         f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td>"
-        f"<td>{_num(r['last_price'], 2)}</td>{_cell_pct(r['ret_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
+        f"<td>{_num(r['last_price'], 2)}</td><td>{r['cost']:,.0f}</td><td>{r['value']:,.0f}</td>"
+        f"<td class=\"{'up' if r['pnl'] >= 0 else 'down'}\">{r['pnl']:+,.0f}</td>"
+        f"{_cell_pct(r['pnl_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
         f"<td>{_tp_progress(r)}</td><td>{r['hold_days']}/{r['holding_days']}</td></tr>"
-        for r in p_open) or "<tr><td colspan='10' class='muted'>当前无虚拟持仓</td></tr>"
-    paper_block = f"""<h2>虚拟交易 · 强推 <span class="sub">（按建议买卖点纸面执行）</span></h2>
+        for r in acct["positions"]) or "<tr><td colspan='13' class='muted'>当前无虚拟持仓</td></tr>"
+    p_curve = paper.equity_curve(conn)
+    p_day_rows = "".join(
+        f"<tr><td class='l'>{d['trade_date']}</td><td>{d['cash']:,.0f}</td>"
+        f"<td>{d['open_value']:,.0f}</td><td><b>{d['equity']:,.0f}</b></td>"
+        f"<td class=\"{'up' if d['pnl_d0'] >= 0 else 'down'}\">{d['pnl_d0']:+,.0f}</td>"
+        f"{_cell_pct(d['cum_ret'])}<td>{d['positions']}</td></tr>"
+        for d in reversed(p_curve)) or "<tr><td colspan='6' class='muted'>暂无</td></tr>"
+    paper_block = f"""<h2>虚拟交易 · 强推 <span class="sub">（{acct["capital"]:,.0f} 元本金 · 按建议买卖点纸面执行）</span></h2>
 <div class="cards">{p_cards}</div>
+<div class="panel">{_svg_account(p_curve, acct["capital"])}</div>
+<div class="panel"><table><thead><tr><th class="l">日期</th><th>现金</th><th>持仓市值</th>
+<th>总资产</th><th>当日盈亏</th><th>累计收益</th><th>持仓数</th></tr></thead>
+<tbody>{p_day_rows}</tbody></table></div>
 <div class="panel"><table><thead><tr><th class="l">代码</th><th class="l">名称</th><th class="l">建仓日</th>
-<th>成交价</th><th>数量</th><th>现价</th><th>浮动</th><th>止损</th><th>止盈进度</th><th>持有</th>
-</tr></thead><tbody>{p_rows}</tbody></table></div>
+<th>成交价</th><th>数量</th><th>现价</th><th>成本</th><th>市值</th><th>浮盈</th><th>浮动</th>
+<th>止损</th><th>止盈进度</th><th>持有</th></tr></thead><tbody>{p_rows}</tbody></table></div>
 <div class="note">{phase_note}结论：<b>{pv}</b> —— {html.escape(pr)}　·　
 <a href="paper_trading.html">完整台账与逐笔成交</a></div>"""
 
@@ -1040,12 +1174,15 @@ def site_page(conn, source: str = "live") -> str:
     pled = paper.ledger(conn, "strong")
     p_open = [r for r in pled if r["status"] == "open"]
     pv, pr = paper._verdict(ps["closed"], ps["win_rate"], ps["avg_ret"])
+    acct = ps["account"]
     p_rows = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
         f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td>"
-        f"<td>{_num(r['last_price'], 2)}</td>{_cell_pct(r['ret_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
+        f"<td>{_num(r['last_price'], 2)}</td><td>{r['cost']:,.0f}</td><td>{r['value']:,.0f}</td>"
+        f"<td class=\"{'up' if r['pnl'] >= 0 else 'down'}\">{r['pnl']:+,.0f}</td>"
+        f"{_cell_pct(r['pnl_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
         f"<td>{_tp_progress(r)}</td><td>{r['hold_days']}/{r['holding_days']}</td></tr>"
-        for r in p_open) or "<tr><td colspan='10' class='muted'>当前无虚拟持仓</td></tr>"
+        for r in acct["positions"]) or "<tr><td colspan='13' class='muted'>当前无虚拟持仓</td></tr>"
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
@@ -1070,10 +1207,12 @@ def site_page(conn, source: str = "live") -> str:
 
 {sections}
 
+<h2>量化模拟 · 强推 · {ps["account"]["capital"]:,.0f} 元本金 <span class="sub">（逐日收盘结算，当前总资产 {ps["account"]["equity"]:,.0f} 元）</span></h2>
+<div class="panel">{_svg_account(paper.equity_curve(conn), ps["account"]["capital"])}</div>
 <h2>虚拟交易 · 强推 <span class="sub">（按建议买卖点纸面执行）</span></h2>
 <div class="panel"><table><thead><tr><th class="l">代码</th><th class="l">名称</th><th class="l">建仓日</th>
-<th>成交价</th><th>数量</th><th>现价</th><th>浮动</th><th>止损</th><th>止盈进度</th><th>持有</th>
-</tr></thead><tbody>{p_rows}</tbody></table></div>
+<th>成交价</th><th>数量</th><th>现价</th><th>成本</th><th>市值</th><th>浮盈</th><th>浮动</th>
+<th>止损</th><th>止盈进度</th><th>持有</th></tr></thead><tbody>{p_rows}</tbody></table></div>
 <div class="note">持仓 {ps['open']} 笔 · 已平仓 {ps['closed']} 笔 · 结论：<b>{pv}</b> —— {html.escape(pr)}</div>
 
 <h2>净值曲线</h2>
