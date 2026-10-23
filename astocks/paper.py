@@ -121,11 +121,18 @@ def _budget() -> float:
 
 
 def _tranches(qty: int, n: int) -> list[int]:
-    if n <= 0:
+    """三档等分，且每档必须是整手（100 股）；余数并入最后一档。
+
+    A 股卖出同样是 100 股整数倍（清仓可含零股），按 qty//n 直接分会出现
+    166 股这种挂不出去的委托。
+    """
+    if n <= 0 or qty <= 0:
         return []
-    base = qty // n
-    out = [base] * n
-    out[-1] = qty - base * (n - 1)
+    base = (qty // 100 // n) * 100
+    if base <= 0:
+        return [qty]
+    out = [base] * (n - 1)
+    out.append(qty - base * (n - 1))
     return [q for q in out if q > 0]
 
 
@@ -291,8 +298,26 @@ class _Sim:
             return
         self._exits(day)
         self._entries(day)
+        self._mark_new(day)
         self._expire(day)
         self._record(day)
+
+    def _mark_new(self, day: str) -> None:
+        """当日新建仓按当日收盘价估值。
+
+        _entries 在建仓时只能把 last_price 设成成交价；若不在这里补一次收盘价，
+        当日新仓会按成本计价，账户净值少算当天的浮动。
+        """
+        for s in self.open_positions():
+            if s["fill_date"] != day:
+                continue
+            bar = self._kline(s["code"], s["plan"]["trade_date"]).get(day)
+            if not bar:
+                continue
+            hi, lo, cl = float(bar["high"]), float(bar["low"]), float(bar["close"])
+            s["last_price"], s["last_date"] = cl, day
+            s["mfe"] = max(s["mfe"], hi / s["fill_price"] - 1)
+            s["mae"] = min(s["mae"], lo / s["fill_price"] - 1)
 
     def _record(self, day: str) -> None:
         """逐日账户快照：收盘后「10 万本金还剩多少」。"""
@@ -617,11 +642,10 @@ def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = config.PAPER
             continue
         rating = p.get("rating")
         dup = sim.has_open(p["code"], rating) if sim else _has_open_position(conn, p["code"], trade_date, rating)
-        if not dup:
-            n = sim.cancel_pending(p["code"], rating, trade_date) if sim else 0
-            n += _cancel_pending(conn, p["code"], trade_date, rating)
-            if n:
-                log(f"♻️  {plan['code']} {plan['name']} 撤销 {n} 张旧挂单，按新建议重新挂单")
+        # 不撤旧挂单（2026-10-23 修正）：撤旧挂新等于「越跌越不买」——站点每天把买点下调，
+        # 每来一次就撤单，委托永远等不到成交（10-20 的 601898 14.70、600011 7.40 本已在
+        # 10-21 触发却被撤）。每张建议单独立有效 PAPER_ENTRY_VALID_DAYS 天，同标的多单并存，
+        # 靠成交时的持仓去重保证不会重复建仓。
         status = "skipped" if dup else "pending"
         cur = conn.execute(
             """INSERT INTO paper_trade

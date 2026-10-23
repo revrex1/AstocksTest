@@ -611,6 +611,12 @@ def paper_page(conn, view: str = "strong") -> str:
 </div></body></html>"""
 
 
+def audit_report(conn, start: str = "2026-10-19", end: str | None = None) -> str:
+    from . import audit as _audit
+    return _write(os.path.join(config.REPORT_DIR, "paper_audit.md"),
+                  _audit.markdown(conn, start=start, end=end))
+
+
 def write_paper_page(conn, view: str = "strong") -> str:
     return _write(os.path.join(config.REPORT_DIR, f"paper_trading{_view_suffix(view)}.html"),
                   paper_page(conn, view))

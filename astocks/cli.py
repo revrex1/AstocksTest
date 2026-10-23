@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import datetime
 
-from . import (bars, config, export, paper, record, report, review, sitepush,
+from . import (audit, bars, config, export, paper, record, report, review, sitepush,
                source, stats, store, tencent)
 
 
@@ -27,6 +27,10 @@ def _after_work(conn, trade_date: str, kind: str, source: str = "live") -> None:
     d = report.write_dashboard(conn, source=source)
     t = report.paper_report(conn)
     report.write_paper_page(conn)
+    try:
+        report.audit_report(conn)
+    except Exception as exc:  # noqa: BLE001  审计失败不影响主链路
+        _log(f"⚠  逐笔审计失败：{exc}")
     try:
         site = report.write_site(conn, source=source)
         _log(f"🌐 分享站：{site}")
@@ -365,6 +369,13 @@ def cmd_push(args) -> int:
     return 1
 
 
+def cmd_audit(args) -> int:
+    conn = store.init_db()
+    p = report.audit_report(conn, start=args.start, end=args.date)
+    _log(f"🔎 逐笔审计：{p}")
+    return 0
+
+
 def cmd_report(args) -> int:
     conn = store.init_db()
     day = args.date
@@ -465,6 +476,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--dry-run", action="store_true", help="只看会同步哪些文件，不复制不推送")
     p.add_argument("--force", action="store_true", help="内容无变化也提交（调试用）")
     p.set_defaults(func=cmd_push)
+
+    p = sub.add_parser("audit", help="强推逐笔回溯审计：成交/减仓/止盈止损对账")
+    p.add_argument("--start", default="2026-10-19", help="起始推荐日 YYYY-MM-DD")
+    p.add_argument("--date", help="截止日 YYYY-MM-DD，默认最近交易日")
+    p.set_defaults(func=cmd_audit)
 
     p = sub.add_parser("report", help="重新生成报告与看板")
     p.add_argument("--date")
