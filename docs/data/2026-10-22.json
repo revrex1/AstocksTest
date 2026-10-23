@@ -1069,6 +1069,32 @@
       "stop_price": 15.77,
       "exit_date": null,
       "exit_reason": null
+    },
+    {
+      "code": "600011",
+      "name": "华能国际",
+      "rating": "强推",
+      "fill_date": "2026-10-21",
+      "fill_price": 7.4,
+      "qty": 2700,
+      "last_price": 7.25,
+      "ret_pct": -0.0205,
+      "stop_price": 7.1,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "601898",
+      "name": "XD中煤能",
+      "rating": "强推",
+      "fill_date": "2026-10-21",
+      "fill_price": 14.7,
+      "qty": 1300,
+      "last_price": 14.56,
+      "ret_pct": -0.0098,
+      "stop_price": 14.09,
+      "exit_date": null,
+      "exit_reason": null
     }
   ],
   "provisional": false
