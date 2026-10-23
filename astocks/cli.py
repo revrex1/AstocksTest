@@ -69,6 +69,10 @@ def cmd_close(args) -> int:
         latest = store.latest_days(conn0, limit=1)
         day0 = args.date or (latest[0]["trade_date"] if latest else None)
         codes = [p["code"] for p in store.get_picks(conn0, day0)] if day0 else []
+        # 基准指数同样受 TTL 影响：不刷会用 09:32 快照当收盘价，当日超额方向可能直接反转
+        # （2026-10-23 实测：沪深300 快照 -1.42% vs 实际 +1.71%，超额 +2.37% → -0.76%）。
+        if config.BENCH_CODE not in codes:
+            codes.append(config.BENCH_CODE)
         if codes:
             _log(f"🔄 收盘前强制刷新当日日线：{len(codes)} 只")
             bars.backfill(conn0, codes, log=_log, force=True)
