@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23 10:53:54",
+  "updated_at": "2026-10-23 15:05:03",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -15,18 +15,18 @@
     "2026-10-23"
   ],
   "summary": {
-    "nav": 0.9826,
-    "bench_nav": 0.9796,
-    "excess_nav": 0.003,
-    "win_rate": 0.3077,
-    "avg": -0.0079,
-    "avg_excess": -0.0014,
-    "profit_factor": 0.2599,
-    "samples": 26,
-    "days": 4,
+    "nav": 0.9919,
+    "bench_nav": 0.9541,
+    "excess_nav": 0.0397,
+    "win_rate": 0.3824,
+    "avg": -0.0038,
+    "avg_excess": 0.0074,
+    "profit_factor": 0.5888,
+    "samples": 34,
+    "days": 5,
     "max_dd": -0.0282,
     "verdict": "偏弱",
-    "verdict_reason": "胜率 31% 低于 45%，超额 -0.14%"
+    "verdict_reason": "胜率 38% 低于 45%，超额 +0.74%"
   },
   "daily": [
     {
@@ -75,10 +75,10 @@
       "watch": 0,
       "win_rate": 0.125,
       "avg_ret": -0.0123,
-      "avg_excess": -0.0059,
-      "bench_pct": -0.0064,
+      "avg_excess": 0.0061,
+      "bench_pct": -0.0184,
       "nav": 0.9826,
-      "bench_nav": 0.9796,
+      "bench_nav": 0.9678,
       "provisional": false
     },
     {
@@ -86,51 +86,51 @@
       "picks": 8,
       "strong": 6,
       "watch": 2,
-      "win_rate": null,
-      "avg_ret": null,
-      "avg_excess": null,
-      "bench_pct": -0.014,
-      "nav": null,
-      "bench_nav": null,
-      "provisional": true
+      "win_rate": 0.625,
+      "avg_ret": 0.0095,
+      "avg_excess": 0.0237,
+      "bench_pct": -0.0142,
+      "nav": 0.9919,
+      "bench_nav": 0.9541,
+      "provisional": false
     }
   ],
   "layers": {
     "强推": {
-      "n": 24,
-      "win_rate": 0.2917,
-      "avg": -0.0081,
-      "profit_factor": 0.2631
+      "n": 30,
+      "win_rate": 0.3333,
+      "avg": -0.0064,
+      "profit_factor": 0.3629
     },
     "可关注": {
-      "n": 2,
-      "win_rate": 0.5,
-      "avg": -0.005,
-      "profit_factor": 0.1904
+      "n": 4,
+      "win_rate": 0.75,
+      "avg": 0.0157,
+      "profit_factor": 6.0525
     },
     "Top3": {
-      "n": 11,
-      "win_rate": 0.5455,
-      "avg": -0.0046,
-      "profit_factor": 0.5007
+      "n": 14,
+      "win_rate": 0.5,
+      "avg": -0.0031,
+      "profit_factor": 0.6274
     },
     "4名以后": {
-      "n": 15,
-      "win_rate": 0.1333,
-      "avg": -0.0103,
-      "profit_factor": 0.1195
+      "n": 20,
+      "win_rate": 0.3,
+      "avg": -0.0043,
+      "profit_factor": 0.5655
     }
   },
   "horizons": {
     "T+1": {
-      "n": 18,
+      "n": 24,
       "win_rate": 0.1667,
-      "avg": -0.016
+      "avg": -0.0137
     },
     "T+3": {
-      "n": 2,
-      "win_rate": 0.5,
-      "avg": -0.0024
+      "n": 10,
+      "win_rate": 0.2,
+      "avg": -0.0324
     },
     "T+5": {
       "n": 0,
@@ -142,39 +142,44 @@
     "view": "all",
     "orders": 34,
     "filled": 5,
-    "closed": 0,
-    "open": 5,
-    "pending": 16,
-    "expired": 6,
+    "closed": 1,
+    "open": 4,
+    "pending": 10,
+    "expired": 12,
     "skipped": 7,
     "fill_rate": 0.14705882352941177,
-    "win_rate": null,
-    "avg_ret": null,
-    "med_ret": null,
+    "win_rate": 0.0,
+    "avg_ret": -0.0515,
+    "med_ret": -0.0515,
     "avg_win": null,
-    "avg_loss": null,
-    "profit_factor": null,
-    "expectancy": null,
-    "total_pnl": 0.0,
-    "total_notional": 0,
-    "avg_hold": null,
-    "excess_n": 0,
-    "avg_excess": null,
-    "excess_win": null,
-    "max_dd_yuan": 0.0,
-    "avg_mfe": null,
-    "avg_mae": null,
-    "tp_touch_rate": null,
-    "stop_rate": null,
-    "timeout_rate": null,
-    "exit_reasons": {},
-    "by_rating": {},
+    "avg_loss": -0.0515,
+    "profit_factor": 0.0,
+    "expectancy": -0.0515,
+    "total_pnl": -4890.23,
+    "total_notional": 94978.0,
+    "avg_hold": 2.0,
+    "excess_n": 1,
+    "avg_excess": -0.0192,
+    "excess_win": 0.0,
+    "max_dd_yuan": -4890.23,
+    "avg_mfe": 0.0408,
+    "avg_mae": -0.05,
+    "tp_touch_rate": 0.0,
+    "stop_rate": 1.0,
+    "timeout_rate": 0.0,
+    "exit_reasons": {
+      "stop": 1
+    },
+    "by_rating": {
+      "可关注": {
+        "n": 1,
+        "win_rate": 0.0,
+        "avg": -0.0515
+      }
+    },
     "verdict": [
       "样本不足",
-      "仅 0 笔平仓样本（阈值 10），暂不下结论"
+      "仅 1 笔平仓样本（阈值 10），暂不下结论"
     ]
-  },
-  "pending": [
-    "2026-10-23"
-  ]
+  }
 }
