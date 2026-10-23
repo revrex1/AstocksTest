@@ -28,6 +28,10 @@ def _after_work(conn, trade_date: str, kind: str, source: str = "live") -> None:
     t = report.paper_report(conn)
     report.write_paper_page(conn)
     try:
+        report.write_paper_site(conn)
+    except Exception as exc:  # noqa: BLE001  台账站点页失败不影响主链路
+        _log(f"⚠  交易台账站点页生成失败：{exc}")
+    try:
         report.audit_report(conn)
     except Exception as exc:  # noqa: BLE001  审计失败不影响主链路
         _log(f"⚠  逐笔审计失败：{exc}")

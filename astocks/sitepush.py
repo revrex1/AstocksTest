@@ -100,6 +100,10 @@ def _pairs() -> list[tuple[str, str]]:
     dist_page = config.SITE_PUSH_SRC_PAGE
     if dist_page and os.path.isfile(dist_page):
         out.append((dist_page, os.path.join(config.SITE_PUBLISH_DIR, "index.html")))
+    # 虚拟交易台账（自包含 HTML，不依赖 data/ 里的 JSON）
+    paper_page = os.path.join(config.ROOT, "dist", "paper.html")
+    if os.path.isfile(paper_page):
+        out.append((paper_page, os.path.join(config.SITE_PUBLISH_DIR, "paper.html")))
     return out
 
 
@@ -123,7 +127,7 @@ def _rel(path: str) -> str:
 
 # ---------------------------------------------------------------- 发布白名单 + 敏感信息闸门
 # Pages 页面实际消费的只有这两处，其余一律不发布。
-ALLOW_EXACT = {"docs/index.html"}
+ALLOW_EXACT = {"docs/index.html", "docs/paper.html"}
 ALLOW_DIRS = ("docs/data/",)
 
 _SENSITIVE: list[tuple[re.Pattern, str]] = [
@@ -163,7 +167,7 @@ def audit(files: list[tuple[str, str]]) -> list[str]:
     problems: list[str] = []
     for path, rel in files:
         if not _allowed(rel):
-            problems.append(f"{rel} 不在发布白名单（只允许 docs/data/*.json、docs/index.html）")
+            problems.append(f"{rel} 不在发布白名单（只允许 docs/data/*.json、docs/index.html、docs/paper.html）")
             continue
         try:
             with open(path, encoding="utf-8", errors="replace") as f:

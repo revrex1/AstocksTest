@@ -221,7 +221,7 @@ def build(conn, source: str = "live") -> dict:
                    for k, v in {**ev["by_rating"], **ev["by_rank"]}.items()},
         "horizons": {k: {"n": v["n"], "win_rate": _r(v["win_rate"]), "avg": _r(v["avg"])}
                      for k, v in ev["by_horizon"].items()},
-        "paper": paper.summary(conn, "all"),
+        "paper": {**paper.summary(conn, "all"), "url": "paper.html", "data_url": "data/paper.json"},
     }
     pend_days = {p["trade_date"] for p in pending}
     per_day = {
@@ -250,5 +250,54 @@ def write(conn, outdir: str | None = None, source: str = "live") -> dict:
     for day, payload in data["days"].items():
         written.append(_dump(os.path.join(out, f"{day}.json"), payload))
     written.append(_dump(os.path.join(out, "index.json"), data["index"]))
+    written.append(_dump(os.path.join(out, "paper.json"), paper_payload(conn)))
     return {"dir": out, "files": len(written), "days": len(data["days"]),
             "index": written[-1]}
+
+
+def paper_payload(conn) -> dict:
+    """虚拟盘机读数据：账户、逐日净值、持仓、逐笔台账。"""
+    sm = paper.summary(conn, "all")
+    acct = sm["account"]
+    return {
+        "updated_at": store.now_iso(),
+        "capital": acct["capital"],
+        "equity": acct["equity"],
+        "cash": acct["cash"],
+        "open_cost": acct["open_cost"],
+        "open_value": acct["open_value"],
+        "unrealized": acct["unrealized"],
+        "realized": acct["realized"],
+        "total_return": _r(acct["total_return"]),
+        "exposure": _r(acct["exposure"]),
+        "max_positions": acct["max_positions"],
+        "curve": [
+            {"date": d["trade_date"], "cash": _r(d["cash"]), "value": _r(d["open_value"]),
+             "equity": _r(d["equity"]), "pnl": _r(d["pnl_d0"]), "ret": _r(d["ret_d0"]),
+             "cum": _r(d["cum_ret"]), "positions": d["positions"]}
+            for d in paper.equity_curve(conn)
+        ],
+        "positions": [
+            {"code": p["code"], "name": p["name"], "rating": p["rating"],
+             "fill_date": p["fill_date"], "fill_price": _r(p["fill_price"], 3),
+             "qty": p["qty"], "last_price": _r(p["last_price"], 3),
+             "cost": _r(p["cost"]), "value": _r(p["value"]),
+             "pnl": _r(p["pnl"]), "pnl_pct": _r(p["pnl_pct"]),
+             "stop_price": _r(p["stop_price"], 3), "ret_pct": _r(p["ret_pct"])}
+            for p in acct["positions"]
+        ],
+        "trades": [
+            {"trade_date": t["trade_date"], "code": t["code"], "name": t["name"],
+             "rating": t["rating"], "status": t["status"], "exit_reason": t["exit_reason"],
+             "entry_target": _r(t["entry_target"], 3), "fill_date": t["fill_date"],
+             "fill_price": _r(t["fill_price"], 3), "qty": t["qty"],
+             "ret_pct": _r(t["ret_pct"]), "hold_days": t["hold_days"]}
+            for t in paper.ledger(conn, "all")
+        ],
+        "stats": {
+            "orders": sm["orders"], "filled": sm["filled"], "open": sm["open"],
+            "closed": sm["closed"], "pending": sm["pending"], "expired": sm["expired"],
+            "fill_rate": _r(sm["fill_rate"]), "win_rate": _r(sm["win_rate"]),
+            "verdict": sm["verdict"],
+        },
+    }

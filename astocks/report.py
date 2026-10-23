@@ -618,6 +618,16 @@ def audit_report(conn, start: str = "2026-10-19", end: str | None = None) -> str
                   _audit.markdown(conn, start=start, end=end))
 
 
+def write_paper_site(conn, view: str = "strong") -> str:
+    """生成发布用的交易台账页（dist/paper.html → docs/paper.html）。"""
+    html = paper_page(conn, view)
+    nav = ('<div class="sub" style="margin-bottom:10px">'
+           '<a href="index.html">← 返回复盘首页</a>　·　'
+           '<a href="data/paper.json">机读数据 paper.json</a></div>')
+    html = html.replace("<h1>", nav + "<h1>", 1)
+    return _write(os.path.join(config.ROOT, "dist", "paper.html"), html)
+
+
 def write_paper_page(conn, view: str = "strong") -> str:
     return _write(os.path.join(config.REPORT_DIR, f"paper_trading{_view_suffix(view)}.html"),
                   paper_page(conn, view))
@@ -1220,7 +1230,8 @@ def site_page(conn, source: str = "live") -> str:
 <div class="panel"><table><thead><tr><th class="l">代码</th><th class="l">名称</th><th class="l">建仓日</th>
 <th>成交价</th><th>数量</th><th>现价</th><th>成本</th><th>市值</th><th>浮盈</th><th>浮动</th>
 <th>止损</th><th>止盈进度</th><th>持有</th></tr></thead><tbody>{p_rows}</tbody></table></div>
-<div class="note">持仓 {ps['open']} 笔 · 已平仓 {ps['closed']} 笔 · 结论：<b>{pv}</b> —— {html.escape(pr)}</div>
+<div class="note">持仓 {ps['open']} 笔 · 已平仓 {ps['closed']} 笔 · 结论：<b>{pv}</b> —— {html.escape(pr)}
+　·　<a href="paper.html"><b>查看完整交易台账（10 万本金逐日结算）→</b></a></div>
 
 <h2>净值曲线</h2>
 <div class="legend"><i style="background:#d9363e"></i>策略（等权复利）<i style="background:#b9c0cc"></i>{config.BENCH_NAME}</div>
