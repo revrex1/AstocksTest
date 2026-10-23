@@ -158,22 +158,42 @@ def scan_text(text: str, name: str = "") -> list[str]:
     return hits
 
 
-def audit() -> list[str]:
-    """发布前检查：白名单 + 源文件内容。返回问题清单，空表示可以发布。"""
+def audit(files: list[tuple[str, str]]) -> list[str]:
+    """发布前检查：白名单 + 待发布文件内容。files = [(文件路径, 仓库相对路径)]。"""
     problems: list[str] = []
-    for src, dst in _pairs():
-        rel = _rel(dst)
+    for path, rel in files:
         if not _allowed(rel):
             problems.append(f"{rel} 不在发布白名单（只允许 docs/data/*.json、docs/index.html）")
             continue
         try:
-            with open(src, encoding="utf-8", errors="replace") as f:
+            with open(path, encoding="utf-8", errors="replace") as f:
                 text = f.read()
         except OSError as exc:
             problems.append(f"{rel} 读取失败：{exc}")
             continue
         problems.extend(scan_text(text, rel))
     return problems
+
+
+def _pending_pairs() -> list[tuple[str, str]]:
+    """内容有差异、等待同步的 (源, 目标) 对。"""
+    return [(s, d) for s, d in _pairs() if not _same(s, d)]
+
+
+def _dirty_docs() -> list[str]:
+    """docs/ 下 git 眼里的脏文件（上次提交/推送失败残留的暂存或未暂存改动）。"""
+    r = _git(["status", "--porcelain", "--", _rel(config.SITE_PUBLISH_DIR)], timeout=20)
+    if r.returncode != 0:
+        return []
+    out: list[str] = []
+    for line in (r.stdout or "").splitlines():
+        p = line[3:].strip() if len(line) > 3 else ""
+        if " -> " in p:                       # 重命名行取目标
+            p = p.split(" -> ", 1)[1]
+        p = p.strip('"')
+        if p and _allowed(p):
+            out.append(p)
+    return out
 
 
 def _write_status(rec: dict) -> None:
@@ -228,9 +248,16 @@ def run(trade_date: str | None = None, *, dry_run: bool = False, force: bool = F
             log(f"⚠  站点同步跳过：{config.ROOT} 不是 git 仓库")
             return rec
 
-        changed = sync_files(dry_run=True)   # 先只算变化，不动文件
+        pairs = _pending_pairs()
+        changed = [_rel(d) for _s, d in pairs]
+        # 上次失败可能留下已复制但没提交的 docs 文件：它们内容与源一致，
+        # 只看 pairs 会判为“无变化”，所以要显式收进待提交清单。
+        dirty = [r for r in _dirty_docs() if r not in changed]
         rec["changed"] = changed
-        problems = audit()
+        problems = audit(
+            [(s, _rel(d)) for s, d in pairs]
+            + [(os.path.join(config.ROOT, r), r) for r in dirty]
+        )
         if problems:
             rec.update(ok=False, reason="blocked",
                        error="; ".join(problems[:5])[:400])
@@ -238,17 +265,20 @@ def run(trade_date: str | None = None, *, dry_run: bool = False, force: bool = F
             for p in problems[:8]:
                 log(f"   · {p}")
             return rec
-        changed = sync_files(dry_run=dry_run)
+        if not dry_run:
+            sync_files()
         if dry_run:
             ahead = _ahead(config.SITE_PUSH_BRANCH)
             rec.update(ok=True, reason="dry-run")
             log(f"📡 [dry-run] 待同步 {len(changed)} 个文件"
                 + (f"：{', '.join(changed)}" if changed else "（无变化）")
+                + (f"；另有 {len(dirty)} 个 docs 脏文件待提交" if dirty else "")
                 + f"；待推送提交 {ahead} 个")
             return rec
 
         branch = config.SITE_PUSH_BRANCH
-        paths = [p for p in changed if os.path.exists(os.path.join(config.ROOT, p))]
+        candidates = changed + dirty
+        paths = [p for p in candidates if os.path.exists(os.path.join(config.ROOT, p))]
         committed = False
         if paths or force:
             target = paths or [_rel(os.path.join(config.SITE_PUBLISH_DIR, "data")),
