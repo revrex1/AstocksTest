@@ -52,3 +52,20 @@ PAPER_TICK = 0.01               # 最小报价单位（元）
 PAPER_ENFORCE_T1 = True         # 建仓当日不得卖出（A 股 T+1）
 PAPER_ENFORCE_LIMIT = True      # 涨跌停一字板不可成交
 PAPER_MINUTE_PATH = True        # 有分钟线时按分钟路径判定止盈止损先后
+
+# ------------------------------------------------------ 站点数据同步（GitHub Pages）
+# site/data/*.json --复制--> docs/data/*.json --commit+push--> Pages 自动重建
+SITE_PUSH = True
+SITE_DATA_DIR = os.path.join(ROOT, "site", "data")       # astocks export 的产物
+SITE_PUBLISH_DIR = os.path.join(ROOT, "docs")            # Pages 的发布根目录
+SITE_PUSH_SRC_PAGE = os.path.join(ROOT, "dist", "index.html")  # 建站产物，存在才同步
+SITE_PUSH_REMOTE = "origin"
+SITE_PUSH_BRANCH = "master"
+SITE_PUSH_USER = "revrex1"
+SITE_PUSH_EMAIL = "revrex1@users.noreply.github.com"
+# 本机 github.com:443 被代理拦截，走 SSH + 仓库部署密钥（已在仓库 Settings 注册，只读=False）
+SITE_PUSH_SSH_KEY = os.environ.get(
+    "ASTOCKS_PUSH_SSH_KEY", os.path.join(os.path.expanduser("~"), ".ssh", "astocks_github"))
+SITE_PUSH_TIMEOUT = 60          # 单个 git 命令超时（秒）
+SITE_PUSH_PUSH_TIMEOUT = 120    # push/pull 这类联网操作超时（秒）
+SITE_PUSH_STATUS = os.path.join(DATA_DIR, "site_push.json")  # 最近一次同步结果

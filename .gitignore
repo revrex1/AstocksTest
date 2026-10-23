@@ -55,3 +55,8 @@ astocks/*.bak*
 # Temporary
 tmp/
 temp/
+
+# 站点：site/ 是本地构建产物（site/data 由 astocks export 生成、preview 由 astocks site 生成），
+# 发布件统一由 astocks push 复制到 docs/ 后提交，Pages 源目录 = master:/docs
+site/data/
+site/preview.html

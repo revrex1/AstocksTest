@@ -6,8 +6,8 @@ import json
 import sys
 from datetime import datetime
 
-from . import (bars, config, export, paper, record, report, review, source, stats,
-               store, tencent)
+from . import (bars, config, export, paper, record, report, review, sitepush,
+               source, stats, store, tencent)
 
 
 def _log(msg: str) -> None:
@@ -37,6 +37,12 @@ def _after_work(conn, trade_date: str, kind: str, source: str = "live") -> None:
         _log(f"📦 数据导出：{ex['days']} 个交易日 → {ex['dir']}")
     except Exception as exc:  # noqa: BLE001  导出失败不影响主链路
         _log(f"⚠  数据导出失败：{exc}")
+    else:
+        # 导出成功才同步，避免把半成品推上站点
+        try:
+            sitepush.run(trade_date=trade_date, log=_log)
+        except Exception as exc:  # noqa: BLE001  推送失败不影响主链路
+            _log(f"⚠  站点同步异常：{exc}")
     _log(f"📄 报告：{p}")
     _log(f"📄 评估：{s}")
     _log(f"📄 虚拟交易台账：{t}")
@@ -331,6 +337,20 @@ def cmd_export(args) -> int:
     return 0
 
 
+def cmd_push(args) -> int:
+    """把 site/data 的 JSON 同步到 docs/ 并推送到 GitHub Pages。"""
+    if args.export:
+        conn = store.init_db()
+        res = export.write(conn, source=args.source)
+        _log(f"📦 数据导出：{res['days']} 个交易日 → {res['dir']}")
+    rec = sitepush.run(trade_date=args.date, dry_run=args.dry_run, force=args.force, log=_log)
+    if rec.get("ok"):
+        _log("📡 站点同步完成" + ("（已推送）" if rec.get("pushed") else f"（{rec.get('reason')}）"))
+        return 0
+    _log(f"⚠  站点同步未完成：{rec.get('reason')} {rec.get('error') or ''}".rstrip())
+    return 1
+
+
 def cmd_report(args) -> int:
     conn = store.init_db()
     day = args.date
@@ -421,6 +441,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", help="输出目录，默认 site/data")
     p.add_argument("--source", default="live", choices=["live", "all"])
     p.set_defaults(func=cmd_export)
+
+    p = sub.add_parser("push", help="同步导出 JSON 到 docs/ 并推送到 GitHub Pages")
+    p.add_argument("--date", help="提交信息里的交易日，默认不写")
+    p.add_argument("--source", default="live", choices=["live", "all"])
+    p.add_argument("--export", action="store_true", help="推送前先重新导出")
+    p.add_argument("--dry-run", action="store_true", help="只看会同步哪些文件，不复制不推送")
+    p.add_argument("--force", action="store_true", help="内容无变化也提交（调试用）")
+    p.set_defaults(func=cmd_push)
 
     p = sub.add_parser("report", help="重新生成报告与看板")
     p.add_argument("--date")
