@@ -1192,6 +1192,20 @@ def site_page(conn, source: str = "live") -> str:
     p_open = [r for r in pled if r["status"] == "open"]
     pv, pr = paper._verdict(ps["closed"], ps["win_rate"], ps["avg_ret"])
     acct = ps["account"]
+    p_acct_cards = "".join([
+        card("总资产", f'{acct["equity"]:,.0f} 元',
+             "up" if (acct["total_return"] or 0) >= 0 else "down"),
+        card("账户收益", _p(acct["total_return"]),
+             "up" if (acct["total_return"] or 0) >= 0 else "down"),
+        card("浮动盈亏", f'{acct["unrealized"]:+,.0f} 元',
+             "up" if acct["unrealized"] >= 0 else "down"),
+        card("已实现", f'{acct["realized"]:+,.0f} 元',
+             "up" if acct["realized"] >= 0 else "down"),
+        card("现金", f'{acct["cash"]:,.0f} 元'),
+        card("仓位", _pct(acct["exposure"])),
+        card("持仓 / 槽位", f'{len(acct["positions"])} / {acct["max_positions"]}'),
+        card("成交率", _pct(ps["fill_rate"])),
+    ])
     p_rows = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
         f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td>"
@@ -1220,11 +1234,13 @@ def site_page(conn, source: str = "live") -> str:
 
 <h2>按交易日回溯</h2>
 <div class="chips">{chips}</div>
-<div class="hint">点日期切换；链接末尾带 <code>#YYYY-MM-DD</code> 可直接分享某一天。</div>
+<div class="hint">点日期切换；链接末尾带 <code>#YYYY-MM-DD</code> 可直接分享某一天。
+　·　<a href="paper.html"><b>交易台账（10 万本金逐日结算）→</b></a></div>
 
 {sections}
 
-<h2>量化模拟 · 强推 · {ps["account"]["capital"]:,.0f} 元本金 <span class="sub">（逐日收盘结算，当前总资产 {ps["account"]["equity"]:,.0f} 元）</span></h2>
+<h2>量化模拟 · 强推 · {ps["account"]["capital"]:,.0f} 元本金 <span class="sub">（逐日收盘结算）</span></h2>
+<div class="cards">{p_acct_cards}</div>
 <div class="panel">{_svg_account(paper.equity_curve(conn), ps["account"]["capital"])}</div>
 <h2>虚拟交易 · 强推 <span class="sub">（按建议买卖点纸面执行）</span></h2>
 <div class="panel"><table><thead><tr><th class="l">代码</th><th class="l">名称</th><th class="l">建仓日</th>
