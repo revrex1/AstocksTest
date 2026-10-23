@@ -33,7 +33,22 @@ def _noop(*_a, **_k) -> None:
 
 
 def _git_bin() -> str | None:
-    return os.environ.get("ASTOCKS_GIT") or shutil.which("git")
+    """定位 git：环境变量 → PATH → 常见安装位置（定时任务的 PATH 可能更窄）。"""
+    cand = os.environ.get("ASTOCKS_GIT")
+    if cand and os.path.isfile(cand):
+        return cand
+    found = shutil.which("git")
+    if found:
+        return found
+    for p in (
+        os.path.join(os.environ.get("ProgramFiles", r"C:\Program Files"), "Git", "cmd", "git.exe"),
+        os.path.join(os.environ.get("ProgramFiles", r"C:\Program Files"), "Git", "bin", "git.exe"),
+        os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "Git", "cmd", "git.exe"),
+        r"E:\Program Files\WorkBuddy\resources\vendor\PortableGit\mingw64\bin\git.EXE",
+    ):
+        if p and os.path.isfile(p):
+            return p
+    return None
 
 
 def _env() -> dict:
