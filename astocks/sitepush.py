@@ -121,6 +121,18 @@ def _commit_msg(trade_date: str | None, changed: list[str]) -> str:
     return f"{head}（{'、'.join(bits)}，自动）"
 
 
+def _ahead(branch: str) -> int:
+    """本地领先远端多少个提交（含上次推送失败遗留的）。跟踪分支不存在时按需推送处理。"""
+    r = _git(["rev-list", "--count", f"refs/remotes/{config.SITE_PUSH_REMOTE}/{branch}..HEAD"],
+             timeout=15)
+    if r.returncode != 0:
+        return 1
+    try:
+        return int((r.stdout or "0").strip())
+    except ValueError:
+        return 1
+
+
 def run(trade_date: str | None = None, *, dry_run: bool = False, force: bool = False,
         log=_noop) -> dict:
     """同步并推送。返回 {ok, pushed, changed, commit, reason, error}。"""
@@ -144,41 +156,50 @@ def run(trade_date: str | None = None, *, dry_run: bool = False, force: bool = F
 
         changed = sync_files(dry_run=dry_run)
         rec["changed"] = changed
-        if not changed and not force:
-            rec.update(ok=True, reason="no-change")
-            log("📡 站点数据无变化，跳过推送")
-            return rec
         if dry_run:
+            ahead = _ahead(config.SITE_PUSH_BRANCH)
             rec.update(ok=True, reason="dry-run")
-            log(f"📡 [dry-run] 将同步 {len(changed)} 个文件：{', '.join(changed)}")
+            log(f"📡 [dry-run] 待同步 {len(changed)} 个文件"
+                + (f"：{', '.join(changed)}" if changed else "（无变化）")
+                + f"；待推送提交 {ahead} 个")
             return rec
-
-        paths = changed or [_rel(os.path.join(config.SITE_PUBLISH_DIR, "data")),
-                           _rel(os.path.join(config.SITE_PUBLISH_DIR, "index.html"))]
-        paths = [p for p in paths if os.path.exists(os.path.join(config.ROOT, p))]
-
-        add = _git(["add", "-A", "--", *paths], timeout=30)
-        if add.returncode != 0:
-            raise RuntimeError(f"git add 失败：{(add.stderr or '').strip()[:300]}")
-
-        diff = _git(["diff", "--cached", "--quiet", "--", *paths], timeout=20)
-        if diff.returncode == 0 and not force:
-            rec.update(ok=True, reason="nothing-staged")
-            log("📡 暂存区无差异，跳过推送")
-            return rec
-
-        msg = _commit_msg(trade_date, changed or paths)
-        commit = _git(["-c", f"user.name={config.SITE_PUSH_USER}",
-                       "-c", f"user.email={config.SITE_PUSH_EMAIL}",
-                       "commit", "-m", msg, "--", *paths], timeout=30)
-        if commit.returncode != 0:
-            raise RuntimeError(f"git commit 失败：{(commit.stderr or commit.stdout or '').strip()[:300]}")
-        sha = _git(["rev-parse", "--short", "HEAD"], timeout=15).stdout.strip()
-        rec["commit"] = sha
-        log(f"✅ 已提交 {sha}：{msg}")
 
         branch = config.SITE_PUSH_BRANCH
-        push = _git(["push", config.SITE_PUSH_REMOTE, f"HEAD:{branch}"], timeout=config.SITE_PUSH_PUSH_TIMEOUT)
+        paths = [p for p in changed if os.path.exists(os.path.join(config.ROOT, p))]
+        committed = False
+        if paths or force:
+            target = paths or [_rel(os.path.join(config.SITE_PUBLISH_DIR, "data")),
+                               _rel(os.path.join(config.SITE_PUBLISH_DIR, "index.html"))]
+            target = [p for p in target if os.path.exists(os.path.join(config.ROOT, p))]
+            if target:
+                add = _git(["add", "-A", "--", *target], timeout=30)
+                if add.returncode != 0:
+                    raise RuntimeError(f"git add 失败：{(add.stderr or '').strip()[:300]}")
+                diff = _git(["diff", "--cached", "--quiet", "--", *target], timeout=20)
+                if diff.returncode != 0 or force:
+                    msg = _commit_msg(trade_date, paths or target)
+                    commit = _git(["-c", f"user.name={config.SITE_PUSH_USER}",
+                                   "-c", f"user.email={config.SITE_PUSH_EMAIL}",
+                                   "commit", "-m", msg, "--", *target], timeout=30)
+                    if commit.returncode != 0:
+                        raise RuntimeError(
+                            f"git commit 失败：{(commit.stderr or commit.stdout or '').strip()[:300]}")
+                    sha = _git(["rev-parse", "--short", "HEAD"], timeout=15).stdout.strip()
+                    rec["commit"] = sha
+                    committed = True
+                    log(f"✅ 已提交 {sha}：{msg}")
+
+        # 上次推送失败会留下未推送提交：即使本次无文件变化也要补推，否则永远卡在本地
+        ahead = _ahead(branch)
+        if not committed and ahead == 0:
+            rec.update(ok=True, reason="no-change")
+            log("📡 站点数据无变化且无待推提交，跳过推送")
+            return rec
+        if ahead:
+            log(f"📤 待推送提交 {ahead} 个")
+
+        push = _git(["push", config.SITE_PUSH_REMOTE, f"HEAD:{branch}"],
+                    timeout=config.SITE_PUSH_PUSH_TIMEOUT)
         if push.returncode != 0:
             err = (push.stderr or push.stdout or "").strip()
             rec["error"] = err[:400]
@@ -193,12 +214,13 @@ def run(trade_date: str | None = None, *, dry_run: bool = False, force: bool = F
                 raise RuntimeError(f"git push 失败：{rec['error']}")
 
         rec.update(ok=True, pushed=True, reason="pushed")
-        log(f"🚀 已推送 {len(paths)} 个文件到 {config.SITE_PUSH_REMOTE}/{branch}，站点约 1 分钟后刷新")
+        log(f"🚀 已推送 {len(paths)} 个文件 / {ahead or 1} 个提交到 "
+            f"{config.SITE_PUSH_REMOTE}/{branch}，站点约 1 分钟后刷新")
     except subprocess.TimeoutExpired:
         rec.update(reason="timeout", error="git 操作超时")
         log("⚠  站点同步超时（不影响主链路）")
     except Exception as exc:  # noqa: BLE001  同步失败不阻断复盘
-        rec.setdefault("reason", "error")
+        rec["reason"] = rec.get("reason") or "error"
         rec["error"] = rec.get("error") or str(exc)[:400]
         log(f"⚠  站点同步失败（不影响主链路）：{exc}")
     finally:

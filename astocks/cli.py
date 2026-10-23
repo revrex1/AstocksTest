@@ -39,10 +39,13 @@ def _after_work(conn, trade_date: str, kind: str, source: str = "live") -> None:
         _log(f"⚠  数据导出失败：{exc}")
     else:
         # 导出成功才同步，避免把半成品推上站点
-        try:
-            sitepush.run(trade_date=trade_date, log=_log)
-        except Exception as exc:  # noqa: BLE001  推送失败不影响主链路
-            _log(f"⚠  站点同步异常：{exc}")
+        if source == "live":
+            try:
+                sitepush.run(trade_date=trade_date, log=_log)
+            except Exception as exc:  # noqa: BLE001  推送失败不影响主链路
+                _log(f"⚠  站点同步异常：{exc}")
+        else:
+            _log("⏭  当前为模拟回放数据，不推送站点")
     _log(f"📄 报告：{p}")
     _log(f"📄 评估：{s}")
     _log(f"📄 虚拟交易台账：{t}")
