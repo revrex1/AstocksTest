@@ -254,6 +254,19 @@
   },
   "paper_holdings": [
     {
+      "code": "600547",
+      "name": "山东黄金",
+      "rating": "强推",
+      "fill_date": "2026-10-23",
+      "fill_price": 24.8,
+      "qty": 800,
+      "last_price": 24.8,
+      "ret_pct": -0.0003,
+      "stop_price": 24.53,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "600938",
       "name": "中国海油",
       "rating": "强推",
@@ -263,19 +276,6 @@
       "last_price": 33.72,
       "ret_pct": -0.005,
       "stop_price": 32.48,
-      "exit_date": null,
-      "exit_reason": null
-    },
-    {
-      "code": "600011",
-      "name": "华能国际",
-      "rating": "强推",
-      "fill_date": "2026-10-23",
-      "fill_price": 7.21,
-      "qty": 2700,
-      "last_price": 7.21,
-      "ret_pct": -0.0003,
-      "stop_price": 6.91,
       "exit_date": null,
       "exit_reason": null
     },
