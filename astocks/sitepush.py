@@ -15,11 +15,15 @@
 5. 推送被拒（远端有新提交）时自动 pull --rebase 后重试一次，仍失败则如实报告。
 6. 网络限制说明：本机 github.com:443 被代理拦截（CONNECT 502），因此远端使用
    SSH 通道 + 仓库级部署密钥，见 config.SITE_PUSH_SSH_KEY。
+7. 发布闸门：提交前先过两层检查——目标路径必须在白名单内（仅 docs/data/*.json 与
+   docs/index.html），内容不得命中本地路径/凭据/内网地址等敏感特征。任一条不过就
+   整体放弃（不复制、不提交、不推送），宁可不更新也不泄露。
 """
 from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 
@@ -117,6 +121,61 @@ def _rel(path: str) -> str:
     return os.path.relpath(path, config.ROOT).replace("\\", "/")
 
 
+# ---------------------------------------------------------------- 发布白名单 + 敏感信息闸门
+# Pages 页面实际消费的只有这两处，其余一律不发布。
+ALLOW_EXACT = {"docs/index.html"}
+ALLOW_DIRS = ("docs/data/",)
+
+_SENSITIVE: list[tuple[re.Pattern, str]] = [
+    # 盘符路径；用负向后顾排除 https:// 之类（'s' 前面是字母）
+    (re.compile(r"(?<![A-Za-z0-9+.\-])[A-Za-z]:[\\/]"), "本地盘符路径"),
+    (re.compile(r"BEGIN (?:OPENSSH|RSA|EC|DSA|PGP) PRIVATE KEY"), "私钥"),
+    (re.compile(r"ssh-(?:rsa|ed25519|dss)\s+AAAA"), "SSH 公钥"),
+    (re.compile(r"(?i)\b(?:api[_-]?key|access[_-]?token|secret[_-]?key|auth[_-]?token|password)\b\s*[:=]"),
+     "凭据字段"),
+    (re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._\-]{16,}"), "Bearer Token"),
+    (re.compile(r"\.workbuddy|\.qoder|\.codex|\.hermes|AppData[\\/]", re.I), "本机配置目录"),
+    (re.compile(r"git@github\.com"), "仓库 SSH 地址"),
+    (re.compile(r"\b(?:10|127)\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"), "内网地址"),
+    (re.compile(r"\b192\.168\.\d{1,3}\.\d{1,3}\b"), "内网地址"),
+]
+
+
+def _allowed(rel: str) -> bool:
+    if rel in ALLOW_EXACT:
+        return True
+    return any(rel.startswith(d) and rel.endswith(".json") for d in ALLOW_DIRS)
+
+
+def scan_text(text: str, name: str = "") -> list[str]:
+    """返回命中的敏感特征描述（含行号）。"""
+    hits: list[str] = []
+    for no, line in enumerate(text.splitlines(), 1):
+        for pat, label in _SENSITIVE:
+            if pat.search(line):
+                hits.append(f"{name} 第 {no} 行命中「{label}」".strip())
+                break
+    return hits
+
+
+def audit() -> list[str]:
+    """发布前检查：白名单 + 源文件内容。返回问题清单，空表示可以发布。"""
+    problems: list[str] = []
+    for src, dst in _pairs():
+        rel = _rel(dst)
+        if not _allowed(rel):
+            problems.append(f"{rel} 不在发布白名单（只允许 docs/data/*.json、docs/index.html）")
+            continue
+        try:
+            with open(src, encoding="utf-8", errors="replace") as f:
+                text = f.read()
+        except OSError as exc:
+            problems.append(f"{rel} 读取失败：{exc}")
+            continue
+        problems.extend(scan_text(text, rel))
+    return problems
+
+
 def _write_status(rec: dict) -> None:
     try:
         os.makedirs(config.DATA_DIR, exist_ok=True)
@@ -169,8 +228,17 @@ def run(trade_date: str | None = None, *, dry_run: bool = False, force: bool = F
             log(f"⚠  站点同步跳过：{config.ROOT} 不是 git 仓库")
             return rec
 
-        changed = sync_files(dry_run=dry_run)
+        changed = sync_files(dry_run=True)   # 先只算变化，不动文件
         rec["changed"] = changed
+        problems = audit()
+        if problems:
+            rec.update(ok=False, reason="blocked",
+                       error="; ".join(problems[:5])[:400])
+            log(f"⛔ 发布闸门拦截，未复制、未提交、未推送（{len(problems)} 处）：")
+            for p in problems[:8]:
+                log(f"   · {p}")
+            return rec
+        changed = sync_files(dry_run=dry_run)
         if dry_run:
             ahead = _ahead(config.SITE_PUSH_BRANCH)
             rec.update(ok=True, reason="dry-run")

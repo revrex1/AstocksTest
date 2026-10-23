@@ -58,5 +58,17 @@ temp/
 
 # 站点：site/ 是本地构建产物（site/data 由 astocks export 生成、preview 由 astocks site 生成），
 # 发布件统一由 astocks push 复制到 docs/ 后提交，Pages 源目录 = master:/docs
-site/data/
-site/preview.html
+site/
+
+# ---------------------------------------------------------------- 本地数据与产出：永不提交
+# 库里是原始推荐快照、日线库、复盘报告与虚拟交易台账；发布走的只有 docs/data/*.json
+# 与 docs/index.html 两个位置（astocks push 的白名单闸门会再拦一次）。
+data/
+reports/
+tasks/
+dist/
+*.bak
+*.bak_*
+.env
+.env.*
+workbuddy-*.md

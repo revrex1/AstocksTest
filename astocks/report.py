@@ -957,20 +957,28 @@ def _day_section(conn, d: dict, idx: int) -> str:
     def card(k, v, cls=""):
         return f'<div class="card"><div class="k">{k}</div><div class="v {cls}">{v}</div></div>'
 
+    def cls_of(v):
+        return "" if v is None else ("up" if v >= 0 else "down")
+
+    prov = "provisional" in d.keys() and d["provisional"]
     cards = "".join([
         card("推荐数", d["picks"] or 0),
         card("胜率", _pct(d["win_rate_d0"])),
-        card("组合收益", _p(d["avg_ret_d0"]), "up" if (d["avg_ret_d0"] or 0) >= 0 else "down"),
-        card("超额", _p(d["avg_excess_d0"]), "up" if (d["avg_excess_d0"] or 0) >= 0 else "down"),
-        card(config.BENCH_NAME, _p(d["bench_pct"]), "up" if (d["bench_pct"] or 0) >= 0 else "down"),
+        card("组合收益", _p(d["avg_ret_d0"]), cls_of(d["avg_ret_d0"])),
+        card("超额", _p(d["avg_excess_d0"]), cls_of(d["avg_excess_d0"])),
+        card(f"{config.BENCH_NAME}{'（开盘）' if prov else ''}",
+             _p(d["bench_pct"]), cls_of(d["bench_pct"])),
         card("净值", _num(d["nav"], 4)),
     ])
     env = _env_html(conn, day)
     env_block = f"<h2>市场环境 · {day}</h2><div class='panel'>{env}</div>" if env else ""
+    note = ("<div class='hint'>盘中快照：当日推荐已记录，收益/超额/净值待收盘复盘后结算，"
+            "此处显示 &quot;-&quot;。</div>") if prov else ""
 
     return f"""<section class="day" data-d="{day}"{'' if idx == 0 else ' hidden'}>
 <div class="cards">{cards}</div>
-<h2>当日推荐 · {day}</h2>
+<h2>当日推荐 · {day}{' <span class="muted">（未复盘）</span>' if prov else ''}</h2>
+{note}
 <div class="panel">{table}</div>
 {env_block}
 </section>"""
@@ -984,6 +992,10 @@ def site_page(conn, source: str = "live") -> str:
         sim = {r["trade_date"] for r in store.rows(
             conn, "SELECT trade_date FROM trading_day WHERE data_source='simulated'")}
         days = [d for d in days if d["trade_date"] not in sim]
+    # 当日已开盘但尚未收盘复盘：把未结算的推荐也放进来，否则首页永远差一天
+    done = {d["trade_date"] for d in days}
+    days = days + [p for p in stats.pending_days(conn, source) if p["trade_date"] not in done]
+    days.sort(key=lambda d: d["trade_date"])
     if not days:
         return "<!DOCTYPE html><meta charset='utf-8'><p>暂无数据</p>"
 

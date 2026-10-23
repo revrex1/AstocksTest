@@ -45,6 +45,38 @@ def _max_drawdown(navs: Iterable[float]) -> float | None:
     return mdd if seen else None
 
 
+def pending_days(conn, source: str = "live") -> list[dict]:
+    """有推荐但尚未复盘的交易日（当日开盘后、收盘复盘前），形状对齐 day_stat 行。
+
+    这些日子还没生成 day_stat，业绩指标一律给 None（页面渲染成 "-"），
+    只带当日记录时的推荐数与基准涨跌，避免把盘中数字当已结算结果。
+    """
+    sql = """SELECT t.trade_date, t.pick_count, t.strong_count, t.watch_count, t.bench_pct
+               FROM trading_day t
+              WHERE t.pick_count > 0
+                AND NOT EXISTS (SELECT 1 FROM day_stat s WHERE s.trade_date = t.trade_date)
+                {src}
+              ORDER BY t.trade_date"""
+    src = "" if source == "all" else (
+        "AND t.data_source = 'live'" if source == "live" else "AND t.data_source = 'simulated'")
+    out: list[dict] = []
+    for r in store.rows(conn, sql.format(src=src)):
+        out.append({
+            "trade_date": r["trade_date"],
+            "picks": r["pick_count"],
+            "strong": r["strong_count"],
+            "watch": r["watch_count"],
+            "win_rate_d0": None,
+            "avg_ret_d0": None,
+            "avg_excess_d0": None,
+            "bench_pct": r["bench_pct"],
+            "nav": None,
+            "bench_nav": None,
+            "provisional": True,
+        })
+    return out
+
+
 def evaluate(conn, source: str = "live", last_n_days: int | None = None) -> dict:
     """source: live / simulated / all"""
     where = "" if source == "all" else ("WHERE p.simulated = 0" if source == "live" else "WHERE p.simulated = 1")

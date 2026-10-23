@@ -173,6 +173,11 @@ def build(conn, source: str = "live") -> dict:
 
     stat_by_day = {d["trade_date"]: d for d in day_rows}
     days = [d["trade_date"] for d in day_rows]
+    # 当日已开盘但未复盘：也导出，统计位留 null 并标 provisional，
+    # 否则站点/看板在收盘前永远看不到今天的推荐。
+    pending = [p for p in stats.pending_days(conn, source) if p["trade_date"] not in stat_by_day]
+    days = sorted(days + [p["trade_date"] for p in pending])
+    day_rows = day_rows + pending
 
     index = {
         "updated_at": store.now_iso(),
@@ -207,6 +212,7 @@ def build(conn, source: str = "live") -> dict:
                 "bench_pct": _r(d["bench_pct"]),
                 "nav": _r(d["nav"]),
                 "bench_nav": _r(d.get("bench_nav")),
+                "provisional": bool(d.get("provisional")),
             }
             for d in day_rows
         ],
@@ -217,7 +223,14 @@ def build(conn, source: str = "live") -> dict:
                      for k, v in ev["by_horizon"].items()},
         "paper": paper.summary(conn, "all"),
     }
-    per_day = {d: _day_payload(conn, d, stat_by_day.get(d)) for d in days}
+    pend_days = {p["trade_date"] for p in pending}
+    per_day = {
+        d: {**_day_payload(conn, d, None if d in pend_days else stat_by_day.get(d)),
+            "provisional": d in pend_days}
+        for d in days
+    }
+    if pending:
+        index["pending"] = [p["trade_date"] for p in pending]
     return {"index": index, "days": per_day}
 
 
