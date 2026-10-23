@@ -38,7 +38,8 @@ dist/paper.html   ──▶ docs/paper.html       （虚拟交易台账）
 git commit + push origin/master → GitHub Pages
 ```
 
-- 线上地址：https://revrex1.github.io/AstocksTest/
+- **站点只有两个页面**：`index.html`（复盘主页面，含当日表现 + 逐日回溯 + 量化模拟 + 账户卡片/曲线/分层）与 `paper.html`（虚拟交易台账）。**不要新增第三个页面**（2026-10-23 已按 rex 要求把独立的 dashboard 页合并进 index）。
+- 本地 `reports/dashboard.html` 仍可单独看，但**不发布**。
 - 台账：https://revrex1.github.io/AstocksTest/paper.html
 - 机读：https://revrex1.github.io/AstocksTest/data/index.json、`/data/paper.json`、`/data/YYYY-MM-DD.json`
 - Pages 源目录 = `master:/docs`；构建约 50s，CDN `max-age=600`（最坏 10 分钟）
