@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26 15:05:14",
+  "updated_at": "2026-10-26 15:20:50",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -16,18 +16,18 @@
     "2026-10-26"
   ],
   "summary": {
-    "nav": 0.9955,
+    "nav": 1.0005,
     "bench_nav": 0.9839,
-    "excess_nav": 0.0118,
-    "win_rate": 0.4524,
-    "avg": -0.0024,
-    "avg_excess": 0.0008,
-    "profit_factor": 0.7403,
+    "excess_nav": 0.0168,
+    "win_rate": 0.4762,
+    "avg": -0.0014,
+    "avg_excess": 0.0017,
+    "profit_factor": 0.8412,
     "samples": 42,
     "days": 6,
-    "max_dd": -0.0306,
+    "max_dd": -0.0282,
     "verdict": "中性",
-    "verdict_reason": "胜率 45%、超额 +0.08%，无显著优势"
+    "verdict_reason": "胜率 48%、超额 +0.17%，无显著优势"
   },
   "daily": [
     {
@@ -74,11 +74,11 @@
       "picks": 8,
       "strong": 8,
       "watch": 0,
-      "win_rate": 0.0,
-      "avg_ret": -0.0148,
-      "avg_excess": 0.0036,
+      "win_rate": 0.125,
+      "avg_ret": -0.0123,
+      "avg_excess": 0.0061,
       "bench_pct": -0.0184,
-      "nav": 0.9801,
+      "nav": 0.9826,
       "bench_nav": 0.9678,
       "provisional": false
     },
@@ -88,10 +88,10 @@
       "strong": 6,
       "watch": 2,
       "win_rate": 0.625,
-      "avg_ret": 0.0071,
-      "avg_excess": -0.0101,
+      "avg_ret": 0.0095,
+      "avg_excess": -0.0076,
       "bench_pct": 0.0171,
-      "nav": 0.987,
+      "nav": 0.9919,
       "bench_nav": 0.9843,
       "provisional": false
     },
@@ -104,7 +104,7 @@
       "avg_ret": 0.0086,
       "avg_excess": 0.0091,
       "bench_pct": -0.0004,
-      "nav": 0.9955,
+      "nav": 1.0005,
       "bench_nav": 0.9839,
       "provisional": false
     }
@@ -112,9 +112,9 @@
   "layers": {
     "强推": {
       "n": 32,
-      "win_rate": 0.3438,
-      "avg": -0.0052,
-      "profit_factor": 0.455
+      "win_rate": 0.375,
+      "avg": -0.004,
+      "profit_factor": 0.5758
     },
     "可关注": {
       "n": 10,
@@ -124,9 +124,9 @@
     },
     "Top3": {
       "n": 17,
-      "win_rate": 0.4706,
-      "avg": -0.005,
-      "profit_factor": 0.5535
+      "win_rate": 0.5294,
+      "avg": -0.0026,
+      "profit_factor": 0.7558
     },
     "4名以后": {
       "n": 25,
@@ -138,8 +138,8 @@
   "horizons": {
     "T+1": {
       "n": 34,
-      "win_rate": 0.2941,
-      "avg": -0.0094
+      "win_rate": 0.3235,
+      "avg": -0.0088
     },
     "T+3": {
       "n": 18,
@@ -291,7 +291,7 @@
           "mae": -0.0151,
           "plan_json": "{\"trade_date\": \"2026-10-22\", \"code\": \"600938\", \"name\": \"中国海油\", \"rating\": \"强推\", \"total_score\": 78.4, \"entry_mode\": \"limit\", \"entry_target\": 33.88, \"valid_days\": 3, \"stop_price\": 31.56, \"tp_prices\": [35.98, 38.01, 41.41], \"holding_days\": 20, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 33.88, \"secondaryEntry\": 32.19, \"stopLoss\": 32.48, \"resistance\": 39.23, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 37.03, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 39.12, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 42.61, \"reason\": \"52周高位 39.23\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 33.88）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +6%（约 37.03）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 32.48 全部清仓\"}]}, \"schedule\": [{\"effective\": \"2026-10-22\", \"stop\": 32.48, \"tps\": [37.03, 39.12, 42.61], \"hold\": 20}, {\"effective\": \"2026-10-23\", \"stop\": 31.56, \"tps\": [35.98, 38.01, 41.41], \"hold\": 20}]}",
           "created_at": "2026-10-23 18:47:13",
-          "updated_at": "2026-10-26 15:05:14",
+          "updated_at": "2026-10-26 15:20:50",
           "snapshot_id": 33,
           "path_src": "minute",
           "execs": [
