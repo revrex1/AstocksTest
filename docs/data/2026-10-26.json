@@ -982,8 +982,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "油服工程",
+      "changePct": 3.38,
+      "mainNetInflowYi": 0.7082,
+      "leader": "中海油服"
+    },
+    {
+      "name": "房地产服务",
+      "changePct": 2.98,
+      "mainNetInflowYi": 2.3298,
+      "leader": "*ST皇庭"
+    },
+    {
+      "name": "休闲食品",
+      "changePct": 2.93,
+      "mainNetInflowYi": 0.7628,
+      "leader": "桂发祥"
+    },
+    {
+      "name": "医药商业",
+      "changePct": 2.73,
+      "mainNetInflowYi": 1.7942,
+      "leader": "百洋医药"
+    },
+    {
+      "name": "国有大型银行Ⅱ",
+      "changePct": 2.23,
+      "mainNetInflowYi": 3.7443,
+      "leader": "工商银行"
+    },
+    {
+      "name": "游戏Ⅱ",
+      "changePct": 2.11,
+      "mainNetInflowYi": 7.1056,
+      "leader": "盛天网络"
+    },
+    {
+      "name": "医疗器械",
+      "changePct": 2.05,
+      "mainNetInflowYi": -0.5857,
+      "leader": "山外山"
+    },
+    {
+      "name": "炼化及贸易",
+      "changePct": 1.99,
+      "mainNetInflowYi": 4.6023,
+      "leader": "统一股份"
+    }
+  ],
+  "fundflow": {
+    "601088": {
+      "code": "601088",
+      "name": "XD中国神",
+      "mainNetInflowYi": -1.6129,
+      "mainNetInflow5dYi": -10.6225
+    },
+    "600941": {
+      "code": "600941",
+      "name": "中国移动",
+      "mainNetInflowYi": -1.2454,
+      "mainNetInflow5dYi": -4.9988
+    },
+    "688008": {
+      "code": "688008",
+      "name": "澜起科技",
+      "mainNetInflowYi": -3.5758,
+      "mainNetInflow5dYi": 3.9524
+    },
+    "600867": {
+      "code": "600867",
+      "name": "通化东宝",
+      "mainNetInflowYi": -0.07,
+      "mainNetInflow5dYi": -0.0319
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": 0.6275,
+      "mainNetInflow5dYi": -37.487
+    },
+    "600011": {
+      "code": "600011",
+      "name": "华能国际",
+      "mainNetInflowYi": -0.2503,
+      "mainNetInflow5dYi": 0.5509
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": 0.0701,
+      "mainNetInflow5dYi": 0.6728
+    },
+    "002475": {
+      "code": "002475",
+      "name": "立讯精密",
+      "mainNetInflowYi": 0.3638,
+      "mainNetInflow5dYi": 14.2061
+    }
+  },
   "paper_holdings": [
     {
       "code": "600547",
