@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27 15:05:45",
+  "updated_at": "2026-10-27 15:20:47",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -17,18 +17,18 @@
     "2026-10-27"
   ],
   "summary": {
-    "nav": 0.9815,
+    "nav": 0.9809,
     "bench_nav": 0.971,
-    "excess_nav": 0.0108,
-    "win_rate": 0.44,
+    "excess_nav": 0.0102,
+    "win_rate": 0.42,
     "avg": -0.0043,
-    "avg_excess": 0.0005,
-    "profit_factor": 0.6065,
+    "avg_excess": 0.0004,
+    "profit_factor": 0.599,
     "samples": 50,
     "days": 7,
     "max_dd": -0.0306,
     "verdict": "偏弱",
-    "verdict_reason": "胜率 44% 低于 45%，超额 +0.05%"
+    "verdict_reason": "胜率 42% 低于 45%，超额 +0.04%"
   },
   "daily": [
     {
@@ -114,11 +114,11 @@
       "picks": 8,
       "strong": 6,
       "watch": 2,
-      "win_rate": 0.375,
-      "avg_ret": -0.0141,
-      "avg_excess": -0.0009,
+      "win_rate": 0.25,
+      "avg_ret": -0.0147,
+      "avg_excess": -0.0015,
       "bench_pct": -0.0132,
-      "nav": 0.9815,
+      "nav": 0.9809,
       "bench_nav": 0.971,
       "provisional": false
     }
@@ -126,9 +126,9 @@
   "layers": {
     "强推": {
       "n": 38,
-      "win_rate": 0.3684,
-      "avg": -0.0046,
-      "profit_factor": 0.5123
+      "win_rate": 0.3421,
+      "avg": -0.0047,
+      "profit_factor": 0.5012
     },
     "可关注": {
       "n": 12,
@@ -144,16 +144,16 @@
     },
     "4名以后": {
       "n": 30,
-      "win_rate": 0.4333,
-      "avg": -0.0045,
-      "profit_factor": 0.5984
+      "win_rate": 0.4,
+      "avg": -0.0046,
+      "profit_factor": 0.5862
     }
   },
   "horizons": {
     "T+1": {
       "n": 38,
       "win_rate": 0.2895,
-      "avg": -0.006
+      "avg": -0.0061
     },
     "T+3": {
       "n": 26,
@@ -169,13 +169,13 @@
   "paper": {
     "view": "all",
     "orders": 37,
-    "filled": 3,
+    "filled": 4,
     "closed": 0,
-    "open": 3,
-    "pending": 7,
+    "open": 4,
+    "pending": 6,
     "expired": 27,
     "skipped": 0,
-    "fill_rate": 0.08108108108108109,
+    "fill_rate": 0.10810810810810811,
     "win_rate": null,
     "avg_ret": null,
     "med_ret": null,
@@ -199,14 +199,14 @@
     "by_rating": {},
     "account": {
       "capital": 100000.0,
-      "cash": 70030.7,
-      "open_cost": 29969.3,
-      "open_value": 30477.0,
+      "cash": 59935.6,
+      "open_cost": 40064.4,
+      "open_value": 40397.0,
       "realized": 0.0,
-      "unrealized": 507.7,
-      "equity": 100507.7,
-      "total_return": 0.005076999999999998,
-      "exposure": 0.3032304987578066,
+      "unrealized": 332.6,
+      "equity": 100332.6,
+      "total_return": 0.003326000000000162,
+      "exposure": 0.4026308497935865,
       "positions": [
         {
           "id": 593,
@@ -245,7 +245,7 @@
           "mae": -0.0151,
           "plan_json": "{\"trade_date\": \"2026-10-22\", \"code\": \"600938\", \"name\": \"中国海油\", \"rating\": \"强推\", \"total_score\": 78.4, \"entry_mode\": \"limit\", \"entry_target\": 33.88, \"valid_days\": 3, \"stop_price\": 31.56, \"tp_prices\": [35.98, 38.01, 41.41], \"holding_days\": 20, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 33.88, \"secondaryEntry\": 32.19, \"stopLoss\": 32.48, \"resistance\": 39.23, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 37.03, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 39.12, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 42.61, \"reason\": \"52周高位 39.23\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 33.88）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +6%（约 37.03）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 32.48 全部清仓\"}]}, \"schedule\": [{\"effective\": \"2026-10-22\", \"stop\": 32.48, \"tps\": [37.03, 39.12, 42.61], \"hold\": 20}, {\"effective\": \"2026-10-23\", \"stop\": 31.56, \"tps\": [35.98, 38.01, 41.41], \"hold\": 20}]}",
           "created_at": "2026-10-23 18:47:13",
-          "updated_at": "2026-10-27 15:05:45",
+          "updated_at": "2026-10-27 15:20:47",
           "snapshot_id": 33,
           "path_src": "minute",
           "execs": [
@@ -327,6 +327,66 @@
           "value": 10236.0,
           "pnl": 310.9,
           "pnl_pct": 0.03132462141439385
+        },
+        {
+          "id": 610,
+          "pick_id": 51,
+          "trade_date": "2026-10-27",
+          "code": "002463",
+          "name": "沪电股份",
+          "rating": "强推",
+          "total_score": 59.2,
+          "entry_mode": "open",
+          "entry_target": 100.9,
+          "valid_days": 3,
+          "fill_date": "2026-10-27",
+          "fill_price": 100.9,
+          "qty": 100,
+          "notional": 10090.0,
+          "stop_price": 96.62,
+          "tp_prices": [
+            109.73,
+            119.89,
+            132.08
+          ],
+          "holding_days": 45,
+          "exit_date": null,
+          "exit_reason": null,
+          "status": "open",
+          "shares_left": 100,
+          "realized": 0.0,
+          "last_price": 99.2,
+          "last_date": "2026-10-27",
+          "ret_pct": -0.0173,
+          "bench_ret": 0.0,
+          "excess": -0.0173,
+          "hold_days": 0,
+          "mfe": 0.0197,
+          "mae": -0.0171,
+          "plan_json": "{\"trade_date\": \"2026-10-27\", \"code\": \"002463\", \"name\": \"沪电股份\", \"schedule\": [{\"effective\": \"2026-10-27\", \"stop\": 96.62, \"tps\": [109.73, 119.89, 132.08], \"hold\": 45}], \"rating\": \"强推\", \"total_score\": 59.2, \"entry_mode\": \"open\", \"entry_target\": 100.9, \"valid_days\": 3, \"stop_price\": 96.62, \"tp_prices\": [109.73, 119.89, 132.08], \"holding_days\": 45, \"notes\": [\"买点 101.60 ≥ 开盘 100.90，按开盘价成交\"], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"元件赛道绩优龙头，高成长契合科技支持政策，估值消化中\", \"totalWeight\": 60, \"primaryEntry\": 101.6, \"secondaryEntry\": 96.52, \"stopLoss\": 96.62, \"resistance\": 158.2, \"takeProfits\": [{\"level\": 1, \"pct\": 8, \"price\": 109.73, \"reason\": \"首阻力位 +8%\"}, {\"level\": 2, \"pct\": 18, \"price\": 119.89, \"reason\": \"次阻力位 +18%\"}, {\"level\": 3, \"pct\": 30, \"price\": 132.08, \"reason\": \"52周高位 158.20\"}], \"holdingDays\": 45, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"buy\", \"title\": \"缩量回踩\", \"condition\": \"量比<0.8 且 换手<1.1% 即分档介入\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +8%（约 109.73）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 96.62 全部清仓\"}]}}",
+          "created_at": "2026-10-27 15:05:45",
+          "updated_at": "2026-10-27 15:20:47",
+          "snapshot_id": 59,
+          "path_src": null,
+          "execs": [
+            {
+              "id": 261,
+              "trade_id": 610,
+              "exec_date": "2026-10-27",
+              "code": "002463",
+              "side": "buy",
+              "price": 100.9,
+              "qty": 100,
+              "amount": 10090.0,
+              "fee": 5.1,
+              "reason": "entry",
+              "created_at": "2026-10-27 15:20:47"
+            }
+          ],
+          "cost": 10095.1,
+          "value": 9920.0,
+          "pnl": -175.1,
+          "pnl_pct": -0.017345048587928846
         },
         {
           "id": 584,

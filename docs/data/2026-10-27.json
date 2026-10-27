@@ -5,11 +5,11 @@
   "bench_pct": -0.0132,
   "stats": {
     "picks": 8,
-    "win_rate": 0.375,
-    "avg_ret": -0.0141,
+    "win_rate": 0.25,
+    "avg_ret": -0.0147,
     "med_ret": -0.0092,
-    "avg_excess": -0.0009,
-    "nav": 0.9815,
+    "avg_excess": -0.0015,
+    "nav": 0.9809,
     "bench_nav": 0.971
   },
   "picks": [
@@ -366,9 +366,9 @@
       "open": 100.8,
       "high": 101.7,
       "low": 99.8,
-      "close": 101.15,
-      "ret_d0": 0.0035,
-      "excess_d0": 0.0166,
+      "close": 100.7,
+      "ret_d0": -0.001,
+      "excess_d0": 0.0122,
       "mfe_d0": 0.0089,
       "mae_d0": -0.0099,
       "ret_t1": null,
@@ -931,6 +931,19 @@
   "sectors": null,
   "fundflow": null,
   "paper_holdings": [
+    {
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "fill_date": "2026-10-27",
+      "fill_price": 100.9,
+      "qty": 100,
+      "last_price": 99.2,
+      "ret_pct": -0.0173,
+      "stop_price": 96.62,
+      "exit_date": null,
+      "exit_reason": null
+    },
     {
       "code": "600547",
       "name": "山东黄金",

@@ -1033,6 +1033,19 @@
   },
   "paper_holdings": [
     {
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "fill_date": "2026-10-27",
+      "fill_price": 100.9,
+      "qty": 100,
+      "last_price": 99.2,
+      "ret_pct": -0.0173,
+      "stop_price": 96.62,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "600547",
       "name": "山东黄金",
       "rating": "强推",
