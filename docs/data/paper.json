@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-26 15:21:57",
+  "updated_at": "2026-10-27 13:02:46",
   "capital": 100000.0,
-  "equity": 100063.7,
+  "equity": 100480.7,
   "cash": 70030.7,
   "open_cost": 29969.3,
-  "open_value": 30033.0,
-  "unrealized": 63.7,
+  "open_value": 30450.0,
+  "unrealized": 480.7,
   "realized": 0.0,
-  "total_return": 0.0006,
-  "exposure": 0.3001,
+  "total_return": 0.0048,
+  "exposure": 0.303,
   "max_positions": 8,
   "curve": [
     {
@@ -64,30 +64,15 @@
     {
       "date": "2026-10-26",
       "cash": 70030.7,
-      "value": 30033.0,
-      "equity": 100063.7,
-      "pnl": -143.0,
-      "ret": -0.0014,
-      "cum": 0.0006,
+      "value": 30450.0,
+      "equity": 100480.7,
+      "pnl": 274.0,
+      "ret": 0.0027,
+      "cum": 0.0048,
       "positions": 3
     }
   ],
   "positions": [
-    {
-      "code": "600547",
-      "name": "山东黄金",
-      "rating": "强推",
-      "fill_date": "2026-10-23",
-      "fill_price": 24.8,
-      "qty": 400,
-      "last_price": 25.41,
-      "cost": 9925.1,
-      "value": 10164.0,
-      "pnl": 238.9,
-      "pnl_pct": 0.0241,
-      "stop_price": 24.53,
-      "ret_pct": 0.0241
-    },
     {
       "code": "600938",
       "name": "中国海油",
@@ -95,13 +80,28 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 34.05,
+      "last_price": 35.16,
       "cost": 10169.1,
-      "value": 10215.0,
-      "pnl": 45.9,
-      "pnl_pct": 0.0045,
+      "value": 10548.0,
+      "pnl": 378.9,
+      "pnl_pct": 0.0373,
       "stop_price": 31.56,
-      "ret_pct": 0.0045
+      "ret_pct": 0.0373
+    },
+    {
+      "code": "600547",
+      "name": "山东黄金",
+      "rating": "强推",
+      "fill_date": "2026-10-23",
+      "fill_price": 24.8,
+      "qty": 400,
+      "last_price": 25.5,
+      "cost": 9925.1,
+      "value": 10200.0,
+      "pnl": 274.9,
+      "pnl_pct": 0.0277,
+      "stop_price": 24.53,
+      "ret_pct": 0.0277
     },
     {
       "code": "002508",
@@ -110,13 +110,13 @@
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
       "qty": 600,
-      "last_price": 16.09,
+      "last_price": 16.17,
       "cost": 9875.1,
-      "value": 9654.0,
-      "pnl": -221.1,
-      "pnl_pct": -0.0224,
+      "value": 9702.0,
+      "pnl": -173.1,
+      "pnl_pct": -0.0175,
       "stop_price": 15.77,
-      "ret_pct": -0.0224
+      "ret_pct": -0.0175
     }
   ],
   "trades": [
@@ -271,7 +271,7 @@
       "fill_date": "2026-10-23",
       "fill_price": 24.8,
       "qty": 400,
-      "ret_pct": 0.0241,
+      "ret_pct": 0.0277,
       "hold_days": 1
     },
     {
@@ -327,7 +327,7 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0045,
+      "ret_pct": 0.0373,
       "hold_days": 2
     },
     {
@@ -453,7 +453,7 @@
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
       "qty": 600,
-      "ret_pct": -0.0224,
+      "ret_pct": -0.0175,
       "hold_days": 3
     },
     {
