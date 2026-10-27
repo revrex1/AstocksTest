@@ -928,8 +928,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "股份制银行Ⅱ",
+      "changePct": 1.61,
+      "mainNetInflowYi": 6.59,
+      "leader": "兴业银行"
+    },
+    {
+      "name": "农商行Ⅱ",
+      "changePct": 1.37,
+      "mainNetInflowYi": -1.03,
+      "leader": "沪农商行"
+    },
+    {
+      "name": "城商行Ⅱ",
+      "changePct": 1.13,
+      "mainNetInflowYi": -1.6,
+      "leader": "重庆银行"
+    },
+    {
+      "name": "航运港口",
+      "changePct": 1.0,
+      "mainNetInflowYi": 1.02,
+      "leader": "中谷物流"
+    },
+    {
+      "name": "国有大型银行Ⅱ",
+      "changePct": 0.82,
+      "mainNetInflowYi": 3.54,
+      "leader": "建设银行"
+    },
+    {
+      "name": "工业金属",
+      "changePct": 0.68,
+      "mainNetInflowYi": 1.63,
+      "leader": "天山铝业"
+    },
+    {
+      "name": "电机Ⅱ",
+      "changePct": 0.52,
+      "mainNetInflowYi": 6.81,
+      "leader": "凯中精密"
+    },
+    {
+      "name": "饲料",
+      "changePct": 0.48,
+      "mainNetInflowYi": -2.17,
+      "leader": "海大集团"
+    }
+  ],
+  "fundflow": {
+    "601899": {
+      "code": "601899",
+      "name": "紫金矿业",
+      "mainNetInflowYi": 0.88,
+      "mainNetInflow5dYi": -23.38
+    },
+    "600690": {
+      "code": "600690",
+      "name": "海尔智家",
+      "mainNetInflowYi": 0.22,
+      "mainNetInflow5dYi": -2.08
+    },
+    "002463": {
+      "code": "002463",
+      "name": "沪电股份",
+      "mainNetInflowYi": 0.34,
+      "mainNetInflow5dYi": -13.67
+    },
+    "600941": {
+      "code": "600941",
+      "name": "中国移动",
+      "mainNetInflowYi": 0.05,
+      "mainNetInflow5dYi": -5.48
+    },
+    "603799": {
+      "code": "603799",
+      "name": "华友钴业",
+      "mainNetInflowYi": -1.19,
+      "mainNetInflow5dYi": -4.96
+    },
+    "000651": {
+      "code": "000651",
+      "name": "格力电器",
+      "mainNetInflowYi": -1.03,
+      "mainNetInflow5dYi": -3.64
+    },
+    "603259": {
+      "code": "603259",
+      "name": "药明康德",
+      "mainNetInflowYi": 3.84,
+      "mainNetInflow5dYi": -6.84
+    },
+    "002916": {
+      "code": "002916",
+      "name": "深南电路",
+      "mainNetInflowYi": -0.37,
+      "mainNetInflow5dYi": -7.73
+    }
+  },
   "paper_holdings": [
     {
       "code": "002463",
