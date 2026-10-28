@@ -942,7 +942,50 @@
       }
     }
   ],
-  "sectors": null,
+  "sectors": [
+    {
+      "name": "机械设备",
+      "changePct": 3.9471,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "电子",
+      "changePct": 3.9293,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "基础化工",
+      "changePct": 1.7654,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "电力设备",
+      "changePct": 0.8522,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "有色金属",
+      "changePct": 0.5813,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "公用事业",
+      "changePct": 0.309,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "石油石化",
+      "changePct": 0.1136,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    }
+  ],
   "fundflow": null,
   "paper_holdings": [
     {
