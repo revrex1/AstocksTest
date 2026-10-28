@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28 09:32:31",
+  "updated_at": "2026-10-28 15:05:18",
   "capital": 100000.0,
-  "equity": 100121.6,
-  "cash": 59935.6,
-  "open_cost": 40064.4,
-  "open_value": 40186.0,
-  "unrealized": 121.6,
+  "equity": 100806.5,
+  "cash": 49807.5,
+  "open_cost": 50192.5,
+  "open_value": 50999.0,
+  "unrealized": 806.5,
   "realized": 0.0,
-  "total_return": 0.0012,
-  "exposure": 0.4014,
+  "total_return": 0.0081,
+  "exposure": 0.5059,
   "max_positions": 8,
   "curve": [
     {
@@ -80,9 +80,34 @@
       "ret": -0.0036,
       "cum": 0.0012,
       "positions": 4
+    },
+    {
+      "date": "2026-10-28",
+      "cash": 49807.5,
+      "value": 50999.0,
+      "equity": 100806.5,
+      "pnl": 684.9,
+      "ret": 0.0068,
+      "cum": 0.0081,
+      "positions": 5
     }
   ],
   "positions": [
+    {
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "fill_date": "2026-10-27",
+      "fill_price": 100.9,
+      "qty": 100,
+      "last_price": 104.57,
+      "cost": 10095.1,
+      "value": 10457.0,
+      "pnl": 361.9,
+      "pnl_pct": 0.0358,
+      "stop_price": 97.76,
+      "ret_pct": 0.0358
+    },
     {
       "code": "600938",
       "name": "中国海油",
@@ -90,13 +115,13 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 35.26,
+      "last_price": 34.85,
       "cost": 10169.1,
-      "value": 10578.0,
-      "pnl": 408.9,
-      "pnl_pct": 0.0402,
-      "stop_price": 31.56,
-      "ret_pct": 0.0402
+      "value": 10455.0,
+      "pnl": 285.9,
+      "pnl_pct": 0.0281,
+      "stop_price": 32.36,
+      "ret_pct": 0.0281
     },
     {
       "code": "600547",
@@ -105,28 +130,28 @@
       "fill_date": "2026-10-23",
       "fill_price": 24.8,
       "qty": 400,
-      "last_price": 25.22,
+      "last_price": 25.52,
       "cost": 9925.1,
-      "value": 10088.0,
-      "pnl": 162.9,
-      "pnl_pct": 0.0164,
+      "value": 10208.0,
+      "pnl": 282.9,
+      "pnl_pct": 0.0285,
       "stop_price": 24.53,
-      "ret_pct": 0.0164
+      "ret_pct": 0.0285
     },
     {
-      "code": "002463",
-      "name": "沪电股份",
+      "code": "600183",
+      "name": "生益科技",
       "rating": "强推",
-      "fill_date": "2026-10-27",
-      "fill_price": 100.9,
+      "fill_date": "2026-10-28",
+      "fill_price": 101.23,
       "qty": 100,
-      "last_price": 99.2,
-      "cost": 10095.1,
-      "value": 9920.0,
-      "pnl": -175.1,
-      "pnl_pct": -0.0173,
-      "stop_price": 96.62,
-      "ret_pct": -0.0173
+      "last_price": 102.49,
+      "cost": 10128.1,
+      "value": 10249.0,
+      "pnl": 120.9,
+      "pnl_pct": 0.0119,
+      "stop_price": 94.14,
+      "ret_pct": 0.0119
     },
     {
       "code": "002508",
@@ -135,16 +160,44 @@
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
       "qty": 600,
-      "last_price": 16.0,
+      "last_price": 16.05,
       "cost": 9875.1,
-      "value": 9600.0,
-      "pnl": -275.1,
-      "pnl_pct": -0.0279,
+      "value": 9630.0,
+      "pnl": -245.1,
+      "pnl_pct": -0.0248,
       "stop_price": 15.77,
-      "ret_pct": -0.0279
+      "ret_pct": -0.0248
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-10-28",
+      "code": "600183",
+      "name": "生益科技",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 101.23,
+      "fill_date": "2026-10-28",
+      "fill_price": 101.23,
+      "qty": 100,
+      "ret_pct": 0.0119,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-10-28",
+      "code": "600900",
+      "name": "长江电力",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 27.53,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-10-27",
       "code": "000651",
@@ -198,8 +251,8 @@
       "fill_date": "2026-10-27",
       "fill_price": 100.9,
       "qty": 100,
-      "ret_pct": -0.0173,
-      "hold_days": 0
+      "ret_pct": 0.0358,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-10-27",
@@ -248,8 +301,8 @@
       "code": "601088",
       "name": "XD中国神",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 45.05,
       "fill_date": null,
       "fill_price": null,
@@ -380,8 +433,8 @@
       "fill_date": "2026-10-23",
       "fill_price": 24.8,
       "qty": 400,
-      "ret_pct": 0.0164,
-      "hold_days": 2
+      "ret_pct": 0.0285,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-10-22",
@@ -436,8 +489,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0402,
-      "hold_days": 3
+      "ret_pct": 0.0281,
+      "hold_days": 4
     },
     {
       "trade_date": "2026-10-21",
@@ -562,8 +615,8 @@
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
       "qty": 600,
-      "ret_pct": -0.0279,
-      "hold_days": 4
+      "ret_pct": -0.0248,
+      "hold_days": 5
     },
     {
       "trade_date": "2026-10-20",
@@ -665,13 +718,13 @@
     }
   ],
   "stats": {
-    "orders": 37,
-    "filled": 4,
-    "open": 4,
+    "orders": 39,
+    "filled": 5,
+    "open": 5,
     "closed": 0,
     "pending": 6,
-    "expired": 27,
-    "fill_rate": 0.1081,
+    "expired": 28,
+    "fill_rate": 0.1282,
     "win_rate": null,
     "verdict": [
       "样本不足",
