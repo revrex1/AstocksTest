@@ -965,8 +965,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "航天装备Ⅱ",
+      "changePct": 6.84,
+      "mainNetInflowYi": 9.96,
+      "leader": "电科蓝天"
+    },
+    {
+      "name": "煤炭开采",
+      "changePct": 2.42,
+      "mainNetInflowYi": -0.26,
+      "leader": "开滦股份"
+    },
+    {
+      "name": "城商行Ⅱ",
+      "changePct": 2.39,
+      "mainNetInflowYi": -2.65,
+      "leader": "青岛银行"
+    },
+    {
+      "name": "国有大型银行Ⅱ",
+      "changePct": 2.39,
+      "mainNetInflowYi": 5.82,
+      "leader": "交通银行"
+    },
+    {
+      "name": "风电设备",
+      "changePct": 2.33,
+      "mainNetInflowYi": 7.8,
+      "leader": "飞沃科技"
+    },
+    {
+      "name": "保险Ⅱ",
+      "changePct": 1.76,
+      "mainNetInflowYi": 4.59,
+      "leader": "中国太保"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 1.51,
+      "mainNetInflowYi": 4.12,
+      "leader": "山西汾酒"
+    },
+    {
+      "name": "股份制银行Ⅱ",
+      "changePct": 1.45,
+      "mainNetInflowYi": -0.63,
+      "leader": "平安银行"
+    }
+  ],
+  "fundflow": {
+    "600690": {
+      "code": "600690",
+      "name": "海尔智家",
+      "mainNetInflowYi": 0.52,
+      "mainNetInflow5dYi": -1.15
+    },
+    "002916": {
+      "code": "002916",
+      "name": "深南电路",
+      "mainNetInflowYi": -1.84,
+      "mainNetInflow5dYi": -6.35
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.18,
+      "mainNetInflow5dYi": 0.16
+    },
+    "600867": {
+      "code": "600867",
+      "name": "通化东宝",
+      "mainNetInflowYi": -0.05,
+      "mainNetInflow5dYi": -0.42
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": -0.32,
+      "mainNetInflow5dYi": -21.26
+    },
+    "000333": {
+      "code": "000333",
+      "name": "美的集团",
+      "mainNetInflowYi": 1.51,
+      "mainNetInflow5dYi": -0.41
+    },
+    "002475": {
+      "code": "002475",
+      "name": "立讯精密",
+      "mainNetInflowYi": -2.76,
+      "mainNetInflow5dYi": 4.71
+    },
+    "600519": {
+      "code": "600519",
+      "name": "贵州茅台",
+      "mainNetInflowYi": 0.05,
+      "mainNetInflow5dYi": 7.31
+    }
+  },
   "paper_holdings": [
     {
       "code": "600867",
