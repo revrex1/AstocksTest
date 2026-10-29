@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28 15:28:33",
+  "updated_at": "2026-10-29 09:33:15",
   "capital": 100000.0,
-  "equity": 100806.5,
+  "equity": 100540.5,
   "cash": 49807.5,
   "open_cost": 50192.5,
-  "open_value": 50999.0,
-  "unrealized": 806.5,
+  "open_value": 50733.0,
+  "unrealized": 540.5,
   "realized": 0.0,
-  "total_return": 0.0081,
-  "exposure": 0.5059,
+  "total_return": 0.0054,
+  "exposure": 0.5046,
   "max_positions": 8,
   "curve": [
     {
@@ -84,11 +84,11 @@
     {
       "date": "2026-10-28",
       "cash": 49807.5,
-      "value": 50999.0,
-      "equity": 100806.5,
-      "pnl": 684.9,
-      "ret": 0.0068,
-      "cum": 0.0081,
+      "value": 50733.0,
+      "equity": 100540.5,
+      "pnl": 418.9,
+      "ret": 0.0042,
+      "cum": 0.0054,
       "positions": 5
     }
   ],
@@ -124,21 +124,6 @@
       "ret_pct": 0.0281
     },
     {
-      "code": "600547",
-      "name": "山东黄金",
-      "rating": "强推",
-      "fill_date": "2026-10-23",
-      "fill_price": 24.8,
-      "qty": 400,
-      "last_price": 25.52,
-      "cost": 9925.1,
-      "value": 10208.0,
-      "pnl": 282.9,
-      "pnl_pct": 0.0285,
-      "stop_price": 24.53,
-      "ret_pct": 0.0285
-    },
-    {
       "code": "600183",
       "name": "生益科技",
       "rating": "强推",
@@ -154,19 +139,34 @@
       "ret_pct": 0.0119
     },
     {
+      "code": "600547",
+      "name": "山东黄金",
+      "rating": "强推",
+      "fill_date": "2026-10-23",
+      "fill_price": 24.8,
+      "qty": 400,
+      "last_price": 24.99,
+      "cost": 9925.1,
+      "value": 9996.0,
+      "pnl": 70.9,
+      "pnl_pct": 0.0071,
+      "stop_price": 24.53,
+      "ret_pct": 0.0071
+    },
+    {
       "code": "002508",
       "name": "老板电器",
       "rating": "强推",
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
       "qty": 600,
-      "last_price": 16.05,
+      "last_price": 15.96,
       "cost": 9875.1,
-      "value": 9630.0,
-      "pnl": -245.1,
-      "pnl_pct": -0.0248,
+      "value": 9576.0,
+      "pnl": -299.1,
+      "pnl_pct": -0.0303,
       "stop_price": 15.77,
-      "ret_pct": -0.0248
+      "ret_pct": -0.0303
     }
   ],
   "trades": [
@@ -433,7 +433,7 @@
       "fill_date": "2026-10-23",
       "fill_price": 24.8,
       "qty": 400,
-      "ret_pct": 0.0285,
+      "ret_pct": 0.0071,
       "hold_days": 3
     },
     {
@@ -615,7 +615,7 @@
       "fill_date": "2026-10-21",
       "fill_price": 16.45,
       "qty": 600,
-      "ret_pct": -0.0248,
+      "ret_pct": -0.0303,
       "hold_days": 5
     },
     {
