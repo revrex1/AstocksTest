@@ -147,7 +147,7 @@ git commit + push origin/master → GitHub Pages
 
 ```bash
 python -m astocks open                 # 09:31 开盘记录
-python -m astocks close                # 15:05 收盘复盘（自动重拉当日日线 + 基准）
+python -m astocks close                # 15:05 收盘复盘（自动重拉当日日线 + 虚拟盘在场标的 + 残留快照 + 基准）
 python -m astocks close --recheck      # 全量重拉历史日线 + 强制重评全部记录
 python -m astocks paper --rebuild      # 清空虚拟盘按历史重放（改口径后必须跑）
 python -m astocks audit --start 2026-10-19   # 逐笔审计，与账本对账
@@ -163,8 +163,10 @@ python -m astocks site --out dist/index.html   # 重建首页
 
 ## 7. 已知坑（都踩过）
 
-1. **`bars.refresh` 每票每自然日只联网一次**。15:00 后复盘会复用 09:32 的盘中快照 → `close` 已内置强制刷新（含基准指数），别再手工跳过。
+1. **`bars.refresh` 每票每自然日只联网一次**。15:00 后复盘会复用 09:32 的盘中快照 → `close` 已内置强制刷新，**名单 = 当日推荐股 + 虚拟盘持仓/挂单（`paper.live_codes`）+ 历史残留快照（`bars.stale_codes`）+ 基准指数**，别再手工跳过。
 2. **基准漏刷会让超额方向反转**。2026-10-23 实测：沪深300 快照 -1.42% vs 实际 +1.71%，超额 +2.37% → -0.76%。
+   - **持仓股漏刷会让虚拟盘账本静默改写**。2026-10-30 定位：002463 / 600183 盘中破位靠 `low` 判定，快照的 low 还没跌到止损 → 漏判，次日 open 拉到真值后 `_replay` 补判，历史账户 100,027 → 99,084 且无任何告警。现 `_write_days` 会 diff 旧 `paper_day` 并打 `⚠ 虚拟盘历史账户被重算`；手动跑 `astocks paper` 不走强制刷新，`sync` 会提示改用 `close`。
+   - **账户数字以库为准**：任何一行 `bar` 若 `substr(updated_at,1,10)=trade_date AND time(updated_at)<'15:00'`，就是收盘后未刷新的快照，账户估值必然偏离。
 3. **`.gitignore` 必须锚定根目录**：写 `data/` 会把 `docs/data/` 一起忽略，必须写 `/data/`。
 4. **`superseded` 的行装载时不能再复活**，否则增量 sync 与 `--rebuild` 结果分叉。
 5. **成交去重要在 `_open()` 里再查一次**：旧挂单与新挂单可能同一天才成交。

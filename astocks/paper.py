@@ -866,13 +866,29 @@ def _load_sim(conn, cal: list[str], cutoff: str, bench: dict, offline: bool, log
     return sim
 
 
-def _write_days(conn, sim: _Sim) -> int:
+def live_codes(conn) -> list[str]:
+    """虚拟盘仍在场的代码：持仓（open）+ 待成交挂单（pending）。
+
+    收盘复盘的强制刷新必须带上它们——只刷「当日推荐股」会漏掉持仓股的当日日线，
+    而 bars.refresh 的「每票每自然日一次」TTL 会挡住 15:05 的补救拉取，导致回放用
+    09:3x 的盘中快照判止损（2026-10-30 定位，002463/600183 漏判）。
+    """
+    return [r["code"] for r in store.rows(
+        conn, "SELECT DISTINCT code FROM paper_trade WHERE status IN ('open','pending')"
+              " ORDER BY code")]
+
+
+def _write_days(conn, sim: _Sim, log: Logger = _noop) -> int:
     """写入逐日账户快照（含无持仓的平淡日，便于画连续净值）。"""
     if not sim.days:
         return 0
     row = store.one(conn, "SELECT MIN(trade_date) AS d FROM paper_trade")
     first = row["d"] if row and row["d"] else None
     rows = [d for d in sim.days if not first or d["trade_date"] >= first]
+    # 重放会整表重写，历史账户可能被行情回溯修正悄悄改写（旧版没有 diff，改了就改错了，
+    # 谁也不知道）。这里先留一份旧值，写完把变动的日子显式打出来。
+    prev = {r["trade_date"]: round(float(r["equity"] or 0), 2)
+            for r in store.rows(conn, "SELECT trade_date, equity FROM paper_day")}
     conn.execute("DELETE FROM paper_day")
     now = store.now_iso()
     conn.executemany(
@@ -884,6 +900,17 @@ def _write_days(conn, sim: _Sim) -> int:
           d["cum_ret"], now) for d in rows],
     )
     conn.commit()
+    changed = []
+    for d in rows:
+        old = prev.get(d["trade_date"])
+        if old is None:
+            continue
+        if abs(old - round(d["equity"], 2)) > 0.01:
+            changed.append((d["trade_date"], old, round(d["equity"], 2)))
+    if changed:
+        ex = "、".join(f"{dt} {a:,.0f}→{b:,.0f}" for dt, a, b in changed[:3])
+        more = f" 等 {len(changed)} 天" if len(changed) > 3 else ""
+        log(f"⚠  虚拟盘历史账户被重算：{ex}{more}（行情回溯修正所致，旧报告数字以库内为准）")
     return len(rows)
 
 
@@ -891,9 +918,9 @@ def equity_curve(conn) -> list[dict]:
     return store.rows(conn, "SELECT * FROM paper_day ORDER BY trade_date")
 
 
-def _write_results(conn, sim: _Sim, cutoff: str) -> int:
+def _write_results(conn, sim: _Sim, cutoff: str, log: Logger = _noop) -> int:
     """把模拟结果落库；与旧值一致则跳过，保证幂等。"""
-    _write_days(conn, sim)
+    _write_days(conn, sim, log)
     updated = 0
     for tid, st in sim.orders.items():
         res = sim.result(st)
@@ -944,7 +971,7 @@ def settle(conn, asof: str | None = None, log: Logger = _noop,
         if d > cutoff:
             break
         sim.step(d)
-    updated = _write_results(conn, sim, cutoff)
+    updated = _write_results(conn, sim, cutoff, log)
     return {"cutoff": cutoff, "updated": updated,
             "cash": round(sim.cash, 2), "equity": round(sim.equity(), 2)}
 
@@ -970,6 +997,14 @@ def sync(conn, asof: str | None = None,
         conn, "SELECT trade_date FROM trading_day ORDER BY trade_date")
         if not since or d["trade_date"] >= since}
     bench = bars.ensure(conn, config.BENCH_CODE, log=log, offline=offline)
+    if not offline:
+        # 手动跑 `astocks paper` 时没有收盘前那次强制刷新，持仓股很容易只剩开盘快照，
+        # 结算就成了「用半天行情判止损」。这里至少把它喊出来，别让账本静默变错。
+        live = set(live_codes(conn))
+        bad = [c for c in bars.stale_codes(conn) if c in live]
+        if bad:
+            log(f"⚠  {len(bad)} 只在场标的日线仍是盘中快照（{'、'.join(bad[:6])}），"
+                f"本次结算可能失真；收盘请用 `astocks close`（会强制刷新真值）")
     sim = _load_sim(conn, cal, cutoff, bench, offline, log)
     made = 0
     for d in cal:
@@ -979,7 +1014,7 @@ def sync(conn, asof: str | None = None,
             made += create_orders(conn, d, ratings, log, sim)
         sim.step(d)
     conn.commit()
-    updated = _write_results(conn, sim, cutoff)
+    updated = _write_results(conn, sim, cutoff, log)
     if made:
         log(f"🧾 新建虚拟头寸 {made} 笔")
     log(f"🔁 虚拟交易结算至 {cutoff}：更新 {updated} 笔｜现金 {sim.cash:,.0f}"

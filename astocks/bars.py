@@ -79,6 +79,30 @@ def refresh(conn, code: str, log: Logger = _noop, force: bool = False) -> int:
     return n
 
 
+def stale_codes(conn, before: str | None = None) -> list[str]:
+    """仍停留在盘中快照的代码。
+
+    判定：那根日线是它自己交易日当天、15:00 之前写进去的 —— 说明拉的是开盘价快照，
+    收盘后从未被真值覆盖。这类行会让收盘复盘（以及次日全量重放）用半截行情判止损。
+    过了收盘时间，当天同样算数（15:05 复盘时若持仓股的今日行还停在 09:3x，就是它）；
+    收盘前调用则只看历史日，避免把开盘那次正常写入误判为脏数据。
+    """
+    day = before or _today()
+    if before is None and datetime.now().hour >= config.PAPER_CLOSE_HOUR:
+        sql = """SELECT DISTINCT code FROM bar
+                  WHERE trade_date <= ?
+                    AND substr(updated_at, 1, 10) = trade_date
+                    AND time(updated_at) < '15:00'
+                  ORDER BY code"""
+    else:
+        sql = """SELECT DISTINCT code FROM bar
+                  WHERE trade_date < ?
+                    AND substr(updated_at, 1, 10) = trade_date
+                    AND time(updated_at) < '15:00'
+                  ORDER BY code"""
+    return [r["code"] for r in store.rows(conn, sql, (day,))]
+
+
 def range_of(conn, code: str, start: str | None = None, end: str | None = None) -> list[dict]:
     sql = "SELECT trade_date AS date, open, high, low, close, volume FROM bar WHERE code=?"
     params: list = [code]

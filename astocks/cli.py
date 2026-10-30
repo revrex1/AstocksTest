@@ -84,6 +84,22 @@ def cmd_close(args) -> int:
             codes = []
         else:
             codes = [p["code"] for p in store.get_picks(conn0, day0)] if day0 else []
+            # 虚拟盘持仓 + 待成交挂单必须一起刷。它们常常不在当日推荐名单里，而
+            # bars.refresh 有「每票每自然日一次」TTL，09:3x 的 open 已经拉过 → 15:05
+            # 再拉直接跳过，回放只能用半天的行情判止损（2026-10-30 定位：002463 /
+            # 600183 盘中破位漏判，次日拉到真值后历史账本被静默改写）。
+            live = paper.live_codes(conn0)
+            if live:
+                _log(f"📌 并入虚拟盘在场标的 {len(live)} 只：{'、'.join(live[:8])}"
+                     f"{'…' if len(live) > 8 else ''}")
+            codes += live
+            # 顺手把历史上仍残留盘中快照的代码也重拉一遍，避免旧账在以后某次重放里再变。
+            stale = [c for c in bars.stale_codes(conn0) if c not in codes]
+            if stale:
+                _log(f"🧹 历史日线仍为盘中快照 {len(stale)} 只，一并强制刷新："
+                     f"{'、'.join(stale[:8])}{'…' if len(stale) > 8 else ''}")
+                codes += stale
+            codes = list(dict.fromkeys(codes))
         # 基准指数同样受 TTL 影响：不刷会用 09:32 快照当收盘价，当日超额方向可能直接反转
         # （2026-10-23 实测：沪深300 快照 -1.42% vs 实际 +1.71%，超额 +2.37% → -0.76%）。
         if config.BENCH_CODE not in codes:
@@ -91,6 +107,12 @@ def cmd_close(args) -> int:
         if codes:
             _log(f"🔄 收盘前强制刷新当日日线：{len(codes)} 只")
             bars.backfill(conn0, codes, log=_log, force=True)
+            left = bars.stale_codes(conn0)
+            if left:
+                _log(f"⚠  仍有 {len(left)} 只日线停留在盘中快照（上游未更新或拉取失败）："
+                     f"{'、'.join(left[:8])}{'…' if len(left) > 8 else ''}")
+            else:
+                _log("✅ 日线校验：库内无残留盘中快照")
     except Exception as exc:  # noqa: BLE001  刷新失败不阻断复盘，按本地已有数据继续
         _log(f"⚠  当日日线强制刷新失败：{exc}")
 
