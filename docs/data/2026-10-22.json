@@ -1038,8 +1038,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 7.78,
-      "ret_pct": 0.0151,
+      "last_price": 7.76,
+      "ret_pct": 0.0125,
       "stop_price": 7.02,
       "exit_date": null,
       "exit_reason": null
@@ -1051,8 +1051,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 28.92,
-      "ret_pct": 0.0125,
+      "last_price": 28.74,
+      "ret_pct": 0.0062,
       "stop_price": 25.7,
       "exit_date": null,
       "exit_reason": null
@@ -1064,8 +1064,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 35.42,
-      "ret_pct": 0.0449,
+      "last_price": 35.14,
+      "ret_pct": 0.0367,
       "stop_price": 32.36,
       "exit_date": null,
       "exit_reason": null

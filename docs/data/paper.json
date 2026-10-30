@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30 09:32:36",
+  "updated_at": "2026-10-30 15:05:37",
   "capital": 100000.0,
-  "equity": 99083.71,
+  "equity": 98901.71,
   "cash": 66775.71,
   "open_cost": 31557.31,
-  "open_value": 32308.0,
-  "unrealized": 750.69,
+  "open_value": 32126.0,
+  "unrealized": 568.69,
   "realized": -1666.98,
-  "total_return": -0.0092,
-  "exposure": 0.3261,
+  "total_return": -0.011,
+  "exposure": 0.3248,
   "max_positions": 8,
   "curve": [
     {
@@ -100,6 +100,16 @@
       "ret": -0.0145,
       "cum": -0.0092,
       "positions": 3
+    },
+    {
+      "date": "2026-10-30",
+      "cash": 66775.71,
+      "value": 32126.0,
+      "equity": 98901.71,
+      "pnl": -182.0,
+      "ret": -0.0018,
+      "cum": -0.011,
+      "positions": 3
     }
   ],
   "positions": [
@@ -110,13 +120,13 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 35.42,
+      "last_price": 35.14,
       "cost": 10169.1,
-      "value": 10626.0,
-      "pnl": 456.9,
-      "pnl_pct": 0.0449,
+      "value": 10542.0,
+      "pnl": 372.9,
+      "pnl_pct": 0.0367,
       "stop_price": 32.36,
-      "ret_pct": 0.0449
+      "ret_pct": 0.0367
     },
     {
       "code": "600867",
@@ -125,13 +135,13 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 7.78,
+      "last_price": 7.76,
       "cost": 9963.1,
-      "value": 10114.0,
-      "pnl": 150.9,
-      "pnl_pct": 0.0151,
+      "value": 10088.0,
+      "pnl": 124.9,
+      "pnl_pct": 0.0125,
       "stop_price": 7.02,
-      "ret_pct": 0.0151
+      "ret_pct": 0.0125
     },
     {
       "code": "600066",
@@ -140,16 +150,72 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 28.92,
+      "last_price": 28.74,
       "cost": 11425.11,
-      "value": 11568.0,
-      "pnl": 142.89,
-      "pnl_pct": 0.0125,
+      "value": 11496.0,
+      "pnl": 70.89,
+      "pnl_pct": 0.0062,
       "stop_price": 25.7,
-      "ret_pct": 0.0125
+      "ret_pct": 0.0062
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-10-30",
+      "code": "601899",
+      "name": "紫金矿业",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 26.6,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-10-30",
+      "code": "601600",
+      "name": "中国铝业",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 8.22,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-10-30",
+      "code": "002916",
+      "name": "深南电路",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 233.97,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-10-30",
+      "code": "300308",
+      "name": "中际旭创",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 545.7,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-10-29",
       "code": "600867",
@@ -161,8 +227,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "ret_pct": 0.0151,
-      "hold_days": 0
+      "ret_pct": 0.0125,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-10-29",
@@ -175,8 +241,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0125,
-      "hold_days": 0
+      "ret_pct": 0.0062,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-10-29",
@@ -225,8 +291,8 @@
       "code": "600900",
       "name": "长江电力",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 27.53,
       "fill_date": null,
       "fill_price": null,
@@ -525,8 +591,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0449,
-      "hold_days": 5
+      "ret_pct": 0.0367,
+      "hold_days": 6
     },
     {
       "trade_date": "2026-10-21",
@@ -754,13 +820,13 @@
     }
   ],
   "stats": {
-    "orders": 43,
+    "orders": 47,
     "filled": 7,
     "open": 3,
     "closed": 4,
-    "pending": 2,
-    "expired": 34,
-    "fill_rate": 0.1628,
+    "pending": 3,
+    "expired": 37,
+    "fill_rate": 0.1489,
     "win_rate": 0.0,
     "verdict": [
       "样本不足",
