@@ -1093,40 +1093,14 @@
       "exit_reason": null
     },
     {
-      "code": "600183",
-      "name": "生益科技",
-      "rating": "强推",
-      "fill_date": "2026-10-28",
-      "fill_price": 101.23,
-      "qty": 100,
-      "last_price": 101.05,
-      "ret_pct": -0.0023,
-      "stop_price": 94.14,
-      "exit_date": null,
-      "exit_reason": null
-    },
-    {
-      "code": "002463",
-      "name": "沪电股份",
-      "rating": "强推",
-      "fill_date": "2026-10-27",
-      "fill_price": 100.9,
-      "qty": 100,
-      "last_price": 101.55,
-      "ret_pct": 0.0059,
-      "stop_price": 97.76,
-      "exit_date": null,
-      "exit_reason": null
-    },
-    {
       "code": "600938",
       "name": "中国海油",
       "rating": "强推",
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 34.9,
-      "ret_pct": 0.0296,
+      "last_price": 35.42,
+      "ret_pct": 0.0449,
       "stop_price": 32.36,
       "exit_date": null,
       "exit_reason": null

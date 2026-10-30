@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-29 15:22:46",
+  "updated_at": "2026-10-30 09:32:36",
   "capital": 100000.0,
-  "equity": 100027.49,
-  "cash": 47615.49,
-  "open_cost": 51780.51,
-  "open_value": 52412.0,
-  "unrealized": 631.49,
-  "realized": -604.0,
-  "total_return": 0.0003,
-  "exposure": 0.524,
+  "equity": 99083.71,
+  "cash": 66775.71,
+  "open_cost": 31557.31,
+  "open_value": 32308.0,
+  "unrealized": 750.69,
+  "realized": -1666.98,
+  "total_return": -0.0092,
+  "exposure": 0.3261,
   "max_positions": 8,
   "curve": [
     {
@@ -93,13 +93,13 @@
     },
     {
       "date": "2026-10-29",
-      "cash": 47615.49,
-      "value": 52412.0,
-      "equity": 100027.49,
-      "pnl": -513.01,
-      "ret": -0.0051,
-      "cum": 0.0003,
-      "positions": 5
+      "cash": 66775.71,
+      "value": 32308.0,
+      "equity": 99083.71,
+      "pnl": -1456.79,
+      "ret": -0.0145,
+      "cum": -0.0092,
+      "positions": 3
     }
   ],
   "positions": [
@@ -110,13 +110,13 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 34.9,
+      "last_price": 35.42,
       "cost": 10169.1,
-      "value": 10470.0,
-      "pnl": 300.9,
-      "pnl_pct": 0.0296,
+      "value": 10626.0,
+      "pnl": 456.9,
+      "pnl_pct": 0.0449,
       "stop_price": 32.36,
-      "ret_pct": 0.0296
+      "ret_pct": 0.0449
     },
     {
       "code": "600867",
@@ -147,36 +147,6 @@
       "pnl_pct": 0.0125,
       "stop_price": 25.7,
       "ret_pct": 0.0125
-    },
-    {
-      "code": "002463",
-      "name": "沪电股份",
-      "rating": "强推",
-      "fill_date": "2026-10-27",
-      "fill_price": 100.9,
-      "qty": 100,
-      "last_price": 101.55,
-      "cost": 10095.1,
-      "value": 10155.0,
-      "pnl": 59.9,
-      "pnl_pct": 0.0059,
-      "stop_price": 97.76,
-      "ret_pct": 0.0059
-    },
-    {
-      "code": "600183",
-      "name": "生益科技",
-      "rating": "强推",
-      "fill_date": "2026-10-28",
-      "fill_price": 101.23,
-      "qty": 100,
-      "last_price": 101.05,
-      "cost": 10128.1,
-      "value": 10105.0,
-      "pnl": -23.1,
-      "pnl_pct": -0.0023,
-      "stop_price": 94.14,
-      "ret_pct": -0.0023
     }
   ],
   "trades": [
@@ -241,13 +211,13 @@
       "code": "600183",
       "name": "生益科技",
       "rating": "强推",
-      "status": "open",
-      "exit_reason": null,
+      "status": "closed",
+      "exit_reason": "stop",
       "entry_target": 101.23,
       "fill_date": "2026-10-28",
       "fill_price": 101.23,
       "qty": 100,
-      "ret_pct": -0.0023,
+      "ret_pct": -0.072,
       "hold_days": 1
     },
     {
@@ -311,13 +281,13 @@
       "code": "002463",
       "name": "沪电股份",
       "rating": "强推",
-      "status": "open",
-      "exit_reason": null,
+      "status": "closed",
+      "exit_reason": "stop",
       "entry_target": 100.9,
       "fill_date": "2026-10-27",
       "fill_price": 100.9,
       "qty": 100,
-      "ret_pct": 0.0059,
+      "ret_pct": -0.0331,
       "hold_days": 2
     },
     {
@@ -555,7 +525,7 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0296,
+      "ret_pct": 0.0449,
       "hold_days": 5
     },
     {
@@ -786,15 +756,15 @@
   "stats": {
     "orders": 43,
     "filled": 7,
-    "open": 5,
-    "closed": 2,
+    "open": 3,
+    "closed": 4,
     "pending": 2,
     "expired": 34,
     "fill_rate": 0.1628,
     "win_rate": 0.0,
     "verdict": [
       "样本不足",
-      "仅 2 笔平仓样本（阈值 10），暂不下结论"
+      "仅 4 笔平仓样本（阈值 10），暂不下结论"
     ]
   }
 }
