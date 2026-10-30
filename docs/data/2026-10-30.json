@@ -965,8 +965,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "酒店餐饮",
+      "changePct": 4.3,
+      "mainNetInflowYi": 1.026,
+      "leader": "首旅酒店"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 3.77,
+      "mainNetInflowYi": 24.5234,
+      "leader": "泸州老窖"
+    },
+    {
+      "name": "航运港口",
+      "changePct": 2.91,
+      "mainNetInflowYi": -0.6977,
+      "leader": "锦江航运"
+    },
+    {
+      "name": "白色家电",
+      "changePct": 2.42,
+      "mainNetInflowYi": 5.205,
+      "leader": "海尔智家"
+    },
+    {
+      "name": "饮料乳品",
+      "changePct": 2.07,
+      "mainNetInflowYi": 1.5103,
+      "leader": "新乳业"
+    },
+    {
+      "name": "休闲食品",
+      "changePct": 1.7,
+      "mainNetInflowYi": 2.6334,
+      "leader": "黑芝麻"
+    },
+    {
+      "name": "医药商业",
+      "changePct": 1.62,
+      "mainNetInflowYi": 1.5093,
+      "leader": "百洋医药"
+    },
+    {
+      "name": "非白酒",
+      "changePct": 1.39,
+      "mainNetInflowYi": 1.0914,
+      "leader": "百润股份"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": -3.4685,
+      "mainNetInflow5dYi": 42.5256
+    },
+    "002916": {
+      "code": "002916",
+      "name": "深南电路",
+      "mainNetInflowYi": -0.7869,
+      "mainNetInflow5dYi": -3.7424
+    },
+    "601600": {
+      "code": "601600",
+      "name": "中国铝业",
+      "mainNetInflowYi": 0.9903,
+      "mainNetInflow5dYi": 1.3048
+    },
+    "601899": {
+      "code": "601899",
+      "name": "紫金矿业",
+      "mainNetInflowYi": -1.7937,
+      "mainNetInflow5dYi": -6.4993
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": 10.7016,
+      "mainNetInflow5dYi": -4.484
+    },
+    "600183": {
+      "code": "600183",
+      "name": "生益科技",
+      "mainNetInflowYi": -1.6245,
+      "mainNetInflow5dYi": -19.4076
+    },
+    "600104": {
+      "code": "600104",
+      "name": "上汽集团",
+      "mainNetInflowYi": -0.0556,
+      "mainNetInflow5dYi": -0.4058
+    },
+    "002475": {
+      "code": "002475",
+      "name": "立讯精密",
+      "mainNetInflowYi": -1.7609,
+      "mainNetInflow5dYi": 2.5646
+    }
+  },
   "paper_holdings": [
     {
       "code": "600867",
