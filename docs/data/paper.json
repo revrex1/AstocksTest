@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30 15:21:27",
+  "updated_at": "2026-10-30 17:32:15",
   "capital": 100000.0,
-  "equity": 98901.71,
+  "equity": 99471.71,
   "cash": 66775.71,
   "open_cost": 31557.31,
-  "open_value": 32126.0,
-  "unrealized": 568.69,
+  "open_value": 32696.0,
+  "unrealized": 1138.69,
   "realized": -1666.98,
-  "total_return": -0.011,
-  "exposure": 0.3248,
+  "total_return": -0.0053,
+  "exposure": 0.3287,
   "max_positions": 8,
   "curve": [
     {
@@ -104,11 +104,11 @@
     {
       "date": "2026-10-30",
       "cash": 66775.71,
-      "value": 32126.0,
-      "equity": 98901.71,
-      "pnl": -182.0,
-      "ret": -0.0018,
-      "cum": -0.011,
+      "value": 32696.0,
+      "equity": 99471.71,
+      "pnl": 388.0,
+      "ret": 0.0039,
+      "cum": -0.0053,
       "positions": 3
     }
   ],
@@ -120,13 +120,13 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 35.14,
+      "last_price": 35.97,
       "cost": 10169.1,
-      "value": 10542.0,
-      "pnl": 372.9,
-      "pnl_pct": 0.0367,
+      "value": 10791.0,
+      "pnl": 621.9,
+      "pnl_pct": 0.0612,
       "stop_price": 32.36,
-      "ret_pct": 0.0367
+      "ret_pct": 0.0612
     },
     {
       "code": "600867",
@@ -135,13 +135,13 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 7.76,
+      "last_price": 7.89,
       "cost": 9963.1,
-      "value": 10088.0,
-      "pnl": 124.9,
-      "pnl_pct": 0.0125,
+      "value": 10257.0,
+      "pnl": 293.9,
+      "pnl_pct": 0.0295,
       "stop_price": 7.02,
-      "ret_pct": 0.0125
+      "ret_pct": 0.0295
     },
     {
       "code": "600066",
@@ -150,13 +150,13 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 28.74,
+      "last_price": 29.12,
       "cost": 11425.11,
-      "value": 11496.0,
-      "pnl": 70.89,
-      "pnl_pct": 0.0062,
+      "value": 11648.0,
+      "pnl": 222.89,
+      "pnl_pct": 0.0195,
       "stop_price": 25.7,
-      "ret_pct": 0.0062
+      "ret_pct": 0.0195
     }
   ],
   "trades": [
@@ -227,7 +227,7 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "ret_pct": 0.0125,
+      "ret_pct": 0.0295,
       "hold_days": 1
     },
     {
@@ -241,7 +241,7 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0062,
+      "ret_pct": 0.0195,
       "hold_days": 1
     },
     {
@@ -591,7 +591,7 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0367,
+      "ret_pct": 0.0612,
       "hold_days": 6
     },
     {

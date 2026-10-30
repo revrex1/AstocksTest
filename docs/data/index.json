@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30 15:21:27",
+  "updated_at": "2026-10-30 17:32:15",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -194,13 +194,13 @@
   "horizons": {
     "T+1": {
       "n": 66,
-      "win_rate": 0.3788,
-      "avg": -0.008
+      "win_rate": 0.3939,
+      "avg": -0.0069
     },
     "T+3": {
       "n": 50,
       "win_rate": 0.46,
-      "avg": -0.0117
+      "avg": -0.0102
     },
     "T+5": {
       "n": 34,
@@ -251,12 +251,12 @@
       "capital": 100000.0,
       "cash": 66775.71,
       "open_cost": 31557.31,
-      "open_value": 32126.0,
+      "open_value": 32696.0,
       "realized": -1666.98,
-      "unrealized": 568.69,
-      "equity": 98901.71,
-      "total_return": -0.010982899999999907,
-      "exposure": 0.3248275484822254,
+      "unrealized": 1138.69,
+      "equity": 99471.71,
+      "total_return": -0.005282899999999979,
+      "exposure": 0.32869647058445056,
       "positions": [
         {
           "id": 593,
@@ -285,22 +285,22 @@
           "status": "open",
           "shares_left": 300,
           "realized": 0.0,
-          "last_price": 35.14,
+          "last_price": 35.97,
           "last_date": "2026-10-30",
-          "ret_pct": 0.0367,
+          "ret_pct": 0.0612,
           "bench_ret": -0.0126,
-          "excess": 0.0493,
+          "excess": 0.0738,
           "hold_days": 6,
-          "mfe": 0.0537,
+          "mfe": 0.0638,
           "mae": -0.0151,
           "plan_json": "{\"trade_date\": \"2026-10-22\", \"code\": \"600938\", \"name\": \"中国海油\", \"rating\": \"强推\", \"total_score\": 78.4, \"entry_mode\": \"limit\", \"entry_target\": 33.88, \"valid_days\": 3, \"stop_price\": 32.36, \"tp_prices\": [36.89, 38.98, 42.46], \"holding_days\": 20, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"基本面与短线技术买点共振，建议近期分档介入\", \"totalWeight\": 60, \"primaryEntry\": 33.88, \"secondaryEntry\": 32.19, \"stopLoss\": 32.48, \"resistance\": 39.23, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 37.03, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 39.12, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 42.61, \"reason\": \"52周高位 39.23\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\", \"signals\": [{\"type\": \"buy\", \"title\": \"均线多头排列\", \"condition\": \"回踩 MA10 不破（参考 33.88）即介入\"}, {\"type\": \"add\", \"title\": \"温和放量\", \"condition\": \"量比到 1.5-2.0、换手 2-4% 即加仓\"}, {\"type\": \"reduce\", \"title\": \"首档止盈\", \"condition\": \"涨幅达 +6%（约 37.03）减仓 1/3\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"放量跌破 32.48 全部清仓\"}]}, \"schedule\": [{\"effective\": \"2026-10-22\", \"stop\": 32.48, \"tps\": [37.03, 39.12, 42.61], \"hold\": 20}, {\"effective\": \"2026-10-23\", \"stop\": 31.56, \"tps\": [35.98, 38.01, 41.41], \"hold\": 20}, {\"effective\": \"2026-10-28\", \"stop\": 32.36, \"tps\": [36.89, 38.98, 42.46], \"hold\": 20}]}",
           "created_at": "2026-10-23 18:47:13",
-          "updated_at": "2026-10-30 15:21:27",
+          "updated_at": "2026-10-30 17:32:14",
           "snapshot_id": 33,
           "path_src": "minute",
           "execs": [
             {
-              "id": 286,
+              "id": 289,
               "trade_id": 593,
               "exec_date": "2026-10-22",
               "code": "600938",
@@ -310,13 +310,13 @@
               "amount": 10164.0,
               "fee": 5.1,
               "reason": "entry",
-              "created_at": "2026-10-30 15:05:37"
+              "created_at": "2026-10-30 17:32:14"
             }
           ],
           "cost": 10169.1,
-          "value": 10542.0,
-          "pnl": 372.9,
-          "pnl_pct": 0.03666991179160384
+          "value": 10791.0,
+          "pnl": 621.9,
+          "pnl_pct": 0.06115585450039829
         },
         {
           "id": 619,
@@ -345,22 +345,22 @@
           "status": "open",
           "shares_left": 1300,
           "realized": 0.0,
-          "last_price": 7.76,
+          "last_price": 7.89,
           "last_date": "2026-10-30",
-          "ret_pct": 0.0125,
+          "ret_pct": 0.0295,
           "bench_ret": -0.0139,
-          "excess": 0.0264,
+          "excess": 0.0434,
           "hold_days": 1,
-          "mfe": 0.0209,
+          "mfe": 0.0418,
           "mae": -0.0026,
           "plan_json": "{\"trade_date\": \"2026-10-29\", \"code\": \"600867\", \"name\": \"通化东宝\", \"schedule\": [{\"effective\": \"2026-10-29\", \"stop\": 7.02, \"tps\": [8.09, 8.57, 10.67], \"hold\": 30}], \"rating\": \"强推\", \"total_score\": 52.7, \"entry_mode\": \"open\", \"entry_target\": 7.66, \"valid_days\": 3, \"stop_price\": 7.02, \"tp_prices\": [8.09, 8.57, 10.67], \"holding_days\": 30, \"notes\": [\"买点 7.68 ≥ 开盘 7.66，按开盘价成交\"], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"当期业绩爆发，估值低位，行业景气度高\", \"totalWeight\": 50, \"primaryEntry\": 7.68, \"secondaryEntry\": 7.54, \"positions\": [{\"level\": 1, \"name\": \"首档-支撑位挂单\", \"price\": 7.68, \"weight\": 30, \"trigger\": \"跌至 7.68 元（近期支撑 7.68）企稳挂单\"}, {\"level\": 2, \"name\": \"次档-稳健加仓\", \"price\": 7.54, \"weight\": 40, \"trigger\": \"缩量回踩 7.54 元（现价下浮 2.1% 的参考位）附近，量比<1.0、换手 3-8%\"}, {\"level\": 3, \"name\": \"末档-左侧深蹲\", \"price\": 7.16, \"weight\": 30, \"trigger\": \"跌至 7.16 元（52 周低位 7.16）附近企稳\"}], \"stopLoss\": 7.02, \"stopLossReason\": \"跌破 52 周低位 (7.16) 2%\", \"resistance\": 10.67, \"takeProfits\": [{\"level\": 1, \"pct\": 5, \"price\": 8.09, \"reason\": \"上方首阻力 7.88，本轮按 +5% 分批减仓\"}, {\"level\": 2, \"pct\": 11.3, \"price\": 8.57, \"reason\": \"上方次阻力 7.94，本轮按 +11.3% 分批减仓\"}, {\"level\": 3, \"pct\": 38.57, \"price\": 10.67, \"reason\": \"52 周高位 (10.67)\"}], \"holdingDays\": 30, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"add\", \"title\": \"均线多头排列确立\", \"condition\": \"MA5>MA10>MA20>MA60 全部满足时加仓 2 档\"}, {\"type\": \"add\", \"title\": \"MACD 金叉\", \"condition\": \"DIF 上穿 DEA 即触发首档建仓\"}, {\"type\": \"reduce\", \"title\": \"MACD 死叉\", \"condition\": \"DIF 下穿 DEA，减 1/2 仓位\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"收盘价 < 7.02 立即清仓\"}, {\"type\": \"reduce\", \"title\": \"到达末档止盈目标\", \"condition\": \"价格触及 10.67 区域减仓 1/2\"}, {\"type\": \"sell\", \"title\": \"扣非净利润为负（业绩注水风险）\", \"condition\": \"扣非同比为负但归母高增长，警惕非经常性损益撑业绩\"}], \"mode\": \"从零建仓\", \"portfolio\": null, \"actions\": [], \"overrideApplied\": false, \"overrideNote\": null, \"overrideSource\": null, \"technicalAvailable\": true}}",
           "created_at": "2026-10-29 15:05:07",
-          "updated_at": "2026-10-30 15:05:37",
+          "updated_at": "2026-10-30 17:32:14",
           "snapshot_id": 76,
           "path_src": "daily",
           "execs": [
             {
-              "id": 288,
+              "id": 291,
               "trade_id": 619,
               "exec_date": "2026-10-29",
               "code": "600867",
@@ -370,13 +370,13 @@
               "amount": 9958.0,
               "fee": 5.1,
               "reason": "entry",
-              "created_at": "2026-10-30 15:05:37"
+              "created_at": "2026-10-30 17:32:14"
             }
           ],
           "cost": 9963.1,
-          "value": 10088.0,
-          "pnl": 124.9,
-          "pnl_pct": 0.012536258794953348
+          "value": 10257.0,
+          "pnl": 293.9,
+          "pnl_pct": 0.029498850759301698
         },
         {
           "id": 618,
@@ -405,22 +405,22 @@
           "status": "open",
           "shares_left": 400,
           "realized": 0.0,
-          "last_price": 28.74,
+          "last_price": 29.12,
           "last_date": "2026-10-30",
-          "ret_pct": 0.0062,
+          "ret_pct": 0.0195,
           "bench_ret": -0.0139,
-          "excess": 0.0201,
+          "excess": 0.0334,
           "hold_days": 1,
-          "mfe": 0.0228,
+          "mfe": 0.0322,
           "mae": -0.0007,
           "plan_json": "{\"trade_date\": \"2026-10-29\", \"code\": \"600066\", \"name\": \"宇通客车\", \"schedule\": [{\"effective\": \"2026-10-29\", \"stop\": 25.7, \"tps\": [29.98, 31.78, 38.5], \"hold\": 30}], \"rating\": \"强推\", \"total_score\": 58.6, \"entry_mode\": \"limit\", \"entry_target\": 28.55, \"valid_days\": 3, \"stop_price\": 25.7, \"tp_prices\": [29.98, 31.78, 38.5], \"holding_days\": 30, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"商用车龙头业绩高增，估值偏低，内需修复受益\", \"totalWeight\": 50, \"primaryEntry\": 28.55, \"secondaryEntry\": 27.97, \"positions\": [{\"level\": 1, \"name\": \"首档-放量突破\", \"price\": 28.55, \"weight\": 30, \"trigger\": \"量比 2.66 配合站上 MA10(28.43)，28.55 元突破即追\"}, {\"level\": 2, \"name\": \"次档-稳健加仓\", \"price\": 27.97, \"weight\": 40, \"trigger\": \"缩量回踩 27.97 元（现价下浮 2.0% 的参考位）附近，量比<1.0、换手 3-8%\"}, {\"level\": 3, \"name\": \"末档-左侧深蹲\", \"price\": 26.55, \"weight\": 30, \"trigger\": \"跌至 26.55 元（现价下浮 7.0% 的参考位）附近企稳\"}], \"stopLoss\": 25.7, \"stopLossReason\": \"以现价下浮 8% 作为风控参考线\", \"resistance\": 38.5, \"takeProfits\": [{\"level\": 1, \"pct\": 5, \"price\": 29.98, \"reason\": \"上方首阻力 29.29，本轮按 +5% 分批减仓\"}, {\"level\": 2, \"pct\": 11.3, \"price\": 31.78, \"reason\": \"上方次阻力 30.24，本轮按 +11.3% 分批减仓\"}, {\"level\": 3, \"pct\": 34.85, \"price\": 38.5, \"reason\": \"52 周高位 (38.50)\"}], \"holdingDays\": 30, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"add\", \"title\": \"均线多头排列确立\", \"condition\": \"MA5>MA10>MA20>MA60 全部满足时加仓 2 档\"}, {\"type\": \"add\", \"title\": \"MACD 金叉\", \"condition\": \"DIF 上穿 DEA 即触发首档建仓\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"收盘价 < 25.70 立即清仓\"}, {\"type\": \"reduce\", \"title\": \"到达末档止盈目标\", \"condition\": \"价格触及 38.50 区域减仓 1/2\"}], \"mode\": \"从零建仓\", \"portfolio\": null, \"actions\": [], \"overrideApplied\": false, \"overrideNote\": null, \"overrideSource\": null, \"technicalAvailable\": true}}",
           "created_at": "2026-10-29 15:05:07",
-          "updated_at": "2026-10-30 15:05:37",
+          "updated_at": "2026-10-30 17:32:14",
           "snapshot_id": 75,
           "path_src": "daily",
           "execs": [
             {
-              "id": 287,
+              "id": 290,
               "trade_id": 618,
               "exec_date": "2026-10-29",
               "code": "600066",
@@ -430,13 +430,13 @@
               "amount": 11420.0,
               "fee": 5.11,
               "reason": "entry",
-              "created_at": "2026-10-30 15:05:37"
+              "created_at": "2026-10-30 17:32:14"
             }
           ],
           "cost": 11425.11,
-          "value": 11496.0,
-          "pnl": 70.89,
-          "pnl_pct": 0.0062047542649479315
+          "value": 11648.0,
+          "pnl": 222.89,
+          "pnl_pct": 0.019508783722870016
         }
       ],
       "max_positions": 8,
