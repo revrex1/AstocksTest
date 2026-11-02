@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02 09:32:55",
+  "updated_at": "2026-11-02 15:12:06",
   "capital": 100000.0,
-  "equity": 99471.71,
-  "cash": 66775.71,
-  "open_cost": 31557.31,
-  "open_value": 32696.0,
-  "unrealized": 1138.69,
+  "equity": 101317.4,
+  "cash": 35253.4,
+  "open_cost": 63079.62,
+  "open_value": 66064.0,
+  "unrealized": 2984.38,
   "realized": -1666.98,
-  "total_return": -0.0053,
-  "exposure": 0.3287,
+  "total_return": 0.0132,
+  "exposure": 0.652,
   "max_positions": 8,
   "curve": [
     {
@@ -110,9 +110,34 @@
       "ret": 0.0039,
       "cum": -0.0053,
       "positions": 3
+    },
+    {
+      "date": "2026-11-02",
+      "cash": 35253.4,
+      "value": 66064.0,
+      "equity": 101317.4,
+      "pnl": 1845.69,
+      "ret": 0.0186,
+      "cum": 0.0132,
+      "positions": 6
     }
   ],
   "positions": [
+    {
+      "code": "300274",
+      "name": "阳光电源",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 62.0,
+      "qty": 200,
+      "last_price": 71.54,
+      "cost": 12405.12,
+      "value": 14308.0,
+      "pnl": 1902.88,
+      "pnl_pct": 0.1534,
+      "stop_price": 59.45,
+      "ret_pct": 0.1534
+    },
     {
       "code": "600938",
       "name": "中国海油",
@@ -120,13 +145,13 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 35.97,
+      "last_price": 35.26,
       "cost": 10169.1,
-      "value": 10791.0,
-      "pnl": 621.9,
-      "pnl_pct": 0.0612,
-      "stop_price": 32.36,
-      "ret_pct": 0.0612
+      "value": 10578.0,
+      "pnl": 408.9,
+      "pnl_pct": 0.0402,
+      "stop_price": 31.43,
+      "ret_pct": 0.0402
     },
     {
       "code": "600867",
@@ -150,28 +175,114 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 29.12,
+      "last_price": 28.95,
       "cost": 11425.11,
-      "value": 11648.0,
-      "pnl": 222.89,
-      "pnl_pct": 0.0195,
+      "value": 11580.0,
+      "pnl": 154.89,
+      "pnl_pct": 0.0136,
       "stop_price": 25.7,
-      "ret_pct": 0.0195
+      "ret_pct": 0.0136
+    },
+    {
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 84.67,
+      "qty": 100,
+      "last_price": 86.05,
+      "cost": 8472.08,
+      "value": 8605.0,
+      "pnl": 132.92,
+      "pnl_pct": 0.0157,
+      "stop_price": 80.31,
+      "ret_pct": 0.0157
+    },
+    {
+      "code": "601899",
+      "name": "紫金矿业",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 26.6,
+      "qty": 400,
+      "last_price": 26.84,
+      "cost": 10645.11,
+      "value": 10736.0,
+      "pnl": 90.89,
+      "pnl_pct": 0.0085,
+      "stop_price": 25.23,
+      "ret_pct": 0.0085
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-02",
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 84.67,
+      "fill_date": "2026-11-02",
+      "fill_price": 84.67,
+      "qty": 100,
+      "ret_pct": 0.0157,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-02",
+      "code": "300274",
+      "name": "阳光电源",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 62.0,
+      "fill_date": "2026-11-02",
+      "fill_price": 62.0,
+      "qty": 200,
+      "ret_pct": 0.1534,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-02",
+      "code": "002916",
+      "name": "深南电路",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 224.11,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-02",
+      "code": "300308",
+      "name": "中际旭创",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 553.48,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-10-30",
       "code": "601899",
       "name": "紫金矿业",
       "rating": "强推",
-      "status": "pending",
+      "status": "open",
       "exit_reason": null,
       "entry_target": 26.6,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
+      "fill_date": "2026-11-02",
+      "fill_price": 26.6,
+      "qty": 400,
+      "ret_pct": 0.0085,
       "hold_days": 0
     },
     {
@@ -228,7 +339,7 @@
       "fill_price": 7.66,
       "qty": 1300,
       "ret_pct": 0.0295,
-      "hold_days": 1
+      "hold_days": 2
     },
     {
       "trade_date": "2026-10-29",
@@ -241,8 +352,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0195,
-      "hold_days": 1
+      "ret_pct": 0.0136,
+      "hold_days": 2
     },
     {
       "trade_date": "2026-10-29",
@@ -263,8 +374,8 @@
       "code": "600690",
       "name": "海尔智家",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 19.25,
       "fill_date": null,
       "fill_price": null,
@@ -591,8 +702,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0612,
-      "hold_days": 6
+      "ret_pct": 0.0402,
+      "hold_days": 7
     },
     {
       "trade_date": "2026-10-21",
@@ -820,13 +931,13 @@
     }
   ],
   "stats": {
-    "orders": 47,
-    "filled": 7,
-    "open": 3,
+    "orders": 51,
+    "filled": 10,
+    "open": 6,
     "closed": 4,
-    "pending": 3,
-    "expired": 37,
-    "fill_rate": 0.1489,
+    "pending": 2,
+    "expired": 39,
+    "fill_rate": 0.1961,
     "win_rate": 0.0,
     "verdict": [
       "样本不足",

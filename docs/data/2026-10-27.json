@@ -1030,6 +1030,45 @@
   },
   "paper_holdings": [
     {
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 84.67,
+      "qty": 100,
+      "last_price": 86.05,
+      "ret_pct": 0.0157,
+      "stop_price": 80.31,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "300274",
+      "name": "阳光电源",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 62.0,
+      "qty": 200,
+      "last_price": 71.54,
+      "ret_pct": 0.1534,
+      "stop_price": 59.45,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "601899",
+      "name": "紫金矿业",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 26.6,
+      "qty": 400,
+      "last_price": 26.84,
+      "ret_pct": 0.0085,
+      "stop_price": 25.23,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "600867",
       "name": "通化东宝",
       "rating": "强推",
@@ -1049,8 +1088,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 29.12,
-      "ret_pct": 0.0195,
+      "last_price": 28.95,
+      "ret_pct": 0.0136,
       "stop_price": 25.7,
       "exit_date": null,
       "exit_reason": null
@@ -1062,9 +1101,9 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 35.97,
-      "ret_pct": 0.0612,
-      "stop_price": 32.36,
+      "last_price": 35.26,
+      "ret_pct": 0.0402,
+      "stop_price": 31.43,
       "exit_date": null,
       "exit_reason": null
     }
