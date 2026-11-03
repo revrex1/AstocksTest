@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02 15:12:06",
+  "updated_at": "2026-11-03 15:22:46",
   "capital": 100000.0,
-  "equity": 101317.4,
-  "cash": 35253.4,
-  "open_cost": 63079.62,
-  "open_value": 66064.0,
-  "unrealized": 2984.38,
-  "realized": -1666.98,
-  "total_return": 0.0132,
-  "exposure": 0.652,
+  "equity": 101695.24,
+  "cash": 61037.24,
+  "open_cost": 39346.14,
+  "open_value": 40658.0,
+  "unrealized": 1311.86,
+  "realized": 383.38,
+  "total_return": 0.017,
+  "exposure": 0.3998,
   "max_positions": 8,
   "curve": [
     {
@@ -120,38 +120,33 @@
       "ret": 0.0186,
       "cum": 0.0132,
       "positions": 6
+    },
+    {
+      "date": "2026-11-03",
+      "cash": 61037.24,
+      "value": 40658.0,
+      "equity": 101695.24,
+      "pnl": 377.84,
+      "ret": 0.0037,
+      "cum": 0.017,
+      "positions": 4
     }
   ],
   "positions": [
     {
-      "code": "300274",
-      "name": "阳光电源",
+      "code": "600066",
+      "name": "宇通客车",
       "rating": "强推",
-      "fill_date": "2026-11-02",
-      "fill_price": 62.0,
-      "qty": 200,
-      "last_price": 71.54,
-      "cost": 12405.12,
-      "value": 14308.0,
-      "pnl": 1902.88,
-      "pnl_pct": 0.1534,
-      "stop_price": 59.45,
-      "ret_pct": 0.1534
-    },
-    {
-      "code": "600938",
-      "name": "中国海油",
-      "rating": "强推",
-      "fill_date": "2026-10-22",
-      "fill_price": 33.88,
-      "qty": 300,
-      "last_price": 35.26,
-      "cost": 10169.1,
-      "value": 10578.0,
-      "pnl": 408.9,
-      "pnl_pct": 0.0402,
-      "stop_price": 31.43,
-      "ret_pct": 0.0402
+      "fill_date": "2026-10-29",
+      "fill_price": 28.55,
+      "qty": 400,
+      "last_price": 30.18,
+      "cost": 8568.83,
+      "value": 9054.0,
+      "pnl": 485.17,
+      "pnl_pct": 0.0566,
+      "stop_price": 25.7,
+      "ret_pct": 0.0541
     },
     {
       "code": "600867",
@@ -160,43 +155,13 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 7.89,
+      "last_price": 7.97,
       "cost": 9963.1,
-      "value": 10257.0,
-      "pnl": 293.9,
-      "pnl_pct": 0.0295,
+      "value": 10361.0,
+      "pnl": 397.9,
+      "pnl_pct": 0.0399,
       "stop_price": 7.02,
-      "ret_pct": 0.0295
-    },
-    {
-      "code": "600066",
-      "name": "宇通客车",
-      "rating": "强推",
-      "fill_date": "2026-10-29",
-      "fill_price": 28.55,
-      "qty": 400,
-      "last_price": 28.95,
-      "cost": 11425.11,
-      "value": 11580.0,
-      "pnl": 154.89,
-      "pnl_pct": 0.0136,
-      "stop_price": 25.7,
-      "ret_pct": 0.0136
-    },
-    {
-      "code": "002463",
-      "name": "沪电股份",
-      "rating": "强推",
-      "fill_date": "2026-11-02",
-      "fill_price": 84.67,
-      "qty": 100,
-      "last_price": 86.05,
-      "cost": 8472.08,
-      "value": 8605.0,
-      "pnl": 132.92,
-      "pnl_pct": 0.0157,
-      "stop_price": 80.31,
-      "ret_pct": 0.0157
+      "ret_pct": 0.0399
     },
     {
       "code": "601899",
@@ -205,13 +170,28 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "last_price": 26.84,
+      "last_price": 27.45,
       "cost": 10645.11,
-      "value": 10736.0,
-      "pnl": 90.89,
-      "pnl_pct": 0.0085,
+      "value": 10980.0,
+      "pnl": 334.89,
+      "pnl_pct": 0.0315,
       "stop_price": 25.23,
-      "ret_pct": 0.0085
+      "ret_pct": 0.0315
+    },
+    {
+      "code": "600938",
+      "name": "中国海油",
+      "rating": "强推",
+      "fill_date": "2026-10-22",
+      "fill_price": 33.88,
+      "qty": 300,
+      "last_price": 34.21,
+      "cost": 10169.1,
+      "value": 10263.0,
+      "pnl": 93.9,
+      "pnl_pct": 0.0092,
+      "stop_price": 31.43,
+      "ret_pct": 0.0092
     }
   ],
   "trades": [
@@ -220,36 +200,36 @@
       "code": "002463",
       "name": "沪电股份",
       "rating": "强推",
-      "status": "open",
-      "exit_reason": null,
+      "status": "closed",
+      "exit_reason": "stop",
       "entry_target": 84.67,
       "fill_date": "2026-11-02",
       "fill_price": 84.67,
       "qty": 100,
-      "ret_pct": 0.0157,
-      "hold_days": 0
+      "ret_pct": -0.0537,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-11-02",
       "code": "300274",
       "name": "阳光电源",
       "rating": "强推",
-      "status": "open",
-      "exit_reason": null,
+      "status": "closed",
+      "exit_reason": "tp1",
       "entry_target": 62.0,
       "fill_date": "2026-11-02",
       "fill_price": 62.0,
       "qty": 200,
-      "ret_pct": 0.1534,
-      "hold_days": 0
+      "ret_pct": 0.1912,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-11-02",
       "code": "002916",
       "name": "深南电路",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "cash_short",
       "entry_target": 224.11,
       "fill_date": null,
       "fill_price": null,
@@ -282,16 +262,16 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "ret_pct": 0.0085,
-      "hold_days": 0
+      "ret_pct": 0.0315,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-10-30",
       "code": "601600",
       "name": "中国铝业",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 8.22,
       "fill_date": null,
       "fill_price": null,
@@ -338,8 +318,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "ret_pct": 0.0295,
-      "hold_days": 2
+      "ret_pct": 0.0399,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-10-29",
@@ -352,8 +332,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0136,
-      "hold_days": 2
+      "ret_pct": 0.0541,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-10-29",
@@ -702,8 +682,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0402,
-      "hold_days": 7
+      "ret_pct": 0.0092,
+      "hold_days": 8
     },
     {
       "trade_date": "2026-10-21",
@@ -933,15 +913,15 @@
   "stats": {
     "orders": 51,
     "filled": 10,
-    "open": 6,
-    "closed": 4,
-    "pending": 2,
-    "expired": 39,
+    "open": 4,
+    "closed": 6,
+    "pending": 0,
+    "expired": 41,
     "fill_rate": 0.1961,
-    "win_rate": 0.0,
+    "win_rate": 0.1667,
     "verdict": [
       "样本不足",
-      "仅 4 笔平仓样本（阈值 10），暂不下结论"
+      "仅 6 笔平仓样本（阈值 10），暂不下结论"
     ]
   }
 }
