@@ -78,5 +78,5 @@ SITE_PUSH_EMAIL = "revrex1@users.noreply.github.com"
 SITE_PUSH_SSH_KEY = os.environ.get(
     "ASTOCKS_PUSH_SSH_KEY", os.path.join(os.path.expanduser("~"), ".ssh", "astocks_github"))
 SITE_PUSH_TIMEOUT = 60          # 单个 git 命令超时（秒）
-SITE_PUSH_PUSH_TIMEOUT = 120    # push/pull 这类联网操作超时（秒）
+SITE_PUSH_PUSH_TIMEOUT = 300    # push/pull 这类联网操作超时（秒）；11-02 实测 120s 曾超时
 SITE_PUSH_STATUS = os.path.join(DATA_DIR, "site_push.json")  # 最近一次同步结果

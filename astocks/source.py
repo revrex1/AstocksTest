@@ -22,6 +22,11 @@ class SourceError(RuntimeError):
     pass
 
 
+# 本机系统代理（127.0.0.1:10808）对该站点连接极不稳定（SSL 握手超时 / 10054），
+# 2026-11-03 实测：直连成功率 > 代理。强制绕过系统代理直连。
+_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
 def _now_stamp() -> str:
     return datetime.now().strftime("%H%M%S")
 
@@ -55,7 +60,7 @@ def _request(path: str, method: str = "GET", body: dict | None = None,
             },
         )
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
+            with _OPENER.open(req, timeout=timeout) as resp:
                 text = resp.read().decode("utf-8", "replace")
             payload = json.loads(text)
             if isinstance(payload, dict) and payload.get("error"):
@@ -106,11 +111,23 @@ def fetch_kline(code: str, trade_date: str | None = None) -> list[dict]:
 # --------------------------------------------------------------------------- 交易日
 
 def market_snapshot_time() -> str:
-    """返回行情快照的时间戳（YYYYMMDDHHMMSS）。节假日会停在上一交易日。"""
-    quotes = fetch_quotes([config.MARKET_CODE])
-    if not quotes:
-        raise SourceError("无法获取市场快照时间")
-    return str(quotes[0].get("time") or "")
+    """返回行情快照的时间戳（YYYYMMDDHHMMSS）。节假日会停在上一交易日。
+
+    交易日判定是 open/close 的第一道门，上游偶发 SSL 握手超时（2026-11-03）
+    不应让整次任务崩溃：这里再做一轮慢速重试（总耗时约 +75s，远小于 30min 限时）。
+    """
+    last: Exception | None = None
+    for attempt in range(5):
+        try:
+            quotes = fetch_quotes([config.MARKET_CODE])
+            if quotes:
+                return str(quotes[0].get("time") or "")
+            last = SourceError("无法获取市场快照时间")
+        except SourceError as exc:
+            last = exc
+        if attempt < 4:
+            time.sleep(5 * (2 ** attempt))  # 5s, 10s, 20s, 40s
+    raise last if last else SourceError("无法获取市场快照时间")
 
 
 def is_trading_day(day: str) -> bool:

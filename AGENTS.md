@@ -173,6 +173,7 @@ python -m astocks site --out dist/index.html   # 重建首页
 6. **当日新仓要按当日收盘价补估值**（`_mark_new`），否则按成本计价、净值少算浮动。
 7. 站点 `data_sector` 的 `limit` 对 `mode=ranking` 不生效，会返回约 110 个行业，调用方自己截断。
 8. 平台 sites 发布不可用（`*.app.workbuddy.host` 公网 NXDOMAIN），分享只能走 GitHub Pages。
+9. **本机系统代理（127.0.0.1:10808）对 coze.site 连接极不稳定**（SSL 握手超时 / 10054）。`source.py` 已强制直连（模块级 `_OPENER = build_opener(ProxyHandler({}))`），别改回 `urllib.request.urlopen`。`market_snapshot_time` 有独立慢速重试（5 轮，5/10/20/40s）。上游整体故障（10060/10061/10054 全灭，如 2026-11-03）只能等恢复后当天补跑 `open`——站点无历史存档，错过当天就永久缺数。计划任务已配失败自动重启（RestartCount 3 × 5min）。
 
 ---
 
