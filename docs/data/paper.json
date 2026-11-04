@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-04 11:57:20",
+  "updated_at": "2026-11-04 15:16:24",
   "capital": 100000.0,
-  "equity": 101695.24,
-  "cash": 61037.24,
-  "open_cost": 39346.14,
-  "open_value": 40658.0,
-  "unrealized": 1311.86,
+  "equity": 102393.14,
+  "cash": 50676.14,
+  "open_cost": 49707.24,
+  "open_value": 51717.0,
+  "unrealized": 2009.76,
   "realized": 383.38,
-  "total_return": 0.017,
-  "exposure": 0.3998,
+  "total_return": 0.0239,
+  "exposure": 0.5051,
   "max_positions": 8,
   "curve": [
     {
@@ -130,9 +130,34 @@
       "ret": 0.0037,
       "cum": 0.017,
       "positions": 4
+    },
+    {
+      "date": "2026-11-04",
+      "cash": 50676.14,
+      "value": 51717.0,
+      "equity": 102393.14,
+      "pnl": 697.9,
+      "ret": 0.0069,
+      "cum": 0.0239,
+      "positions": 5
     }
   ],
   "positions": [
+    {
+      "code": "601899",
+      "name": "紫金矿业",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 26.6,
+      "qty": 400,
+      "last_price": 29.25,
+      "cost": 10645.11,
+      "value": 11700.0,
+      "pnl": 1054.89,
+      "pnl_pct": 0.0991,
+      "stop_price": 25.23,
+      "ret_pct": 0.0991
+    },
     {
       "code": "600066",
       "name": "宇通客车",
@@ -140,13 +165,13 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 30.18,
+      "last_price": 30.21,
       "cost": 8568.83,
-      "value": 9054.0,
-      "pnl": 485.17,
-      "pnl_pct": 0.0566,
+      "value": 9063.0,
+      "pnl": 494.17,
+      "pnl_pct": 0.0577,
       "stop_price": 25.7,
-      "ret_pct": 0.0541
+      "ret_pct": 0.0549
     },
     {
       "code": "600867",
@@ -155,28 +180,28 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 7.97,
+      "last_price": 8.01,
       "cost": 9963.1,
-      "value": 10361.0,
-      "pnl": 397.9,
-      "pnl_pct": 0.0399,
+      "value": 10413.0,
+      "pnl": 449.9,
+      "pnl_pct": 0.0452,
       "stop_price": 7.02,
-      "ret_pct": 0.0399
+      "ret_pct": 0.0452
     },
     {
-      "code": "601899",
-      "name": "紫金矿业",
+      "code": "601600",
+      "name": "中国铝业",
       "rating": "强推",
-      "fill_date": "2026-11-02",
-      "fill_price": 26.6,
-      "qty": 400,
-      "last_price": 27.45,
-      "cost": 10645.11,
-      "value": 10980.0,
-      "pnl": 334.89,
-      "pnl_pct": 0.0315,
-      "stop_price": 25.23,
-      "ret_pct": 0.0315
+      "fill_date": "2026-11-04",
+      "fill_price": 8.63,
+      "qty": 1200,
+      "last_price": 8.83,
+      "cost": 10361.1,
+      "value": 10596.0,
+      "pnl": 234.9,
+      "pnl_pct": 0.0227,
+      "stop_price": 7.94,
+      "ret_pct": 0.0227
     },
     {
       "code": "600938",
@@ -185,16 +210,44 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 34.21,
+      "last_price": 33.15,
       "cost": 10169.1,
-      "value": 10263.0,
-      "pnl": 93.9,
-      "pnl_pct": 0.0092,
-      "stop_price": 31.43,
-      "ret_pct": 0.0092
+      "value": 9945.0,
+      "pnl": -224.1,
+      "pnl_pct": -0.022,
+      "stop_price": 30.48,
+      "ret_pct": -0.022
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-04",
+      "code": "601168",
+      "name": "西部矿业",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 26.85,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-04",
+      "code": "601600",
+      "name": "中国铝业",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 8.63,
+      "fill_date": "2026-11-04",
+      "fill_price": 8.63,
+      "qty": 1200,
+      "ret_pct": 0.0227,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-02",
       "code": "002463",
@@ -262,8 +315,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "ret_pct": 0.0315,
-      "hold_days": 1
+      "ret_pct": 0.0991,
+      "hold_days": 2
     },
     {
       "trade_date": "2026-10-30",
@@ -318,8 +371,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "ret_pct": 0.0399,
-      "hold_days": 3
+      "ret_pct": 0.0452,
+      "hold_days": 4
     },
     {
       "trade_date": "2026-10-29",
@@ -332,8 +385,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0541,
-      "hold_days": 3
+      "ret_pct": 0.0549,
+      "hold_days": 4
     },
     {
       "trade_date": "2026-10-29",
@@ -682,8 +735,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": 0.0092,
-      "hold_days": 8
+      "ret_pct": -0.022,
+      "hold_days": 9
     },
     {
       "trade_date": "2026-10-21",
@@ -911,13 +964,13 @@
     }
   ],
   "stats": {
-    "orders": 51,
-    "filled": 10,
-    "open": 4,
+    "orders": 53,
+    "filled": 11,
+    "open": 5,
     "closed": 6,
-    "pending": 0,
+    "pending": 1,
     "expired": 41,
-    "fill_rate": 0.1961,
+    "fill_rate": 0.2075,
     "win_rate": 0.1667,
     "verdict": [
       "样本不足",
