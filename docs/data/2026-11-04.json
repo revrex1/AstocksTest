@@ -938,8 +938,114 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "半导体",
+      "changePct": 11.41,
+      "mainNetInflowYi": 193.9646,
+      "leader": "江丰电子"
+    },
+    {
+      "name": "电子化学品Ⅱ",
+      "changePct": 10.55,
+      "mainNetInflowYi": 11.9536,
+      "leader": "兴福电子"
+    },
+    {
+      "name": "贵金属",
+      "changePct": 10.06,
+      "mainNetInflowYi": 20.5386,
+      "leader": "晓程科技"
+    },
+    {
+      "name": "元件",
+      "changePct": 9.14,
+      "mainNetInflowYi": 48.7476,
+      "leader": "三环集团"
+    },
+    {
+      "name": "通信设备",
+      "changePct": 8.91,
+      "mainNetInflowYi": 74.5521,
+      "leader": "新易盛"
+    },
+    {
+      "name": "医疗服务",
+      "changePct": 7.83,
+      "mainNetInflowYi": 14.918,
+      "leader": "百奥赛图"
+    },
+    {
+      "name": "玻璃玻纤",
+      "changePct": 7.29,
+      "mainNetInflowYi": 13.5515,
+      "leader": "国际复材"
+    },
+    {
+      "name": "消费电子",
+      "changePct": 7.11,
+      "mainNetInflowYi": 33.7609,
+      "leader": "苏州天脉"
+    }
+  ],
+  "fundflow": {
+    "600938": {
+      "code": "600938",
+      "name": "中国海油",
+      "mainNetInflowYi": -3.8534,
+      "mainNetInflow5dYi": 0.8349,
+      "mainNetInflow10dYi": -0.3396
+    },
+    "601600": {
+      "code": "601600",
+      "name": "中国铝业",
+      "mainNetInflowYi": -0.41,
+      "mainNetInflow5dYi": -0.844,
+      "mainNetInflow10dYi": 0.9978
+    },
+    "601168": {
+      "code": "601168",
+      "name": "西部矿业",
+      "mainNetInflowYi": -2.0821,
+      "mainNetInflow5dYi": -0.0313,
+      "mainNetInflow10dYi": 0.3187
+    },
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": 17.354,
+      "mainNetInflow5dYi": -3.7524,
+      "mainNetInflow10dYi": -8.2051
+    },
+    "600519": {
+      "code": "600519",
+      "name": "贵州茅台",
+      "mainNetInflowYi": -5.9006,
+      "mainNetInflow5dYi": 10.9536,
+      "mainNetInflow10dYi": 18.1199
+    },
+    "002463": {
+      "code": "002463",
+      "name": "沪电股份",
+      "mainNetInflowYi": 6.0104,
+      "mainNetInflow5dYi": -17.1803,
+      "mainNetInflow10dYi": -27.0858
+    },
+    "603799": {
+      "code": "603799",
+      "name": "华友钴业",
+      "mainNetInflowYi": 1.0911,
+      "mainNetInflow5dYi": -2.2205,
+      "mainNetInflow10dYi": -7.7684
+    },
+    "000568": {
+      "code": "000568",
+      "name": "泸州老窖",
+      "mainNetInflowYi": -0.8519,
+      "mainNetInflow5dYi": 4.055,
+      "mainNetInflow10dYi": 4.7482
+    }
+  },
   "paper_holdings": [
     {
       "code": "601600",
