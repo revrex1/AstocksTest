@@ -38,17 +38,17 @@
       "primary_entry": 32.74,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 32.74,
           "secondary": 31.1
         },
         "stop_loss": 32.74,
-        "resistance": 39.23,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -71,28 +71,7 @@
         ],
         "holding_days": 20,
         "holding_tag": "短线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 34.14）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "接近 52 周高位",
-            "condition": "价格距 52 周高位 <10%（约 38.05）减仓一半"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 32.74 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "资产负债率 29% 财务稳健",
           "股息率 2.31% 稳定派息"
@@ -141,24 +120,24 @@
       "mae_d0": -0.045,
       "ret_t1": -0.0175,
       "ret_t3": 0.0054,
-      "ret_t5": 0.0019,
+      "ret_t5": -0.0137,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 92.59,
       "primary_entry": 92.59,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 92.59,
           "secondary": 87.96
         },
         "stop_loss": 92.59,
-        "resistance": 103.0,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -181,28 +160,7 @@
         ],
         "holding_days": 20,
         "holding_tag": "短线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 96.57）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "接近 52 周高位",
-            "condition": "价格距 52 周高位 <10%（约 99.91）减仓一半"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 92.59 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "资产负债率 34% 财务稳健",
           "股息率 2.52% 稳定派息"
@@ -251,24 +209,24 @@
       "mae_d0": -0.0054,
       "ret_t1": -0.0204,
       "ret_t3": -0.0317,
-      "ret_t5": -0.0153,
+      "ret_t5": -0.0193,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 25.52,
       "primary_entry": 25.52,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 25.52,
           "secondary": 24.24
         },
         "stop_loss": 25.52,
-        "resistance": 28.6,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -291,28 +249,7 @@
         ],
         "holding_days": 20,
         "holding_tag": "短线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 26.62）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "接近 52 周高位",
-            "condition": "价格距 52 周高位 <10%（约 27.74）减仓一半"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 25.52 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "归母净利润同比 48% 显著爆发",
           "ROE 10.90% 资本回报优秀",
@@ -367,24 +304,24 @@
       "mae_d0": -0.0131,
       "ret_t1": -0.0122,
       "ret_t3": 0.0047,
-      "ret_t5": -0.0017,
+      "ret_t5": -0.0069,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 49.53,
       "primary_entry": 49.53,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 49.53,
           "secondary": 47.05
         },
         "stop_loss": 49.53,
-        "resistance": 54.38,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -407,28 +344,7 @@
         ],
         "holding_days": 20,
         "holding_tag": "短线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 51.66）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "接近 52 周高位",
-            "condition": "价格距 52 周高位 <10%（约 52.75）减仓一半"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 49.53 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "资产负债率 26% 财务稳健",
           "股息率 1.95% 稳定派息"
@@ -478,24 +394,24 @@
       "mae_d0": -0.0142,
       "ret_t1": -0.0016,
       "ret_t3": 0.0142,
-      "ret_t5": 0.0189,
+      "ret_t5": 0.0079,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 5.86,
       "primary_entry": 5.86,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 5.86,
           "secondary": 5.57
         },
         "stop_loss": 5.86,
-        "resistance": 6.49,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -518,28 +434,7 @@
         ],
         "holding_days": 20,
         "holding_tag": "短线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 6.11）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "接近 52 周高位",
-            "condition": "价格距 52 周高位 <10%（约 6.30）减仓一半"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 5.86 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "营收同比 33.0% 高增长",
           "归母净利润同比 72% 显著爆发",
@@ -599,24 +494,24 @@
       "mae_d0": -0.0108,
       "ret_t1": -0.0195,
       "ret_t3": -0.027,
-      "ret_t5": -0.0303,
+      "ret_t5": -0.06,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 13.7,
       "primary_entry": 14.29,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 14.29,
           "secondary": 13.58
         },
         "stop_loss": 13.7,
-        "resistance": 18.62,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -639,28 +534,7 @@
         ],
         "holding_days": 90,
         "holding_tag": "长线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 14.29）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "首档止盈",
-            "condition": "涨幅达 +8%（约 15.91）减仓 1/3"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 13.7 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "资产负债率 47% 财务稳健",
           "扣非同比 +13.9% 业绩含金量高"
@@ -707,24 +581,24 @@
       "mae_d0": -0.0214,
       "ret_t1": -0.0096,
       "ret_t3": 0.0189,
-      "ret_t5": 0.0321,
+      "ret_t5": 0.0221,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 25.87,
       "primary_entry": 25.87,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 25.87,
           "secondary": 24.58
         },
         "stop_loss": 25.87,
-        "resistance": 28.29,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -747,28 +621,7 @@
         ],
         "holding_days": 20,
         "holding_tag": "短线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 26.99）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "接近 52 周高位",
-            "condition": "价格距 52 周高位 <10%（约 27.44）减仓一半"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 25.87 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "ROE 12.60% 资本回报优秀",
           "股息率 3.24% 高分红"
@@ -826,24 +679,24 @@
       "mae_d0": -0.012,
       "ret_t1": -0.0027,
       "ret_t3": -0.0174,
-      "ret_t5": -0.0414,
+      "ret_t5": -0.0107,
       "hit_tp1": 0,
       "hit_stop": 0,
       "stop_loss": 6.91,
       "primary_entry": 7.21,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-10-21 09:31:41",
+        "captured_at": "2026-11-04 16:56:21",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": "基本面与短线技术买点共振，建议近期分档介入",
-        "total_weight": 60,
+        "rating_reason": null,
+        "total_weight": null,
         "entry": {
           "primary": 7.21,
           "secondary": 6.85
         },
         "stop_loss": 6.91,
-        "resistance": 9.36,
+        "resistance": null,
         "take_profits": [
           {
             "level": 1,
@@ -866,28 +719,7 @@
         ],
         "holding_days": 90,
         "holding_tag": "长线",
-        "signals": [
-          {
-            "type": "buy",
-            "title": "均线多头排列",
-            "condition": "回踩 MA10 不破（参考 7.21）即介入"
-          },
-          {
-            "type": "add",
-            "title": "温和放量",
-            "condition": "量比到 1.5-2.0、换手 2-4% 即加仓"
-          },
-          {
-            "type": "reduce",
-            "title": "首档止盈",
-            "condition": "涨幅达 +8%（约 8.02）减仓 1/3"
-          },
-          {
-            "type": "sell",
-            "title": "跌破止损位",
-            "condition": "放量跌破 6.91 全部清仓"
-          }
-        ],
+        "signals": [],
         "reasons": [
           "归母净利润同比 24% 稳健增长",
           "ROE 12.71% 资本回报优秀",
@@ -981,56 +813,7 @@
       "leader": "富信科技"
     }
   ],
-  "fundflow": {
-    "600011": {
-      "code": "600011",
-      "name": "华能国际",
-      "mainNetInflowYi": 0.15,
-      "mainNetInflow5dYi": 2.23
-    },
-    "600887": {
-      "code": "600887",
-      "name": "伊利股份",
-      "mainNetInflowYi": -0.56,
-      "mainNetInflow5dYi": 1.88
-    },
-    "600938": {
-      "code": "600938",
-      "name": "中国海油",
-      "mainNetInflowYi": -0.82,
-      "mainNetInflow5dYi": 2.82
-    },
-    "600941": {
-      "code": "600941",
-      "name": "中国移动",
-      "mainNetInflowYi": -2.57,
-      "mainNetInflow5dYi": -1.21
-    },
-    "601225": {
-      "code": "601225",
-      "name": "陕西煤业",
-      "mainNetInflowYi": -0.19,
-      "mainNetInflow5dYi": -3.58
-    },
-    "601766": {
-      "code": "601766",
-      "name": "中国中车",
-      "mainNetInflowYi": -0.16,
-      "mainNetInflow5dYi": 0.82
-    },
-    "601898": {
-      "code": "601898",
-      "name": "中煤能源",
-      "mainNetInflowYi": -0.24,
-      "mainNetInflow5dYi": -0.05
-    },
-    "000538": {
-      "code": "000538",
-      "name": "云南白药",
-      "mainNetInflowYi": -0.51,
-      "mainNetInflow5dYi": -0.71
-    }
-  },
+  "fundflow": null,
   "paper_holdings": [
     {
       "code": "601600",
