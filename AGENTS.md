@@ -1,7 +1,7 @@
 # AGENTS.md · 跨智能体协作约定
 
 > 给 Qoder / Codex / Claude / 其他自动化看的仓库说明书。**改本仓库任何东西之前，先读完这一页。**
-> 维护者：rex（revrex1）。最后更新：2026-10-23。
+> 维护者：rex（revrex1）。最后更新：2026-11-04（完成换机迁移与库重建）。
 
 ---
 
@@ -11,8 +11,9 @@
 
 Python 3.13，**纯 stdlib + sqlite，零第三方依赖**。入口 `python -m astocks <cmd>`，代码在 `astocks/`。
 
-本机 Python 绝对路径（定时任务用）：
-`C:\Users\Suma\.workbuddy\binaries\python\versions\3.13.12\python.exe`
+本机 Python 绝对路径（定时任务实际使用，换机后由 `tasks/install_tasks.ps1` 自动探测）：
+`C:\Users\rexyo\.workbuddy\binaries\python\versions\3.13.12\python.exe`
+（同目录 `pythonw.exe` 无窗口，计划任务用这个）
 
 ---
 
@@ -43,7 +44,10 @@ git commit + push origin/master → GitHub Pages
 - 台账：https://revrex1.github.io/AstocksTest/paper.html
 - 机读：https://revrex1.github.io/AstocksTest/data/index.json、`/data/paper.json`、`/data/YYYY-MM-DD.json`
 - Pages 源目录 = `master:/docs`；构建约 50s，CDN `max-age=600`（最坏 10 分钟）
-- **本机 github.com:443 被代理拦截**，push 走 SSH + 仓库部署密钥（`~/.ssh/astocks_github`，仓库级 `core.sshCommand` 已配好）。HTTPS push 不可用，别去改 remote。
+- **推送通道（2026-11-04 迁移后实测）**：本机 `github.com:443` 直连可用（1.7s/200），
+  remote 保持 HTTPS，凭据走 Windows 凭据管理器（Git Credential Manager）。
+  旧机的 SSH 部署密钥方案（`~/.ssh/astocks_github`）在本机不存在、也**不需要**，
+  别再为此去改 remote 或生成新密钥。若某天真被代理拦截，再考虑 `ssh.github.com:443`。
 
 ### 发布白名单（`astocks/sitepush.py`）
 
@@ -155,9 +159,11 @@ python -m astocks minutes --fetch      # 抓最近一周 5 分钟线（腾讯财
 python -m astocks push                 # 手动发布（open/close 已自动调）
 python -m astocks push --dry-run       # 只看会发布哪些文件
 python -m astocks site --out dist/index.html   # 重建首页
+python tasks/restore_from_docs.py      # 库丢失后从 docs/data 重建（详见第 10 节）
 ```
 
 计划任务：工作日 09:31 / 15:05（`tasks/install_tasks.ps1`），日志 `data/logs/YYYY-MM-DD.log`。
+`install_tasks.ps1` 的 Python 路径与仓库根**自动探测**，换机/换目录后直接重跑即可。
 
 ---
 
@@ -194,3 +200,40 @@ python -m astocks site --out dist/index.html   # 重建首页
 - 报告里出现「样本不足」不是故障：平仓样本 < 10 笔不出策略结论是设计。
 - `reports/paper_audit.md` 是规则体检表。数字对不上时先看它 —— 能区分「规则错」还是「仓位约束」。
 - 虚拟盘亏损/空仓不一定是 bug，先看 `paper_audit.md` 的「与账本分歧」是否为 0。
+
+---
+
+## 10. 迁移 / 灾难恢复（2026-11-04 实操过一次）
+
+迁移只拷了工作文件，`data/astocks.db`、`.git`、`~/.ssh` 都不会跟着走（前两个被
+`.gitignore` 排除）。恢复顺序固定，别跳步：
+
+```bash
+# 1) 仓库元信息：远端只有 docs/ 与代码，data/ 不在里面
+git clone https://github.com/revrex1/AstocksTest.git /tmp/astocks_full
+cp -r /tmp/astocks_full/.git . && git reset          # 工作区不动，只接回历史
+git checkout -- docs/data/                            # 恢复 17 个发布 JSON
+
+# 2) 重建「原始记录层」（pick / trading_day / market_context）
+python tasks/restore_from_docs.py --dry-run            # 先看会写什么
+python tasks/restore_from_docs.py
+
+# 3) 走既有自愈链路补齐派生层（outcome / day_stat / 虚拟盘账本）
+python -m astocks bars --force                         # 拉历史日线（42 只约 12s）
+python -m astocks close --recheck                      # 重算全部 outcome + 净值
+python -m astocks paper --start-phase 2026-10-19 --end 2026-11-18 --name 第一期
+
+# 4) 计划任务
+powershell -ExecutionPolicy Bypass -File .\tasks\install_tasks.ps1
+```
+
+**踩过的坑（务必照做）**
+
+1. `docs/data/2026-10-14~16.json` 的 `source` 是 `simulated`（早期回放），
+   `pick.simulated` 必须置 1；漏了会让 live 样本从 90 变 96、胜率从 46.7% 变 44.8%，
+   结论从「中性」翻转成「偏弱」。
+2. `paper --start-phase` 若在期次首日收盘后才跑，`base_date` 会取首日而非前一日，
+   期初基准变 4174.53（应为 **4170.61 @2026-10-16**）。要手工
+   `UPDATE paper_phase SET bench_base=4170.61, bench_date='2026-10-16'`。
+3. 恢复完成的验收标准：`docs/data/index.json` 的 summary 12 项、`paper.json` 的
+   9 个金额字段 + 5 持仓 + 53 笔交易 + 13 天曲线，与恢复前**逐项相等**。

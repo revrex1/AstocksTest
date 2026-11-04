@@ -11,7 +11,7 @@
 ## 快速开始
 
 ```bash
-cd D:/Codebase/Astocks
+cd D:/Code/Workbuddy/revrex/Astocks
 python -m astocks open                 # 开盘记录（非交易日自动跳过）
 python -m astocks close                # 收盘复盘（自动补齐历史 T+N）
 python -m astocks status               # 表格查看
