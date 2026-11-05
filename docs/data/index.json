@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-04 17:06:42",
+  "updated_at": "2026-11-05 09:33:00",
   "source": "live",
   "bench": {
     "code": "sh000300",
     "name": "沪深300"
   },
-  "latest": "2026-11-04",
-  "count": 12,
+  "latest": "2026-11-05",
+  "count": 13,
   "dates": [
     "2026-10-19",
     "2026-10-20",
@@ -19,7 +19,8 @@
     "2026-10-29",
     "2026-10-30",
     "2026-11-02",
-    "2026-11-04"
+    "2026-11-04",
+    "2026-11-05"
   ],
   "summary": {
     "nav": 0.9972,
@@ -191,6 +192,19 @@
       "nav": 0.9972,
       "bench_nav": 0.9854,
       "provisional": false
+    },
+    {
+      "date": "2026-11-05",
+      "picks": 8,
+      "strong": 2,
+      "watch": 6,
+      "win_rate": null,
+      "avg_ret": null,
+      "avg_excess": null,
+      "bench_pct": -0.0058,
+      "nav": null,
+      "bench_nav": null,
+      "provisional": true
     }
   ],
   "layers": {
@@ -579,7 +593,7 @@
           "path_src": "daily",
           "plan_json": "{\"trade_date\": \"2026-10-22\", \"code\": \"600938\", \"name\": \"中国海油\", \"schedule\": [{\"effective\": \"2026-10-22\", \"stop\": 32.48, \"tps\": [37.03, 39.12, 42.61], \"hold\": 20}, {\"effective\": \"2026-10-23\", \"stop\": 31.56, \"tps\": [35.98, 38.01, 41.41], \"hold\": 20}, {\"effective\": \"2026-10-28\", \"stop\": 32.36, \"tps\": [36.89, 38.98, 42.46], \"hold\": 20}, {\"effective\": \"2026-11-02\", \"stop\": 31.43, \"tps\": [36.67, 38.87, 44.54], \"hold\": 45}, {\"effective\": \"2026-11-04\", \"stop\": 30.48, \"tps\": [35.56, 37.7, 44.54], \"hold\": 45}], \"rating\": \"强推\", \"total_score\": 78.4, \"entry_mode\": \"limit\", \"entry_target\": 33.88, \"valid_days\": 3, \"stop_price\": 30.48, \"tp_prices\": [35.56, 37.7, 44.54], \"holding_days\": 45, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"primaryEntry\": 33.88, \"secondaryEntry\": 32.19, \"stopLoss\": 32.48, \"takeProfits\": [{\"level\": 1, \"pct\": 6, \"price\": 37.03, \"reason\": \"首阻力位 +6%\"}, {\"level\": 2, \"pct\": 12, \"price\": 39.12, \"reason\": \"次阻力位 +12%\"}, {\"level\": 3, \"pct\": 22, \"price\": 42.61, \"reason\": \"52周高位 39.23\"}], \"holdingDays\": 20, \"holdingTag\": \"短线\"}}",
           "created_at": "2026-11-04 17:06:12",
-          "updated_at": "2026-11-04 17:06:42",
+          "updated_at": "2026-11-05 09:33:00",
           "execs": [
             {
               "id": 21,
@@ -610,5 +624,8 @@
     ],
     "url": "paper.html",
     "data_url": "data/paper.json"
-  }
+  },
+  "pending": [
+    "2026-11-05"
+  ]
 }
