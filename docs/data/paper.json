@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-05 15:40:45",
+  "updated_at": "2026-11-05 16:56:49",
   "capital": 100000.0,
-  "equity": 101719.14,
-  "cash": 50676.14,
-  "open_cost": 49707.24,
-  "open_value": 51043.0,
-  "unrealized": 1335.76,
-  "realized": 383.38,
-  "total_return": 0.0172,
-  "exposure": 0.5018,
+  "equity": 97234.07,
+  "cash": 30745.07,
+  "open_cost": 64809.39,
+  "open_value": 66489.0,
+  "unrealized": 1679.61,
+  "realized": -4445.54,
+  "total_return": -0.0277,
+  "exposure": 0.6838,
   "max_positions": 8,
   "curve": [
     {
@@ -93,63 +93,63 @@
     },
     {
       "date": "2026-10-29",
-      "cash": 66775.71,
-      "value": 32308.0,
-      "equity": 99083.71,
-      "pnl": -1456.79,
-      "ret": -0.0145,
-      "cum": -0.0092,
-      "positions": 3
+      "cash": 40716.94,
+      "value": 57688.0,
+      "equity": 98404.94,
+      "pnl": -2135.56,
+      "ret": -0.0212,
+      "cum": -0.016,
+      "positions": 4
     },
     {
       "date": "2026-10-30",
-      "cash": 66775.71,
-      "value": 32696.0,
-      "equity": 99471.71,
-      "pnl": 388.0,
-      "ret": 0.0039,
-      "cum": -0.0053,
-      "positions": 3
+      "cash": 40716.94,
+      "value": 55996.0,
+      "equity": 96712.94,
+      "pnl": -1692.0,
+      "ret": -0.0172,
+      "cum": -0.0329,
+      "positions": 4
     },
     {
       "date": "2026-11-02",
-      "cash": 35253.4,
-      "value": 66064.0,
-      "equity": 101317.4,
-      "pnl": 1845.69,
-      "ret": 0.0186,
-      "cum": 0.0132,
-      "positions": 6
+      "cash": 9194.63,
+      "value": 88852.0,
+      "equity": 98046.63,
+      "pnl": 1333.69,
+      "ret": 0.0138,
+      "cum": -0.0195,
+      "positions": 7
     },
     {
       "date": "2026-11-03",
-      "cash": 61037.24,
+      "cash": 56208.32,
       "value": 40658.0,
-      "equity": 101695.24,
-      "pnl": 377.84,
-      "ret": 0.0037,
-      "cum": 0.017,
+      "equity": 96866.32,
+      "pnl": -1180.31,
+      "ret": -0.012,
+      "cum": -0.0313,
       "positions": 4
     },
     {
       "date": "2026-11-04",
-      "cash": 50676.14,
+      "cash": 45847.22,
       "value": 51717.0,
-      "equity": 102393.14,
+      "equity": 97564.22,
       "pnl": 697.9,
-      "ret": 0.0069,
-      "cum": 0.0239,
+      "ret": 0.0072,
+      "cum": -0.0244,
       "positions": 5
     },
     {
       "date": "2026-11-05",
-      "cash": 50676.14,
-      "value": 51043.0,
-      "equity": 101719.14,
-      "pnl": -674.0,
-      "ret": -0.0066,
-      "cum": 0.0172,
-      "positions": 5
+      "cash": 30745.07,
+      "value": 66489.0,
+      "equity": 97234.07,
+      "pnl": -330.15,
+      "ret": -0.0034,
+      "cum": -0.0277,
+      "positions": 6
     }
   ],
   "positions": [
@@ -197,6 +197,21 @@
       "pnl_pct": 0.0482,
       "stop_price": 25.7,
       "ret_pct": 0.0478
+    },
+    {
+      "code": "603259",
+      "name": "药明康德",
+      "rating": "强推",
+      "fill_date": "2026-11-05",
+      "fill_price": 150.97,
+      "qty": 100,
+      "last_price": 154.46,
+      "cost": 15102.15,
+      "value": 15446.0,
+      "pnl": 343.85,
+      "pnl_pct": 0.0228,
+      "stop_price": 142.86,
+      "ret_pct": 0.0228
     },
     {
       "code": "601600",
@@ -249,13 +264,13 @@
       "code": "603259",
       "name": "药明康德",
       "rating": "强推",
-      "status": "expired",
-      "exit_reason": "cash_short",
+      "status": "open",
+      "exit_reason": null,
       "entry_target": 150.97,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
+      "fill_date": "2026-11-05",
+      "fill_price": 150.97,
+      "qty": 100,
+      "ret_pct": 0.0228,
       "hold_days": 0
     },
     {
@@ -330,20 +345,6 @@
     },
     {
       "trade_date": "2026-11-02",
-      "code": "002916",
-      "name": "深南电路",
-      "rating": "强推",
-      "status": "expired",
-      "exit_reason": "cash_short",
-      "entry_target": 224.11,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
-      "hold_days": 0
-    },
-    {
-      "trade_date": "2026-11-02",
       "code": "300308",
       "name": "中际旭创",
       "rating": "强推",
@@ -378,20 +379,6 @@
       "status": "expired",
       "exit_reason": "expired",
       "entry_target": 8.22,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
-      "hold_days": 0
-    },
-    {
-      "trade_date": "2026-10-30",
-      "code": "002916",
-      "name": "深南电路",
-      "rating": "强推",
-      "status": "expired",
-      "exit_reason": "cash_short",
-      "entry_target": 233.97,
       "fill_date": null,
       "fill_price": null,
       "qty": 0,
@@ -445,14 +432,14 @@
       "code": "002916",
       "name": "深南电路",
       "rating": "强推",
-      "status": "expired",
-      "exit_reason": "cash_short",
+      "status": "closed",
+      "exit_reason": "stop",
       "entry_target": 260.52,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
-      "hold_days": 0
+      "fill_date": "2026-10-29",
+      "fill_price": 260.52,
+      "qty": 100,
+      "ret_pct": -0.1853,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-10-29",
@@ -1016,17 +1003,17 @@
     }
   ],
   "stats": {
-    "orders": 56,
-    "filled": 11,
-    "open": 5,
-    "closed": 6,
+    "orders": 54,
+    "filled": 13,
+    "open": 6,
+    "closed": 7,
     "pending": 2,
-    "expired": 43,
-    "fill_rate": 0.1964,
-    "win_rate": 0.1667,
+    "expired": 39,
+    "fill_rate": 0.2407,
+    "win_rate": 0.1429,
     "verdict": [
       "样本不足",
-      "仅 6 笔平仓样本（阈值 10），暂不下结论"
+      "仅 7 笔平仓样本（阈值 10），暂不下结论"
     ]
   }
 }

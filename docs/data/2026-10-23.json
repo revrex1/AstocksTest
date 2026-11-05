@@ -895,6 +895,19 @@
   "fundflow": null,
   "paper_holdings": [
     {
+      "code": "603259",
+      "name": "药明康德",
+      "rating": "强推",
+      "fill_date": "2026-11-05",
+      "fill_price": 150.97,
+      "qty": 100,
+      "last_price": 154.46,
+      "ret_pct": 0.0228,
+      "stop_price": 142.86,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "601600",
       "name": "中国铝业",
       "rating": "强推",
