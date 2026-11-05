@@ -964,8 +964,114 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "光伏设备",
+      "changePct": 6.23,
+      "mainNetInflowYi": 30.06,
+      "leader": "金刚光伏"
+    },
+    {
+      "name": "数字媒体",
+      "changePct": 5.41,
+      "mainNetInflowYi": -1.58,
+      "leader": "芒果超媒"
+    },
+    {
+      "name": "能源金属",
+      "changePct": 5.35,
+      "mainNetInflowYi": 11.04,
+      "leader": "博迁新材"
+    },
+    {
+      "name": "贵金属",
+      "changePct": 5.19,
+      "mainNetInflowYi": 6.13,
+      "leader": "四川黄金"
+    },
+    {
+      "name": "广告营销",
+      "changePct": 5.12,
+      "mainNetInflowYi": 19.25,
+      "leader": "福石控股"
+    },
+    {
+      "name": "影视院线",
+      "changePct": 4.75,
+      "mainNetInflowYi": 9.26,
+      "leader": "慈文传媒"
+    },
+    {
+      "name": "装修装饰Ⅱ",
+      "changePct": 4.47,
+      "mainNetInflowYi": 1.43,
+      "leader": "金螳螂"
+    },
+    {
+      "name": "电池",
+      "changePct": 4.43,
+      "mainNetInflowYi": 25.11,
+      "leader": "鹏辉能源"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": -22.52,
+      "mainNetInflow5dYi": -18.11,
+      "mainNetInflow10dYi": 11.05
+    },
+    "603259": {
+      "code": "603259",
+      "name": "药明康德",
+      "mainNetInflowYi": -0.2,
+      "mainNetInflow5dYi": 5.12,
+      "mainNetInflow10dYi": 3.77
+    },
+    "002463": {
+      "code": "002463",
+      "name": "沪电股份",
+      "mainNetInflowYi": -11.26,
+      "mainNetInflow5dYi": -17.76,
+      "mainNetInflow10dYi": -26.66
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": 7.9,
+      "mainNetInflow5dYi": 36.51,
+      "mainNetInflow10dYi": 15.25
+    },
+    "000792": {
+      "code": "000792",
+      "name": "盐湖股份",
+      "mainNetInflowYi": 1.8,
+      "mainNetInflow5dYi": 0.46,
+      "mainNetInflow10dYi": 0.09
+    },
+    "603799": {
+      "code": "603799",
+      "name": "华友钴业",
+      "mainNetInflowYi": 2.47,
+      "mainNetInflow5dYi": -0.69,
+      "mainNetInflow10dYi": -5.31
+    },
+    "600183": {
+      "code": "600183",
+      "name": "生益科技",
+      "mainNetInflowYi": -7.7,
+      "mainNetInflow5dYi": -10.49,
+      "mainNetInflow10dYi": -29.38
+    },
+    "688235": {
+      "code": "688235",
+      "name": "百济神州",
+      "mainNetInflowYi": 0.91,
+      "mainNetInflow5dYi": -0.67,
+      "mainNetInflow10dYi": -2.89
+    }
+  },
   "paper_holdings": [
     {
       "code": "601600",
