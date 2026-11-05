@@ -329,7 +329,9 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
         f"＋卖出印花税 {config.PAPER_STAMP_BPS / 100:.2f}%＋过户费 {config.PAPER_TRANSFER_BPS / 100:.4f}%",
         f"- 资金：总资金 {config.PAPER_CAPITAL:,.0f} 元，最多同时持 {config.PAPER_MAX_POSITIONS} 只；"
         f"以「手」下单，手数由目标金额反推（每只约 {config.PAPER_CAPITAL * config.PAPER_TARGET_PCT:,.0f} 元），"
-        f"单笔不超过总资金 {config.PAPER_MAX_POSITION_PCT:.0%}",
+        f"单笔不超过当前权益 {config.PAPER_MAX_POSITION_PCT:.0%}"
+        f"（一手即超限且空余资金 ≥ {config.PAPER_IDLE_CASH_PCT:.0%} 时，允许建 1 手，"
+        f"上限权益 {config.PAPER_ONE_LOT_EXEMPT_PCT:.0%}）",
         *phase_lines,
         "",
         "## 策略结论",

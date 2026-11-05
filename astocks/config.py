@@ -46,7 +46,13 @@ PAPER_SIZING = "lots"
 # 贡献基本一致。目标金额 = 总资金 × PAPER_TARGET_PCT。
 PAPER_TARGET_PCT = 0.10
 PAPER_LOTS = 3                  # 兜底手数（极端高价股连 1 手都超上限时不再使用）
-PAPER_MAX_POSITION_PCT = 0.15   # 单笔金额上限占总资金比例，防高价股吃满本金
+# 单笔金额上限 = 当前权益 × 该比例（2026-11-05 起基数由固定 10 万改为当前权益）
+PAPER_MAX_POSITION_PCT = 0.25
+# 高价股一手豁免（2026-11-05 新增）：单价高到「1 手就超上限」时，若空余资金充足
+# （现金/权益 ≥ 下方阈值）且 1 手金额不超过权益的这个比例，仍允许建 1 手。
+# 目的：10 万本金下 300 元以上的强推不再一律无法建仓。
+PAPER_ONE_LOT_EXEMPT_PCT = 0.50
+PAPER_IDLE_CASH_PCT = 0.30      # 现金占权益比例达到此值视为「空余资金较高」
 PAPER_POSITION_PCT = 0.12       # amount 口径：单笔预算 = 总资金 × 12%
 PAPER_SCOPE = ("强推",)         # 虚拟盘只做当日强推，可关注仅记录不交易
 PAPER_ENTRY_VALID_DAYS = 3      # 挂单有效交易日，逾期未触及买点则撤单

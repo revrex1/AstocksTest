@@ -129,15 +129,21 @@ def _lots_for(price: float, capital: float) -> int:
     return max(int(round(target / (price * 100))), 1)
 
 
-def _qty(price: float, cash: float, capital: float | None = None) -> int:
+def _qty(price: float, cash: float, capital: float | None = None,
+         equity: float | None = None) -> int:
     """单笔建仓股数。
 
     `PAPER_SIZING=lots`（默认）：先按固定手数下单，股数统一、看盈亏直观；
-    超过单笔金额上限（`PAPER_MAX_POSITION_PCT`）或现金不够就逐手递减，
+    超过单笔金额上限（`PAPER_MAX_POSITION_PCT` × 当前权益）或现金不够就逐手递减，
     连 1 手都买不起则返回 0（放弃建仓）。
     `PAPER_SIZING=amount`：按金额等权（单笔预算 = 总资金 × `PAPER_POSITION_PCT`）。
+
+    高价股一手豁免：目标手数递减到 0（即 1 手就超上限）时，若空余资金充足
+    （现金/权益 ≥ `PAPER_IDLE_CASH_PCT`）且 1 手金额 ≤ 权益 × `PAPER_ONE_LOT_EXEMPT_PCT`，
+    仍允许建 1 手 —— 否则 10 万本金下 300 元以上的强推永远无法建仓。
     """
     cap_total = float(capital if capital is not None else config.PAPER_CAPITAL)
+    base = float(equity) if equity else cap_total          # 上限的计量基数：当前权益
     unit = price * (1 + (config.PAPER_FEE_BPS + config.PAPER_TRANSFER_BPS) / 1e4)
     if unit <= 0:
         return 0
@@ -145,13 +151,18 @@ def _qty(price: float, cash: float, capital: float | None = None) -> int:
     if getattr(config, "PAPER_SIZING", "lots") == "amount":
         budget = min(cap_total * config.PAPER_POSITION_PCT, cash)
         return max(int(budget // unit // 100) * 100, 0)
-    limit = cap_total * getattr(config, "PAPER_MAX_POSITION_PCT", 0.15)
+    limit = base * getattr(config, "PAPER_MAX_POSITION_PCT", 0.25)
     lots = _lots_for(price, cap_total)
     while lots >= 1:
         qty = lots * 100
         if qty * unit <= min(limit, cash):
             return qty
         lots -= 1
+    one_lot = unit * 100
+    idle_ok = cash >= base * getattr(config, "PAPER_IDLE_CASH_PCT", 0.30)
+    exempt_ok = one_lot <= base * getattr(config, "PAPER_ONE_LOT_EXEMPT_PCT", 0.50)
+    if idle_ok and exempt_ok and one_lot <= cash:
+        return 100
     return 0
 
 
@@ -533,7 +544,7 @@ class _Sim:
         if len(self.open_positions()) >= self.max_pos:
             s["status"], s["exit_reason"] = "expired", "no_slot"
             return
-        qty = _qty(price, self.cash, self.capital)
+        qty = _qty(price, self.cash, self.capital, self.equity())
         if qty < 100:
             s["status"], s["exit_reason"] = "expired", "cash_short"
             return
