@@ -38,17 +38,17 @@
       "primary_entry": 553.48,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "通信设备龙头估值低位，高成长契合科技支持政策",
+        "total_weight": 90,
         "entry": {
           "primary": 553.48,
           "secondary": 533.59
         },
         "stop_loss": 516.75,
-        "resistance": null,
+        "resistance": 774.0,
         "take_profits": [
           {
             "level": 1,
@@ -71,7 +71,28 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 516.75 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 774.00 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "营收同比 60.3% 高增长",
           "归母净利润同比 109% 显著爆发",
@@ -139,17 +160,17 @@
       "primary_entry": 224.11,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "元件行业龙头，业绩高增估值处低位，契合科技主线",
+        "total_weight": 70,
         "entry": {
           "primary": 224.11,
           "secondary": 219.49
         },
         "stop_loss": 212.57,
-        "resistance": null,
+        "resistance": 318.39,
         "take_profits": [
           {
             "level": 1,
@@ -172,7 +193,28 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 212.57 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 318.39 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "营收同比 32.1% 高增长",
           "归母净利润同比 74% 显著爆发",
@@ -238,17 +280,17 @@
       "primary_entry": 33.94,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "油气开采龙头估值合理，契合能源板块结构性机会",
+        "total_weight": 90,
         "entry": {
           "primary": 33.94,
           "secondary": 33.36
         },
         "stop_loss": 31.43,
-        "resistance": null,
+        "resistance": 44.54,
         "take_profits": [
           {
             "level": 1,
@@ -271,7 +313,23 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 31.43 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 44.54 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "ROE 15.64% 资本回报优秀",
           "资产负债率 30% 财务稳健",
@@ -328,17 +386,17 @@
       "primary_entry": 65.09,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "光伏设备龙头，业绩高增估值极低，契合新能源支持政策",
+        "total_weight": 70,
         "entry": {
           "primary": 65.09,
           "secondary": 64.3
         },
         "stop_loss": 59.45,
-        "resistance": null,
+        "resistance": 91.03,
         "take_profits": [
           {
             "level": 1,
@@ -361,7 +419,28 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 59.45 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 91.03 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "归母净利润同比 22% 稳健增长",
           "ROE 31.26% 资本回报优秀",
@@ -422,17 +501,17 @@
       "primary_entry": 84.67,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "强推",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "元件行业高成长标的，业绩亮眼估值低位，契合科技主线",
+        "total_weight": 70,
         "entry": {
           "primary": 84.67,
           "secondary": 82.92
         },
         "stop_loss": 80.31,
-        "resistance": null,
+        "resistance": 120.29,
         "take_profits": [
           {
             "level": 1,
@@ -455,7 +534,28 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 80.31 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 120.29 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "营收同比 42.0% 高增长",
           "归母净利润同比 48% 显著爆发",
@@ -517,17 +617,17 @@
       "primary_entry": 228.85,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "可关注",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "电池龙头估值处历史低位，业绩稳增契合新能源支持政策",
+        "total_weight": 90,
         "entry": {
           "primary": 228.85,
           "secondary": 224.13
         },
         "stop_loss": 217.06,
-        "resistance": null,
+        "resistance": 325.11,
         "take_profits": [
           {
             "level": 1,
@@ -550,7 +650,28 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 217.06 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 325.11 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "营收同比 17.0% 高增长",
           "归母净利润同比 42% 显著爆发",
@@ -615,17 +736,17 @@
       "primary_entry": 83.4,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "可关注",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "元件赛道标的，短期业绩高增，但盈利趋势有下滑风险",
+        "total_weight": 70,
         "entry": {
           "primary": 83.4,
           "secondary": 81.68
         },
         "stop_loss": 79.1,
-        "resistance": null,
+        "resistance": 118.48,
         "take_profits": [
           {
             "level": 1,
@@ -648,7 +769,33 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 79.10 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 118.48 区域减仓 1/2"
+          },
+          {
+            "type": "sell",
+            "title": "扣非净利润为负（业绩注水风险）",
+            "condition": "扣非同比为负但归母高增长，警惕非经常性损益撑业绩"
+          }
+        ],
         "reasons": [
           "营收同比 39.4% 高增长",
           "归母净利润同比 92% 显著爆发",
@@ -717,17 +864,17 @@
       "primary_entry": 45.94,
       "strategy": {
         "source": "snapshot",
-        "captured_at": "2026-11-04 16:56:21",
+        "captured_at": "2026-11-02 09:32:46",
         "snapshot_version": 1,
         "rating": "可关注",
-        "rating_reason": null,
-        "total_weight": null,
+        "rating_reason": "消费电子龙头估值低位，业绩增速良好，ROE短期下滑",
+        "total_weight": 70,
         "entry": {
           "primary": 45.94,
           "secondary": 43.69
         },
         "stop_loss": 41.39,
-        "resistance": null,
+        "resistance": 62.09,
         "take_profits": [
           {
             "level": 1,
@@ -750,7 +897,28 @@
         ],
         "holding_days": 45,
         "holding_tag": "中线",
-        "signals": [],
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 41.39 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 62.09 区域减仓 1/2"
+          }
+        ],
         "reasons": [
           "营收同比 23.6% 高增长",
           "归母净利润同比 24% 稳健增长",
@@ -796,19 +964,6 @@
   "sectors": null,
   "fundflow": null,
   "paper_holdings": [
-    {
-      "code": "000792",
-      "name": "盐湖股份",
-      "rating": "强推",
-      "fill_date": "2026-11-05",
-      "fill_price": 22.9,
-      "qty": 400,
-      "last_price": 23.47,
-      "ret_pct": 0.0243,
-      "stop_price": 20.74,
-      "exit_date": null,
-      "exit_reason": null
-    },
     {
       "code": "601600",
       "name": "中国铝业",
@@ -870,7 +1025,7 @@
       "qty": 300,
       "last_price": 30.98,
       "ret_pct": -0.0861,
-      "stop_price": 28.73,
+      "stop_price": 30.48,
       "exit_date": null,
       "exit_reason": null
     }

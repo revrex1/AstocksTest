@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-05 15:05:14",
+  "updated_at": "2026-11-05 15:33:02",
   "capital": 100000.0,
-  "equity": 101942.05,
-  "cash": 41511.05,
-  "open_cost": 58872.33,
-  "open_value": 60431.0,
-  "unrealized": 1558.67,
+  "equity": 101719.14,
+  "cash": 50676.14,
+  "open_cost": 49707.24,
+  "open_value": 51043.0,
+  "unrealized": 1335.76,
   "realized": 383.38,
-  "total_return": 0.0194,
-  "exposure": 0.5928,
+  "total_return": 0.0172,
+  "exposure": 0.5018,
   "max_positions": 8,
   "curve": [
     {
@@ -143,13 +143,13 @@
     },
     {
       "date": "2026-11-05",
-      "cash": 41511.05,
-      "value": 60431.0,
-      "equity": 101942.05,
-      "pnl": -451.09,
-      "ret": -0.0044,
-      "cum": 0.0194,
-      "positions": 6
+      "cash": 50676.14,
+      "value": 51043.0,
+      "equity": 101719.14,
+      "pnl": -674.0,
+      "ret": -0.0066,
+      "cum": 0.0172,
+      "positions": 5
     }
   ],
   "positions": [
@@ -199,21 +199,6 @@
       "ret_pct": 0.0478
     },
     {
-      "code": "000792",
-      "name": "盐湖股份",
-      "rating": "强推",
-      "fill_date": "2026-11-05",
-      "fill_price": 22.9,
-      "qty": 400,
-      "last_price": 23.47,
-      "cost": 9165.09,
-      "value": 9388.0,
-      "pnl": 222.91,
-      "pnl_pct": 0.0243,
-      "stop_price": 20.74,
-      "ret_pct": 0.0243
-    },
-    {
       "code": "601600",
       "name": "中国铝业",
       "rating": "强推",
@@ -240,23 +225,51 @@
       "value": 9294.0,
       "pnl": -875.1,
       "pnl_pct": -0.0861,
-      "stop_price": 28.73,
+      "stop_price": 30.48,
       "ret_pct": -0.0861
     }
   ],
   "trades": [
     {
       "trade_date": "2026-11-05",
-      "code": "000792",
-      "name": "盐湖股份",
+      "code": "002463",
+      "name": "沪电股份",
       "rating": "强推",
-      "status": "open",
+      "status": "pending",
       "exit_reason": null,
-      "entry_target": 22.9,
-      "fill_date": "2026-11-05",
-      "fill_price": 22.9,
-      "qty": 400,
-      "ret_pct": 0.0243,
+      "entry_target": 78.56,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-05",
+      "code": "603259",
+      "name": "药明康德",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 150.97,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-05",
+      "code": "300308",
+      "name": "中际旭创",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 478.53,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
       "hold_days": 0
     },
     {
@@ -1003,13 +1016,13 @@
     }
   ],
   "stats": {
-    "orders": 54,
-    "filled": 12,
-    "open": 6,
+    "orders": 56,
+    "filled": 11,
+    "open": 5,
     "closed": 6,
-    "pending": 1,
-    "expired": 41,
-    "fill_rate": 0.2222,
+    "pending": 2,
+    "expired": 43,
+    "fill_rate": 0.1964,
     "win_rate": 0.1667,
     "verdict": [
       "样本不足",
