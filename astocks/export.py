@@ -280,7 +280,9 @@ def paper_payload(conn) -> dict:
         "positions": [
             {"code": p["code"], "name": p["name"], "rating": p["rating"],
              "fill_date": p["fill_date"], "fill_price": _r(p["fill_price"], 3),
-             "qty": p["qty"], "last_price": _r(p["last_price"], 3),
+             "qty": p["qty"],
+             "shares": int(p["shares_left"]) if p.get("shares_left") is not None else p["qty"],
+             "last_price": _r(p["last_price"], 3),
              "cost": _r(p["cost"]), "value": _r(p["value"]),
              "pnl": _r(p["pnl"]), "pnl_pct": _r(p["pnl_pct"]),
              "stop_price": _r(p["stop_price"], 3), "ret_pct": _r(p["ret_pct"])}

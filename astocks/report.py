@@ -292,6 +292,24 @@ def _tp_progress(t) -> str:
     return f"{done}/{len(t['tp_prices'])}"
 
 
+def _held_shares(t) -> int:
+    """当前仍持有的股数。`qty` 是建仓总量，减过仓后与成本/市值不再对应。"""
+    left = t.get("shares_left")
+    return int(left) if left is not None else int(t.get("qty") or 0)
+
+
+def _qty_md(t) -> str:
+    left, orig = _held_shares(t), int(t.get("qty") or 0)
+    return f"{left}（原 {orig}）" if orig and left != orig else f"{left}"
+
+
+def _qty_html(t) -> str:
+    left, orig = _held_shares(t), int(t.get("qty") or 0)
+    if orig and left != orig:
+        return f"{left}<span class='muted'>（原 {orig}）</span>"
+    return f"{left}"
+
+
 def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
     sm = paper.summary(conn, view)
     rows = paper.ledger(conn, view)
@@ -370,7 +388,8 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
         f"| 收益中位数 | {_p(sm['med_ret'])} | 抗极值 |",
         f"| 盈亏比 | {_num(sm['profit_factor'], 2)} | 总盈利/总亏损 |",
         f"| 平均盈利 / 平均亏损 | {_p(sm['avg_win'])} / {_p(sm['avg_loss'])} | |",
-        f"| 累计已实现盈亏 | {sm['total_pnl']:,.0f} 元 | 已平仓合计 |",
+        f"| 累计已实现盈亏 | {sm['total_pnl']:,.0f} 元 | 仅已平仓；另持仓期减仓 {acct['realized'] - sm['total_pnl']:+,.0f} 元，"
+        f"账户口径合计 {acct['realized']:,.0f} 元（= 上方总资产 - 浮动） |",
         f"| 平均超额 | {_p(sm['avg_excess'])} | 相对{config.BENCH_NAME}同区间，样本 {sm['excess_n']} |",
         f"| 平均持有 | {_num(sm['avg_hold'], 0)} 个交易日 | |",
         f"| 已实现回撤 | {dd_txt} | 累计盈亏的峰谷差 |",
@@ -399,15 +418,18 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
 
     if acct["positions"]:
         lines += ["## 当前持仓（按最新收盘价估值）", "",
-                  "| 代码 | 名称 | 评级 | 建仓日 | 成交价 | 数量 | 现价 | 成本 | 市值 | 浮盈 | 浮动 | 含费浮动 | 止损 | 止盈进度 | 持有 |",
+                  "| 代码 | 名称 | 评级 | 建仓日 | 成交价 | 数量 | 现价 | 成本 | 市值 | 浮盈 | 浮动 | 整笔收益 | 止损 | 止盈进度 | 持有 |",
                   "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for r in acct["positions"]:
             lines.append(
                 f"| {r['code']} | {r['name']} | {r['rating']} | {r['fill_date']} | {_num(r['fill_price'], 2)} | "
-                f"{r['qty']} | {_num(r['last_price'], 2)} | {r['cost']:,.0f} | {r['value']:,.0f} | "
+                f"{_qty_md(r)} | {_num(r['last_price'], 2)} | {r['cost']:,.0f} | {r['value']:,.0f} | "
                 f"{r['pnl']:+,.0f} | {_p(r['pnl_pct'])} | {_p(r['ret_pct'])} | {_num(r['stop_price'], 2)} | "
                 f"{_tp_progress(r)} | {r['hold_days']}/{r['holding_days']} |")
-        lines.append("")
+        lines += ["",
+                  "> 数量为**当前持有股数**（减过仓的标注原建仓量）；成本/市值/浮盈只按持有股数计。",
+                  "> 浮动 = 剩余市值/剩余成本 − 1；整笔收益 =（已减仓净额 + 剩余市值 − 建仓总成本）/ 建仓总成本。",
+                  ""]
 
     if closed:
         lines += ["## 已平仓", "",
@@ -528,7 +550,7 @@ def paper_page(conn, view: str = "strong") -> str:
     pos_html = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
         f"<td class='l'>{html.escape(r['rating'] or '')}</td><td class='l'>{r['fill_date']}</td>"
-        f"<td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td><td>{_num(r['last_price'], 2)}</td>"
+        f"<td>{_num(r['fill_price'], 2)}</td><td>{_qty_html(r)}</td><td>{_num(r['last_price'], 2)}</td>"
         f"<td>{r['cost']:,.0f}</td><td>{r['value']:,.0f}</td>"
         f"<td class=\"{'up' if r['pnl'] >= 0 else 'down'}\">{r['pnl']:+,.0f}</td>"
         f"{_cell_pct(r['pnl_pct'])}{_cell_pct(r['ret_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
@@ -587,7 +609,7 @@ def paper_page(conn, view: str = "strong") -> str:
 <h2>当前持仓（浮动盈亏）</h2>
 <div class="panel"><table><thead><tr><th class="l">代码</th><th class="l">名称</th><th class="l">评级</th>
 <th class="l">建仓日</th><th>成交价</th><th>数量</th><th>现价</th><th>成本</th><th>市值</th><th>浮盈</th>
-<th>浮动</th><th>含费浮动</th><th>止损</th><th>止盈进度</th><th>持有</th></tr></thead><tbody>{pos_html}</tbody></table></div>
+<th>浮动</th><th>整笔收益</th><th>止损</th><th>止盈进度</th><th>持有</th></tr></thead><tbody>{pos_html}</tbody></table></div>
 
 <h2>逐笔平仓收益</h2>
 <div class="panel">{_svg_trade_bars(closed)}</div>
@@ -896,7 +918,7 @@ def dashboard(conn, source: str = "live") -> str:
     acct = ps["account"]
     p_rows = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
-        f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td>"
+        f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{_qty_html(r)}</td>"
         f"<td>{_num(r['last_price'], 2)}</td><td>{r['cost']:,.0f}</td><td>{r['value']:,.0f}</td>"
         f"<td class=\"{'up' if r['pnl'] >= 0 else 'down'}\">{r['pnl']:+,.0f}</td>"
         f"{_cell_pct(r['pnl_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
@@ -1210,7 +1232,7 @@ def site_page(conn, source: str = "live") -> str:
     ])
     p_rows = "".join(
         f"<tr><td class='l'>{r['code']}</td><td class='l'>{html.escape(r['name'] or '')}</td>"
-        f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{r['qty']}</td>"
+        f"<td class='l'>{r['fill_date']}</td><td>{_num(r['fill_price'], 2)}</td><td>{_qty_html(r)}</td>"
         f"<td>{_num(r['last_price'], 2)}</td><td>{r['cost']:,.0f}</td><td>{r['value']:,.0f}</td>"
         f"<td class=\"{'up' if r['pnl'] >= 0 else 'down'}\">{r['pnl']:+,.0f}</td>"
         f"{_cell_pct(r['pnl_pct'])}<td>{_num(r['stop_price'], 2)}</td>"
