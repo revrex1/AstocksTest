@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-05 09:33:00",
+  "updated_at": "2026-11-05 15:05:14",
   "capital": 100000.0,
-  "equity": 102393.14,
-  "cash": 50676.14,
-  "open_cost": 49707.24,
-  "open_value": 51717.0,
-  "unrealized": 2009.76,
+  "equity": 101942.05,
+  "cash": 41511.05,
+  "open_cost": 58872.33,
+  "open_value": 60431.0,
+  "unrealized": 1558.67,
   "realized": 383.38,
-  "total_return": 0.0239,
-  "exposure": 0.5051,
+  "total_return": 0.0194,
+  "exposure": 0.5928,
   "max_positions": 8,
   "curve": [
     {
@@ -140,6 +140,16 @@
       "ret": 0.0069,
       "cum": 0.0239,
       "positions": 5
+    },
+    {
+      "date": "2026-11-05",
+      "cash": 41511.05,
+      "value": 60431.0,
+      "equity": 101942.05,
+      "pnl": -451.09,
+      "ret": -0.0044,
+      "cum": 0.0194,
+      "positions": 6
     }
   ],
   "positions": [
@@ -150,28 +160,13 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "last_price": 29.25,
+      "last_price": 29.48,
       "cost": 10645.11,
-      "value": 11700.0,
-      "pnl": 1054.89,
-      "pnl_pct": 0.0991,
+      "value": 11792.0,
+      "pnl": 1146.89,
+      "pnl_pct": 0.1077,
       "stop_price": 25.23,
-      "ret_pct": 0.0991
-    },
-    {
-      "code": "600066",
-      "name": "宇通客车",
-      "rating": "强推",
-      "fill_date": "2026-10-29",
-      "fill_price": 28.55,
-      "qty": 400,
-      "last_price": 30.21,
-      "cost": 8568.83,
-      "value": 9063.0,
-      "pnl": 494.17,
-      "pnl_pct": 0.0577,
-      "stop_price": 25.7,
-      "ret_pct": 0.0549
+      "ret_pct": 0.1077
     },
     {
       "code": "600867",
@@ -180,13 +175,43 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 8.01,
+      "last_price": 8.03,
       "cost": 9963.1,
-      "value": 10413.0,
-      "pnl": 449.9,
-      "pnl_pct": 0.0452,
+      "value": 10439.0,
+      "pnl": 475.9,
+      "pnl_pct": 0.0478,
       "stop_price": 7.02,
-      "ret_pct": 0.0452
+      "ret_pct": 0.0478
+    },
+    {
+      "code": "600066",
+      "name": "宇通客车",
+      "rating": "强推",
+      "fill_date": "2026-10-29",
+      "fill_price": 28.55,
+      "qty": 400,
+      "last_price": 29.94,
+      "cost": 8568.83,
+      "value": 8982.0,
+      "pnl": 413.17,
+      "pnl_pct": 0.0482,
+      "stop_price": 25.7,
+      "ret_pct": 0.0478
+    },
+    {
+      "code": "000792",
+      "name": "盐湖股份",
+      "rating": "强推",
+      "fill_date": "2026-11-05",
+      "fill_price": 22.9,
+      "qty": 400,
+      "last_price": 23.47,
+      "cost": 9165.09,
+      "value": 9388.0,
+      "pnl": 222.91,
+      "pnl_pct": 0.0243,
+      "stop_price": 20.74,
+      "ret_pct": 0.0243
     },
     {
       "code": "601600",
@@ -195,13 +220,13 @@
       "fill_date": "2026-11-04",
       "fill_price": 8.63,
       "qty": 1200,
-      "last_price": 8.83,
+      "last_price": 8.78,
       "cost": 10361.1,
-      "value": 10596.0,
-      "pnl": 234.9,
-      "pnl_pct": 0.0227,
+      "value": 10536.0,
+      "pnl": 174.9,
+      "pnl_pct": 0.0169,
       "stop_price": 7.94,
-      "ret_pct": 0.0227
+      "ret_pct": 0.0169
     },
     {
       "code": "600938",
@@ -210,16 +235,30 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 33.15,
+      "last_price": 30.98,
       "cost": 10169.1,
-      "value": 9945.0,
-      "pnl": -224.1,
-      "pnl_pct": -0.022,
-      "stop_price": 30.48,
-      "ret_pct": -0.022
+      "value": 9294.0,
+      "pnl": -875.1,
+      "pnl_pct": -0.0861,
+      "stop_price": 28.73,
+      "ret_pct": -0.0861
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-05",
+      "code": "000792",
+      "name": "盐湖股份",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 22.9,
+      "fill_date": "2026-11-05",
+      "fill_price": 22.9,
+      "qty": 400,
+      "ret_pct": 0.0243,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-04",
       "code": "601168",
@@ -245,8 +284,8 @@
       "fill_date": "2026-11-04",
       "fill_price": 8.63,
       "qty": 1200,
-      "ret_pct": 0.0227,
-      "hold_days": 0
+      "ret_pct": 0.0169,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-11-02",
@@ -315,8 +354,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "ret_pct": 0.0991,
-      "hold_days": 2
+      "ret_pct": 0.1077,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-10-30",
@@ -371,8 +410,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "ret_pct": 0.0452,
-      "hold_days": 4
+      "ret_pct": 0.0478,
+      "hold_days": 5
     },
     {
       "trade_date": "2026-10-29",
@@ -385,8 +424,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0549,
-      "hold_days": 4
+      "ret_pct": 0.0478,
+      "hold_days": 5
     },
     {
       "trade_date": "2026-10-29",
@@ -735,8 +774,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": -0.022,
-      "hold_days": 9
+      "ret_pct": -0.0861,
+      "hold_days": 10
     },
     {
       "trade_date": "2026-10-21",
@@ -964,13 +1003,13 @@
     }
   ],
   "stats": {
-    "orders": 53,
-    "filled": 11,
-    "open": 5,
+    "orders": 54,
+    "filled": 12,
+    "open": 6,
     "closed": 6,
     "pending": 1,
     "expired": 41,
-    "fill_rate": 0.2075,
+    "fill_rate": 0.2222,
     "win_rate": 0.1667,
     "verdict": [
       "样本不足",

@@ -816,14 +816,27 @@
   "fundflow": null,
   "paper_holdings": [
     {
+      "code": "000792",
+      "name": "盐湖股份",
+      "rating": "强推",
+      "fill_date": "2026-11-05",
+      "fill_price": 22.9,
+      "qty": 400,
+      "last_price": 23.47,
+      "ret_pct": 0.0243,
+      "stop_price": 20.74,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "601600",
       "name": "中国铝业",
       "rating": "强推",
       "fill_date": "2026-11-04",
       "fill_price": 8.63,
       "qty": 1200,
-      "last_price": 8.83,
-      "ret_pct": 0.0227,
+      "last_price": 8.78,
+      "ret_pct": 0.0169,
       "stop_price": 7.94,
       "exit_date": null,
       "exit_reason": null
@@ -835,8 +848,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "last_price": 29.25,
-      "ret_pct": 0.0991,
+      "last_price": 29.48,
+      "ret_pct": 0.1077,
       "stop_price": 25.23,
       "exit_date": null,
       "exit_reason": null
@@ -848,8 +861,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 8.01,
-      "ret_pct": 0.0452,
+      "last_price": 8.03,
+      "ret_pct": 0.0478,
       "stop_price": 7.02,
       "exit_date": null,
       "exit_reason": null
@@ -861,8 +874,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 30.21,
-      "ret_pct": 0.0549,
+      "last_price": 29.94,
+      "ret_pct": 0.0478,
       "stop_price": 25.7,
       "exit_date": "2026-11-03",
       "exit_reason": null
@@ -874,9 +887,9 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 33.15,
-      "ret_pct": -0.022,
-      "stop_price": 30.48,
+      "last_price": 30.98,
+      "ret_pct": -0.0861,
+      "stop_price": 28.73,
       "exit_date": null,
       "exit_reason": null
     }
