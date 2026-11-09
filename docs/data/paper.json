@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-09 09:32:41",
+  "updated_at": "2026-11-09 15:05:26",
   "capital": 100000.0,
-  "equity": 96127.07,
-  "cash": 30745.07,
-  "open_cost": 64809.39,
-  "open_value": 65382.0,
-  "unrealized": 572.61,
+  "equity": 96287.96,
+  "cash": 19797.96,
+  "open_cost": 75756.5,
+  "open_value": 76490.0,
+  "unrealized": 733.5,
   "realized": -4445.54,
-  "total_return": -0.0387,
-  "exposure": 0.6802,
+  "total_return": -0.0371,
+  "exposure": 0.7944,
   "max_positions": 8,
   "curve": [
     {
@@ -160,25 +160,19 @@
       "ret": -0.0114,
       "cum": -0.0387,
       "positions": 6
+    },
+    {
+      "date": "2026-11-09",
+      "cash": 19797.96,
+      "value": 76490.0,
+      "equity": 96287.96,
+      "pnl": 160.89,
+      "ret": 0.0017,
+      "cum": -0.0371,
+      "positions": 7
     }
   ],
   "positions": [
-    {
-      "code": "600066",
-      "name": "宇通客车",
-      "rating": "强推",
-      "fill_date": "2026-10-29",
-      "fill_price": 28.55,
-      "qty": 400,
-      "shares": 300,
-      "last_price": 31.1,
-      "cost": 8568.83,
-      "value": 9330.0,
-      "pnl": 761.17,
-      "pnl_pct": 0.0888,
-      "stop_price": 27.32,
-      "ret_pct": 0.0783
-    },
     {
       "code": "601899",
       "name": "紫金矿业",
@@ -187,13 +181,29 @@
       "fill_price": 26.6,
       "qty": 400,
       "shares": 400,
-      "last_price": 28.28,
+      "last_price": 28.41,
       "cost": 10645.11,
-      "value": 11312.0,
-      "pnl": 666.89,
-      "pnl_pct": 0.0626,
+      "value": 11364.0,
+      "pnl": 718.89,
+      "pnl_pct": 0.0675,
       "stop_price": 25.23,
-      "ret_pct": 0.0626
+      "ret_pct": 0.0675
+    },
+    {
+      "code": "600066",
+      "name": "宇通客车",
+      "rating": "强推",
+      "fill_date": "2026-10-29",
+      "fill_price": 28.55,
+      "qty": 400,
+      "shares": 300,
+      "last_price": 30.65,
+      "cost": 8568.83,
+      "value": 9195.0,
+      "pnl": 626.17,
+      "pnl_pct": 0.0731,
+      "stop_price": 28.38,
+      "ret_pct": 0.0665
     },
     {
       "code": "600867",
@@ -203,13 +213,29 @@
       "fill_price": 7.66,
       "qty": 1300,
       "shares": 1300,
-      "last_price": 7.96,
+      "last_price": 7.89,
       "cost": 9963.1,
-      "value": 10348.0,
-      "pnl": 384.9,
-      "pnl_pct": 0.0386,
+      "value": 10257.0,
+      "pnl": 293.9,
+      "pnl_pct": 0.0295,
       "stop_price": 7.02,
-      "ret_pct": 0.0386
+      "ret_pct": 0.0295
+    },
+    {
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "fill_date": "2026-11-09",
+      "fill_price": 54.71,
+      "qty": 200,
+      "shares": 200,
+      "last_price": 54.9,
+      "cost": 10947.11,
+      "value": 10980.0,
+      "pnl": 32.89,
+      "pnl_pct": 0.003,
+      "stop_price": 49.24,
+      "ret_pct": 0.003
     },
     {
       "code": "601600",
@@ -219,13 +245,13 @@
       "fill_price": 8.63,
       "qty": 1200,
       "shares": 1200,
-      "last_price": 8.59,
+      "last_price": 8.62,
       "cost": 10361.1,
-      "value": 10308.0,
-      "pnl": -53.1,
-      "pnl_pct": -0.0051,
+      "value": 10344.0,
+      "pnl": -17.1,
+      "pnl_pct": -0.0017,
       "stop_price": 7.94,
-      "ret_pct": -0.0051
+      "ret_pct": -0.0017
     },
     {
       "code": "603259",
@@ -235,13 +261,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 147.0,
+      "last_price": 150.29,
       "cost": 15102.15,
-      "value": 14700.0,
-      "pnl": -402.15,
-      "pnl_pct": -0.0266,
+      "value": 15029.0,
+      "pnl": -73.15,
+      "pnl_pct": -0.0048,
       "stop_price": 135.51,
-      "ret_pct": -0.0266
+      "ret_pct": -0.0048
     },
     {
       "code": "600938",
@@ -251,16 +277,30 @@
       "fill_price": 33.88,
       "qty": 300,
       "shares": 300,
-      "last_price": 31.28,
+      "last_price": 31.07,
       "cost": 10169.1,
-      "value": 9384.0,
-      "pnl": -785.1,
-      "pnl_pct": -0.0772,
-      "stop_price": 30.48,
-      "ret_pct": -0.0772
+      "value": 9321.0,
+      "pnl": -848.1,
+      "pnl_pct": -0.0834,
+      "stop_price": 28.57,
+      "ret_pct": -0.0834
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-09",
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 54.71,
+      "fill_date": "2026-11-09",
+      "fill_price": 54.71,
+      "qty": 200,
+      "ret_pct": 0.003,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-06",
       "code": "300308",
@@ -300,8 +340,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0266,
-      "hold_days": 1
+      "ret_pct": -0.0048,
+      "hold_days": 2
     },
     {
       "trade_date": "2026-11-05",
@@ -342,8 +382,8 @@
       "fill_date": "2026-11-04",
       "fill_price": 8.63,
       "qty": 1200,
-      "ret_pct": -0.0051,
-      "hold_days": 2
+      "ret_pct": -0.0017,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-11-02",
@@ -398,8 +438,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "ret_pct": 0.0626,
-      "hold_days": 4
+      "ret_pct": 0.0675,
+      "hold_days": 5
     },
     {
       "trade_date": "2026-10-30",
@@ -440,8 +480,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "ret_pct": 0.0386,
-      "hold_days": 6
+      "ret_pct": 0.0295,
+      "hold_days": 7
     },
     {
       "trade_date": "2026-10-29",
@@ -454,8 +494,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "ret_pct": 0.0783,
-      "hold_days": 6
+      "ret_pct": 0.0665,
+      "hold_days": 7
     },
     {
       "trade_date": "2026-10-29",
@@ -804,8 +844,8 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "ret_pct": -0.0772,
-      "hold_days": 11
+      "ret_pct": -0.0834,
+      "hold_days": 12
     },
     {
       "trade_date": "2026-10-21",
@@ -1033,13 +1073,13 @@
     }
   ],
   "stats": {
-    "orders": 55,
-    "filled": 13,
-    "open": 6,
+    "orders": 56,
+    "filled": 14,
+    "open": 7,
     "closed": 7,
     "pending": 1,
     "expired": 41,
-    "fill_rate": 0.2364,
+    "fill_rate": 0.25,
     "win_rate": 0.1429,
     "verdict": [
       "样本不足",

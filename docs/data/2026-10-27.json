@@ -1030,14 +1030,27 @@
   },
   "paper_holdings": [
     {
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "fill_date": "2026-11-09",
+      "fill_price": 54.71,
+      "qty": 200,
+      "last_price": 54.9,
+      "ret_pct": 0.003,
+      "stop_price": 49.24,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "603259",
       "name": "药明康德",
       "rating": "强推",
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "last_price": 147.0,
-      "ret_pct": -0.0266,
+      "last_price": 150.29,
+      "ret_pct": -0.0048,
       "stop_price": 135.51,
       "exit_date": null,
       "exit_reason": null
@@ -1049,8 +1062,8 @@
       "fill_date": "2026-11-04",
       "fill_price": 8.63,
       "qty": 1200,
-      "last_price": 8.59,
-      "ret_pct": -0.0051,
+      "last_price": 8.62,
+      "ret_pct": -0.0017,
       "stop_price": 7.94,
       "exit_date": null,
       "exit_reason": null
@@ -1062,8 +1075,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.6,
       "qty": 400,
-      "last_price": 28.28,
-      "ret_pct": 0.0626,
+      "last_price": 28.41,
+      "ret_pct": 0.0675,
       "stop_price": 25.23,
       "exit_date": null,
       "exit_reason": null
@@ -1075,8 +1088,8 @@
       "fill_date": "2026-10-29",
       "fill_price": 7.66,
       "qty": 1300,
-      "last_price": 7.96,
-      "ret_pct": 0.0386,
+      "last_price": 7.89,
+      "ret_pct": 0.0295,
       "stop_price": 7.02,
       "exit_date": null,
       "exit_reason": null
@@ -1088,9 +1101,9 @@
       "fill_date": "2026-10-29",
       "fill_price": 28.55,
       "qty": 400,
-      "last_price": 31.1,
-      "ret_pct": 0.0783,
-      "stop_price": 27.32,
+      "last_price": 30.65,
+      "ret_pct": 0.0665,
+      "stop_price": 28.38,
       "exit_date": "2026-11-03",
       "exit_reason": null
     },
@@ -1101,9 +1114,9 @@
       "fill_date": "2026-10-22",
       "fill_price": 33.88,
       "qty": 300,
-      "last_price": 31.28,
-      "ret_pct": -0.0772,
-      "stop_price": 30.48,
+      "last_price": 31.07,
+      "ret_pct": -0.0834,
+      "stop_price": 28.57,
       "exit_date": null,
       "exit_reason": null
     }
