@@ -1,0 +1,942 @@
+{
+  "date": "2026-11-10",
+  "source": "live",
+  "bench_name": "沪深300",
+  "bench_pct": 0.0048,
+  "stats": null,
+  "picks": [
+    {
+      "rank": 1,
+      "code": "601899",
+      "name": "紫金矿业",
+      "rating": "强推",
+      "total_score": 70.1,
+      "investability": 97.29,
+      "ref_price": 28.73,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 25.9,
+      "primary_entry": 28.76,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 1,
+        "rating": "强推",
+        "rating_reason": "工业金属龙头估值低位，业绩稳健增长，契合顺周期投资主线",
+        "total_weight": 90,
+        "entry": {
+          "primary": 28.76,
+          "secondary": 27.32
+        },
+        "stop_loss": 25.9,
+        "resistance": 38.83,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 5,
+            "price": 30.2,
+            "reason": "上方首阻力 29.95，本轮按 +5% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 11.3,
+            "price": 32.01,
+            "reason": "上方次阻力 31.77，本轮按 +11.3% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 35,
+            "price": 38.83,
+            "reason": "52 周高位 44.14 距现价过远，本轮按 +35% 设定"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 25.90 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 38.83 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "归母净利润同比 62% 显著爆发",
+          "ROE 33.04% 资本回报优秀",
+          "资产负债率 50% 财务稳健",
+          "PEG 0.16 极低估"
+        ],
+        "risks": [],
+        "tags": [
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "open",
+        "entry_target": 28.73,
+        "valid_days": 3,
+        "stop_price": 25.9,
+        "tp_prices": [
+          30.2,
+          32.01,
+          38.83
+        ],
+        "holding_days": 45,
+        "notes": [
+          "买点 28.76 ≥ 开盘 28.73，按开盘价成交"
+        ]
+      }
+    },
+    {
+      "rank": 2,
+      "code": "300502",
+      "name": "新易盛",
+      "rating": "可关注",
+      "total_score": 71.5,
+      "investability": 95.77,
+      "ref_price": 188.01,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 172.74,
+      "primary_entry": 182.12,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "通信设备龙头业绩高增，估值处于历史低位，契合数字经济主线",
+        "total_weight": 90,
+        "entry": {
+          "primary": 182.12,
+          "secondary": 178.37
+        },
+        "stop_loss": 172.74,
+        "resistance": 258.73,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 12,
+            "price": 210.29,
+            "reason": "上方首阻力 407.33，本轮按 +12% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 30,
+            "price": 244.09,
+            "reason": "上方次阻力 427.10，本轮按 +30% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 37.8,
+            "price": 258.73,
+            "reason": "52 周高位 618.87 距现价过远，本轮按 +37.8% 设定"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 172.74 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 258.73 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "营收同比 187.3% 高增长",
+          "归母净利润同比 236% 显著爆发",
+          "ROE 72.75% 资本回报优秀",
+          "资产负债率 37% 财务稳健",
+          "扣非同比 +37.4% 业绩含金量高",
+          "PEG 0.17 极低估"
+        ],
+        "risks": [],
+        "tags": [
+          {
+            "text": "高增长",
+            "positive": true
+          },
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 182.12,
+        "valid_days": 3,
+        "stop_price": 172.74,
+        "tp_prices": [
+          210.29,
+          244.09,
+          258.73
+        ],
+        "holding_days": 45,
+        "notes": []
+      }
+    },
+    {
+      "rank": 3,
+      "code": "300750",
+      "name": "宁德时代",
+      "rating": "可关注",
+      "total_score": 69.8,
+      "investability": 96.09,
+      "ref_price": 253.11,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 224.69,
+      "primary_entry": 249.65,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "电池龙头业绩稳步增长，估值处于低位，契合新能源政策支持方向",
+        "total_weight": 70,
+        "entry": {
+          "primary": 249.65,
+          "secondary": 237.16
+        },
+        "stop_loss": 224.69,
+        "resistance": 337.03,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 9.03,
+            "price": 272.19,
+            "reason": "上方首阻力 272.19，本轮按 +9.03% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 22.86,
+            "price": 306.71,
+            "reason": "上方次阻力 306.71，本轮按 +22.86% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 35,
+            "price": 337.03,
+            "reason": "52 周高位 467.35 距现价过远，本轮按 +35% 设定"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 224.69 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 337.03 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "营收同比 17.0% 高增长",
+          "归母净利润同比 42% 显著爆发",
+          "ROE 24.91% 资本回报优秀",
+          "扣非同比 +35.0% 业绩含金量高",
+          "PEG 0.32 极低估"
+        ],
+        "risks": [
+          "负债率 64% 偏高"
+        ],
+        "tags": [
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 249.65,
+        "valid_days": 3,
+        "stop_price": 224.69,
+        "tp_prices": [
+          272.19,
+          306.71,
+          337.03
+        ],
+        "holding_days": 45,
+        "notes": []
+      }
+    },
+    {
+      "rank": 5,
+      "code": "000807",
+      "name": "云铝股份",
+      "rating": "可关注",
+      "total_score": 66.1,
+      "investability": 94.65,
+      "ref_price": 25.0,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 22.67,
+      "primary_entry": 24.55,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 2,
+        "rating": "可关注",
+        "rating_reason": "工业金属铝业龙头估值极低，业绩增长稳健，契合顺周期主线",
+        "total_weight": 70,
+        "entry": {
+          "primary": 24.55,
+          "secondary": 24.14
+        },
+        "stop_loss": 22.67,
+        "resistance": 33.26,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 5,
+            "price": 25.87,
+            "reason": "上方首阻力 24.99，本轮按 +5% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 11.3,
+            "price": 27.42,
+            "reason": "上方次阻力 25.50，本轮按 +11.3% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 35,
+            "price": 33.26,
+            "reason": "52 周高位 36.96 距现价过远，本轮按 +35% 设定"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 22.67 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 33.26 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "归母净利润同比 37% 显著爆发",
+          "ROE 19.70% 资本回报优秀",
+          "资产负债率 15% 财务稳健",
+          "PEG 0.15 极低估",
+          "股息率 3.59% 高分红"
+        ],
+        "risks": [],
+        "tags": [
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "高分红",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 24.55,
+        "valid_days": 3,
+        "stop_price": 22.67,
+        "tp_prices": [
+          25.87,
+          27.42,
+          33.26
+        ],
+        "holding_days": 45,
+        "notes": []
+      }
+    },
+    {
+      "rank": 6,
+      "code": "600066",
+      "name": "宇通客车",
+      "rating": "可关注",
+      "total_score": 59.9,
+      "investability": 68.05,
+      "ref_price": 30.43,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 28.18,
+      "primary_entry": 30.43,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "商用车龙头高成长，盈利改善，估值合理",
+        "total_weight": 50,
+        "entry": {
+          "primary": 30.43,
+          "secondary": 28.9
+        },
+        "stop_loss": 28.18,
+        "resistance": 36.5,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 5,
+            "price": 31.95,
+            "reason": "上方首阻力 30.91，本轮按 +5% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 11.3,
+            "price": 33.87,
+            "reason": "上方次阻力 31.33，本轮按 +11.3% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 19.95,
+            "price": 36.5,
+            "reason": "52 周高位 (36.50)"
+          }
+        ],
+        "holding_days": 120,
+        "holding_tag": "长线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 28.18 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 36.50 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "归母净利润同比 35% 显著爆发",
+          "ROE 38.03% 资本回报优秀",
+          "扣非同比 +47.1% 业绩含金量高",
+          "PEG 0.45 极低估",
+          "股息率 6.57% 高分红"
+        ],
+        "risks": [],
+        "tags": [
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "高分红",
+            "positive": true
+          },
+          {
+            "text": "均线多头",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "open",
+        "entry_target": 30.43,
+        "valid_days": 3,
+        "stop_price": 28.18,
+        "tp_prices": [
+          31.95,
+          33.87,
+          36.5
+        ],
+        "holding_days": 120,
+        "notes": [
+          "买点 30.43 ≥ 开盘 30.43，按开盘价成交"
+        ]
+      }
+    },
+    {
+      "rank": 7,
+      "code": "603296",
+      "name": "华勤技术",
+      "rating": "可关注",
+      "total_score": 66.8,
+      "investability": 94.36,
+      "ref_price": 67.66,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 61.3,
+      "primary_entry": 67.31,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "消费电子龙头业绩增长稳健，估值低位，ROE短期有所下滑",
+        "total_weight": 70,
+        "entry": {
+          "primary": 67.31,
+          "secondary": 63.94
+        },
+        "stop_loss": 61.3,
+        "resistance": 91.88,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 5,
+            "price": 70.68,
+            "reason": "上方首阻力 69.24，本轮按 +5% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 11.3,
+            "price": 74.92,
+            "reason": "上方次阻力 72.76，本轮按 +11.3% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 36.5,
+            "price": 91.88,
+            "reason": "52 周高位 (91.88)"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 61.30 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 91.88 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "营收同比 56.0% 高增长",
+          "归母净利润同比 39% 显著爆发",
+          "ROE 16.82% 资本回报优秀",
+          "PEG 0.46 极低估",
+          "股息率 1.77% 稳定派息"
+        ],
+        "risks": [
+          "负债率 77% 偏高"
+        ],
+        "tags": [
+          {
+            "text": "高增长",
+            "positive": true
+          },
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 67.31,
+        "valid_days": 3,
+        "stop_price": 61.3,
+        "tp_prices": [
+          70.68,
+          74.92,
+          91.88
+        ],
+        "holding_days": 45,
+        "notes": []
+      }
+    },
+    {
+      "rank": 8,
+      "code": "000792",
+      "name": "盐湖股份",
+      "rating": "可关注",
+      "total_score": 65.8,
+      "investability": 93.95,
+      "ref_price": 22.8,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "ret_d0": null,
+      "excess_d0": null,
+      "mfe_d0": null,
+      "mae_d0": null,
+      "ret_t1": null,
+      "ret_t3": null,
+      "ret_t5": null,
+      "hit_tp1": null,
+      "hit_stop": null,
+      "stop_loss": 20.26,
+      "primary_entry": 22.51,
+      "strategy": {
+        "source": "snapshot",
+        "captured_at": "2026-11-10 09:34:31",
+        "snapshot_version": 1,
+        "rating": "可关注",
+        "rating_reason": "钾肥龙头估值处历史低位，净利高增，业绩确定性较强",
+        "total_weight": 70,
+        "entry": {
+          "primary": 22.51,
+          "secondary": 21.45
+        },
+        "stop_loss": 20.26,
+        "resistance": 30.39,
+        "take_profits": [
+          {
+            "level": 1,
+            "pct": 5,
+            "price": 23.64,
+            "reason": "上方首阻力 22.61，本轮按 +5% 分批减仓"
+          },
+          {
+            "level": 2,
+            "pct": 11.3,
+            "price": 25.05,
+            "reason": "上方次阻力 23.88，本轮按 +11.3% 分批减仓"
+          },
+          {
+            "level": 3,
+            "pct": 35,
+            "price": 30.39,
+            "reason": "52 周高位 41.60 距现价过远，本轮按 +35% 设定"
+          }
+        ],
+        "holding_days": 45,
+        "holding_tag": "中线",
+        "signals": [
+          {
+            "type": "add",
+            "title": "均线多头排列确立",
+            "condition": "MA5>MA10>MA20>MA60 全部满足时加仓 2 档"
+          },
+          {
+            "type": "add",
+            "title": "MACD 金叉",
+            "condition": "DIF 上穿 DEA 即触发首档建仓"
+          },
+          {
+            "type": "sell",
+            "title": "跌破止损位",
+            "condition": "收盘价 < 20.26 立即清仓"
+          },
+          {
+            "type": "reduce",
+            "title": "到达末档止盈目标",
+            "condition": "价格触及 30.39 区域减仓 1/2"
+          }
+        ],
+        "reasons": [
+          "归母净利润同比 82% 显著爆发",
+          "ROE 22.30% 资本回报优秀",
+          "资产负债率 13% 财务稳健",
+          "PEG 0.12 极低估"
+        ],
+        "risks": [],
+        "tags": [
+          {
+            "text": "高ROE",
+            "positive": true
+          },
+          {
+            "text": "PEG低估",
+            "positive": true
+          },
+          {
+            "text": "底部区间",
+            "positive": true
+          }
+        ]
+      },
+      "execution": {
+        "entry_mode": "limit",
+        "entry_target": 22.51,
+        "valid_days": 3,
+        "stop_price": 20.26,
+        "tp_prices": [
+          23.64,
+          25.05,
+          30.39
+        ],
+        "holding_days": 45,
+        "notes": []
+      }
+    }
+  ],
+  "sectors": null,
+  "fundflow": null,
+  "paper_holdings": [
+    {
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "fill_date": "2026-11-09",
+      "fill_price": 54.71,
+      "qty": 200,
+      "last_price": 54.9,
+      "ret_pct": 0.003,
+      "stop_price": 49.24,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "603259",
+      "name": "药明康德",
+      "rating": "强推",
+      "fill_date": "2026-11-05",
+      "fill_price": 150.97,
+      "qty": 100,
+      "last_price": 150.29,
+      "ret_pct": -0.0048,
+      "stop_price": 135.51,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "601600",
+      "name": "中国铝业",
+      "rating": "强推",
+      "fill_date": "2026-11-04",
+      "fill_price": 8.63,
+      "qty": 1200,
+      "last_price": 8.62,
+      "ret_pct": -0.0017,
+      "stop_price": 7.94,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "601899",
+      "name": "紫金矿业",
+      "rating": "强推",
+      "fill_date": "2026-11-02",
+      "fill_price": 26.6,
+      "qty": 400,
+      "last_price": 28.41,
+      "ret_pct": 0.0675,
+      "stop_price": 25.23,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "600867",
+      "name": "通化东宝",
+      "rating": "强推",
+      "fill_date": "2026-10-29",
+      "fill_price": 7.66,
+      "qty": 1300,
+      "last_price": 7.89,
+      "ret_pct": 0.0295,
+      "stop_price": 7.02,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
+      "code": "600066",
+      "name": "宇通客车",
+      "rating": "强推",
+      "fill_date": "2026-10-29",
+      "fill_price": 28.55,
+      "qty": 400,
+      "last_price": 30.65,
+      "ret_pct": 0.0665,
+      "stop_price": 28.38,
+      "exit_date": "2026-11-03",
+      "exit_reason": null
+    },
+    {
+      "code": "600938",
+      "name": "中国海油",
+      "rating": "强推",
+      "fill_date": "2026-10-22",
+      "fill_price": 33.88,
+      "qty": 300,
+      "last_price": 31.07,
+      "ret_pct": -0.0834,
+      "stop_price": 28.57,
+      "exit_date": null,
+      "exit_reason": null
+    }
+  ],
+  "provisional": true
+}

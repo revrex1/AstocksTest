@@ -904,8 +904,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "医疗服务",
+      "changePct": 0.7451,
+      "mainNetInflowYi": -8.89,
+      "leader": "-"
+    },
+    {
+      "name": "中药Ⅱ",
+      "changePct": -0.4635,
+      "mainNetInflowYi": -6.32,
+      "leader": "-"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": -0.5962,
+      "mainNetInflowYi": -0.87,
+      "leader": "-"
+    },
+    {
+      "name": "油气开采Ⅱ",
+      "changePct": -0.644,
+      "mainNetInflowYi": 0.37,
+      "leader": "-"
+    },
+    {
+      "name": "电网设备",
+      "changePct": -0.7652,
+      "mainNetInflowYi": -31.88,
+      "leader": "-"
+    },
+    {
+      "name": "通信服务",
+      "changePct": -0.851,
+      "mainNetInflowYi": -9.61,
+      "leader": "-"
+    },
+    {
+      "name": "商用车",
+      "changePct": -0.9925,
+      "mainNetInflowYi": -4.45,
+      "leader": "-"
+    },
+    {
+      "name": "非白酒",
+      "changePct": -1.2017,
+      "mainNetInflowYi": -1.06,
+      "leader": "-"
+    }
+  ],
+  "fundflow": {
+    "000538": {
+      "code": "000538",
+      "name": "云南白药",
+      "mainNetInflowYi": 0.08,
+      "mainNetInflow5dYi": null
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": 0.13,
+      "mainNetInflow5dYi": null
+    },
+    "600938": {
+      "code": "600938",
+      "name": "中国海油",
+      "mainNetInflowYi": -1.44,
+      "mainNetInflow5dYi": null
+    },
+    "600406": {
+      "code": "600406",
+      "name": "国电南瑞",
+      "mainNetInflowYi": -0.62,
+      "mainNetInflow5dYi": null
+    },
+    "600519": {
+      "code": "600519",
+      "name": "贵州茅台",
+      "mainNetInflowYi": 0.0,
+      "mainNetInflow5dYi": null
+    },
+    "600600": {
+      "code": "600600",
+      "name": "青岛啤酒",
+      "mainNetInflowYi": -0.34,
+      "mainNetInflow5dYi": null
+    },
+    "600941": {
+      "code": "600941",
+      "name": "中国移动",
+      "mainNetInflowYi": -0.08,
+      "mainNetInflow5dYi": null
+    },
+    "603259": {
+      "code": "603259",
+      "name": "药明康德",
+      "mainNetInflowYi": 2.35,
+      "mainNetInflow5dYi": null
+    }
+  },
   "paper_holdings": [
     {
       "code": "000538",
