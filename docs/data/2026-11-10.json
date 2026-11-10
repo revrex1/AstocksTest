@@ -851,8 +851,100 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "影视院线",
+      "changePct": 6.8,
+      "mainNetInflowYi": 14.72,
+      "leader": "华智数媒"
+    },
+    {
+      "name": "照明设备Ⅱ",
+      "changePct": 4.5,
+      "mainNetInflowYi": 3.85,
+      "leader": "阳光照明"
+    },
+    {
+      "name": "汽车服务",
+      "changePct": 3.82,
+      "mainNetInflowYi": 0.85,
+      "leader": "阿尔特"
+    },
+    {
+      "name": "数字媒体",
+      "changePct": 3.79,
+      "mainNetInflowYi": 8.54,
+      "leader": "掌阅科技"
+    },
+    {
+      "name": "航天装备Ⅱ",
+      "changePct": 3.59,
+      "mainNetInflowYi": 1.13,
+      "leader": "电科蓝天"
+    },
+    {
+      "name": "出版",
+      "changePct": 3.41,
+      "mainNetInflowYi": 4.75,
+      "leader": "龙版传媒"
+    },
+    {
+      "name": "广告营销",
+      "changePct": 3.35,
+      "mainNetInflowYi": 13.71,
+      "leader": "纵横通信"
+    },
+    {
+      "name": "通信设备",
+      "changePct": 2.99,
+      "mainNetInflowYi": 31.7,
+      "leader": "科瑞思"
+    }
+  ],
+  "fundflow": {
+    "601899": {
+      "code": "601899",
+      "name": "紫金矿业",
+      "mainNetInflowYi": -2.45,
+      "mainNetInflow5dYi": 9.97
+    },
+    "300502": {
+      "code": "300502",
+      "name": "新易盛",
+      "mainNetInflowYi": 13.54,
+      "mainNetInflow5dYi": 3.88
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": 3.4,
+      "mainNetInflow5dYi": 15.8
+    },
+    "000807": {
+      "code": "000807",
+      "name": "云铝股份",
+      "mainNetInflowYi": -1.43,
+      "mainNetInflow5dYi": -1.82
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": 0.57,
+      "mainNetInflow5dYi": 1.16
+    },
+    "603296": {
+      "code": "603296",
+      "name": "华勤技术",
+      "mainNetInflowYi": 0.11,
+      "mainNetInflow5dYi": 0.56
+    },
+    "000792": {
+      "code": "000792",
+      "name": "盐湖股份",
+      "mainNetInflowYi": 0.52,
+      "mainNetInflow5dYi": 2.58
+    }
+  },
   "paper_holdings": [
     {
       "code": "000538",
