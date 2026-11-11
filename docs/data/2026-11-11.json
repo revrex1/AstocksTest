@@ -926,8 +926,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "通信设备",
+      "changePct": 9.99,
+      "mainNetInflowYi": 130.2,
+      "leader": "太辰光"
+    },
+    {
+      "name": "元件",
+      "changePct": 7.4,
+      "mainNetInflowYi": 81.33,
+      "leader": "南亚新材"
+    },
+    {
+      "name": "玻璃玻纤",
+      "changePct": 4.58,
+      "mainNetInflowYi": 9.22,
+      "leader": "凯盛新能"
+    },
+    {
+      "name": "半导体",
+      "changePct": 3.6,
+      "mainNetInflowYi": 76.86,
+      "leader": "利扬芯片"
+    },
+    {
+      "name": "非金属材料Ⅱ",
+      "changePct": 3.59,
+      "mainNetInflowYi": 0.24,
+      "leader": "力量钻石"
+    },
+    {
+      "name": "工程咨询服务Ⅱ",
+      "changePct": 2.87,
+      "mainNetInflowYi": 2.54,
+      "leader": "华建集团"
+    },
+    {
+      "name": "电子化学品Ⅱ",
+      "changePct": 2.87,
+      "mainNetInflowYi": 4.21,
+      "leader": "中石科技"
+    },
+    {
+      "name": "自动化设备",
+      "changePct": 2.66,
+      "mainNetInflowYi": 17.32,
+      "leader": "杰普特"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": 29.72,
+      "mainNetInflow5dYi": 3.76
+    },
+    "600276": {
+      "code": "600276",
+      "name": "恒瑞医药",
+      "mainNetInflowYi": -1.02,
+      "mainNetInflow5dYi": -4.73
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": 0.16,
+      "mainNetInflow5dYi": 1.87
+    },
+    "600406": {
+      "code": "600406",
+      "name": "国电南瑞",
+      "mainNetInflowYi": -0.41,
+      "mainNetInflow5dYi": -2.11
+    },
+    "002311": {
+      "code": "002311",
+      "name": "海大集团",
+      "mainNetInflowYi": 0.12,
+      "mainNetInflow5dYi": -0.96
+    },
+    "600600": {
+      "code": "600600",
+      "name": "青岛啤酒",
+      "mainNetInflowYi": -0.27,
+      "mainNetInflow5dYi": -1.18
+    },
+    "600011": {
+      "code": "600011",
+      "name": "华能国际",
+      "mainNetInflowYi": -0.32,
+      "mainNetInflow5dYi": 1.97
+    },
+    "000513": {
+      "code": "000513",
+      "name": "丽珠集团",
+      "mainNetInflowYi": 0.34,
+      "mainNetInflow5dYi": 0.02
+    }
+  },
   "paper_holdings": [
     {
       "code": "600276",
