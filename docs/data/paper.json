@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-12 15:05:45",
+  "updated_at": "2026-11-12 15:21:00",
   "capital": 100000.0,
-  "equity": 95357.85,
+  "equity": 95059.85,
   "cash": 60244.85,
   "open_cost": 35536.35,
-  "open_value": 35113.0,
-  "unrealized": -423.35,
+  "open_value": 34815.0,
+  "unrealized": -721.35,
   "realized": -4218.8,
-  "total_return": -0.0464,
-  "exposure": 0.3682,
+  "total_return": -0.0494,
+  "exposure": 0.3662,
   "max_positions": 8,
   "curve": [
     {
@@ -190,6 +190,16 @@
       "ret": -0.0016,
       "cum": -0.0464,
       "positions": 3
+    },
+    {
+      "date": "2026-11-12",
+      "cash": 60244.85,
+      "value": 34815.0,
+      "equity": 95059.85,
+      "pnl": -298.0,
+      "ret": -0.0031,
+      "cum": -0.0494,
+      "positions": 3
     }
   ],
   "positions": [
@@ -201,13 +211,13 @@
       "fill_price": 26.04,
       "qty": 400,
       "shares": 400,
-      "last_price": 27.86,
+      "last_price": 26.78,
       "cost": 10421.1,
-      "value": 11144.0,
-      "pnl": 722.9,
-      "pnl_pct": 0.0694,
+      "value": 10712.0,
+      "pnl": 290.9,
+      "pnl_pct": 0.0279,
       "stop_price": 25.9,
-      "ret_pct": 0.0694
+      "ret_pct": 0.0279
     },
     {
       "code": "603259",
@@ -217,13 +227,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 148.7,
+      "last_price": 150.34,
       "cost": 15102.15,
-      "value": 14870.0,
-      "pnl": -232.15,
-      "pnl_pct": -0.0154,
+      "value": 15034.0,
+      "pnl": -68.15,
+      "pnl_pct": -0.0045,
       "stop_price": 135.51,
-      "ret_pct": -0.0154
+      "ret_pct": -0.0045
     },
     {
       "code": "600938",
@@ -233,16 +243,44 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 30.33,
+      "last_price": 30.23,
       "cost": 10013.1,
-      "value": 9099.0,
-      "pnl": -914.1,
-      "pnl_pct": -0.0913,
-      "stop_price": 28.57,
-      "ret_pct": -0.0913
+      "value": 9069.0,
+      "pnl": -944.1,
+      "pnl_pct": -0.0943,
+      "stop_price": 27.82,
+      "ret_pct": -0.0943
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-12",
+      "code": "000423",
+      "name": "东阿阿胶",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 46.63,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-12",
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 51.91,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-11",
       "code": "600276",
@@ -352,8 +390,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0154,
-      "hold_days": 4
+      "ret_pct": -0.0045,
+      "hold_days": 5
     },
     {
       "trade_date": "2026-11-05",
@@ -436,8 +474,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.0913,
-      "hold_days": 6
+      "ret_pct": -0.0943,
+      "hold_days": 7
     },
     {
       "trade_date": "2026-11-02",
@@ -464,8 +502,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "ret_pct": 0.0694,
-      "hold_days": 7
+      "ret_pct": 0.0279,
+      "hold_days": 8
     },
     {
       "trade_date": "2026-10-30",
@@ -1141,13 +1179,13 @@
     }
   ],
   "stats": {
-    "orders": 64,
+    "orders": 66,
     "filled": 8,
     "open": 3,
     "closed": 5,
-    "pending": 2,
+    "pending": 4,
     "expired": 54,
-    "fill_rate": 0.125,
+    "fill_rate": 0.1212,
     "win_rate": 0.2,
     "verdict": [
       "样本不足",
