@@ -904,8 +904,142 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "渔业",
+      "changePct": 3.56,
+      "mainNetInflowYi": 0.79,
+      "leader": "好当家"
+    },
+    {
+      "name": "地面兵装Ⅱ",
+      "changePct": 3.48,
+      "mainNetInflowYi": 5.24,
+      "leader": "北方长龙"
+    },
+    {
+      "name": "养殖业",
+      "changePct": 1.11,
+      "mainNetInflowYi": -0.06,
+      "leader": "温氏股份"
+    },
+    {
+      "name": "饮料乳品",
+      "changePct": 0.92,
+      "mainNetInflowYi": 0.86,
+      "leader": "泉阳泉"
+    },
+    {
+      "name": "广告营销",
+      "changePct": 0.82,
+      "mainNetInflowYi": 19.31,
+      "leader": "蓝色光标"
+    },
+    {
+      "name": "国有大型银行Ⅱ",
+      "changePct": 0.81,
+      "mainNetInflowYi": 3.0,
+      "leader": "工商银行"
+    },
+    {
+      "name": "航海装备Ⅱ",
+      "changePct": 0.8,
+      "mainNetInflowYi": 2.5,
+      "leader": "松发股份"
+    },
+    {
+      "name": "半导体",
+      "changePct": 0.55,
+      "mainNetInflowYi": 21.73,
+      "leader": "燧原科技-U"
+    },
+    {
+      "name": "中药Ⅱ",
+      "changePct": -0.08,
+      "mainNetInflowYi": 0.7,
+      "leader": "盘龙药业"
+    },
+    {
+      "name": "医疗服务",
+      "changePct": 0.34,
+      "mainNetInflowYi": 9.51,
+      "leader": "澳洋健康"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 0.47,
+      "mainNetInflowYi": -1.57,
+      "leader": "皇台酒业"
+    },
+    {
+      "name": "通信设备",
+      "changePct": -3.31,
+      "mainNetInflowYi": -67.36,
+      "leader": "锐捷网络"
+    },
+    {
+      "name": "商用车",
+      "changePct": -2.43,
+      "mainNetInflowYi": -3.08,
+      "leader": "中国重汽"
+    },
+    {
+      "name": "油气开采Ⅱ",
+      "changePct": -0.35,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    }
+  ],
+  "fundflow": {
+    "600938": {
+      "code": "600938",
+      "name": "中国海油",
+      "mainNetInflowYi": 0.25,
+      "mainNetInflow5dYi": -5.06
+    },
+    "000538": {
+      "code": "000538",
+      "name": "云南白药",
+      "mainNetInflowYi": 0.09,
+      "mainNetInflow5dYi": 0.56
+    },
+    "000423": {
+      "code": "000423",
+      "name": "东阿阿胶",
+      "mainNetInflowYi": 0.11,
+      "mainNetInflow5dYi": 0.4
+    },
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": -26.27,
+      "mainNetInflow5dYi": 16.12
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.02,
+      "mainNetInflow5dYi": 2.29
+    },
+    "603259": {
+      "code": "603259",
+      "name": "药明康德",
+      "mainNetInflowYi": 1.03,
+      "mainNetInflow5dYi": -7.96
+    },
+    "600887": {
+      "code": "600887",
+      "name": "伊利股份",
+      "mainNetInflowYi": -0.09,
+      "mainNetInflow5dYi": -0.31
+    },
+    "600519": {
+      "code": "600519",
+      "name": "贵州茅台",
+      "mainNetInflowYi": -3.15,
+      "mainNetInflow5dYi": -9.64
+    }
+  },
   "paper_holdings": [
     {
       "code": "603259",
