@@ -9,8 +9,9 @@
     4. 到今天为止处于什么状态？
 
 声明规则（R1~R10，与 README「虚拟交易口径」一致）：
-  R1 挂单：推荐日 D0 起以 primaryEntry 挂限价买单，有效 PAPER_ENTRY_VALID_DAYS 个交易日。
-     · primaryEntry 缺失，或 ≥ D0 开盘价 → 退化为止损前市价单，按 D0 开盘价成交。
+  R1 挂单：推荐日 D0 起以 secondaryEntry（建仓2）挂限价买单，有效 PAPER_ENTRY_VALID_DAYS 个交易日。
+     · secondaryEntry 缺失/无效 → 回落 primaryEntry（建仓1）。
+     · 两者都缺失，或 ≥ D0 开盘价 → 退化为止损前市价单，按 D0 开盘价成交。
   R2 成交价：开盘 ≤ 买点 → 按开盘价（更优价）成交；否则当日最低 ≤ 买点 → 按买点成交。
   R3 逾期：窗口内最低价从未触及买点 → 撤单（expired）。
   R4 破位放弃：成交价 ≤ 止损价 → 买点本身已在破位线下方，放弃建仓（gap_below_stop）。
@@ -75,23 +76,28 @@ def build_rules(pick: dict) -> dict:
     issues: list[str] = []
 
     ref = _val(pick.get("open_price")) or _val(pick.get("ref_price")) or 0.0
-    entry = _val(sug.get("primaryEntry"))
+    prim = _val(sug.get("primaryEntry"))
+    sec = _val(sug.get("secondaryEntry"))
     mode = "limit"
+    src = "secondary"
+    entry = sec
     if entry is None:
-        entry, mode = ref, "open"
-        issues.append("缺 primaryEntry，按开盘价市价成交")
+        entry, src = prim, "primary"
+        issues.append(f"无有效建仓2（secondaryEntry={sug.get('secondaryEntry')}），回落建仓1")
+    if entry is None:
+        entry, mode, src = ref, "open", "open"
+        issues.append("无有效买点，按开盘价市价成交")
     elif ref and entry >= ref:
         issues.append(f"买点 {entry:.2f} ≥ 开盘 {ref:.2f}，退化为开盘价成交")
-        entry, mode = ref, "open"
+        entry, mode, src = ref, "open", "open"
 
     stop = _val(sug.get("stopLoss"))
-    sec = _val(sug.get("secondaryEntry"))
     if stop is None or (entry and stop >= entry):
-        if sec and entry and 0 < sec < entry:
+        if sec and entry and src != "secondary" and 0 < sec < entry:
             issues.append(f"stopLoss={sug.get('stopLoss')} 相对买点无效，改用次买点 {sec:.2f} 作破位线")
             stop = sec
         else:
-            issues.append(f"stopLoss={sug.get('stopLoss')} 相对买点无效且无次买点，无止损")
+            issues.append(f"stopLoss={sug.get('stopLoss')} 相对买点无效且无更低结构位，无止损")
             stop = None
 
     tps = []
@@ -106,7 +112,7 @@ def build_rules(pick: dict) -> dict:
     hold = sug.get("holdingDays")
     hold = int(hold) if isinstance(hold, (int, float)) and hold > 0 else 20
 
-    return {"entry": round(float(entry or 0), 3), "mode": mode, "stop": stop,
+    return {"entry": round(float(entry or 0), 3), "mode": mode, "src": src, "stop": stop,
             "tps": tps, "hold": hold, "issues": issues, "suggestion": sug}
 
 
@@ -436,8 +442,8 @@ def markdown(conn, start: str = "2026-10-19", end: str | None = None) -> str:
 
     L += ["## 六、规则声明（本次审计依据，已落到代码）", "",
           "| 编号 | 规则 | 本次状态 |", "|---|---|---|",
-          "| R1 | 推荐日 D0 起，以 `primaryEntry` 挂限价买单，有效 "
-          f"{config.PAPER_ENTRY_VALID_DAYS} 个交易日 | 沿用 |",
+          "| R1 | 推荐日 D0 起，以 `secondaryEntry`（建仓2）挂限价买单，缺失时回落 `primaryEntry`，有效 "
+          f"{config.PAPER_ENTRY_VALID_DAYS} 个交易日 | 2026-11-12 起 |",
           "| R2 | 开盘 ≤ 买点按开盘价成交；否则当日最低 ≤ 买点按买点成交 | 沿用 |",
           "| R3 | 窗口内未触及买点 → 撤单失效 | 沿用 |",
           "| R4 | 成交价 ≤ 止损价 → 放弃建仓（买点已在破位线下） | 沿用 |",

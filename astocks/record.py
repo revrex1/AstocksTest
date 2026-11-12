@@ -94,6 +94,8 @@ def record_open(trade_date: str | None = None,
             log(f"⚠  {code} 无有效价格（停牌/未开盘），仅存档不计收益")
         elif not (bar.get("open") or q.get("open")):
             log(f"⚠  {code} 开盘价缺失，改用现价 {ref}（口径偏差）")
+        if not isinstance(sug.get("secondaryEntry"), (int, float)) or not sug.get("secondaryEntry"):
+            log(f"⚠  {code} 缺建仓2（secondaryEntry），虚拟盘将回落建仓1 挂单")
         row = {
             "trade_date": trade_date,
             "code": code,

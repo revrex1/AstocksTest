@@ -1,10 +1,13 @@
 """虚拟交易（纸面交易）：严格按推荐附带的 suggestion 买卖策略模拟成交与退出。
 
 规则来源 —— 全部取自 pick.suggestion，不新增任何选股/择时参数：
-  买点   primaryEntry（挂限价单等回踩），有效期 PAPER_ENTRY_VALID_DAYS 个交易日；
-         买点 ≥ 开盘价时按开盘价成交（相当于开盘买）。
+  买点   secondaryEntry（建仓2，挂限价单等更深回踩），有效期 PAPER_ENTRY_VALID_DAYS 个交易日；
+         2026-11-12 起由 primaryEntry 改为 secondaryEntry：建仓1 通常只低于记录价 1%~3%，
+         几乎贴着实时价，成交后立刻被 stopLoss 扫掉；建仓2 更低一档，给出缓冲。
+         缺 secondaryEntry 或无效时回落 primaryEntry；买点 ≥ 开盘价时按开盘价成交（相当于开盘买）。
   止损   stopLoss；若止损位无效（缺失或 ≥ 买点），退化为 secondaryEntry（跌破次买点视为破位），
          两者都不可用时取消止损，仅按到期平仓 —— 修正过程写入 plan_json 的 notes 供审计。
+         买点本身已是 secondaryEntry 时，`sec < entry` 不成立，止损无效即直接取消（无中间档可退）。
   止盈   takeProfits 三档，按档位等分（1/3、1/3、余量）逐档减仓。
   到期   holdingDays 个交易日后剩余仓位按收盘价平仓。
   费用   佣金 万2.5（最低 5 元）+ 过户费 + 卖出印花税 万5。
@@ -35,6 +38,12 @@ def _noop(msg: str) -> None:
 
 # --------------------------------------------------------------------------- 计划
 
+# 买点口径版本。改买点/止损规则时必须变版本号，sync() 据此丢弃旧快照 plan 重新生成，
+# 否则历史快照会把旧口径带回账本，新旧混算。
+ENTRY_POLICY = (f"{getattr(config, 'PAPER_ENTRY_SOURCE', 'secondary')}"
+                f"/{getattr(config, 'PAPER_STOP_WHEN_INVALID', 'cancel')}-v1")
+
+
 def build_plan(pick: dict) -> dict:
     """把 suggestion 转成可执行的交易计划，并对矛盾参数做显式修正。"""
     sug = pick.get("suggestion")
@@ -46,25 +55,44 @@ def build_plan(pick: dict) -> dict:
     sug = sug or {}
 
     ref = pick.get("open_price") or pick.get("ref_price") or 0.0
-    entry = sug.get("primaryEntry")
+    prim = sug.get("primaryEntry")
+    sec = sug.get("secondaryEntry")
     notes: list[str] = []
     mode = "limit"
 
-    if not isinstance(entry, (int, float)) or entry <= 0:
-        entry, mode = ref, "open"
+    # 买点：默认建仓2（secondaryEntry），缺失时回落建仓1
+    prefer_sec = getattr(config, "PAPER_ENTRY_SOURCE", "secondary") == "secondary"
+    entry, entry_src = None, None
+    if prefer_sec and isinstance(sec, (int, float)) and sec > 0:
+        entry, entry_src = float(sec), "secondary"
+    elif isinstance(prim, (int, float)) and prim > 0:
+        entry, entry_src = float(prim), "primary"
+        if prefer_sec:
+            notes.append(f"无有效建仓2（secondaryEntry={sec}），回落建仓1 {entry:.2f} 挂单")
+    elif isinstance(sec, (int, float)) and sec > 0:
+        entry, entry_src = float(sec), "secondary"
+    else:
+        entry, entry_src, mode = ref, "open", "open"
         notes.append(f"无有效买点，按开盘价 {ref:.2f} 成交")
-    elif entry >= ref > 0:
+
+    if entry_src != "open" and entry >= ref > 0:
         notes.append(f"买点 {entry:.2f} ≥ 开盘 {ref:.2f}，按开盘价成交")
-        entry, mode = ref, "open"
+        entry, mode, entry_src = ref, "open", "open"
 
     stop = sug.get("stopLoss")
-    sec = sug.get("secondaryEntry")
     if not isinstance(stop, (int, float)) or stop <= 0 or stop >= entry:
-        if isinstance(sec, (int, float)) and 0 < sec < entry:
+        stop_mode = getattr(config, "PAPER_STOP_WHEN_INVALID", "cancel")
+        if (stop_mode == "ratio" and isinstance(stop, (int, float)) and stop > 0
+                and isinstance(prim, (int, float)) and 0 < stop < prim):
+            # 原止损相对建仓1 的距离比例不变，平移到建仓2 之下
+            stop = round(entry * (stop / prim), 3)
+            notes.append(f"止损 {sug.get('stopLoss')} ≥ 买点 {entry:.2f}，按原比例平移到 {stop:.2f}")
+        elif isinstance(sec, (int, float)) and entry_src != "secondary" and 0 < sec < entry:
             notes.append(f"止损位 {stop} 无效（≥买点），改用次买点 {sec:.2f} 作为破位线")
             stop = float(sec)
         else:
-            notes.append(f"止损位 {stop} 无效且无次买点，取消止损")
+            notes.append(f"止损位 {stop} 无效（≥买点 {entry:.2f}）且无更低结构位，取消止损，"
+                         f"仅靠止盈/到期平仓")
             stop = None
 
     tps: list[float] = []
@@ -88,6 +116,8 @@ def build_plan(pick: dict) -> dict:
         "rating": pick.get("rating"),
         "total_score": pick.get("total_score"),
         "entry_mode": mode,
+        "entry_src": entry_src,
+        "entry_policy": ENTRY_POLICY,
         "entry_target": round(float(entry), 3),
         "valid_days": config.PAPER_ENTRY_VALID_DAYS,
         "stop_price": round(float(stop), 3) if stop else None,
@@ -755,7 +785,16 @@ def create_orders(conn, trade_date: str, ratings: tuple[str, ...] = config.PAPER
         if store.one(conn, "SELECT 1 FROM paper_trade WHERE pick_id=?", (p["id"],)):
             continue
         snap = store.latest_snapshot(conn, p["id"])
-        plan = json.loads(snap["plan_json"]) if snap and snap.get("plan_json") else build_plan(p)
+        plan = None
+        if snap and snap.get("plan_json"):
+            try:
+                cached = json.loads(snap["plan_json"])
+            except json.JSONDecodeError:
+                cached = None
+            # 口径版本不一致（改了买点/止损规则）→ 丢弃旧快照 plan，按当前规则重建
+            if cached and cached.get("entry_policy") == ENTRY_POLICY:
+                plan = cached
+        plan = plan or build_plan(p)
         plan.setdefault("trade_date", p["trade_date"])
         plan.setdefault("code", p["code"])
         plan.setdefault("valid_days", config.PAPER_ENTRY_VALID_DAYS)

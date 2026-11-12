@@ -340,8 +340,8 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
         "",
         f"- 截至：{asof or (max((r['last_date'] or r['trade_date'] for r in rows), default='—'))}",
         f"- 生成时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}",
-        f"- 规则：买点 `primaryEntry` 挂限价单，有效 {config.PAPER_ENTRY_VALID_DAYS} 个交易日；"
-        f"止损 `stopLoss`（无效时退化为次买点）；止盈 `takeProfits` 三档各减 1/3；"
+        f"- 规则：买点 `secondaryEntry`（建仓2，缺失时回落建仓1）挂限价单，有效 {config.PAPER_ENTRY_VALID_DAYS} 个交易日；"
+        f"止损 `stopLoss`（无效时退化为次买点，无更低结构位则取消止损）；止盈 `takeProfits` 三档各减 1/3；"
         f"持满 `holdingDays` 剩余仓位按收盘平仓",
         f"- 费用：佣金 {config.PAPER_FEE_BPS / 100:.3f}%（最低 {config.PAPER_MIN_FEE:.0f} 元）"
         f"＋卖出印花税 {config.PAPER_STAMP_BPS / 100:.2f}%＋过户费 {config.PAPER_TRANSFER_BPS / 100:.4f}%",
@@ -467,7 +467,8 @@ def paper_report(conn, view: str = "strong", asof: str | None = None) -> str:
         lines.append("")
 
     lines += ["## 口径说明", "",
-              "1. 买点只按 `primaryEntry` 挂单，未做二次加仓；买点高于开盘价时按开盘价成交（不会追高）。",
+              "1. 买点按 `secondaryEntry`（建仓2）挂单，缺失时回落 `primaryEntry`；未做二次加仓，"
+              "买点高于开盘价时按开盘价成交（不会追高）。2026-11-12 前按建仓1，历史不可与新口径混比。",
               "2. 持仓日有 5 分钟线时按分钟路径判定止盈止损先后（`path_src=minute`）；"
               "缺分钟线时退化为「同日先止损后止盈」的保守口径（`path_src=daily`）。",
               f"3. 滑点：买入价受限价保护（不高于买点），卖出价按触发价再让 {config.PAPER_SLIP_BPS:.0f}bp。",

@@ -56,6 +56,12 @@ PAPER_IDLE_CASH_PCT = 0.30      # 现金占权益比例达到此值视为「空�
 PAPER_POSITION_PCT = 0.12       # amount 口径：单笔预算 = 总资金 × 12%
 PAPER_SCOPE = ("强推",)         # 虚拟盘只做当日强推，可关注仅记录不交易
 PAPER_ENTRY_VALID_DAYS = 3      # 挂单有效交易日，逾期未触及买点则撤单
+# 买点口径（2026-11-12 起）：secondary = 建仓2（默认），primary = 建仓1
+PAPER_ENTRY_SOURCE = "secondary"
+# 止损落在买点上方（即无效）时怎么办：
+#   "cancel" = 取消止损，只靠止盈/到期平仓（原始行为）
+#   "ratio"  = 按 stopLoss/primaryEntry 的百分比距离平移到新买点，保留同等保护
+PAPER_STOP_WHEN_INVALID = "ratio"
 PAPER_FEE_BPS = 2.5             # 佣金 万2.5
 PAPER_MIN_FEE = 5.0             # 单笔最低佣金
 PAPER_STAMP_BPS = 5.0           # 印花税（仅卖出）万5
