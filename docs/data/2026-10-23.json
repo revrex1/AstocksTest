@@ -895,14 +895,27 @@
   "fundflow": null,
   "paper_holdings": [
     {
+      "code": "688008",
+      "name": "澜起科技",
+      "rating": "强推",
+      "fill_date": "2026-11-13",
+      "fill_price": 153.93,
+      "qty": 100,
+      "last_price": 150.97,
+      "ret_pct": -0.0196,
+      "stop_price": 149.08,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "603259",
       "name": "药明康德",
       "rating": "强推",
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "last_price": 150.34,
-      "ret_pct": -0.0045,
+      "last_price": 146.3,
+      "ret_pct": -0.0313,
       "stop_price": 135.51,
       "exit_date": null,
       "exit_reason": null
@@ -914,8 +927,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "last_price": 30.23,
-      "ret_pct": -0.0943,
+      "last_price": 30.85,
+      "ret_pct": -0.0757,
       "stop_price": 27.82,
       "exit_date": null,
       "exit_reason": null
@@ -927,8 +940,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "last_price": 26.78,
-      "ret_pct": 0.0279,
+      "last_price": 26.38,
+      "ret_pct": 0.0126,
       "stop_price": 25.9,
       "exit_date": null,
       "exit_reason": null

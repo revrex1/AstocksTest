@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-13 09:32:20",
+  "updated_at": "2026-11-13 15:05:22",
   "capital": 100000.0,
-  "equity": 95059.85,
-  "cash": 60244.85,
-  "open_cost": 35536.35,
-  "open_value": 34815.0,
-  "unrealized": -721.35,
+  "equity": 94380.7,
+  "cash": 44846.7,
+  "open_cost": 50934.5,
+  "open_value": 49534.0,
+  "unrealized": -1400.5,
   "realized": -4218.8,
-  "total_return": -0.0494,
-  "exposure": 0.3662,
+  "total_return": -0.0562,
+  "exposure": 0.5248,
   "max_positions": 8,
   "curve": [
     {
@@ -200,6 +200,16 @@
       "ret": -0.0031,
       "cum": -0.0494,
       "positions": 3
+    },
+    {
+      "date": "2026-11-13",
+      "cash": 44846.7,
+      "value": 49534.0,
+      "equity": 94380.7,
+      "pnl": -679.15,
+      "ret": -0.0071,
+      "cum": -0.0562,
+      "positions": 4
     }
   ],
   "positions": [
@@ -211,13 +221,29 @@
       "fill_price": 26.04,
       "qty": 400,
       "shares": 400,
-      "last_price": 26.78,
+      "last_price": 26.38,
       "cost": 10421.1,
-      "value": 10712.0,
-      "pnl": 290.9,
-      "pnl_pct": 0.0279,
+      "value": 10552.0,
+      "pnl": 130.9,
+      "pnl_pct": 0.0126,
       "stop_price": 25.9,
-      "ret_pct": 0.0279
+      "ret_pct": 0.0126
+    },
+    {
+      "code": "688008",
+      "name": "澜起科技",
+      "rating": "强推",
+      "fill_date": "2026-11-13",
+      "fill_price": 153.93,
+      "qty": 100,
+      "shares": 100,
+      "last_price": 150.97,
+      "cost": 15398.15,
+      "value": 15097.0,
+      "pnl": -301.15,
+      "pnl_pct": -0.0196,
+      "stop_price": 149.08,
+      "ret_pct": -0.0196
     },
     {
       "code": "603259",
@@ -227,13 +253,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 150.34,
+      "last_price": 146.3,
       "cost": 15102.15,
-      "value": 15034.0,
-      "pnl": -68.15,
-      "pnl_pct": -0.0045,
+      "value": 14630.0,
+      "pnl": -472.15,
+      "pnl_pct": -0.0313,
       "stop_price": 135.51,
-      "ret_pct": -0.0045
+      "ret_pct": -0.0313
     },
     {
       "code": "600938",
@@ -243,23 +269,79 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 30.23,
+      "last_price": 30.85,
       "cost": 10013.1,
-      "value": 9069.0,
-      "pnl": -944.1,
-      "pnl_pct": -0.0943,
+      "value": 9255.0,
+      "pnl": -758.1,
+      "pnl_pct": -0.0757,
       "stop_price": 27.82,
-      "ret_pct": -0.0943
+      "ret_pct": -0.0757
     }
   ],
   "trades": [
     {
-      "trade_date": "2026-11-12",
+      "trade_date": "2026-11-13",
       "code": "000423",
       "name": "东阿阿胶",
       "rating": "强推",
       "status": "pending",
       "exit_reason": null,
+      "entry_target": 47.15,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-13",
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 52.55,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-13",
+      "code": "688008",
+      "name": "澜起科技",
+      "rating": "强推",
+      "status": "open",
+      "exit_reason": null,
+      "entry_target": 153.93,
+      "fill_date": "2026-11-13",
+      "fill_price": 153.93,
+      "qty": 100,
+      "ret_pct": -0.0196,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-13",
+      "code": "300308",
+      "name": "中际旭创",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 476.47,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-12",
+      "code": "000423",
+      "name": "东阿阿胶",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "superseded",
       "entry_target": 46.63,
       "fill_date": null,
       "fill_price": null,
@@ -272,8 +354,8 @@
       "code": "000538",
       "name": "云南白药",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "superseded",
       "entry_target": 51.91,
       "fill_date": null,
       "fill_price": null,
@@ -286,8 +368,8 @@
       "code": "600276",
       "name": "恒瑞医药",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 46.22,
       "fill_date": null,
       "fill_price": null,
@@ -300,8 +382,8 @@
       "code": "300308",
       "name": "中际旭创",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "superseded",
       "entry_target": 463.62,
       "fill_date": null,
       "fill_price": null,
@@ -390,8 +472,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0045,
-      "hold_days": 5
+      "ret_pct": -0.0313,
+      "hold_days": 6
     },
     {
       "trade_date": "2026-11-05",
@@ -474,8 +556,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.0943,
-      "hold_days": 7
+      "ret_pct": -0.0757,
+      "hold_days": 8
     },
     {
       "trade_date": "2026-11-02",
@@ -502,8 +584,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "ret_pct": 0.0279,
-      "hold_days": 8
+      "ret_pct": 0.0126,
+      "hold_days": 9
     },
     {
       "trade_date": "2026-10-30",
@@ -1179,13 +1261,13 @@
     }
   ],
   "stats": {
-    "orders": 66,
-    "filled": 8,
-    "open": 3,
+    "orders": 70,
+    "filled": 9,
+    "open": 4,
     "closed": 5,
-    "pending": 4,
-    "expired": 54,
-    "fill_rate": 0.1212,
+    "pending": 2,
+    "expired": 59,
+    "fill_rate": 0.1286,
     "win_rate": 0.2,
     "verdict": [
       "样本不足",
