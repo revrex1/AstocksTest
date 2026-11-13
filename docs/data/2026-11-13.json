@@ -934,8 +934,114 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "影视院线",
+      "changePct": 3.5,
+      "mainNetInflowYi": 13.55,
+      "leader": "幸福蓝海"
+    },
+    {
+      "name": "白色家电",
+      "changePct": 2.68,
+      "mainNetInflowYi": 7.41,
+      "leader": "美的集团"
+    },
+    {
+      "name": "养殖业",
+      "changePct": 2.35,
+      "mainNetInflowYi": 1.6,
+      "leader": "天邦食品"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 1.81,
+      "mainNetInflowYi": 8.72,
+      "leader": "古井贡酒"
+    },
+    {
+      "name": "城商行Ⅱ",
+      "changePct": 1.76,
+      "mainNetInflowYi": -0.06,
+      "leader": "青岛银行"
+    },
+    {
+      "name": "饲料",
+      "changePct": 1.7,
+      "mainNetInflowYi": -0.84,
+      "leader": "金新农"
+    },
+    {
+      "name": "国有大型银行Ⅱ",
+      "changePct": 1.56,
+      "mainNetInflowYi": 6.06,
+      "leader": "中国银行"
+    },
+    {
+      "name": "农商行Ⅱ",
+      "changePct": 1.3,
+      "mainNetInflowYi": 0.01,
+      "leader": "沪农商行"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": -30.0,
+      "mainNetInflow5dYi": 12.36,
+      "mainNetInflow10dYi": -18.63
+    },
+    "688008": {
+      "code": "688008",
+      "name": "澜起科技",
+      "mainNetInflowYi": -4.64,
+      "mainNetInflow5dYi": 1.93,
+      "mainNetInflow10dYi": -13.12
+    },
+    "000538": {
+      "code": "000538",
+      "name": "云南白药",
+      "mainNetInflowYi": 0.3,
+      "mainNetInflow5dYi": 0.78,
+      "mainNetInflow10dYi": -0.75
+    },
+    "000423": {
+      "code": "000423",
+      "name": "东阿阿胶",
+      "mainNetInflowYi": 0.25,
+      "mainNetInflow5dYi": 0.25,
+      "mainNetInflow10dYi": 0.57
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": -3.46,
+      "mainNetInflow5dYi": -24.75,
+      "mainNetInflow10dYi": 19.99
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.01,
+      "mainNetInflow5dYi": 2.02,
+      "mainNetInflow10dYi": 1.61
+    },
+    "000333": {
+      "code": "000333",
+      "name": "美的集团",
+      "mainNetInflowYi": 2.82,
+      "mainNetInflow5dYi": 1.98,
+      "mainNetInflow10dYi": -1.98
+    },
+    "600887": {
+      "code": "600887",
+      "name": "伊利股份",
+      "mainNetInflowYi": 3.45,
+      "mainNetInflow5dYi": 1.93,
+      "mainNetInflow10dYi": -5.33
+    }
+  },
   "paper_holdings": [
     {
       "code": "688008",
