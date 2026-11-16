@@ -733,7 +733,7 @@
       "excess_d0": 0.0417,
       "mfe_d0": 0.0374,
       "mae_d0": -0.0039,
-      "ret_t1": null,
+      "ret_t1": 0.0592,
       "ret_t3": null,
       "ret_t5": null,
       "hit_tp1": 0,
