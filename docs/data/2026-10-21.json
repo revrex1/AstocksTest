@@ -1039,9 +1039,9 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "last_price": 150.97,
-      "ret_pct": -0.0196,
-      "stop_price": 149.08,
+      "last_price": 146.16,
+      "ret_pct": -0.0508,
+      "stop_price": 134.23,
       "exit_date": null,
       "exit_reason": null
     },
@@ -1052,8 +1052,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "last_price": 146.3,
-      "ret_pct": -0.0313,
+      "last_price": 144.92,
+      "ret_pct": -0.0404,
       "stop_price": 135.51,
       "exit_date": null,
       "exit_reason": null
@@ -1065,8 +1065,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "last_price": 30.85,
-      "ret_pct": -0.0757,
+      "last_price": 30.72,
+      "ret_pct": -0.0796,
       "stop_price": 27.82,
       "exit_date": null,
       "exit_reason": null
@@ -1078,9 +1078,9 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "last_price": 26.38,
-      "ret_pct": 0.0126,
-      "stop_price": 25.9,
+      "last_price": 25.61,
+      "ret_pct": -0.017,
+      "stop_price": 23.93,
       "exit_date": null,
       "exit_reason": null
     }
