@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-16 15:22:38",
+  "updated_at": "2026-11-16 15:26:12",
   "capital": 100000.0,
-  "equity": 93414.7,
-  "cash": 44846.7,
-  "open_cost": 50934.5,
-  "open_value": 48568.0,
-  "unrealized": -2366.5,
+  "equity": 91066.59,
+  "cash": 2101.59,
+  "open_cost": 93679.61,
+  "open_value": 88965.0,
+  "unrealized": -4714.61,
   "realized": -4218.8,
-  "total_return": -0.0659,
-  "exposure": 0.5199,
+  "total_return": -0.0893,
+  "exposure": 0.9769,
   "max_positions": 8,
   "curve": [
     {
@@ -213,13 +213,13 @@
     },
     {
       "date": "2026-11-16",
-      "cash": 44846.7,
-      "value": 48568.0,
-      "equity": 93414.7,
-      "pnl": -966.0,
-      "ret": -0.0102,
-      "cum": -0.0659,
-      "positions": 4
+      "cash": 2101.59,
+      "value": 88965.0,
+      "equity": 91066.59,
+      "pnl": -3314.11,
+      "ret": -0.0351,
+      "cum": -0.0893,
+      "positions": 5
     }
   ],
   "positions": [
@@ -231,13 +231,13 @@
       "fill_price": 26.04,
       "qty": 400,
       "shares": 400,
-      "last_price": 25.61,
+      "last_price": 25.96,
       "cost": 10421.1,
-      "value": 10244.0,
-      "pnl": -177.1,
-      "pnl_pct": -0.017,
+      "value": 10384.0,
+      "pnl": -37.1,
+      "pnl_pct": -0.0036,
       "stop_price": 23.93,
-      "ret_pct": -0.017
+      "ret_pct": -0.0036
     },
     {
       "code": "603259",
@@ -247,29 +247,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 144.92,
+      "last_price": 144.41,
       "cost": 15102.15,
-      "value": 14492.0,
-      "pnl": -610.15,
-      "pnl_pct": -0.0404,
+      "value": 14441.0,
+      "pnl": -661.15,
+      "pnl_pct": -0.0438,
       "stop_price": 135.51,
-      "ret_pct": -0.0404
-    },
-    {
-      "code": "688008",
-      "name": "澜起科技",
-      "rating": "强推",
-      "fill_date": "2026-11-13",
-      "fill_price": 153.93,
-      "qty": 100,
-      "shares": 100,
-      "last_price": 146.16,
-      "cost": 15398.15,
-      "value": 14616.0,
-      "pnl": -782.15,
-      "pnl_pct": -0.0508,
-      "stop_price": 134.23,
-      "ret_pct": -0.0508
+      "ret_pct": -0.0438
     },
     {
       "code": "600938",
@@ -279,13 +263,45 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 30.72,
+      "last_price": 30.88,
       "cost": 10013.1,
-      "value": 9216.0,
-      "pnl": -797.1,
-      "pnl_pct": -0.0796,
+      "value": 9264.0,
+      "pnl": -749.1,
+      "pnl_pct": -0.0748,
       "stop_price": 27.82,
-      "ret_pct": -0.0796
+      "ret_pct": -0.0748
+    },
+    {
+      "code": "688008",
+      "name": "澜起科技",
+      "rating": "强推",
+      "fill_date": "2026-11-13",
+      "fill_price": 153.93,
+      "qty": 100,
+      "shares": 100,
+      "last_price": 139.79,
+      "cost": 15398.15,
+      "value": 13979.0,
+      "pnl": -1419.15,
+      "pnl_pct": -0.0922,
+      "stop_price": 134.23,
+      "ret_pct": -0.0922
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "rating": "强推",
+      "fill_date": "2026-11-16",
+      "fill_price": 427.34,
+      "qty": 100,
+      "shares": 100,
+      "last_price": 408.97,
+      "cost": 42745.11,
+      "value": 40897.0,
+      "pnl": -1848.11,
+      "pnl_pct": -0.0432,
+      "stop_price": 418.79,
+      "ret_pct": -0.0432
     }
   ],
   "trades": [
@@ -336,13 +352,13 @@
       "code": "300308",
       "name": "中际旭创",
       "rating": "强推",
-      "status": "pending",
+      "status": "open",
       "exit_reason": null,
       "entry_target": 427.34,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
+      "fill_date": "2026-11-16",
+      "fill_price": 427.34,
+      "qty": 100,
+      "ret_pct": -0.0432,
       "hold_days": 0
     },
     {
@@ -384,7 +400,7 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "ret_pct": -0.0508,
+      "ret_pct": -0.0922,
       "hold_days": 1
     },
     {
@@ -538,7 +554,7 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0404,
+      "ret_pct": -0.0438,
       "hold_days": 7
     },
     {
@@ -622,7 +638,7 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.0796,
+      "ret_pct": -0.0748,
       "hold_days": 9
     },
     {
@@ -650,7 +666,7 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "ret_pct": -0.017,
+      "ret_pct": -0.0036,
       "hold_days": 10
     },
     {
@@ -1328,12 +1344,12 @@
   ],
   "stats": {
     "orders": 74,
-    "filled": 9,
-    "open": 4,
+    "filled": 10,
+    "open": 5,
     "closed": 5,
-    "pending": 6,
+    "pending": 5,
     "expired": 59,
-    "fill_rate": 0.1216,
+    "fill_rate": 0.1351,
     "win_rate": 0.2,
     "verdict": [
       "样本不足",
