@@ -107,6 +107,21 @@ def cmd_close(args) -> int:
         if codes:
             _log(f"🔄 收盘前强制刷新当日日线：{len(codes)} 只")
             bars.backfill(conn0, codes, log=_log, force=True)
+            # 站点 kline 收盘后仍可能不含当日 K 线（2026-11-16 实测），此时强制刷新
+            # 只覆盖到上一交易日，当日那根 09:32 快照不会被替换 → 用行情快照兜底。
+            # 另外历史推荐股的当日行常常整根缺失（不在本次刷新名单里 + TTL 挡住重拉），
+            # 会让 T+1 样本凭空少几条，这里一并补齐。
+            today = datetime.now().strftime("%Y-%m-%d")
+            if datetime.now().hour >= config.PAPER_CLOSE_HOUR and (day0 or today) == today:
+                extra = [r["code"] for r in store.rows(
+                    conn0,
+                    """SELECT DISTINCT p.code FROM pick p
+                         LEFT JOIN bar b ON b.code = p.code AND b.trade_date = ?
+                        WHERE b.code IS NULL""",
+                    (today,))]
+                if extra:
+                    _log(f"🧩 补当日日线：{len(extra)} 只历史推荐股本地缺 {today} 这根")
+                bars.fill_from_quotes(conn0, list(dict.fromkeys(codes + extra)), log=_log)
             left = bars.stale_codes(conn0)
             if left:
                 _log(f"⚠  仍有 {len(left)} 只日线停留在盘中快照（上游未更新或拉取失败）："

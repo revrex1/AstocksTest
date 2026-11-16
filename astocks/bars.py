@@ -79,6 +79,59 @@ def refresh(conn, code: str, log: Logger = _noop, force: bool = False) -> int:
     return n
 
 
+def fill_from_quotes(conn, codes: Iterable[str], day: str | None = None,
+                     log: Logger = _noop) -> int:
+    """收盘后用行情快照补齐「当日那根」日线。
+
+    背景（2026-11-16 实测）：站点 `/api/kline` 收盘后常常仍未包含当日 K 线，
+    收盘强制刷新只能覆盖到上一交易日，当日那根 09:32 写入的盘中快照原封不动，
+    复盘于是拿早盘价当收盘价（300308 报 -0.81%、实际 -12.28%）。
+    `/api/quote` 在收盘后给的是当日真值 OHLC，用它覆盖当日 bar 即可自愈。
+
+    只在收盘后调用（`close` 内已按 PAPER_CLOSE_HOUR 判断）；成交量按手→股 ×100，
+    指数不给 volume（保留原值），避免口径互相污染。
+    """
+    codes = [c for c in dict.fromkeys(codes) if c]
+    day = day or _today()
+    if not codes:
+        return 0
+    try:
+        quotes = source.fetch_quotes(codes)
+    except Exception as exc:  # noqa: BLE001
+        log(f"⚠  行情接口不可用，当日日线无法补齐：{exc}")
+        return 0
+    now = store.now_iso()
+    done = 0
+    for q in quotes or []:
+        sec = q.get("secCode") or ""
+        raw = q.get("code") or ""
+        code = raw if raw in codes else sec
+        if code not in codes:
+            continue
+        close = q.get("price")
+        if not close:
+            continue
+        stamp = str(q.get("time") or "")
+        if stamp[:8] and stamp[:8] != day.replace("-", ""):
+            continue  # 停牌/未更新：行情还停在上一交易日，别写成当日 bar
+        is_index = not (isinstance(code, str) and len(code) == 6)
+        vol = None if is_index else (q.get("volume") * 100 if q.get("volume") else None)
+        conn.execute(
+            """INSERT INTO bar (code, trade_date, open, high, low, close, volume, source, updated_at)
+               VALUES (?,?,?,?,?,?,?,?,?)
+               ON CONFLICT(code, trade_date) DO UPDATE SET
+                 open=excluded.open, high=excluded.high, low=excluded.low, close=excluded.close,
+                 volume=COALESCE(excluded.volume, bar.volume),
+                 source=excluded.source, updated_at=excluded.updated_at""",
+            (code, day, q.get("open"), q.get("high"), q.get("low"), close, vol, "quote", now),
+        )
+        done += 1
+    conn.commit()
+    if done:
+        log(f"🩹 用行情快照补齐当日日线 {done} 只（站点 kline 缺 {day}）")
+    return done
+
+
 def stale_codes(conn, before: str | None = None) -> list[str]:
     """仍停留在盘中快照的代码。
 
