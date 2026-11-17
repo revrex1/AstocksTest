@@ -976,8 +976,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "小家电",
+      "changePct": 3.94,
+      "mainNetInflowYi": 0.53,
+      "leader": "北鼎股份"
+    },
+    {
+      "name": "贵金属",
+      "changePct": 2.09,
+      "mainNetInflowYi": 4.73,
+      "leader": "山金国际"
+    },
+    {
+      "name": "电子化学品Ⅱ",
+      "changePct": 1.93,
+      "mainNetInflowYi": 2.5,
+      "leader": "西陇科学"
+    },
+    {
+      "name": "黑色家电",
+      "changePct": 1.51,
+      "mainNetInflowYi": 0.16,
+      "leader": "海信视像"
+    },
+    {
+      "name": "酒店餐饮",
+      "changePct": 1.38,
+      "mainNetInflowYi": 0.5,
+      "leader": "首旅酒店"
+    },
+    {
+      "name": "渔业",
+      "changePct": 1.14,
+      "mainNetInflowYi": 1.27,
+      "leader": "好当家"
+    },
+    {
+      "name": "白色家电",
+      "changePct": 1.08,
+      "mainNetInflowYi": 3.29,
+      "leader": "长虹美菱"
+    },
+    {
+      "name": "非白酒",
+      "changePct": 0.97,
+      "mainNetInflowYi": -0.14,
+      "leader": "重庆啤酒"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": -8.24,
+      "mainNetInflow5dYi": -35.84
+    },
+    "601899": {
+      "code": "601899",
+      "name": "紫金矿业",
+      "mainNetInflowYi": -1.4,
+      "mainNetInflow5dYi": -15.44
+    },
+    "002463": {
+      "code": "002463",
+      "name": "沪电股份",
+      "mainNetInflowYi": -0.4,
+      "mainNetInflow5dYi": -1.57
+    },
+    "688008": {
+      "code": "688008",
+      "name": "澜起科技",
+      "mainNetInflowYi": -7.89,
+      "mainNetInflow5dYi": -7.94
+    },
+    "603501": {
+      "code": "603501",
+      "name": "豪威集团",
+      "mainNetInflowYi": 1.13,
+      "mainNetInflow5dYi": -0.05
+    },
+    "300274": {
+      "code": "300274",
+      "name": "阳光电源",
+      "mainNetInflowYi": -1.61,
+      "mainNetInflow5dYi": -1.68
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.08,
+      "mainNetInflow5dYi": 0.3
+    },
+    "600183": {
+      "code": "600183",
+      "name": "生益科技",
+      "mainNetInflowYi": -2.11,
+      "mainNetInflow5dYi": -20.68
+    }
+  },
   "paper_holdings": [
     {
       "code": "300308",
