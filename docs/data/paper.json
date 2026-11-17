@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-17 09:32:26",
+  "updated_at": "2026-11-17 15:05:51",
   "capital": 100000.0,
-  "equity": 91066.59,
+  "equity": 88458.59,
   "cash": 2101.59,
   "open_cost": 93679.61,
-  "open_value": 88965.0,
-  "unrealized": -4714.61,
+  "open_value": 86357.0,
+  "unrealized": -7322.61,
   "realized": -4218.8,
-  "total_return": -0.0893,
-  "exposure": 0.9769,
+  "total_return": -0.1154,
+  "exposure": 0.9762,
   "max_positions": 8,
   "curve": [
     {
@@ -220,6 +220,16 @@
       "ret": -0.0351,
       "cum": -0.0893,
       "positions": 5
+    },
+    {
+      "date": "2026-11-17",
+      "cash": 2101.59,
+      "value": 86357.0,
+      "equity": 88458.59,
+      "pnl": -2608.0,
+      "ret": -0.0286,
+      "cum": -0.1154,
+      "positions": 5
     }
   ],
   "positions": [
@@ -231,13 +241,13 @@
       "fill_price": 26.04,
       "qty": 400,
       "shares": 400,
-      "last_price": 25.96,
+      "last_price": 25.99,
       "cost": 10421.1,
-      "value": 10384.0,
-      "pnl": -37.1,
-      "pnl_pct": -0.0036,
+      "value": 10396.0,
+      "pnl": -25.1,
+      "pnl_pct": -0.0024,
       "stop_price": 23.93,
-      "ret_pct": -0.0036
+      "ret_pct": -0.0024
     },
     {
       "code": "603259",
@@ -247,13 +257,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 144.41,
+      "last_price": 146.07,
       "cost": 15102.15,
-      "value": 14441.0,
-      "pnl": -661.15,
-      "pnl_pct": -0.0438,
+      "value": 14607.0,
+      "pnl": -495.15,
+      "pnl_pct": -0.0328,
       "stop_price": 135.51,
-      "ret_pct": -0.0438
+      "ret_pct": -0.0328
     },
     {
       "code": "600938",
@@ -263,13 +273,13 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 30.88,
+      "last_price": 29.98,
       "cost": 10013.1,
-      "value": 9264.0,
-      "pnl": -749.1,
-      "pnl_pct": -0.0748,
+      "value": 8994.0,
+      "pnl": -1019.1,
+      "pnl_pct": -0.1018,
       "stop_price": 27.82,
-      "ret_pct": -0.0748
+      "ret_pct": -0.1018
     },
     {
       "code": "688008",
@@ -279,13 +289,13 @@
       "fill_price": 153.93,
       "qty": 100,
       "shares": 100,
-      "last_price": 139.79,
+      "last_price": 130.6,
       "cost": 15398.15,
-      "value": 13979.0,
-      "pnl": -1419.15,
-      "pnl_pct": -0.0922,
-      "stop_price": 134.23,
-      "ret_pct": -0.0922
+      "value": 13060.0,
+      "pnl": -2338.15,
+      "pnl_pct": -0.1518,
+      "stop_price": 126.41,
+      "ret_pct": -0.1518
     },
     {
       "code": "300308",
@@ -295,16 +305,44 @@
       "fill_price": 427.34,
       "qty": 100,
       "shares": 100,
-      "last_price": 408.97,
+      "last_price": 393.0,
       "cost": 42745.11,
-      "value": 40897.0,
-      "pnl": -1848.11,
-      "pnl_pct": -0.0432,
-      "stop_price": 418.79,
-      "ret_pct": -0.0432
+      "value": 39300.0,
+      "pnl": -3445.11,
+      "pnl_pct": -0.0806,
+      "stop_price": 363.68,
+      "ret_pct": -0.0806
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-17",
+      "code": "603501",
+      "name": "豪威集团",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 82.71,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-17",
+      "code": "002463",
+      "name": "沪电股份",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 70.51,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-16",
       "code": "601168",
@@ -324,8 +362,8 @@
       "code": "603501",
       "name": "豪威集团",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "superseded",
       "entry_target": 81.52,
       "fill_date": null,
       "fill_price": null,
@@ -358,16 +396,16 @@
       "fill_date": "2026-11-16",
       "fill_price": 427.34,
       "qty": 100,
-      "ret_pct": -0.0432,
-      "hold_days": 0
+      "ret_pct": -0.0806,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-11-13",
       "code": "000423",
       "name": "东阿阿胶",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 47.15,
       "fill_date": null,
       "fill_price": null,
@@ -380,8 +418,8 @@
       "code": "000538",
       "name": "云南白药",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 52.55,
       "fill_date": null,
       "fill_price": null,
@@ -400,8 +438,8 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "ret_pct": -0.0922,
-      "hold_days": 1
+      "ret_pct": -0.1518,
+      "hold_days": 2
     },
     {
       "trade_date": "2026-11-13",
@@ -554,8 +592,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0438,
-      "hold_days": 7
+      "ret_pct": -0.0328,
+      "hold_days": 8
     },
     {
       "trade_date": "2026-11-05",
@@ -638,8 +676,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.0748,
-      "hold_days": 9
+      "ret_pct": -0.1018,
+      "hold_days": 10
     },
     {
       "trade_date": "2026-11-02",
@@ -666,8 +704,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "ret_pct": -0.0036,
-      "hold_days": 10
+      "ret_pct": -0.0024,
+      "hold_days": 11
     },
     {
       "trade_date": "2026-10-30",
@@ -1343,13 +1381,13 @@
     }
   ],
   "stats": {
-    "orders": 74,
+    "orders": 76,
     "filled": 10,
     "open": 5,
     "closed": 5,
-    "pending": 5,
-    "expired": 59,
-    "fill_rate": 0.1351,
+    "pending": 4,
+    "expired": 62,
+    "fill_rate": 0.1316,
     "win_rate": 0.2,
     "verdict": [
       "样本不足",
