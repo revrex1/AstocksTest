@@ -969,8 +969,88 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "电池",
+      "changePct": -0.31,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "农化制品",
+      "changePct": -0.57,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "工业金属",
+      "changePct": -2.39,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "半导体",
+      "changePct": -5.87,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    },
+    {
+      "name": "通信设备",
+      "changePct": -8.2,
+      "mainNetInflowYi": null,
+      "leader": "-"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": -18.83,
+      "mainNetInflow5dYi": null
+    },
+    "601899": {
+      "code": "601899",
+      "name": "紫金矿业",
+      "mainNetInflowYi": -0.56,
+      "mainNetInflow5dYi": null
+    },
+    "688008": {
+      "code": "688008",
+      "name": "澜起科技",
+      "mainNetInflowYi": -5.26,
+      "mainNetInflow5dYi": null
+    },
+    "601600": {
+      "code": "601600",
+      "name": "中国铝业",
+      "mainNetInflowYi": 0.02,
+      "mainNetInflow5dYi": null
+    },
+    "603501": {
+      "code": "603501",
+      "name": "豪威集团",
+      "mainNetInflowYi": -0.36,
+      "mainNetInflow5dYi": null
+    },
+    "601168": {
+      "code": "601168",
+      "name": "西部矿业",
+      "mainNetInflowYi": -0.79,
+      "mainNetInflow5dYi": null
+    },
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": 4.32,
+      "mainNetInflow5dYi": null
+    },
+    "000792": {
+      "code": "000792",
+      "name": "盐湖股份",
+      "mainNetInflowYi": -0.7,
+      "mainNetInflow5dYi": null
+    }
+  },
   "paper_holdings": [
     {
       "code": "300308",
