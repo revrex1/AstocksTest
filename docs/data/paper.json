@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-18 09:34:29",
+  "updated_at": "2026-11-18 15:05:21",
   "capital": 100000.0,
-  "equity": 88458.59,
+  "equity": 88888.59,
   "cash": 2101.59,
   "open_cost": 93679.61,
-  "open_value": 86357.0,
-  "unrealized": -7322.61,
+  "open_value": 86787.0,
+  "unrealized": -6892.61,
   "realized": -4218.8,
-  "total_return": -0.1154,
-  "exposure": 0.9762,
+  "total_return": -0.1111,
+  "exposure": 0.9764,
   "max_positions": 8,
   "curve": [
     {
@@ -230,6 +230,16 @@
       "ret": -0.0286,
       "cum": -0.1154,
       "positions": 5
+    },
+    {
+      "date": "2026-11-18",
+      "cash": 2101.59,
+      "value": 86787.0,
+      "equity": 88888.59,
+      "pnl": 430.0,
+      "ret": 0.0049,
+      "cum": -0.1111,
+      "positions": 5
     }
   ],
   "positions": [
@@ -241,13 +251,13 @@
       "fill_price": 26.04,
       "qty": 400,
       "shares": 400,
-      "last_price": 25.99,
+      "last_price": 24.52,
       "cost": 10421.1,
-      "value": 10396.0,
-      "pnl": -25.1,
-      "pnl_pct": -0.0024,
+      "value": 9808.0,
+      "pnl": -613.1,
+      "pnl_pct": -0.0588,
       "stop_price": 23.93,
-      "ret_pct": -0.0024
+      "ret_pct": -0.0588
     },
     {
       "code": "603259",
@@ -257,13 +267,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 146.07,
+      "last_price": 144.11,
       "cost": 15102.15,
-      "value": 14607.0,
-      "pnl": -495.15,
-      "pnl_pct": -0.0328,
+      "value": 14411.0,
+      "pnl": -691.15,
+      "pnl_pct": -0.0458,
       "stop_price": 135.51,
-      "ret_pct": -0.0328
+      "ret_pct": -0.0458
     },
     {
       "code": "600938",
@@ -273,13 +283,13 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 29.98,
+      "last_price": 30.53,
       "cost": 10013.1,
-      "value": 8994.0,
-      "pnl": -1019.1,
-      "pnl_pct": -0.1018,
+      "value": 9159.0,
+      "pnl": -854.1,
+      "pnl_pct": -0.0853,
       "stop_price": 27.82,
-      "ret_pct": -0.1018
+      "ret_pct": -0.0853
     },
     {
       "code": "688008",
@@ -289,13 +299,13 @@
       "fill_price": 153.93,
       "qty": 100,
       "shares": 100,
-      "last_price": 130.6,
+      "last_price": 137.79,
       "cost": 15398.15,
-      "value": 13060.0,
-      "pnl": -2338.15,
-      "pnl_pct": -0.1518,
+      "value": 13779.0,
+      "pnl": -1619.15,
+      "pnl_pct": -0.1052,
       "stop_price": 126.41,
-      "ret_pct": -0.1518
+      "ret_pct": -0.1052
     },
     {
       "code": "300308",
@@ -305,16 +315,72 @@
       "fill_price": 427.34,
       "qty": 100,
       "shares": 100,
-      "last_price": 393.0,
+      "last_price": 396.3,
       "cost": 42745.11,
-      "value": 39300.0,
-      "pnl": -3445.11,
-      "pnl_pct": -0.0806,
+      "value": 39630.0,
+      "pnl": -3115.11,
+      "pnl_pct": -0.0729,
       "stop_price": 363.68,
-      "ret_pct": -0.0806
+      "ret_pct": -0.0729
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-18",
+      "code": "000807",
+      "name": "云铝股份",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 21.34,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-18",
+      "code": "002916",
+      "name": "深南电路",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 181.74,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-18",
+      "code": "002602",
+      "name": "世纪华通",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 10.42,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-18",
+      "code": "300750",
+      "name": "宁德时代",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 227.96,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-17",
       "code": "603501",
@@ -348,8 +414,8 @@
       "code": "601168",
       "name": "西部矿业",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 24.22,
       "fill_date": null,
       "fill_price": null,
@@ -376,8 +442,8 @@
       "code": "601600",
       "name": "中国铝业",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 7.49,
       "fill_date": null,
       "fill_price": null,
@@ -396,8 +462,8 @@
       "fill_date": "2026-11-16",
       "fill_price": 427.34,
       "qty": 100,
-      "ret_pct": -0.0806,
-      "hold_days": 1
+      "ret_pct": -0.0729,
+      "hold_days": 2
     },
     {
       "trade_date": "2026-11-13",
@@ -438,8 +504,8 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "ret_pct": -0.1518,
-      "hold_days": 2
+      "ret_pct": -0.1052,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-11-13",
@@ -592,8 +658,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0328,
-      "hold_days": 8
+      "ret_pct": -0.0458,
+      "hold_days": 9
     },
     {
       "trade_date": "2026-11-05",
@@ -676,8 +742,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.1018,
-      "hold_days": 10
+      "ret_pct": -0.0853,
+      "hold_days": 11
     },
     {
       "trade_date": "2026-11-02",
@@ -704,8 +770,8 @@
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "ret_pct": -0.0024,
-      "hold_days": 11
+      "ret_pct": -0.0588,
+      "hold_days": 12
     },
     {
       "trade_date": "2026-10-30",
@@ -1381,13 +1447,13 @@
     }
   ],
   "stats": {
-    "orders": 76,
+    "orders": 80,
     "filled": 10,
     "open": 5,
     "closed": 5,
-    "pending": 4,
-    "expired": 62,
-    "fill_rate": 0.1316,
+    "pending": 6,
+    "expired": 64,
+    "fill_rate": 0.125,
     "win_rate": 0.2,
     "verdict": [
       "样本不足",
