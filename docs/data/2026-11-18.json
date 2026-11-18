@@ -984,8 +984,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "元件",
+      "changePct": 4.9,
+      "mainNetInflowYi": 46.18,
+      "leader": "生益电子"
+    },
+    {
+      "name": "通信服务",
+      "changePct": 3.01,
+      "mainNetInflowYi": 10.56,
+      "leader": "平治信息"
+    },
+    {
+      "name": "黑色家电",
+      "changePct": 2.84,
+      "mainNetInflowYi": 2.06,
+      "leader": "四川长虹"
+    },
+    {
+      "name": "综合Ⅱ",
+      "changePct": 2.2,
+      "mainNetInflowYi": -0.06,
+      "leader": "东阳光"
+    },
+    {
+      "name": "航运港口",
+      "changePct": 2.01,
+      "mainNetInflowYi": 4.72,
+      "leader": "招商轮船"
+    },
+    {
+      "name": "航海装备Ⅱ",
+      "changePct": 1.8,
+      "mainNetInflowYi": 2.39,
+      "leader": "松发股份"
+    },
+    {
+      "name": "IT服务Ⅱ",
+      "changePct": 1.68,
+      "mainNetInflowYi": 17.54,
+      "leader": "宏景科技"
+    },
+    {
+      "name": "半导体",
+      "changePct": 1.59,
+      "mainNetInflowYi": 45.13,
+      "leader": "盛合晶微"
+    }
+  ],
+  "fundflow": {
+    "300750": {
+      "code": "300750",
+      "name": "宁德时代",
+      "mainNetInflowYi": 4.57,
+      "mainNetInflow5dYi": -13.16
+    },
+    "002602": {
+      "code": "002602",
+      "name": "世纪华通",
+      "mainNetInflowYi": -0.2,
+      "mainNetInflow5dYi": -6.5
+    },
+    "002916": {
+      "code": "002916",
+      "name": "深南电路",
+      "mainNetInflowYi": 4.13,
+      "mainNetInflow5dYi": 0.84
+    },
+    "000807": {
+      "code": "000807",
+      "name": "云铝股份",
+      "mainNetInflowYi": -1.21,
+      "mainNetInflow5dYi": -1.06
+    },
+    "603444": {
+      "code": "603444",
+      "name": "吉比特",
+      "mainNetInflowYi": 0.07,
+      "mainNetInflow5dYi": -0.88
+    },
+    "603379": {
+      "code": "603379",
+      "name": "三美股份",
+      "mainNetInflowYi": -0.06,
+      "mainNetInflow5dYi": -0.5
+    },
+    "000792": {
+      "code": "000792",
+      "name": "盐湖股份",
+      "mainNetInflowYi": 0.22,
+      "mainNetInflow5dYi": -0.58
+    },
+    "601717": {
+      "code": "601717",
+      "name": "中创智领",
+      "mainNetInflowYi": 0.29,
+      "mainNetInflow5dYi": 1.21
+    }
+  },
   "paper_holdings": [
     {
       "code": "300308",
