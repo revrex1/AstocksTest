@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-19 09:32:29",
+  "updated_at": "2026-11-19 15:07:22",
   "capital": 100000.0,
-  "equity": 88888.59,
-  "cash": 2101.59,
-  "open_cost": 93679.61,
-  "open_value": 86787.0,
-  "unrealized": -6892.61,
-  "realized": -4218.8,
-  "total_return": -0.1111,
-  "exposure": 0.9764,
+  "equity": 89769.6,
+  "cash": 980.6,
+  "open_cost": 93933.62,
+  "open_value": 88789.0,
+  "unrealized": -5144.62,
+  "realized": -5085.78,
+  "total_return": -0.1023,
+  "exposure": 0.9891,
   "max_positions": 8,
   "curve": [
     {
@@ -240,24 +240,34 @@
       "ret": 0.0049,
       "cum": -0.1111,
       "positions": 5
+    },
+    {
+      "date": "2026-11-19",
+      "cash": 980.6,
+      "value": 88789.0,
+      "equity": 89769.6,
+      "pnl": 881.01,
+      "ret": 0.0099,
+      "cum": -0.1023,
+      "positions": 5
     }
   ],
   "positions": [
     {
-      "code": "601899",
-      "name": "紫金矿业",
+      "code": "000807",
+      "name": "云铝股份",
       "rating": "强推",
-      "fill_date": "2026-11-02",
-      "fill_price": 26.04,
-      "qty": 400,
-      "shares": 400,
-      "last_price": 24.52,
-      "cost": 10421.1,
-      "value": 9808.0,
-      "pnl": -613.1,
-      "pnl_pct": -0.0588,
-      "stop_price": 23.93,
-      "ret_pct": -0.0588
+      "fill_date": "2026-11-19",
+      "fill_price": 21.34,
+      "qty": 500,
+      "shares": 500,
+      "last_price": 21.35,
+      "cost": 10675.11,
+      "value": 10675.0,
+      "pnl": -0.11,
+      "pnl_pct": -0.0,
+      "stop_price": 20.67,
+      "ret_pct": 0.0
     },
     {
       "code": "603259",
@@ -267,13 +277,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 144.11,
+      "last_price": 144.39,
       "cost": 15102.15,
-      "value": 14411.0,
-      "pnl": -691.15,
-      "pnl_pct": -0.0458,
+      "value": 14439.0,
+      "pnl": -663.15,
+      "pnl_pct": -0.0439,
       "stop_price": 135.51,
-      "ret_pct": -0.0458
+      "ret_pct": -0.0439
     },
     {
       "code": "600938",
@@ -283,13 +293,13 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 30.53,
+      "last_price": 30.25,
       "cost": 10013.1,
-      "value": 9159.0,
-      "pnl": -854.1,
-      "pnl_pct": -0.0853,
+      "value": 9075.0,
+      "pnl": -938.1,
+      "pnl_pct": -0.0937,
       "stop_price": 27.82,
-      "ret_pct": -0.0853
+      "ret_pct": -0.0937
     },
     {
       "code": "688008",
@@ -299,13 +309,13 @@
       "fill_price": 153.93,
       "qty": 100,
       "shares": 100,
-      "last_price": 137.79,
+      "last_price": 137.6,
       "cost": 15398.15,
-      "value": 13779.0,
-      "pnl": -1619.15,
-      "pnl_pct": -0.1052,
+      "value": 13760.0,
+      "pnl": -1638.15,
+      "pnl_pct": -0.1064,
       "stop_price": 126.41,
-      "ret_pct": -0.1052
+      "ret_pct": -0.1064
     },
     {
       "code": "300308",
@@ -315,28 +325,70 @@
       "fill_price": 427.34,
       "qty": 100,
       "shares": 100,
-      "last_price": 396.3,
+      "last_price": 408.4,
       "cost": 42745.11,
-      "value": 39630.0,
-      "pnl": -3115.11,
-      "pnl_pct": -0.0729,
-      "stop_price": 363.68,
-      "ret_pct": -0.0729
+      "value": 40840.0,
+      "pnl": -1905.11,
+      "pnl_pct": -0.0446,
+      "stop_price": 352.07,
+      "ret_pct": -0.0446
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-19",
+      "code": "000423",
+      "name": "东阿阿胶",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 50.44,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-19",
+      "code": "000538",
+      "name": "云南白药",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 53.62,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-19",
+      "code": "600066",
+      "name": "宇通客车",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 30.08,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-18",
       "code": "000807",
       "name": "云铝股份",
       "rating": "强推",
-      "status": "pending",
+      "status": "open",
       "exit_reason": null,
       "entry_target": 21.34,
-      "fill_date": null,
-      "fill_price": null,
-      "qty": 0,
-      "ret_pct": null,
+      "fill_date": "2026-11-19",
+      "fill_price": 21.34,
+      "qty": 500,
+      "ret_pct": 0.0,
       "hold_days": 0
     },
     {
@@ -386,8 +438,8 @@
       "code": "603501",
       "name": "豪威集团",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 82.71,
       "fill_date": null,
       "fill_price": null,
@@ -400,8 +452,8 @@
       "code": "002463",
       "name": "沪电股份",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 70.51,
       "fill_date": null,
       "fill_price": null,
@@ -462,8 +514,8 @@
       "fill_date": "2026-11-16",
       "fill_price": 427.34,
       "qty": 100,
-      "ret_pct": -0.0729,
-      "hold_days": 2
+      "ret_pct": -0.0446,
+      "hold_days": 3
     },
     {
       "trade_date": "2026-11-13",
@@ -504,8 +556,8 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "ret_pct": -0.1052,
-      "hold_days": 3
+      "ret_pct": -0.1064,
+      "hold_days": 4
     },
     {
       "trade_date": "2026-11-13",
@@ -658,8 +710,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0458,
-      "hold_days": 9
+      "ret_pct": -0.0439,
+      "hold_days": 10
     },
     {
       "trade_date": "2026-11-05",
@@ -742,8 +794,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.0853,
-      "hold_days": 11
+      "ret_pct": -0.0937,
+      "hold_days": 12
     },
     {
       "trade_date": "2026-11-02",
@@ -764,14 +816,14 @@
       "code": "601899",
       "name": "紫金矿业",
       "rating": "强推",
-      "status": "open",
-      "exit_reason": null,
+      "status": "closed",
+      "exit_reason": "stop",
       "entry_target": 26.04,
       "fill_date": "2026-11-02",
       "fill_price": 26.04,
       "qty": 400,
-      "ret_pct": -0.0588,
-      "hold_days": 12
+      "ret_pct": -0.0832,
+      "hold_days": 13
     },
     {
       "trade_date": "2026-10-30",
@@ -1447,17 +1499,17 @@
     }
   ],
   "stats": {
-    "orders": 80,
-    "filled": 10,
+    "orders": 83,
+    "filled": 11,
     "open": 5,
-    "closed": 5,
+    "closed": 6,
     "pending": 6,
-    "expired": 64,
-    "fill_rate": 0.125,
-    "win_rate": 0.2,
+    "expired": 66,
+    "fill_rate": 0.1325,
+    "win_rate": 0.1667,
     "verdict": [
       "样本不足",
-      "仅 5 笔平仓样本（阈值 10），暂不下结论"
+      "仅 6 笔平仓样本（阈值 10），暂不下结论"
     ]
   }
 }

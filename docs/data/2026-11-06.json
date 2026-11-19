@@ -1027,15 +1027,28 @@
   },
   "paper_holdings": [
     {
+      "code": "000807",
+      "name": "云铝股份",
+      "rating": "强推",
+      "fill_date": "2026-11-19",
+      "fill_price": 21.34,
+      "qty": 500,
+      "last_price": 21.35,
+      "ret_pct": 0.0,
+      "stop_price": 20.67,
+      "exit_date": null,
+      "exit_reason": null
+    },
+    {
       "code": "300308",
       "name": "中际旭创",
       "rating": "强推",
       "fill_date": "2026-11-16",
       "fill_price": 427.34,
       "qty": 100,
-      "last_price": 396.3,
-      "ret_pct": -0.0729,
-      "stop_price": 363.68,
+      "last_price": 408.4,
+      "ret_pct": -0.0446,
+      "stop_price": 352.07,
       "exit_date": null,
       "exit_reason": null
     },
@@ -1046,8 +1059,8 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "last_price": 137.79,
-      "ret_pct": -0.1052,
+      "last_price": 137.6,
+      "ret_pct": -0.1064,
       "stop_price": 126.41,
       "exit_date": null,
       "exit_reason": null
@@ -1059,8 +1072,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "last_price": 144.11,
-      "ret_pct": -0.0458,
+      "last_price": 144.39,
+      "ret_pct": -0.0439,
       "stop_price": 135.51,
       "exit_date": null,
       "exit_reason": null
@@ -1072,22 +1085,9 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "last_price": 30.53,
-      "ret_pct": -0.0853,
+      "last_price": 30.25,
+      "ret_pct": -0.0937,
       "stop_price": 27.82,
-      "exit_date": null,
-      "exit_reason": null
-    },
-    {
-      "code": "601899",
-      "name": "紫金矿业",
-      "rating": "强推",
-      "fill_date": "2026-11-02",
-      "fill_price": 26.04,
-      "qty": 400,
-      "last_price": 24.52,
-      "ret_pct": -0.0588,
-      "stop_price": 23.93,
       "exit_date": null,
       "exit_reason": null
     }
