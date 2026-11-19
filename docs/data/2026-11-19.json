@@ -930,8 +930,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "白色家电",
+      "changePct": 1.38,
+      "mainNetInflowYi": -4.26,
+      "leader": "海信家电"
+    },
+    {
+      "name": "航空机场",
+      "changePct": 1.28,
+      "mainNetInflowYi": 0.85,
+      "leader": "吉祥航空"
+    },
+    {
+      "name": "饮料乳品",
+      "changePct": 1.27,
+      "mainNetInflowYi": -1.7,
+      "leader": "妙可蓝多"
+    },
+    {
+      "name": "工程机械",
+      "changePct": 0.84,
+      "mainNetInflowYi": -8.66,
+      "leader": "福事特"
+    },
+    {
+      "name": "调味发酵品Ⅱ",
+      "changePct": 0.81,
+      "mainNetInflowYi": -1.25,
+      "leader": "天味食品"
+    },
+    {
+      "name": "电子化学品Ⅱ",
+      "changePct": 0.75,
+      "mainNetInflowYi": 3.31,
+      "leader": "格林达"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 0.71,
+      "mainNetInflowYi": -2.08,
+      "leader": "贵州茅台"
+    },
+    {
+      "name": "半导体",
+      "changePct": 0.54,
+      "mainNetInflowYi": 28.23,
+      "leader": "蓝箭电子"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": 10.5,
+      "mainNetInflow5dYi": -78.31
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": 0.54,
+      "mainNetInflow5dYi": -0.5
+    },
+    "000538": {
+      "code": "000538",
+      "name": "云南白药",
+      "mainNetInflowYi": -0.47,
+      "mainNetInflow5dYi": -0.49
+    },
+    "000423": {
+      "code": "000423",
+      "name": "东阿阿胶",
+      "mainNetInflowYi": -0.29,
+      "mainNetInflow5dYi": 0.22
+    },
+    "002916": {
+      "code": "002916",
+      "name": "深南电路",
+      "mainNetInflowYi": 4.91,
+      "mainNetInflow5dYi": 1.73
+    },
+    "600600": {
+      "code": "600600",
+      "name": "青岛啤酒",
+      "mainNetInflowYi": 0.16,
+      "mainNetInflow5dYi": 0.08
+    },
+    "600011": {
+      "code": "600011",
+      "name": "华能国际",
+      "mainNetInflowYi": -0.18,
+      "mainNetInflow5dYi": 1.2
+    },
+    "000568": {
+      "code": "000568",
+      "name": "泸州老窖",
+      "mainNetInflowYi": 0.45,
+      "mainNetInflow5dYi": 3.0
+    }
+  },
   "paper_holdings": [
     {
       "code": "000807",
