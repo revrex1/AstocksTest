@@ -968,8 +968,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "国有大型银行Ⅱ",
+      "changePct": 2.52,
+      "mainNetInflowYi": 2.62,
+      "leader": "工商银行"
+    },
+    {
+      "name": "保险Ⅱ",
+      "changePct": 1.23,
+      "mainNetInflowYi": 2.61,
+      "leader": "中国太保"
+    },
+    {
+      "name": "股份制银行Ⅱ",
+      "changePct": 1.18,
+      "mainNetInflowYi": -6.12,
+      "leader": "XD中信银"
+    },
+    {
+      "name": "炼化及贸易",
+      "changePct": 0.93,
+      "mainNetInflowYi": 1.5,
+      "leader": "恒通股份"
+    },
+    {
+      "name": "渔业",
+      "changePct": 0.79,
+      "mainNetInflowYi": 1.84,
+      "leader": "好当家"
+    },
+    {
+      "name": "煤炭开采",
+      "changePct": 0.45,
+      "mainNetInflowYi": -1.35,
+      "leader": "中国神华"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 0.41,
+      "mainNetInflowYi": 4.92,
+      "leader": "贵州茅台"
+    },
+    {
+      "name": "养殖业",
+      "changePct": 0.35,
+      "mainNetInflowYi": -3.13,
+      "leader": "东瑞股份"
+    }
+  ],
+  "fundflow": {
+    "603379": {
+      "code": "603379",
+      "name": "三美股份",
+      "mainNetInflowYi": -0.7861,
+      "mainNetInflow5dYi": -0.4261
+    },
+    "601717": {
+      "code": "601717",
+      "name": "中创智领",
+      "mainNetInflowYi": -0.2942,
+      "mainNetInflow5dYi": 1.244
+    },
+    "301308": {
+      "code": "301308",
+      "name": "江波龙",
+      "mainNetInflowYi": -2.3486,
+      "mainNetInflow5dYi": -4.8988
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.1952,
+      "mainNetInflow5dYi": 0.0594
+    },
+    "603444": {
+      "code": "603444",
+      "name": "吉比特",
+      "mainNetInflowYi": -0.1544,
+      "mainNetInflow5dYi": -0.4896
+    },
+    "000568": {
+      "code": "000568",
+      "name": "泸州老窖",
+      "mainNetInflowYi": -0.3593,
+      "mainNetInflow5dYi": 3.6453
+    },
+    "600600": {
+      "code": "600600",
+      "name": "青岛啤酒",
+      "mainNetInflowYi": -0.0742,
+      "mainNetInflow5dYi": 0.1441
+    },
+    "600660": {
+      "code": "600660",
+      "name": "福耀玻璃",
+      "mainNetInflowYi": 0.2699,
+      "mainNetInflow5dYi": 0.6585
+    }
+  },
   "paper_holdings": [
     {
       "code": "000807",
