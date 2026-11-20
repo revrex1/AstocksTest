@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-20 09:40:20",
+  "updated_at": "2026-11-20 15:05:25",
   "capital": 100000.0,
-  "equity": 89769.6,
+  "equity": 86813.6,
   "cash": 980.6,
   "open_cost": 93933.62,
-  "open_value": 88789.0,
-  "unrealized": -5144.62,
+  "open_value": 85833.0,
+  "unrealized": -8100.62,
   "realized": -5085.78,
-  "total_return": -0.1023,
-  "exposure": 0.9891,
+  "total_return": -0.1319,
+  "exposure": 0.9887,
   "max_positions": 8,
   "curve": [
     {
@@ -250,6 +250,16 @@
       "ret": 0.0099,
       "cum": -0.1023,
       "positions": 5
+    },
+    {
+      "date": "2026-11-20",
+      "cash": 980.6,
+      "value": 85833.0,
+      "equity": 86813.6,
+      "pnl": -2956.0,
+      "ret": -0.0329,
+      "cum": -0.1319,
+      "positions": 5
     }
   ],
   "positions": [
@@ -261,29 +271,13 @@
       "fill_price": 21.34,
       "qty": 500,
       "shares": 500,
-      "last_price": 21.35,
+      "last_price": 21.01,
       "cost": 10675.11,
-      "value": 10675.0,
-      "pnl": -0.11,
-      "pnl_pct": -0.0,
+      "value": 10505.0,
+      "pnl": -170.11,
+      "pnl_pct": -0.0159,
       "stop_price": 20.67,
-      "ret_pct": 0.0
-    },
-    {
-      "code": "603259",
-      "name": "药明康德",
-      "rating": "强推",
-      "fill_date": "2026-11-05",
-      "fill_price": 150.97,
-      "qty": 100,
-      "shares": 100,
-      "last_price": 144.39,
-      "cost": 15102.15,
-      "value": 14439.0,
-      "pnl": -663.15,
-      "pnl_pct": -0.0439,
-      "stop_price": 135.51,
-      "ret_pct": -0.0439
+      "ret_pct": -0.0159
     },
     {
       "code": "600938",
@@ -293,13 +287,29 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 30.25,
+      "last_price": 30.29,
       "cost": 10013.1,
-      "value": 9075.0,
-      "pnl": -938.1,
-      "pnl_pct": -0.0937,
+      "value": 9087.0,
+      "pnl": -926.1,
+      "pnl_pct": -0.0925,
       "stop_price": 27.82,
-      "ret_pct": -0.0937
+      "ret_pct": -0.0925
+    },
+    {
+      "code": "603259",
+      "name": "药明康德",
+      "rating": "强推",
+      "fill_date": "2026-11-05",
+      "fill_price": 150.97,
+      "qty": 100,
+      "shares": 100,
+      "last_price": 140.8,
+      "cost": 15102.15,
+      "value": 14080.0,
+      "pnl": -1022.15,
+      "pnl_pct": -0.0677,
+      "stop_price": 135.51,
+      "ret_pct": -0.0677
     },
     {
       "code": "688008",
@@ -309,13 +319,13 @@
       "fill_price": 153.93,
       "qty": 100,
       "shares": 100,
-      "last_price": 137.6,
+      "last_price": 128.41,
       "cost": 15398.15,
-      "value": 13760.0,
-      "pnl": -1638.15,
-      "pnl_pct": -0.1064,
+      "value": 12841.0,
+      "pnl": -2557.15,
+      "pnl_pct": -0.1661,
       "stop_price": 126.41,
-      "ret_pct": -0.1064
+      "ret_pct": -0.1661
     },
     {
       "code": "300308",
@@ -325,16 +335,30 @@
       "fill_price": 427.34,
       "qty": 100,
       "shares": 100,
-      "last_price": 408.4,
+      "last_price": 393.2,
       "cost": 42745.11,
-      "value": 40840.0,
-      "pnl": -1905.11,
-      "pnl_pct": -0.0446,
+      "value": 39320.0,
+      "pnl": -3425.11,
+      "pnl_pct": -0.0801,
       "stop_price": 352.07,
-      "ret_pct": -0.0446
+      "ret_pct": -0.0801
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-20",
+      "code": "603379",
+      "name": "三美股份",
+      "rating": "强推",
+      "status": "expired",
+      "exit_reason": "cash_short",
+      "entry_target": 43.51,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-19",
       "code": "000423",
@@ -388,16 +412,16 @@
       "fill_date": "2026-11-19",
       "fill_price": 21.34,
       "qty": 500,
-      "ret_pct": 0.0,
-      "hold_days": 0
+      "ret_pct": -0.0159,
+      "hold_days": 1
     },
     {
       "trade_date": "2026-11-18",
       "code": "002916",
       "name": "深南电路",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 181.74,
       "fill_date": null,
       "fill_price": null,
@@ -410,8 +434,8 @@
       "code": "002602",
       "name": "世纪华通",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "cash_short",
       "entry_target": 10.42,
       "fill_date": null,
       "fill_price": null,
@@ -424,8 +448,8 @@
       "code": "300750",
       "name": "宁德时代",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "cash_short",
       "entry_target": 227.96,
       "fill_date": null,
       "fill_price": null,
@@ -514,8 +538,8 @@
       "fill_date": "2026-11-16",
       "fill_price": 427.34,
       "qty": 100,
-      "ret_pct": -0.0446,
-      "hold_days": 3
+      "ret_pct": -0.0801,
+      "hold_days": 4
     },
     {
       "trade_date": "2026-11-13",
@@ -556,8 +580,8 @@
       "fill_date": "2026-11-13",
       "fill_price": 153.93,
       "qty": 100,
-      "ret_pct": -0.1064,
-      "hold_days": 4
+      "ret_pct": -0.1661,
+      "hold_days": 5
     },
     {
       "trade_date": "2026-11-13",
@@ -710,8 +734,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0439,
-      "hold_days": 10
+      "ret_pct": -0.0677,
+      "hold_days": 11
     },
     {
       "trade_date": "2026-11-05",
@@ -794,8 +818,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.0937,
-      "hold_days": 12
+      "ret_pct": -0.0925,
+      "hold_days": 13
     },
     {
       "trade_date": "2026-11-02",
@@ -1499,13 +1523,13 @@
     }
   ],
   "stats": {
-    "orders": 83,
+    "orders": 84,
     "filled": 11,
     "open": 5,
     "closed": 6,
-    "pending": 6,
-    "expired": 66,
-    "fill_rate": 0.1325,
+    "pending": 3,
+    "expired": 70,
+    "fill_rate": 0.131,
     "win_rate": 0.1667,
     "verdict": [
       "样本不足",
