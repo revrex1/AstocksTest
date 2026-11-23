@@ -906,8 +906,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "数字媒体",
+      "changePct": 9.18,
+      "mainNetInflowYi": 7.25,
+      "leader": "凡拓数创"
+    },
+    {
+      "name": "影视院线",
+      "changePct": 6.91,
+      "mainNetInflowYi": 6.22,
+      "leader": "幸福蓝海"
+    },
+    {
+      "name": "电机Ⅱ",
+      "changePct": 6.78,
+      "mainNetInflowYi": 3.31,
+      "leader": "华阳智能"
+    },
+    {
+      "name": "自动化设备",
+      "changePct": 6.6,
+      "mainNetInflowYi": 11.98,
+      "leader": "宇树科技-W"
+    },
+    {
+      "name": "渔业",
+      "changePct": 6.4,
+      "mainNetInflowYi": -0.4,
+      "leader": "好当家"
+    },
+    {
+      "name": "家电零部件Ⅱ",
+      "changePct": 5.79,
+      "mainNetInflowYi": 3.78,
+      "leader": "同星科技"
+    },
+    {
+      "name": "通信设备",
+      "changePct": 5.67,
+      "mainNetInflowYi": 67.49,
+      "leader": "天孚通信"
+    },
+    {
+      "name": "塑料",
+      "changePct": 5.42,
+      "mainNetInflowYi": 5.88,
+      "leader": "瑞丰高材"
+    }
+  ],
+  "fundflow": {
+    "000423": {
+      "code": "000423",
+      "name": "东阿阿胶",
+      "mainNetInflowYi": -0.23,
+      "mainNetInflow5dYi": -0.98
+    },
+    "000538": {
+      "code": "000538",
+      "name": "云南白药",
+      "mainNetInflowYi": -0.31,
+      "mainNetInflow5dYi": -2.12
+    },
+    "600415": {
+      "code": "600415",
+      "name": "小商品城",
+      "mainNetInflowYi": 0.14,
+      "mainNetInflow5dYi": 0.29
+    },
+    "600519": {
+      "code": "600519",
+      "name": "贵州茅台",
+      "mainNetInflowYi": 4.77,
+      "mainNetInflow5dYi": 12.92
+    },
+    "600011": {
+      "code": "600011",
+      "name": "华能国际",
+      "mainNetInflowYi": 0.35,
+      "mainNetInflow5dYi": -0.46
+    },
+    "000568": {
+      "code": "000568",
+      "name": "泸州老窖",
+      "mainNetInflowYi": 0.2,
+      "mainNetInflow5dYi": 1.58
+    },
+    "000651": {
+      "code": "000651",
+      "name": "格力电器",
+      "mainNetInflowYi": -1.59,
+      "mainNetInflow5dYi": -7.38
+    },
+    "600690": {
+      "code": "600690",
+      "name": "海尔智家",
+      "mainNetInflowYi": -0.88,
+      "mainNetInflow5dYi": -1.65
+    }
+  },
   "paper_holdings": [
     {
       "code": "000807",
