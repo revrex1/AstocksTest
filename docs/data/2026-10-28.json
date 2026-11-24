@@ -989,40 +989,14 @@
   "fundflow": null,
   "paper_holdings": [
     {
-      "code": "000807",
-      "name": "云铝股份",
-      "rating": "强推",
-      "fill_date": "2026-11-19",
-      "fill_price": 21.34,
-      "qty": 500,
-      "last_price": 21.35,
-      "ret_pct": 0.0,
-      "stop_price": 20.67,
-      "exit_date": null,
-      "exit_reason": null
-    },
-    {
-      "code": "300308",
-      "name": "中际旭创",
-      "rating": "强推",
-      "fill_date": "2026-11-16",
-      "fill_price": 427.34,
-      "qty": 100,
-      "last_price": 417.2,
-      "ret_pct": -0.024,
-      "stop_price": 352.07,
-      "exit_date": null,
-      "exit_reason": null
-    },
-    {
       "code": "603259",
       "name": "药明康德",
       "rating": "强推",
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "last_price": 146.55,
-      "ret_pct": -0.0296,
+      "last_price": 144.3,
+      "ret_pct": -0.0445,
       "stop_price": 135.51,
       "exit_date": null,
       "exit_reason": null
@@ -1034,8 +1008,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "last_price": 30.1,
-      "ret_pct": -0.0982,
+      "last_price": 29.66,
+      "ret_pct": -0.1114,
       "stop_price": 27.82,
       "exit_date": null,
       "exit_reason": null

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24 09:32:27",
+  "updated_at": "2026-11-24 15:07:21",
   "source": "live",
   "bench": {
     "code": "sh000300",
@@ -36,18 +36,18 @@
     "2026-11-24"
   ],
   "summary": {
-    "nav": 0.9917,
-    "bench_nav": 0.951,
-    "excess_nav": 0.0428,
-    "win_rate": 0.4715,
-    "avg": -0.0005,
-    "avg_excess": 0.0015,
-    "profit_factor": 0.9525,
-    "samples": 193,
-    "days": 25,
+    "nav": 0.9998,
+    "bench_nav": 0.9523,
+    "excess_nav": 0.0499,
+    "win_rate": 0.4876,
+    "avg": -0.0002,
+    "avg_excess": 0.0017,
+    "profit_factor": 0.983,
+    "samples": 201,
+    "days": 26,
     "max_dd": -0.0444,
     "verdict": "中性",
-    "verdict_reason": "胜率 47%、超额 +0.15%，无显著优势"
+    "verdict_reason": "胜率 49%、超额 +0.17%，无显著优势"
   },
   "daily": [
     {
@@ -380,169 +380,109 @@
       "picks": 8,
       "strong": 1,
       "watch": 7,
-      "win_rate": null,
-      "avg_ret": null,
-      "avg_excess": null,
-      "bench_pct": 0.0086,
-      "nav": null,
-      "bench_nav": null,
-      "provisional": true
+      "win_rate": 0.875,
+      "avg_ret": 0.0081,
+      "avg_excess": 0.0067,
+      "bench_pct": 0.0014,
+      "nav": 0.9998,
+      "bench_nav": 0.9523,
+      "provisional": false
     }
   ],
   "layers": {
     "强推": {
-      "n": 99,
-      "win_rate": 0.4444,
-      "avg": -0.0017,
-      "profit_factor": 0.8547
+      "n": 100,
+      "win_rate": 0.45,
+      "avg": -0.0016,
+      "profit_factor": 0.8601
     },
     "可关注": {
-      "n": 94,
-      "win_rate": 0.5,
-      "avg": 0.0007,
-      "profit_factor": 1.069
+      "n": 101,
+      "win_rate": 0.5248,
+      "avg": 0.0012,
+      "profit_factor": 1.1286
     },
     "Top3": {
-      "n": 74,
-      "win_rate": 0.473,
-      "avg": -0.0035,
-      "profit_factor": 0.735
+      "n": 77,
+      "win_rate": 0.4935,
+      "avg": -0.0029,
+      "profit_factor": 0.7676
     },
     "4名以后": {
-      "n": 119,
-      "win_rate": 0.4706,
-      "avg": 0.0013,
-      "profit_factor": 1.1359
+      "n": 124,
+      "win_rate": 0.4839,
+      "avg": 0.0015,
+      "profit_factor": 1.1638
     }
   },
   "horizons": {
     "T+1": {
-      "n": 185,
-      "win_rate": 0.4324,
-      "avg": -0.0071
+      "n": 193,
+      "win_rate": 0.4145,
+      "avg": -0.0072
     },
     "T+3": {
-      "n": 169,
-      "win_rate": 0.426,
-      "avg": -0.0103
+      "n": 177,
+      "win_rate": 0.4237,
+      "avg": -0.0098
     },
     "T+5": {
-      "n": 153,
-      "win_rate": 0.5033,
-      "avg": -0.0123
+      "n": 161,
+      "win_rate": 0.5031,
+      "avg": -0.0114
     }
   },
   "paper": {
     "view": "all",
-    "orders": 86,
+    "orders": 87,
     "filled": 11,
-    "closed": 7,
-    "open": 4,
-    "pending": 2,
+    "closed": 9,
+    "open": 2,
+    "pending": 3,
     "expired": 73,
     "skipped": 0,
-    "fill_rate": 0.12790697674418605,
-    "win_rate": 0.14285714285714285,
-    "avg_ret": -0.07128571428571429,
-    "med_ret": -0.0832,
-    "avg_win": 0.1912,
-    "avg_loss": -0.11503333333333332,
-    "profit_factor": 0.2770211532889018,
-    "expectancy": -0.07128571428571429,
-    "total_pnl": -8102.249999999999,
-    "total_notional": 91619.0,
-    "avg_hold": 3.7142857142857144,
-    "excess_n": 7,
-    "avg_excess": -0.06595714285714285,
-    "excess_win": 0.14285714285714285,
-    "max_dd_yuan": -8665.3,
-    "avg_mfe": 0.09981428571428572,
-    "avg_mae": -0.12067142857142857,
-    "tp_touch_rate": 0.14285714285714285,
-    "stop_rate": 0.8571428571428571,
+    "fill_rate": 0.12643678160919541,
+    "win_rate": 0.2222222222222222,
+    "avg_ret": -0.05006666666666667,
+    "med_ret": -0.0714,
+    "avg_win": 0.1367,
+    "avg_loss": -0.10342857142857143,
+    "profit_factor": 0.37762430939226516,
+    "expectancy": -0.05006666666666667,
+    "total_pnl": -4946.919999999999,
+    "total_notional": 145023.0,
+    "avg_hold": 3.888888888888889,
+    "excess_n": 9,
+    "avg_excess": -0.04488888888888889,
+    "excess_win": 0.2222222222222222,
+    "max_dd_yuan": -9025.679999999997,
+    "avg_mfe": 0.09112222222222223,
+    "avg_mae": -0.11158888888888889,
+    "tp_touch_rate": 0.2222222222222222,
+    "stop_rate": 0.7777777777777778,
     "timeout_rate": 0.0,
     "exit_reasons": {
-      "stop": 6,
-      "tp1": 1
+      "stop": 7,
+      "tp1": 2
     },
     "by_rating": {
       "强推": {
-        "n": 7,
-        "win_rate": 0.14285714285714285,
-        "avg": -0.07128571428571429
+        "n": 9,
+        "win_rate": 0.2222222222222222,
+        "avg": -0.05006666666666667
       }
     },
     "account": {
       "capital": 100000.0,
-      "cash": 13362.28,
-      "open_cost": 78535.47,
-      "open_value": 76080.0,
-      "realized": -8102.25,
-      "unrealized": -2455.47,
-      "equity": 89442.28,
-      "total_return": -0.10557720000000004,
-      "exposure": 0.8506044345023405,
+      "cash": 69937.83,
+      "open_cost": 25115.25,
+      "open_value": 23328.0,
+      "realized": -4946.92,
+      "unrealized": -1787.25,
+      "equity": 93265.83,
+      "total_return": -0.06734169999999995,
+      "exposure": 0.25012375915166357,
       "positions": [
-        {
-          "id": 834,
-          "pick_id": 172,
-          "trade_date": "2026-11-18",
-          "code": "000807",
-          "name": "云铝股份",
-          "rating": "强推",
-          "total_score": 67.9,
-          "entry_mode": "limit",
-          "entry_target": 21.34,
-          "valid_days": 3,
-          "fill_date": "2026-11-19",
-          "fill_price": 21.34,
-          "qty": 500,
-          "notional": 10670.0,
-          "stop_price": 20.67,
-          "tp_prices": [
-            24.99,
-            26.49,
-            30.33
-          ],
-          "holding_days": 45,
-          "exit_date": null,
-          "exit_reason": null,
-          "status": "open",
-          "shares_left": 500,
-          "realized": 0.0,
-          "last_price": 21.35,
-          "last_date": "2026-11-23",
-          "ret_pct": 0.0,
-          "bench_ret": -0.0067,
-          "excess": 0.0067,
-          "hold_days": 2,
-          "mfe": 0.0239,
-          "mae": -0.0281,
-          "plan_json": "{\"trade_date\": \"2026-11-18\", \"code\": \"000807\", \"name\": \"云铝股份\", \"schedule\": [{\"effective\": \"2026-11-18\", \"stop\": 20.67, \"tps\": [24.99, 26.49, 30.33], \"hold\": 45}], \"rating\": \"强推\", \"total_score\": 67.9, \"entry_mode\": \"limit\", \"entry_src\": \"secondary\", \"entry_policy\": \"secondary/ratio-v1\", \"entry_target\": 21.34, \"valid_days\": 3, \"stop_price\": 20.67, \"tp_prices\": [24.99, 26.49, 30.33], \"holding_days\": 45, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"工业金属龙头估值低位，业绩高增，契合工业金属涨价主线\", \"totalWeight\": 70, \"primaryEntry\": 21.79, \"secondaryEntry\": 21.34, \"positions\": [{\"level\": 1, \"name\": \"首档-支撑位挂单\", \"price\": 21.79, \"weight\": 30, \"trigger\": \"跌至 21.79 元（现价下浮 3.0% 的参考位）企稳挂单\"}, {\"level\": 2, \"name\": \"次档-稳健加仓\", \"price\": 21.34, \"weight\": 40, \"trigger\": \"缩量回踩 21.34 元（现价下浮 5.0% 的参考位）附近，量比<1.0、换手 3-8%\"}, {\"level\": 3, \"name\": \"末档-左侧深蹲\", \"price\": 20.89, \"weight\": 30, \"trigger\": \"跌至 20.89 元（现价下浮 7.0% 的参考位）附近企稳\"}], \"stopLoss\": 20.67, \"stopLossReason\": \"跌破 52 周低位 (21.22) 2%\", \"resistance\": 30.33, \"takeProfits\": [{\"level\": 1, \"pct\": 11.21, \"price\": 24.99, \"reason\": \"上方首阻力 24.99，本轮按 +11.21% 分批减仓\"}, {\"level\": 2, \"pct\": 17.89, \"price\": 26.49, \"reason\": \"上方次阻力 25.50，本轮按 +17.89% 分批减仓\"}, {\"level\": 3, \"pct\": 35, \"price\": 30.33, \"reason\": \"52 周高位 36.96 距现价过远，本轮按 +35% 设定\"}], \"holdingDays\": 45, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"add\", \"title\": \"均线多头排列确立\", \"condition\": \"MA5>MA10>MA20>MA60 全部满足时加仓 2 档\"}, {\"type\": \"add\", \"title\": \"MACD 金叉\", \"condition\": \"DIF 上穿 DEA 即触发首档建仓\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"收盘价 < 20.67 立即清仓\"}, {\"type\": \"reduce\", \"title\": \"到达末档止盈目标\", \"condition\": \"价格触及 30.33 区域减仓 1/2\"}], \"mode\": \"从零建仓\", \"portfolio\": null, \"actions\": [], \"overrideApplied\": false, \"overrideNote\": null, \"overrideSource\": null, \"technicalAvailable\": true}}",
-          "created_at": "2026-11-18 15:05:20",
-          "updated_at": "2026-11-23 15:07:44",
-          "snapshot_id": 180,
-          "path_src": "daily",
-          "execs": [
-            {
-              "id": 441,
-              "trade_id": 834,
-              "exec_date": "2026-11-19",
-              "code": "000807",
-              "side": "buy",
-              "price": 21.34,
-              "qty": 500,
-              "amount": 10670.0,
-              "fee": 5.11,
-              "reason": "entry",
-              "created_at": "2026-11-23 15:07:44"
-            }
-          ],
-          "cost": 10675.11,
-          "value": 10675.0,
-          "pnl": -0.11,
-          "pnl_pct": -1.0304343468159338e-05
-        },
         {
           "id": 811,
           "pick_id": 98,
@@ -570,22 +510,22 @@
           "status": "open",
           "shares_left": 100,
           "realized": 0.0,
-          "last_price": 146.55,
-          "last_date": "2026-11-23",
-          "ret_pct": -0.0296,
-          "bench_ret": -0.0377,
-          "excess": 0.0081,
-          "hold_days": 12,
+          "last_price": 144.3,
+          "last_date": "2026-11-24",
+          "ret_pct": -0.0445,
+          "bench_ret": -0.0364,
+          "excess": -0.0081,
+          "hold_days": 13,
           "mfe": 0.0452,
           "mae": -0.0891,
           "plan_json": "{\"trade_date\": \"2026-11-05\", \"code\": \"603259\", \"name\": \"药明康德\", \"schedule\": [{\"effective\": \"2026-11-05\", \"stop\": 142.86, \"tps\": [162.18, 171.91, 182.23], \"hold\": 45}, {\"effective\": \"2026-11-06\", \"stop\": 135.51, \"tps\": [158.1, 167.58, 177.64], \"hold\": 45}], \"rating\": \"强推\", \"total_score\": 71.2, \"entry_mode\": \"open\", \"entry_src\": \"open\", \"entry_policy\": \"secondary/ratio-v1\", \"entry_target\": 150.97, \"valid_days\": 3, \"stop_price\": 135.51, \"tp_prices\": [158.1, 167.58, 177.64], \"holding_days\": 45, \"notes\": [\"买点 151.37 ≥ 开盘 150.97，按开盘价成交\"], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"医疗服务龙头估值合理，高净利增长契合医药赛道主线\", \"totalWeight\": 90, \"primaryEntry\": 154.46, \"secondaryEntry\": 151.37, \"positions\": [{\"level\": 1, \"name\": \"首档-放量突破\", \"price\": 154.46, \"weight\": 30, \"trigger\": \"量比 1.31 配合站上 MA10(143.67)，154.46 元突破即追\"}, {\"level\": 2, \"name\": \"次档-稳健加仓\", \"price\": 151.37, \"weight\": 40, \"trigger\": \"缩量回踩 151.37 元（现价下浮 2.0% 的参考位）附近，量比<1.0、换手 3-8%\"}, {\"level\": 3, \"name\": \"末档-左侧深蹲\", \"price\": 143.64, \"weight\": 30, \"trigger\": \"跌至 143.64 元（现价下浮 7.0% 的参考位）附近企稳\"}], \"stopLoss\": 142.86, \"stopLossReason\": \"以现价下浮 8% 作为风控参考线\", \"resistance\": 182.23, \"takeProfits\": [{\"level\": 1, \"pct\": 5, \"price\": 162.18, \"reason\": \"上方首阻力 157.17，本轮按 +5% 分批减仓\"}, {\"level\": 2, \"pct\": 11.3, \"price\": 171.91, \"reason\": \"上方次阻力 158.88，本轮按 +11.3% 分批减仓\"}, {\"level\": 3, \"pct\": 17.98, \"price\": 182.23, \"reason\": \"52 周高位 (173.60)\"}], \"holdingDays\": 45, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"add\", \"title\": \"均线多头排列确立\", \"condition\": \"MA5>MA10>MA20>MA60 全部满足时加仓 2 档\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"收盘价 < 142.86 立即清仓\"}, {\"type\": \"reduce\", \"title\": \"到达末档止盈目标\", \"condition\": \"价格触及 182.23 区域减仓 1/2\"}], \"mode\": \"从零建仓\", \"portfolio\": null, \"actions\": [], \"overrideApplied\": false, \"overrideNote\": null, \"overrideSource\": null, \"technicalAvailable\": true}}",
           "created_at": "2026-11-12 09:03:54",
-          "updated_at": "2026-11-24 09:32:24",
+          "updated_at": "2026-11-24 15:07:21",
           "snapshot_id": 106,
           "path_src": "daily",
           "execs": [
             {
-              "id": 437,
+              "id": 443,
               "trade_id": 811,
               "exec_date": "2026-11-05",
               "code": "603259",
@@ -595,13 +535,13 @@
               "amount": 15097.0,
               "fee": 5.15,
               "reason": "entry",
-              "created_at": "2026-11-23 15:07:44"
+              "created_at": "2026-11-24 15:07:21"
             }
           ],
           "cost": 15102.15,
-          "value": 14655.0,
-          "pnl": -447.15,
-          "pnl_pct": -0.029608367020589665
+          "value": 14430.0,
+          "pnl": -672.15,
+          "pnl_pct": -0.044506907956814
         },
         {
           "id": 805,
@@ -630,22 +570,22 @@
           "status": "open",
           "shares_left": 300,
           "realized": 0.0,
-          "last_price": 30.1,
-          "last_date": "2026-11-23",
-          "ret_pct": -0.0982,
-          "bench_ret": -0.0126,
-          "excess": -0.0856,
-          "hold_days": 14,
+          "last_price": 29.66,
+          "last_date": "2026-11-24",
+          "ret_pct": -0.1114,
+          "bench_ret": -0.0112,
+          "excess": -0.1002,
+          "hold_days": 15,
           "mfe": 0.0345,
-          "mae": -0.1157,
+          "mae": -0.1178,
           "plan_json": "{\"trade_date\": \"2026-11-02\", \"code\": \"600938\", \"name\": \"中国海油\", \"schedule\": [{\"effective\": \"2026-11-02\", \"stop\": 31.43, \"tps\": [36.67, 38.87, 44.54], \"hold\": 45}, {\"effective\": \"2026-11-04\", \"stop\": 30.48, \"tps\": [35.56, 37.7, 44.54], \"hold\": 45}, {\"effective\": \"2026-11-09\", \"stop\": 28.57, \"tps\": [33.57, 35.58, 44.54], \"hold\": 45}, {\"effective\": \"2026-11-12\", \"stop\": 27.82, \"tps\": [33.57, 35.58, 40.82], \"hold\": 45}], \"rating\": \"强推\", \"total_score\": 70.2, \"entry_mode\": \"limit\", \"entry_src\": \"secondary\", \"entry_policy\": \"secondary/ratio-v1\", \"entry_target\": 33.36, \"valid_days\": 3, \"stop_price\": 27.82, \"tp_prices\": [33.57, 35.58, 40.82], \"holding_days\": 45, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"油气开采龙头估值合理，契合能源板块结构性机会\", \"totalWeight\": 90, \"primaryEntry\": 33.94, \"secondaryEntry\": 33.36, \"positions\": [{\"level\": 1, \"name\": \"首档-支撑位挂单\", \"price\": 33.94, \"weight\": 30, \"trigger\": \"跌至 33.94 元（近期支撑 33.94）企稳挂单\"}, {\"level\": 2, \"name\": \"次档-稳健加仓\", \"price\": 33.36, \"weight\": 40, \"trigger\": \"缩量回踩 33.36 元（次级支撑 33.37）附近，量比<1.0、换手 3-8%\"}, {\"level\": 3, \"name\": \"末档-左侧深蹲\", \"price\": 32.47, \"weight\": 30, \"trigger\": \"跌至 32.47 元（现价下浮 7.0% 的参考位）附近企稳\"}], \"stopLoss\": 31.43, \"stopLossReason\": \"以现价下浮 8% 作为风控参考线\", \"resistance\": 44.54, \"takeProfits\": [{\"level\": 1, \"pct\": 5, \"price\": 36.67, \"reason\": \"上方首阻力 35.43，本轮按 +5% 分批减仓\"}, {\"level\": 2, \"pct\": 11.3, \"price\": 38.87, \"reason\": \"上方次阻力 35.50，本轮按 +11.3% 分批减仓\"}, {\"level\": 3, \"pct\": 27.55, \"price\": 44.54, \"reason\": \"52 周高位 (44.54)\"}], \"holdingDays\": 45, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"add\", \"title\": \"MACD 金叉\", \"condition\": \"DIF 上穿 DEA 即触发首档建仓\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"收盘价 < 31.43 立即清仓\"}, {\"type\": \"reduce\", \"title\": \"到达末档止盈目标\", \"condition\": \"价格触及 44.54 区域减仓 1/2\"}], \"mode\": \"从零建仓\", \"portfolio\": null, \"actions\": [], \"overrideApplied\": false, \"overrideNote\": null, \"overrideSource\": null, \"technicalAvailable\": true}}",
           "created_at": "2026-11-12 09:03:54",
-          "updated_at": "2026-11-24 09:32:25",
+          "updated_at": "2026-11-24 15:07:21",
           "snapshot_id": 91,
           "path_src": "daily",
           "execs": [
             {
-              "id": 436,
+              "id": 442,
               "trade_id": 805,
               "exec_date": "2026-11-03",
               "code": "600938",
@@ -655,73 +595,13 @@
               "amount": 10008.0,
               "fee": 5.1,
               "reason": "entry",
-              "created_at": "2026-11-23 15:07:44"
+              "created_at": "2026-11-24 15:07:21"
             }
           ],
           "cost": 10013.1,
-          "value": 9030.0,
-          "pnl": -983.1,
-          "pnl_pct": -0.09818138238907037
-        },
-        {
-          "id": 825,
-          "pick_id": 153,
-          "trade_date": "2026-11-16",
-          "code": "300308",
-          "name": "中际旭创",
-          "rating": "强推",
-          "total_score": 77.2,
-          "entry_mode": "limit",
-          "entry_target": 427.34,
-          "valid_days": 3,
-          "fill_date": "2026-11-16",
-          "fill_price": 427.34,
-          "qty": 100,
-          "notional": 42734.0,
-          "stop_price": 352.07,
-          "tp_prices": [
-            428.61,
-            497.5,
-            527.35
-          ],
-          "holding_days": 45,
-          "exit_date": null,
-          "exit_reason": null,
-          "status": "open",
-          "shares_left": 100,
-          "realized": 0.0,
-          "last_price": 417.2,
-          "last_date": "2026-11-23",
-          "ret_pct": -0.024,
-          "bench_ret": -0.0054,
-          "excess": -0.0186,
-          "hold_days": 5,
-          "mfe": 0.0647,
-          "mae": -0.1156,
-          "plan_json": "{\"trade_date\": \"2026-11-16\", \"code\": \"300308\", \"name\": \"中际旭创\", \"schedule\": [{\"effective\": \"2026-11-16\", \"stop\": 418.79, \"tps\": [499.78, 580.1, 614.9], \"hold\": 45}, {\"effective\": \"2026-11-17\", \"stop\": 363.68, \"tps\": [442.74, 513.89, 544.72], \"hold\": 45}, {\"effective\": \"2026-11-19\", \"stop\": 352.07, \"tps\": [428.61, 497.5, 527.35], \"hold\": 45}], \"rating\": \"强推\", \"total_score\": 77.2, \"entry_mode\": \"limit\", \"entry_src\": \"secondary\", \"entry_policy\": \"secondary/ratio-v1\", \"entry_target\": 427.34, \"valid_days\": 3, \"stop_price\": 352.07, \"tp_prices\": [428.61, 497.5, 527.35], \"holding_days\": 45, \"notes\": [], \"suggestion\": {\"rating\": \"强推\", \"ratingReason\": \"光模块龙头估值低位，业绩高增，契合硬科技主线\", \"totalWeight\": 90, \"primaryEntry\": 432.84, \"secondaryEntry\": 427.34, \"positions\": [{\"level\": 1, \"name\": \"首档-支撑位挂单\", \"price\": 432.84, \"weight\": 30, \"trigger\": \"跌至 432.84 元（现价下浮 3.0% 的参考位）企稳挂单\"}, {\"level\": 2, \"name\": \"次档-稳健加仓\", \"price\": 427.34, \"weight\": 40, \"trigger\": \"缩量回踩 427.34 元（52 周低位 427.34）附近，量比<1.0、换手 3-8%\"}, {\"level\": 3, \"name\": \"末档-左侧深蹲\", \"price\": 422.21, \"weight\": 30, \"trigger\": \"跌至 422.21 元（现价下浮 5.4% 的参考位）附近企稳\"}], \"stopLoss\": 418.79, \"stopLossReason\": \"跌破 52 周低位 (427.34) 2%（已压到末档建仓价 415.94 下方，取现价下浮 10% 作为风控参考线）\", \"resistance\": 614.9, \"takeProfits\": [{\"level\": 1, \"pct\": 12, \"price\": 499.78, \"reason\": \"上方首阻力 636.68，本轮按 +12% 分批减仓\"}, {\"level\": 2, \"pct\": 30, \"price\": 580.1, \"reason\": \"上方次阻力 834.54，本轮按 +30% 分批减仓\"}, {\"level\": 3, \"pct\": 37.8, \"price\": 614.9, \"reason\": \"52 周高位 1416.88 距现价过远，本轮按 +37.8% 设定\"}], \"holdingDays\": 45, \"holdingTag\": \"中线\", \"signals\": [{\"type\": \"add\", \"title\": \"均线多头排列确立\", \"condition\": \"MA5>MA10>MA20>MA60 全部满足时加仓 2 档\"}, {\"type\": \"add\", \"title\": \"MACD 金叉\", \"condition\": \"DIF 上穿 DEA 即触发首档建仓\"}, {\"type\": \"sell\", \"title\": \"跌破止损位\", \"condition\": \"收盘价 < 418.79 立即清仓\"}, {\"type\": \"reduce\", \"title\": \"到达末档止盈目标\", \"condition\": \"价格触及 614.90 区域减仓 1/2\"}], \"mode\": \"从零建仓\", \"portfolio\": null, \"actions\": [], \"overrideApplied\": false, \"overrideNote\": null, \"overrideSource\": null, \"technicalAvailable\": true}}",
-          "created_at": "2026-11-16 15:07:07",
-          "updated_at": "2026-11-24 09:32:26",
-          "snapshot_id": 161,
-          "path_src": "daily",
-          "execs": [
-            {
-              "id": 440,
-              "trade_id": 825,
-              "exec_date": "2026-11-16",
-              "code": "300308",
-              "side": "buy",
-              "price": 427.34,
-              "qty": 100,
-              "amount": 42734.0,
-              "fee": 11.11,
-              "reason": "entry",
-              "created_at": "2026-11-23 15:07:44"
-            }
-          ],
-          "cost": 42745.11,
-          "value": 41720.0,
-          "pnl": -1025.11,
-          "pnl_pct": -0.023981924482122108
+          "value": 8898.0,
+          "pnl": -1115.1,
+          "pnl_pct": -0.11136411301195437
         }
       ],
       "max_positions": 8,
@@ -729,12 +609,9 @@
     },
     "verdict": [
       "样本不足",
-      "仅 7 笔平仓样本（阈值 10），暂不下结论"
+      "仅 9 笔平仓样本（阈值 10），暂不下结论"
     ],
     "url": "paper.html",
     "data_url": "data/paper.json"
-  },
-  "pending": [
-    "2026-11-24"
-  ]
+  }
 }
