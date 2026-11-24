@@ -896,8 +896,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "文娱用品",
+      "changePct": 3.55,
+      "mainNetInflowYi": 1.46,
+      "leader": "创源股份"
+    },
+    {
+      "name": "消费电子",
+      "changePct": 3.0,
+      "mainNetInflowYi": 24.87,
+      "leader": "奥尼电子"
+    },
+    {
+      "name": "航天装备Ⅱ",
+      "changePct": 2.99,
+      "mainNetInflowYi": 0.14,
+      "leader": "电科蓝天"
+    },
+    {
+      "name": "航海装备Ⅱ",
+      "changePct": 2.64,
+      "mainNetInflowYi": 4.49,
+      "leader": "中国船舶"
+    },
+    {
+      "name": "保险Ⅱ",
+      "changePct": 2.21,
+      "mainNetInflowYi": 4.4,
+      "leader": "中国人寿"
+    },
+    {
+      "name": "地面兵装Ⅱ",
+      "changePct": 2.18,
+      "mainNetInflowYi": 0.86,
+      "leader": "长城军工"
+    },
+    {
+      "name": "汽车服务",
+      "changePct": 2.1,
+      "mainNetInflowYi": 0.84,
+      "leader": "阿尔特"
+    },
+    {
+      "name": "照明设备Ⅱ",
+      "changePct": 2.08,
+      "mainNetInflowYi": 1.08,
+      "leader": "海洋王"
+    }
+  ],
+  "fundflow": {
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.22,
+      "mainNetInflow5dYi": -0.08
+    },
+    "000333": {
+      "code": "000333",
+      "name": "美的集团",
+      "mainNetInflowYi": -1.23,
+      "mainNetInflow5dYi": -0.17
+    },
+    "600690": {
+      "code": "600690",
+      "name": "海尔智家",
+      "mainNetInflowYi": -0.42,
+      "mainNetInflow5dYi": -2.65
+    },
+    "000651": {
+      "code": "000651",
+      "name": "格力电器",
+      "mainNetInflowYi": 0.89,
+      "mainNetInflow5dYi": -8.81
+    },
+    "000568": {
+      "code": "000568",
+      "name": "泸州老窖",
+      "mainNetInflowYi": -0.61,
+      "mainNetInflow5dYi": 1.44
+    },
+    "600886": {
+      "code": "600886",
+      "name": "国投电力",
+      "mainNetInflowYi": 0.17,
+      "mainNetInflow5dYi": -0.16
+    },
+    "600406": {
+      "code": "600406",
+      "name": "国电南瑞",
+      "mainNetInflowYi": -0.5,
+      "mainNetInflow5dYi": -3.75
+    },
+    "601668": {
+      "code": "601668",
+      "name": "中国建筑",
+      "mainNetInflowYi": -0.05,
+      "mainNetInflow5dYi": -3.15
+    }
+  },
   "paper_holdings": [
     {
       "code": "603259",
