@@ -932,8 +932,106 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "渔业",
+      "changePct": 4.65,
+      "mainNetInflowYi": 3.72,
+      "leader": "好当家"
+    },
+    {
+      "name": "医药商业",
+      "changePct": 1.09,
+      "mainNetInflowYi": 3.23,
+      "leader": "ST海王"
+    },
+    {
+      "name": "酒店餐饮",
+      "changePct": 1.01,
+      "mainNetInflowYi": 0.04,
+      "leader": "同庆楼"
+    },
+    {
+      "name": "非白酒",
+      "changePct": 1.0,
+      "mainNetInflowYi": 0.42,
+      "leader": "青岛啤酒"
+    },
+    {
+      "name": "饮料乳品",
+      "changePct": 0.96,
+      "mainNetInflowYi": 0.79,
+      "leader": "欢乐家"
+    },
+    {
+      "name": "白酒Ⅱ",
+      "changePct": 0.89,
+      "mainNetInflowYi": 5.84,
+      "leader": "山西汾酒"
+    },
+    {
+      "name": "中药Ⅱ",
+      "changePct": 0.88,
+      "mainNetInflowYi": 3.05,
+      "leader": "桂林三金"
+    },
+    {
+      "name": "旅游及景区",
+      "changePct": 0.67,
+      "mainNetInflowYi": 0.65,
+      "leader": "祥源文旅"
+    }
+  ],
+  "fundflow": {
+    "600011": {
+      "code": "600011",
+      "name": "华能国际",
+      "mainNetInflowYi": 0.19,
+      "mainNetInflow5dYi": 0.23
+    },
+    "000651": {
+      "code": "000651",
+      "name": "格力电器",
+      "mainNetInflowYi": 1.42,
+      "mainNetInflow5dYi": -7.19
+    },
+    "600690": {
+      "code": "600690",
+      "name": "海尔智家",
+      "mainNetInflowYi": 1.15,
+      "mainNetInflow5dYi": -3.22
+    },
+    "600415": {
+      "code": "600415",
+      "name": "小商品城",
+      "mainNetInflowYi": -0.03,
+      "mainNetInflow5dYi": -0.17
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.12,
+      "mainNetInflow5dYi": -0.22
+    },
+    "000568": {
+      "code": "000568",
+      "name": "泸州老窖",
+      "mainNetInflowYi": 0.78,
+      "mainNetInflow5dYi": -0.41
+    },
+    "600519": {
+      "code": "600519",
+      "name": "贵州茅台",
+      "mainNetInflowYi": 3.37,
+      "mainNetInflow5dYi": 7.34
+    },
+    "600886": {
+      "code": "600886",
+      "name": "国投电力",
+      "mainNetInflowYi": 0.05,
+      "mainNetInflow5dYi": -0.08
+    }
+  },
   "paper_holdings": [
     {
       "code": "603259",
