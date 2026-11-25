@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-25 09:33:58",
+  "updated_at": "2026-11-25 15:05:11",
   "capital": 100000.0,
-  "equity": 93265.83,
+  "equity": 93177.83,
   "cash": 69937.83,
   "open_cost": 25115.25,
-  "open_value": 23328.0,
-  "unrealized": -1787.25,
+  "open_value": 23240.0,
+  "unrealized": -1875.25,
   "realized": -4946.92,
-  "total_return": -0.0673,
-  "exposure": 0.2501,
+  "total_return": -0.0682,
+  "exposure": 0.2494,
   "max_positions": 8,
   "curve": [
     {
@@ -280,6 +280,16 @@
       "ret": 0.0427,
       "cum": -0.0673,
       "positions": 2
+    },
+    {
+      "date": "2026-11-25",
+      "cash": 69937.83,
+      "value": 23240.0,
+      "equity": 93177.83,
+      "pnl": -88.0,
+      "ret": -0.0009,
+      "cum": -0.0682,
+      "positions": 2
     }
   ],
   "positions": [
@@ -291,13 +301,13 @@
       "fill_price": 150.97,
       "qty": 100,
       "shares": 100,
-      "last_price": 144.3,
+      "last_price": 142.79,
       "cost": 15102.15,
-      "value": 14430.0,
-      "pnl": -672.15,
-      "pnl_pct": -0.0445,
+      "value": 14279.0,
+      "pnl": -823.15,
+      "pnl_pct": -0.0545,
       "stop_price": 135.51,
-      "ret_pct": -0.0445
+      "ret_pct": -0.0545
     },
     {
       "code": "600938",
@@ -307,16 +317,72 @@
       "fill_price": 33.36,
       "qty": 300,
       "shares": 300,
-      "last_price": 29.66,
+      "last_price": 29.87,
       "cost": 10013.1,
-      "value": 8898.0,
-      "pnl": -1115.1,
-      "pnl_pct": -0.1114,
+      "value": 8961.0,
+      "pnl": -1052.1,
+      "pnl_pct": -0.1051,
       "stop_price": 27.82,
-      "ret_pct": -0.1114
+      "ret_pct": -0.1051
     }
   ],
   "trades": [
+    {
+      "trade_date": "2026-11-25",
+      "code": "600415",
+      "name": "小商品城",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 11.21,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-25",
+      "code": "600690",
+      "name": "海尔智家",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 21.37,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-25",
+      "code": "000651",
+      "name": "格力电器",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 38.0,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
+    {
+      "trade_date": "2026-11-25",
+      "code": "600011",
+      "name": "华能国际",
+      "rating": "强推",
+      "status": "pending",
+      "exit_reason": null,
+      "entry_target": 7.35,
+      "fill_date": null,
+      "fill_price": null,
+      "qty": 0,
+      "ret_pct": null,
+      "hold_days": 0
+    },
     {
       "trade_date": "2026-11-24",
       "code": "600066",
@@ -336,8 +402,8 @@
       "code": "000538",
       "name": "云南白药",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 53.62,
       "fill_date": null,
       "fill_price": null,
@@ -350,8 +416,8 @@
       "code": "000423",
       "name": "东阿阿胶",
       "rating": "强推",
-      "status": "pending",
-      "exit_reason": null,
+      "status": "expired",
+      "exit_reason": "expired",
       "entry_target": 49.36,
       "fill_date": null,
       "fill_price": null,
@@ -748,8 +814,8 @@
       "fill_date": "2026-11-05",
       "fill_price": 150.97,
       "qty": 100,
-      "ret_pct": -0.0445,
-      "hold_days": 13
+      "ret_pct": -0.0545,
+      "hold_days": 14
     },
     {
       "trade_date": "2026-11-05",
@@ -832,8 +898,8 @@
       "fill_date": "2026-11-03",
       "fill_price": 33.36,
       "qty": 300,
-      "ret_pct": -0.1114,
-      "hold_days": 15
+      "ret_pct": -0.1051,
+      "hold_days": 16
     },
     {
       "trade_date": "2026-11-02",
@@ -1537,13 +1603,13 @@
     }
   ],
   "stats": {
-    "orders": 87,
+    "orders": 91,
     "filled": 11,
     "open": 2,
     "closed": 9,
-    "pending": 3,
-    "expired": 73,
-    "fill_rate": 0.1264,
+    "pending": 5,
+    "expired": 75,
+    "fill_rate": 0.1209,
     "win_rate": 0.2222,
     "verdict": [
       "样本不足",
