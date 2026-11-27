@@ -932,8 +932,114 @@
       }
     }
   ],
-  "sectors": null,
-  "fundflow": null,
+  "sectors": [
+    {
+      "name": "电子化学品Ⅱ",
+      "changePct": 16.3,
+      "mainNetInflowYi": 11.71,
+      "leader": "菲沃泰"
+    },
+    {
+      "name": "半导体",
+      "changePct": 15.23,
+      "mainNetInflowYi": 233.0,
+      "leader": "粤芯半导体-U"
+    },
+    {
+      "name": "通信设备",
+      "changePct": 15.21,
+      "mainNetInflowYi": 157.0,
+      "leader": "仕佳光子"
+    },
+    {
+      "name": "非金属材料Ⅱ",
+      "changePct": 11.88,
+      "mainNetInflowYi": 0.41,
+      "leader": "联瑞新材"
+    },
+    {
+      "name": "其他电子Ⅱ",
+      "changePct": 11.72,
+      "mainNetInflowYi": 9.53,
+      "leader": "香农芯创"
+    },
+    {
+      "name": "IT服务Ⅱ",
+      "changePct": 11.6,
+      "mainNetInflowYi": 64.62,
+      "leader": "软通动力"
+    },
+    {
+      "name": "元件",
+      "changePct": 11.44,
+      "mainNetInflowYi": 127.19,
+      "leader": "弘信电子"
+    },
+    {
+      "name": "自动化设备",
+      "changePct": 11.18,
+      "mainNetInflowYi": 37.87,
+      "leader": "田中精机"
+    }
+  ],
+  "fundflow": {
+    "300308": {
+      "code": "300308",
+      "name": "中际旭创",
+      "mainNetInflowYi": 37.48,
+      "mainNetInflow5dYi": 46.95,
+      "mainNetInflow10dYi": 5.42
+    },
+    "002916": {
+      "code": "002916",
+      "name": "深南电路",
+      "mainNetInflowYi": 3.52,
+      "mainNetInflow5dYi": 3.82,
+      "mainNetInflow10dYi": 6.57
+    },
+    "002463": {
+      "code": "002463",
+      "name": "沪电股份",
+      "mainNetInflowYi": 9.54,
+      "mainNetInflow5dYi": 11.12,
+      "mainNetInflow10dYi": 12.78
+    },
+    "300274": {
+      "code": "300274",
+      "name": "阳光电源",
+      "mainNetInflowYi": 2.8,
+      "mainNetInflow5dYi": 5.7,
+      "mainNetInflow10dYi": -0.55
+    },
+    "000333": {
+      "code": "000333",
+      "name": "美的集团",
+      "mainNetInflowYi": -3.94,
+      "mainNetInflow5dYi": -0.5,
+      "mainNetInflow10dYi": 6.14
+    },
+    "600066": {
+      "code": "600066",
+      "name": "宇通客车",
+      "mainNetInflowYi": -0.45,
+      "mainNetInflow5dYi": -0.59,
+      "mainNetInflow10dYi": -0.53
+    },
+    "000651": {
+      "code": "000651",
+      "name": "格力电器",
+      "mainNetInflowYi": -2.26,
+      "mainNetInflow5dYi": -2.08,
+      "mainNetInflow10dYi": -3.54
+    },
+    "600690": {
+      "code": "600690",
+      "name": "海尔智家",
+      "mainNetInflowYi": -0.56,
+      "mainNetInflow5dYi": -0.51,
+      "mainNetInflow10dYi": -0.42
+    }
+  },
   "paper_holdings": [
     {
       "code": "603259",
